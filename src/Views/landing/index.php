@@ -116,7 +116,7 @@
     </div>
   </div>
 
-  <div class="section-divider" style="margin-top:-30px;">
+  <div class="section-divider divider-below">
     <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,70 C360,0 1080,0 1440,70 L1440,70 L0,70 Z" class="divider-fill-bg"/>
     </svg>
@@ -163,7 +163,7 @@
     </div>
   </div>
 
-  <div class="section-divider" style="margin-top:-30px;">
+  <div class="section-divider divider-below">
     <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,0 C360,70 1080,70 1440,0 L1440,70 L0,70 Z" class="divider-fill-alt"/>
     </svg>

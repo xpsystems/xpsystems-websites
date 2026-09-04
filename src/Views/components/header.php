@@ -19,24 +19,21 @@
       </span>
     </nav>
 
-    <div class="nav-right">
-      <?php $component('theme-toggle'); ?>
-      <button
-        class="nav-hamburger"
-        id="nav-hamburger"
-        aria-label="Toggle navigation"
-        aria-expanded="false"
-        aria-controls="nav-links"
-        type="button"
-      >
-        <svg class="icon-hamburger" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-        <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
-    </div>
+    <button
+      class="nav-hamburger"
+      id="nav-hamburger"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="nav-links"
+      type="button"
+    >
+      <svg class="icon-hamburger" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+      <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
   </div>
 </header>
 <div class="nav-overlay" id="nav-overlay"></div>
