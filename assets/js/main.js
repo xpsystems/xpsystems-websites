@@ -180,7 +180,7 @@
   const navHeader = document.querySelector(".nav-header");
   if (navHeader) {
     window.addEventListener("scroll", function () {
-      navHeader.style.borderBottomColor = window.scrollY > 10 ? "rgba(30,30,42,0.9)" : "";
+      navHeader.classList.toggle("is-scrolled", window.scrollY > 15);
     }, { passive: true });
   }
 
@@ -403,5 +403,23 @@
         }
       }
     })();
+  }
+
+  /* ── 8. Domain Search Filter ─────────────────────────────────────── */
+  const domainSearch = document.getElementById("domain-search");
+  if (domainSearch) {
+    domainSearch.addEventListener("input", function () {
+      const q = domainSearch.value.trim().toLowerCase();
+      document.querySelectorAll(".services-grid .card").forEach(function (card) {
+        let cardHasMatch = false;
+        card.querySelectorAll(".link-list li").forEach(function (li) {
+          const text = li.textContent.toLowerCase();
+          const matches = !q || text.includes(q);
+          li.style.display = matches ? "" : "none";
+          if (matches) cardHasMatch = true;
+        });
+        card.style.display = (!q || cardHasMatch) ? "" : "none";
+      });
+    });
   }
 })();
