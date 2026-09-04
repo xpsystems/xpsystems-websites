@@ -1,0 +1,25 @@
+// =============================================================================
+// xpsystems — Master SCSS Entry Point
+// Build: compiled to assets/css/build.css via scssphp (PHP, no Node.js)
+// Structure:
+//   _tokens.scss   — CSS custom properties (design tokens, dark/light themes)
+//   _base.scss     — reset, html/body, container, utilities
+//   _nav.scss      — sticky navigation, status badge, theme toggle, hamburger
+//   _buttons.scss  — button variants
+//   _hero.scss     — hero section + trust strip + dividers
+//   _sections.scss — shared section layouts, cards, services, mission, team, stats
+//   _pages.scss    — contact, domains, open-source explorer
+//   _legal.scss    — legal/prose pages
+//   _footer.scss   — footer + preload bar + scroll reveal
+// =============================================================================
+
+// Note: scssphp v2.x uses @import (Sass modules / @use not yet supported)
+@import 'tokens';
+@import 'base';
+@import 'nav';
+@import 'buttons';
+@import 'hero';
+@import 'sections';
+@import 'pages';
+@import 'legal';
+@import 'footer';

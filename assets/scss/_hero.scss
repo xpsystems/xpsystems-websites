@@ -1,0 +1,149 @@
+// =============================================================================
+// Hero Section — Minimal Corporate SaaS
+// =============================================================================
+
+.hero {
+  position: relative;
+  padding: calc(var(--nav-height) + 96px) 0 112px;
+  background: var(--bg);
+  text-align: center;
+  overflow: hidden;
+
+  // Subtle radial glow behind headline
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+// ── Eyebrow label
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 28px;
+
+  .eyebrow-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+}
+
+// ── Hero Headline
+.hero-title {
+  font-size: clamp(2.6rem, 6.5vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  color: var(--text);
+  margin-bottom: 20px;
+
+  // Gradient accent span
+  .hero-title-gradient {
+    background: linear-gradient(135deg, var(--accent) 0%, #818cf8 60%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+// ── Subheadline / tagline
+.hero-tagline {
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 580px;
+  margin: 0 auto 36px;
+  letter-spacing: -0.01em;
+}
+
+// ── CTA row
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+}
+
+// ── Hero trust strip
+.hero-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-top: 36px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: var(--text-dim);
+  font-weight: 500;
+
+  svg {
+    color: var(--accent);
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+}
+
+// ── Section wave dividers
+.section-divider {
+  display: block;
+  width: 100%;
+  line-height: 0;
+  position: relative;
+  z-index: 2;
+  margin-top: -60px;
+  height: 60px;
+  pointer-events: none;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &.divider-below {
+    margin-top: 0;
+    margin-bottom: -60px;
+  }
+}
+
+.divider-fill-bg     { fill: var(--bg);     transition: fill 0.3s ease; }
+.divider-fill-alt    { fill: var(--bg-alt); transition: fill 0.3s ease; }
+.divider-fill-footer { fill: var(--footer-bg); transition: fill 0.3s ease; }

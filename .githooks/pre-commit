@@ -1,0 +1,23 @@
+#!/bin/sh
+# =============================================================================
+# Git Pre-commit Hook — SCSS Builder
+# Compiles SCSS → build.css before every commit.
+# The compiled file is gitignored; this hook ensures it's always fresh.
+#
+# Install: automatically placed at .git/hooks/pre-commit by setup-hooks.sh
+# =============================================================================
+
+set -e
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+
+echo "[pre-commit] Building SCSS…"
+
+# Run the PHP build script
+php "$REPO_ROOT/build-css.php" --minify
+
+# Stage the compiled CSS so it's included in the working tree
+# (even though it's gitignored, the hook can still compile it before push)
+# Note: build.css itself is NOT added to git — it stays gitignored.
+
+echo "[pre-commit] SCSS build complete."
