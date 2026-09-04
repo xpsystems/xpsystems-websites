@@ -43,6 +43,41 @@ final class Response
         return new self('', $status, ['Location' => $url]);
     }
 
+    public static function file(string $filePath): self
+    {
+        if (!file_exists($filePath) || is_dir($filePath)) {
+            return new self('Not Found', 404, ['Content-Type' => 'text/plain']);
+        }
+
+        $extension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+        $mimeTypes = [
+            'css'   => 'text/css; charset=UTF-8',
+            'js'    => 'application/javascript; charset=UTF-8',
+            'json'  => 'application/json; charset=UTF-8',
+            'png'   => 'image/png',
+            'jpg'   => 'image/jpeg',
+            'jpeg'  => 'image/jpeg',
+            'svg'   => 'image/svg+xml',
+            'ico'   => 'image/x-icon',
+            'webp'  => 'image/webp',
+            'woff'  => 'font/woff',
+            'woff2' => 'font/woff2',
+            'ttf'   => 'font/ttf',
+        ];
+
+        $contentType = $mimeTypes[$extension] ?? 'application/octet-stream';
+        $content = (string) file_get_contents($filePath);
+
+        $headers = [
+            'Content-Type'   => $contentType,
+            'Content-Length' => (string) strlen($content),
+            'Cache-Control'  => 'public, max-age=86400',
+            'X-Content-Type-Options' => 'nosniff',
+        ];
+
+        return new self($content, 200, $headers);
+    }
+
     public function send(): void
     {
         if (!headers_sent()) {

@@ -23,12 +23,25 @@ final class Router
 
         $subdomain = $request->getSubdomainNormalized();
 
-        // 1. API routes (support both api.php, /api/..., and direct queries)
+        // 1. Static asset serving for /assets/* or root asset aliases (/style.css, /script.js, /favicon.ico)
+        if (str_starts_with($path, '/assets/')) {
+            $relative = substr($path, strlen('/assets/'));
+            $rootAsset = dirname(__DIR__) . '/assets/' . ltrim($relative, '/');
+            if (file_exists($rootAsset) && !is_dir($rootAsset)) {
+                return Response::file($rootAsset);
+            }
+        } elseif ($path === '/style.css' || $path === '/main.css') {
+            return Response::file(dirname(__DIR__) . '/assets/css/style.css');
+        } elseif ($path === '/script.js' || $path === '/main.js') {
+            return Response::file(dirname(__DIR__) . '/assets/js/main.js');
+        }
+
+        // 2. API routes (support both api.php, /api/..., and direct queries)
         if ($path === '/api' || $path === '/api.php' || str_starts_with($path, '/api/')) {
             return (new ApiController())->handle($request);
         }
 
-        // 2. Subdomain-specific dispatching
+        // 3. Subdomain-specific dispatching
         switch ($subdomain) {
             case 'contact':
                 return self::dispatchContact($request, $path);
