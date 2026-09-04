@@ -7,7 +7,7 @@
   <meta name="description" content="<?= $e($pageDescription) ?>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <script>
   (function(){
@@ -32,17 +32,18 @@
 <!-- Hero Section -->
 <header class="hero">
   <div class="container hero-inner">
-    <div class="hero-eyebrow reveal">Domain Portfolio</div>
+    <div class="hero-eyebrow reveal">
+      <svg class="eyebrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="2" y1="12" x2="22" y2="12"/>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+      Domain Portfolio
+    </div>
     <h1 class="hero-title reveal" style="--delay: 50ms">Our Digital Footprint</h1>
-    <p class="hero-description reveal" style="--delay: 100ms">
+    <p class="hero-tagline reveal" style="--delay: 100ms">
       A comprehensive registry of domains and cloud infrastructure owned and operated by xpsystems.
     </p>
-  </div>
-
-  <div class="section-divider">
-    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M0,0 C300,100 900,0 1200,100 L1200,120 L0,120 Z" class="divider-fill-alt"></path>
-    </svg>
   </div>
 </header>
 
@@ -50,7 +51,7 @@
 <main class="services-section">
   <div class="container">
     <div class="domain-search-wrap reveal">
-      <svg class="domain-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="domain-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
       </svg>
       <input type="text" id="domain-search" class="domain-search-input" placeholder="Filter domains (e.g. host, eu, ptero)…" autocomplete="off">
@@ -58,7 +59,7 @@
 
     <div class="services-grid">
       <?php foreach ($activeGroups as $index => $category): ?>
-        <div class="card <?= !empty($category['highlight']) ? 'card-partner' : '' ?> reveal" style="--delay: <?= 100 + ($index * 40) ?>ms">
+        <div class="card <?= !empty($category['highlight']) ? 'card-partner' : '' ?> reveal" style="--delay: <?= 60 + ($index * 35) ?>ms">
           <div class="card-top">
             <span class="card-badge <?= !empty($category['highlight']) ? 'card-badge-service' : '' ?>">
               <?= $e($category['title']) ?>
@@ -74,8 +75,8 @@
                   <?php if (!empty($item['badge'])): ?>
                     <span class="badge badge-<?= strtolower($item['badge']) ?>"><?= $e($item['badge']) ?></span>
                   <?php endif; ?>
-                  <svg class="icon-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="7 7 17 17"/><polyline points="17 7 17 17 7 17"/>
+                  <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                   </svg>
                 </a>
               </li>
@@ -85,12 +86,6 @@
       <?php endforeach; ?>
     </div>
   </div>
-
-  <div class="section-divider" style="margin-top:-30px;">
-    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M0,60 C300,0 900,120 1200,40 L1200,120 L0,120 Z" class="divider-fill-bg"></path>
-    </svg>
-  </div>
 </main>
 
 <!-- Legacy Section -->
@@ -98,14 +93,15 @@
   <section class="legacy-section">
     <div class="container">
       <div class="section-header reveal">
+        <span class="section-eyebrow">Archive</span>
         <h2 class="section-title"><?= $e($legacyGroup['title']) ?></h2>
-        <p class="section-subtitle">Historical domains previously part of the network.</p>
+        <p class="section-sub">Historical domains previously part of the network.</p>
       </div>
       <div class="legacy-grid reveal" style="--delay: 100ms">
         <?php foreach ($legacyGroup['domains'] as $item): ?>
           <div class="legacy-item">
             <span class="expired-link">
-              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
               </svg>
               <?= $e($item['domain']) ?>
@@ -116,12 +112,6 @@
     </div>
   </section>
 <?php endif; ?>
-
-<div class="section-divider" style="margin-top:-30px;">
-  <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-    <path d="M0,0 L1200,80 L1200,120 L0,120 Z" class="divider-fill-footer"></path>
-  </svg>
-</div>
 
 <?php $component('footer'); ?>
 

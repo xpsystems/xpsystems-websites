@@ -1,5 +1,6 @@
 // =============================================================================
-// Navigation Bar
+// Navigation Header
+// Crisp, modern, technical navbar with pure SVGs and zero gradients
 // =============================================================================
 
 .nav-header {
@@ -10,13 +11,13 @@
   z-index: 1000;
   height: var(--nav-height);
   background-color: var(--bg-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  transition: border-color var(--t-fast), background-color 0.3s ease, box-shadow var(--t);
+  transition: border-color var(--t-fast), background-color var(--t-fast), box-shadow var(--t);
 
   &.is-scrolled {
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
     border-bottom-color: var(--border-hover);
   }
 }
@@ -32,32 +33,43 @@
   gap: 16px;
 }
 
-// ── Logo
+// ── Logo with pure SVG mark
 .nav-logo {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  font-size: 1.125rem;
-  font-weight: 800;
+  gap: 10px;
+  font-size: 1.0625rem;
+  font-weight: 700;
   color: var(--text);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   user-select: none;
-  transition: color var(--t-fast);
 
-  &:hover { color: var(--accent); }
+  .nav-logo-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--accent);
+    transition: transform var(--t-fast);
+  }
 
-  .logo-mark {
+  .nav-logo-text {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--accent);
-    color: #fff;
-    font-size: 0.6875rem;
-    font-weight: 900;
-    padding: 4px 7px;
-    border-radius: var(--radius-xs);
-    letter-spacing: 0.04em;
-    line-height: 1;
+    align-items: baseline;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  .nav-logo-light {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  &:hover {
+    .nav-logo-icon {
+      transform: scale(1.05);
+    }
+    .nav-logo-light {
+      color: var(--text);
+    }
   }
 }
 
@@ -65,48 +77,51 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
 }
 
 .nav-link {
-  font-size: 0.875rem;
+  font-size: 0.84375rem;
   font-weight: 500;
   color: var(--text-muted);
-  padding: 7px 13px;
-  border-radius: var(--radius-full);
-  transition: color var(--t-fast), background-color var(--t-fast);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition: color var(--t-fast), background-color var(--t-fast), border-color var(--t-fast);
 
   &:hover {
     color: var(--text);
-    background-color: var(--bg-surface);
+    background-color: var(--bg-surface-hover);
+    border-color: var(--border);
   }
 
   &.active {
     color: var(--text);
     background-color: var(--bg-surface);
-    border: 1px solid var(--border);
+    border-color: var(--border-hover);
     font-weight: 600;
   }
 }
 
-// ── Nav Right
+// ── Nav Right Section
 .nav-right {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-// ── Live Status Badge
+// ── Live Infrastructure Status Badge
 .status-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 11px;
-  border-radius: var(--radius-full);
-  background: var(--bg-surface);
+  gap: 7px;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-surface);
   border: 1px solid var(--border);
   font-size: 0.75rem;
   font-weight: 600;
+  font-family: var(--font-mono);
   color: var(--text-muted);
   white-space: nowrap;
   transition: all var(--t-fast);
@@ -114,51 +129,46 @@
   &:hover {
     border-color: var(--border-hover);
     color: var(--text);
-    background: var(--bg-surface-hover);
+    background-color: var(--bg-surface-hover);
   }
 }
 
 .status-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background-color: var(--grey);
   flex-shrink: 0;
+  position: relative;
 }
 
+// Crisp pulsing status dot (Zero gradients)
 .status-dot.green,
 .badge-green .status-dot {
   background-color: var(--green);
-  box-shadow: 0 0 8px var(--green);
-  animation: pulse-dot 2.5s infinite;
+  box-shadow: 0 0 0 2px var(--green-dim);
 }
 
 .status-dot.yellow,
 .badge-yellow .status-dot {
   background-color: var(--yellow);
-  box-shadow: 0 0 8px var(--yellow);
+  box-shadow: 0 0 0 2px var(--yellow-dim);
 }
 
 .status-dot.red,
 .badge-red .status-dot {
   background-color: var(--red);
-  box-shadow: 0 0 8px var(--red);
-}
-
-@keyframes pulse-dot {
-  0%   { opacity: 1; transform: scale(1); }
-  50%  { opacity: 0.6; transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
+  box-shadow: 0 0 0 2px var(--red-dim);
 }
 
 // ── Theme Toggle
 .theme-toggle {
   display: inline-flex;
   align-items: center;
-  background: var(--bg-surface);
+  background-color: var(--bg-surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-full);
-  padding: 3px;
+  border-radius: var(--radius-sm);
+  padding: 2px;
   gap: 2px;
 }
 
@@ -168,45 +178,40 @@
   justify-content: center;
   width: 26px;
   height: 26px;
-  border-radius: var(--radius-full);
-  background: transparent;
-  border: none;
+  border-radius: var(--radius-xs);
+  background-color: transparent;
+  border: 1px solid transparent;
   cursor: pointer;
   color: var(--text-dim);
   transition: all var(--t-fast);
 
   svg {
-    width: 13px;
-    height: 13px;
+    width: 14px;
+    height: 14px;
     pointer-events: none;
   }
 
   &:hover {
     color: var(--text);
     background-color: var(--bg-elevated);
+    border-color: var(--border);
   }
 
   &.active {
-    color: var(--accent);
-    background-color: var(--accent-dim);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
-  }
-
-  [data-theme="light"] &.active {
-    background-color: #fff;
-    color: var(--accent);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    color: var(--text);
+    background-color: var(--bg-elevated);
+    border-color: var(--border-hover);
   }
 }
 
-// ── Mobile Hamburger
+// ── Mobile Navigation Hamburger Button
 .nav-hamburger {
   display: none;
   align-items: center;
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: var(--bg-surface);
+  background-color: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   color: var(--text);
@@ -215,10 +220,13 @@
 
   &:hover {
     border-color: var(--border-hover);
-    background: var(--bg-surface-hover);
+    background-color: var(--bg-surface-hover);
   }
 
-  svg { width: 17px; height: 17px; }
+  svg {
+    width: 18px;
+    height: 18px;
+  }
 
   .icon-close { display: none; }
   &.open .icon-hamburger { display: none; }
@@ -229,7 +237,7 @@
   display: none;
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 998;
@@ -237,6 +245,7 @@
   &.active { display: block; }
 }
 
+// ── Mobile Navigation Menu
 @media (max-width: 860px) {
   .nav-hamburger { display: flex; }
 
@@ -245,10 +254,10 @@
     top: var(--nav-height);
     left: 0;
     right: 0;
-    background: var(--bg-surface);
+    background-color: var(--bg-surface);
     border-bottom: 1px solid var(--border);
     flex-direction: column;
-    padding: 18px 20px;
+    padding: 16px 20px;
     gap: 6px;
     transform: translateY(-110%);
     opacity: 0;
@@ -266,7 +275,7 @@
 
     .nav-link {
       width: 100%;
-      padding: 11px 16px;
+      padding: 10px 14px;
       border-radius: var(--radius-sm);
       font-size: 0.9375rem;
     }

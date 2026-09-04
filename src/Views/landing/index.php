@@ -7,7 +7,7 @@
   <meta name="description" content="<?= $e($pageDescription) ?>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <script>
   (function(){
@@ -33,21 +33,25 @@
 <section class="hero">
   <div class="hero-inner">
 
-    <p class="hero-eyebrow reveal">
-      <span class="eyebrow-dot"></span>
+    <div class="hero-eyebrow reveal">
+      <svg class="eyebrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="2" y1="12" x2="22" y2="12"/>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
       <?= $e($brand['domains'][0] ?? 'xpsystems.eu') ?> &amp; <?= $e($brand['domains'][1] ?? 'xpsystems.de') ?>
-    </p>
+    </div>
 
     <h1 class="hero-title reveal" style="--delay:50ms">
       European infrastructure<br>
-      <span class="hero-title-gradient">built to last.</span>
+      <span class="hero-title-accent">built to last.</span>
     </h1>
 
-    <p class="hero-tagline reveal" style="--delay:120ms">
+    <p class="hero-tagline reveal" style="--delay:100ms">
       We build, operate, and open-source privacy-first web services — from Germany, for the open web.
     </p>
 
-    <div class="hero-ctas reveal" style="--delay:190ms">
+    <div class="hero-ctas reveal" style="--delay:150ms">
       <?php foreach ($heroCtas as $cta): ?>
         <a
           href="<?= $e($cta['href']) ?>"
@@ -56,8 +60,8 @@
           rel="noopener noreferrer"
         >
           <?php if (empty($cta['primary'])): ?>
-            <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.907-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
             </svg>
           <?php endif; ?>
           <?= $e($cta['label']) ?>
@@ -71,7 +75,7 @@
     </div>
 
     <!-- Trust strip -->
-    <div class="hero-trust reveal" style="--delay:260ms">
+    <div class="hero-trust reveal" style="--delay:200ms">
       <span class="trust-item">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
         GDPR-compliant
@@ -91,12 +95,6 @@
     </div>
 
   </div>
-
-  <div class="section-divider">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" class="divider-fill-alt"/>
-    </svg>
-  </div>
 </section>
 
 
@@ -115,7 +113,7 @@
       <?php foreach ($services as $i => $service): ?>
         <article
           class="card <?= $service['type'] === 'partner' ? 'card-partner' : '' ?> reveal"
-          style="--delay:<?= $i * 55 ?>ms"
+          style="--delay:<?= $i * 50 ?>ms"
         >
           <span class="card-badge <?= $service['type'] === 'service' ? 'card-badge-service' : '' ?>">
             <?= $service['type'] === 'partner' ? 'Partner' : 'Service' ?>
@@ -138,7 +136,7 @@
               <?php foreach ($service['links'] as $link): ?>
                 <li>
                   <a class="card-sublink" href="<?= $e($link['href']) ?>" target="_blank" rel="noopener noreferrer">
-                    <?= $e($link['label']) ?>
+                    <span><?= $e($link['label']) ?></span>
                     <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                     </svg>
@@ -150,12 +148,6 @@
         </article>
       <?php endforeach; ?>
     </div>
-  </div>
-
-  <div class="section-divider divider-below">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,60 C480,0 960,0 1440,60 L1440,60 L0,60 Z" class="divider-fill-bg"/>
-    </svg>
   </div>
 </section>
 
@@ -215,12 +207,6 @@
 
     </div>
   </div>
-
-  <div class="section-divider divider-below">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" class="divider-fill-alt"/>
-    </svg>
-  </div>
 </section>
 
 
@@ -237,7 +223,7 @@
 
     <div class="team-grid">
       <?php foreach ($team as $i => $member): ?>
-        <article class="team-card reveal" style="--delay:<?= $i * 80 ?>ms">
+        <article class="team-card reveal" style="--delay:<?= $i * 70 ?>ms">
           <div class="team-avatar-wrap">
             <img
               class="team-avatar-img"
@@ -249,7 +235,10 @@
               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
             >
             <div class="team-avatar-fallback" aria-hidden="true">
-              <?= $e(mb_strtoupper(mb_substr($member['name'], 0, 1))) ?>
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
             </div>
           </div>
 
@@ -258,29 +247,23 @@
 
           <div class="team-links">
             <a class="team-link" href="<?= $e($member['url']) ?>" target="_blank" rel="noopener noreferrer">
-              Portfolio
+              <span>Portfolio</span>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
               </svg>
             </a>
             <?php if (!empty($member['github'])): ?>
               <a class="team-link team-link-github" href="https://github.com/<?= $e($member['github']) ?>" target="_blank" rel="noopener noreferrer">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="13" height="13">
-                  <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.907-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
                 </svg>
-                GitHub
+                <span>GitHub</span>
               </a>
             <?php endif; ?>
           </div>
         </article>
       <?php endforeach; ?>
     </div>
-  </div>
-
-  <div class="section-divider divider-below">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,60 C480,0 960,0 1440,60 L1440,60 L0,60 Z" class="divider-fill-bg"/>
-    </svg>
   </div>
 </section>
 
@@ -294,7 +277,7 @@
           <span class="stat-value"><?= $e($stat['value']) ?></span>
           <span class="stat-label"><?= $e($stat['label']) ?></span>
           <span class="stat-cta">
-            <?= $e($stat['link_label']) ?>
+            <span><?= $e($stat['link_label']) ?></span>
             <svg class="icon-arrow-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
             </svg>

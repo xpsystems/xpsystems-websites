@@ -1,5 +1,6 @@
 // =============================================================================
-// Reset & Base
+// Reset & Base Styling
+// Precision engineering base, zero sloppy styles
 // =============================================================================
 
 *,
@@ -21,14 +22,19 @@ body {
   font-family: var(--font-sans);
   background-color: var(--bg);
   color: var(--text);
-  line-height: 1.65;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color var(--t-fast), color var(--t-fast);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--accent-text);
 }
 
 main {
@@ -38,13 +44,19 @@ main {
 a {
   color: inherit;
   text-decoration: none;
-  transition: color var(--t-fast), opacity var(--t-fast);
+  transition: color var(--t-fast), border-color var(--t-fast), background-color var(--t-fast);
 }
 
-img,
-svg {
+img {
   display: block;
   max-width: 100%;
+  height: auto;
+}
+
+svg {
+  display: block;
+  flex-shrink: 0;
+  shape-rendering: geometricPrecision;
 }
 
 ul,
@@ -58,10 +70,18 @@ select,
 textarea {
   font-family: inherit;
   font-size: inherit;
+  color: inherit;
 }
 
-// ── Utilities
-.mono { font-family: var(--font-mono); }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+// ── Typography & Utilities
+.mono {
+  font-family: var(--font-mono);
+}
 
 .container {
   width: 100%;
@@ -70,14 +90,19 @@ textarea {
   padding: 0 24px;
 }
 
+// Technical hairline border utilities
+.border-b { border-bottom: 1px solid var(--border); }
+.border-t { border-top: 1px solid var(--border); }
+
 // Theme switch smooth transition helper
 html.is-switching-theme,
 html.is-switching-theme *::before,
 html.is-switching-theme *::after {
   transition:
-    background-color 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease,
-    fill 0.25s ease,
-    box-shadow 0.25s ease !important;
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    fill 0.2s ease,
+    stroke 0.2s ease,
+    box-shadow 0.2s ease !important;
 }

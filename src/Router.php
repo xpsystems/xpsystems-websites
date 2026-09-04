@@ -26,6 +26,10 @@ final class Router
         // 1. Static asset serving for /assets/* or root asset aliases (/style.css, /script.js, /favicon.ico)
         if (str_starts_with($path, '/assets/')) {
             $relative = substr($path, strlen('/assets/'));
+            $publicAsset = dirname(__DIR__) . '/public/assets/' . ltrim($relative, '/');
+            if (file_exists($publicAsset) && !is_dir($publicAsset)) {
+                return Response::file($publicAsset);
+            }
             $rootAsset = dirname(__DIR__) . '/assets/' . ltrim($relative, '/');
             if (file_exists($rootAsset) && !is_dir($rootAsset)) {
                 return Response::file($rootAsset);

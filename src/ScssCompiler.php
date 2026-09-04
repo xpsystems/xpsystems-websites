@@ -61,7 +61,17 @@ final class ScssCompiler
                 mkdir($outDir, 0755, true);
             }
 
-            file_put_contents(self::CSS_OUT, $result->getCss());
+            $cssContent = $result->getCss();
+            file_put_contents(self::CSS_OUT, $cssContent);
+
+            // Also keep assets/css/ in sync
+            $rootOutDir = dirname(__DIR__) . '/assets/css';
+            if (!is_dir($rootOutDir)) {
+                mkdir($rootOutDir, 0755, true);
+            }
+            file_put_contents($rootOutDir . '/build.css', $cssContent);
+            file_put_contents($rootOutDir . '/style.css', $cssContent);
+            file_put_contents(dirname(self::CSS_OUT) . '/style.css', $cssContent);
         } catch (\Exception $e) {
             throw new \RuntimeException(
                 'SCSS compilation failed: ' . $e->getMessage(),

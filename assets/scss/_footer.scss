@@ -1,13 +1,14 @@
 // =============================================================================
-// Footer
+// Footer, Preload Bar & Scroll Reveal
+// Solid colors, pure SVGs, zero gradients
 // =============================================================================
 
 .site-footer {
-  background: var(--footer-bg);
+  background-color: var(--footer-bg);
   border-top: 1px solid var(--border);
-  padding: 52px 0 36px;
+  padding: 48px 0 32px;
   margin-top: auto;
-  transition: background-color 0.3s ease, border-color var(--t-fast);
+  transition: background-color var(--t-fast), border-color var(--t-fast);
 }
 
 .footer-inner {
@@ -19,27 +20,48 @@
 }
 
 .footer-brand {
-  max-width: 300px;
+  max-width: 340px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .footer-logo {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 1.125rem;
-  font-weight: 800;
+  gap: 10px;
+  font-size: 1.0625rem;
+  font-weight: 700;
   color: var(--text);
-  letter-spacing: -0.04em;
-  transition: color var(--t-fast);
+  letter-spacing: -0.03em;
+  user-select: none;
 
-  &:hover { color: var(--accent); }
+  .footer-logo-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--accent);
+  }
+
+  .footer-logo-text {
+    display: inline-flex;
+    align-items: baseline;
+    font-weight: 800;
+
+    span {
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+  }
+
+  &:hover {
+    .footer-logo-text span {
+      color: var(--text);
+    }
+  }
 }
 
 .footer-desc {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--text-muted);
   line-height: 1.6;
 }
@@ -48,41 +70,53 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   color: var(--text-dim);
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .footer-version {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   padding: 2px 6px;
-  border-radius: var(--radius-full);
-  background: var(--bg-surface);
+  border-radius: var(--radius-xs);
+  background-color: var(--bg-surface);
   border: 1px solid var(--border);
+  color: var(--text-muted);
+
+  svg {
+    width: 11px;
+    height: 11px;
+  }
 }
 
 .footer-right {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 18px;
+  gap: 16px;
 }
 
 .footer-nav {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
 .footer-link {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
   color: var(--text-muted);
   transition: color var(--t-fast);
 
-  &:hover { color: var(--text); }
+  &:hover {
+    color: var(--text);
+  }
 }
 
 @media (max-width: 768px) {
@@ -96,30 +130,30 @@
     width: 100%;
   }
 
-  .footer-nav { justify-content: flex-start; }
+  .footer-nav {
+    justify-content: flex-start;
+  }
 }
 
-// =============================================================================
-// Preload Bar & Scroll Reveal
-// =============================================================================
-
+// ── Top Preload Bar (Solid Color / Zero Gradients)
 #preload-bar {
   position: fixed;
   top: 0;
   left: 0;
   height: 2px;
   width: 0;
-  background: linear-gradient(90deg, var(--accent) 0%, #818cf8 60%, var(--accent-hover) 100%);
+  background-color: var(--accent);
   z-index: 99999;
   pointer-events: none;
 }
 
+// ── Scroll Reveal Motion
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(14px);
   transition:
-    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: var(--delay, 0ms);
 
   &.visible {

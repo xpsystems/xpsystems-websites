@@ -1,129 +1,135 @@
 // =============================================================================
 // Design Tokens — CSS Custom Properties
-// Minimal Corporate SaaS aesthetic, blue accent
+// Clean, Modern, Precision Engineering Aesthetics
+// STRICT RULE: ZERO GRADIENTS. SOLID COLORS ONLY.
 // =============================================================================
 
 // Dark Theme (default)
 :root {
-  // ── Backgrounds
-  --bg:               #080a0f;
-  --bg-alt:           #0d0f18;
-  --bg-surface:       #111420;
-  --bg-surface-hover: #161929;
-  --bg-elevated:      #1c2035;
-  --bg-glass:         rgba(8, 10, 15, 0.85);
+  // ── Surface Backgrounds (Solid, layered darks)
+  --bg:               #090b10;
+  --bg-alt:           #0f1219;
+  --bg-surface:       #131823;
+  --bg-surface-hover: #19202e;
+  --bg-elevated:      #1e2637;
+  --bg-glass:         rgba(9, 11, 16, 0.92);
 
-  // ── Borders
-  --border:           rgba(255, 255, 255, 0.07);
-  --border-subtle:    rgba(255, 255, 255, 0.04);
-  --border-hover:     rgba(255, 255, 255, 0.14);
-  --border-active:    rgba(59, 130, 246, 0.45);
+  // ── Hairline Borders (Crisp, technical, 1px)
+  --border:           #202737;
+  --border-subtle:    #161c29;
+  --border-hover:     #323d54;
+  --border-active:    #3b82f6;
 
-  // ── Text
-  --text:             #f0f2f8;
-  --text-secondary:   #b8bdd4;
-  --text-muted:       #717997;
-  --text-dim:         #44495e;
+  // ── Text & Typography (High contrast, readable)
+  --text:             #f8fafc;
+  --text-secondary:   #cbd5e1;
+  --text-muted:       #8291a8;
+  --text-dim:         #4f5c73;
 
-  // ── Accent (blue)
+  // ── Primary Brand Accent (Solid Electric Cobalt)
   --accent:           #3b82f6;
-  --accent-hover:     #5c9bf8;
-  --accent-dim:       rgba(59, 130, 246, 0.12);
-  --accent-glow:      0 0 28px rgba(59, 130, 246, 0.3);
+  --accent-hover:     #60a5fa;
+  --accent-active:    #2563eb;
+  --accent-dim:       #132240;
   --accent-strong:    #2563eb;
+  --accent-text:      #ffffff;
 
-  // ── Partner (amber)
+  // ── Partner Accent (Solid Warm Amber)
   --partner:          #f59e0b;
   --partner-hover:    #fbbf24;
-  --partner-dim:      rgba(245, 158, 11, 0.12);
-  --partner-glow:     0 0 24px rgba(245, 158, 11, 0.25);
+  --partner-dim:      #382405;
+  --partner-strong:   #d97706;
 
-  // ── Semantic colors
+  // ── Status & Functional Semantics
   --green:            #10b981;
-  --green-dim:        rgba(16, 185, 129, 0.12);
+  --green-dim:        #062d20;
   --yellow:           #f59e0b;
-  --yellow-dim:       rgba(245, 158, 11, 0.12);
+  --yellow-dim:       #382405;
   --red:              #ef4444;
-  --red-dim:          rgba(239, 68, 68, 0.12);
+  --red-dim:          #391313;
   --purple:           #a855f7;
-  --grey:             #6b7280;
+  --purple-dim:       #2b1342;
+  --grey:             #64748b;
+  --grey-dim:         #1e2533;
 
-  // ── Footer
-  --footer-bg:        #050608;
+  // ── Footer & Bars
+  --footer-bg:        #06080c;
 
-  // ── Elevation / Shadows
-  --shadow-xs:        0 1px 2px rgba(0, 0, 0, 0.5);
-  --shadow-sm:        0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md:        0 4px 20px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
-  --shadow-lg:        0 12px 40px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
-  --card-shadow:      0 2px 16px rgba(0, 0, 0, 0.4);
-  --card-hover-shadow:0 16px 48px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(59, 130, 246, 0.2);
+  // ── Subtle Crisp Elevation (No blurred gradient halos)
+  --shadow-xs:        0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm:        0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md:        0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg:        0 8px 24px rgba(0, 0, 0, 0.6);
+  --card-shadow:      0 2px 8px rgba(0, 0, 0, 0.35);
+  --card-hover-shadow:0 8px 24px rgba(0, 0, 0, 0.5);
 
-  // ── Layout
+  // ── Spacing & Geometry
   --nav-height:       64px;
-  --container-max:    1160px;
+  --container-max:    1140px;
   --radius-xs:        4px;
-  --radius-sm:        8px;
-  --radius:           12px;
-  --radius-lg:        18px;
-  --radius-xl:        24px;
+  --radius-sm:        6px;
+  --radius:           10px;
+  --radius-lg:        14px;
   --radius-full:      9999px;
 
-  // ── Transitions
-  --t-fast:           0.14s ease;
-  --t:                0.22s cubic-bezier(0.16, 1, 0.3, 1);
-  --t-smooth:         0.34s cubic-bezier(0.16, 1, 0.3, 1);
+  // ── Motion
+  --t-fast:           0.12s ease;
+  --t:                0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --t-smooth:         0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
-  // ── Typography
-  --font-sans:        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-mono:        'JetBrains Mono', 'SF Mono', Consolas, Monaco, monospace;
+  // ── Fonts
+  --font-sans:        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:        'JetBrains Mono', 'SF Mono', Consolas, Menlo, monospace;
 }
 
 // Light Theme
 [data-theme="light"] {
-  --bg:               #f8f9fc;
-  --bg-alt:           #edf0f7;
+  --bg:               #ffffff;
+  --bg-alt:           #f8fafc;
   --bg-surface:       #ffffff;
-  --bg-surface-hover: #f8f9fc;
-  --bg-elevated:      #ffffff;
-  --bg-glass:         rgba(248, 249, 252, 0.88);
+  --bg-surface-hover: #f1f5f9;
+  --bg-elevated:      #f8fafc;
+  --bg-glass:         rgba(255, 255, 255, 0.94);
 
-  --border:           #e2e6f0;
-  --border-subtle:    #ebedf5;
-  --border-hover:     #c8d0e4;
+  --border:           #e2e8f0;
+  --border-subtle:    #edf2f7;
+  --border-hover:     #cbd5e1;
   --border-active:    #2563eb;
 
-  --text:             #0c101c;
-  --text-secondary:   #2e3550;
-  --text-muted:       #5a6380;
-  --text-dim:         #8e97af;
+  --text:             #0f172a;
+  --text-secondary:   #334155;
+  --text-muted:       #64748b;
+  --text-dim:         #94a3b8;
 
   --accent:           #2563eb;
   --accent-hover:     #1d4ed8;
-  --accent-dim:       rgba(37, 99, 235, 0.08);
-  --accent-glow:      0 0 20px rgba(37, 99, 235, 0.18);
+  --accent-active:    #1e40af;
+  --accent-dim:       #eff6ff;
   --accent-strong:    #1d4ed8;
+  --accent-text:      #ffffff;
 
   --partner:          #d97706;
   --partner-hover:    #b45309;
-  --partner-dim:      rgba(217, 119, 6, 0.08);
-  --partner-glow:     0 0 20px rgba(217, 119, 6, 0.18);
+  --partner-dim:      #fef3c7;
+  --partner-strong:   #92400e;
 
   --green:            #059669;
-  --green-dim:        rgba(5, 150, 105, 0.08);
+  --green-dim:        #ecfdf5;
   --yellow:           #d97706;
-  --yellow-dim:       rgba(217, 119, 6, 0.08);
+  --yellow-dim:       #fffbeb;
   --red:              #dc2626;
-  --red-dim:          rgba(220, 38, 38, 0.08);
+  --red-dim:          #fef2f2;
   --purple:           #7c3aed;
-  --grey:             #6b7280;
+  --purple-dim:       #f5f3ff;
+  --grey:             #64748b;
+  --grey-dim:         #f1f5f9;
 
-  --footer-bg:        #e8ecf4;
+  --footer-bg:        #f1f5f9;
 
-  --shadow-xs:        0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-sm:        0 2px 8px rgba(15, 23, 42, 0.06);
-  --shadow-md:        0 4px 20px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.04);
-  --shadow-lg:        0 12px 40px rgba(15, 23, 42, 0.1), 0 4px 12px rgba(15, 23, 42, 0.05);
-  --card-shadow:      0 1px 8px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
-  --card-hover-shadow:0 12px 32px rgba(15, 23, 42, 0.1), 0 0 0 1px var(--border-hover);
+  --shadow-xs:        0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-sm:        0 2px 4px rgba(15, 23, 42, 0.06);
+  --shadow-md:        0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg:        0 8px 24px rgba(15, 23, 42, 0.1);
+  --card-shadow:      0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --card-hover-shadow:0 8px 20px rgba(15, 23, 42, 0.1);
 }

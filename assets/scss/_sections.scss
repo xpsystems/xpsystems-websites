@@ -1,11 +1,13 @@
 // =============================================================================
-// Section Layouts — shared structure
+// Section Layouts & Shared Components
+// Crisp surfaces, pure SVGs, zero gradients
 // =============================================================================
 
-// Shared section spacing
+// ── Shared Section Foundations
 .section {
   position: relative;
-  padding: 96px 0;
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border);
 }
 
 .section-alt  { background-color: var(--bg-alt); }
@@ -13,95 +15,95 @@
 
 .section-header {
   text-align: center;
-  max-width: 640px;
-  margin: 0 auto 56px;
+  max-width: 620px;
+  margin: 0 auto 48px;
 }
 
 .section-eyebrow {
   display: inline-block;
-  font-size: 0.6875rem;
-  font-weight: 700;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--accent);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .section-title {
   font-size: clamp(1.75rem, 3.5vw, 2.25rem);
-  font-weight: 800;
-  letter-spacing: -0.035em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   color: var(--text);
   line-height: 1.2;
   margin-bottom: 12px;
 }
 
 .section-sub {
-  font-size: 1rem;
+  font-size: 0.9375rem;
   color: var(--text-muted);
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
-// =============================================================================
-// Card — Base Component
-// =============================================================================
-
+// ── Base Card Component
 .card {
   position: relative;
-  background: var(--bg-surface);
+  background-color: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 28px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   box-shadow: var(--card-shadow);
   transition: transform var(--t), border-color var(--t), box-shadow var(--t);
 
   &:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     border-color: var(--border-hover);
     box-shadow: var(--card-hover-shadow);
   }
 
   &.card-partner {
-    border-color: rgba(245, 158, 11, 0.2);
+    border-color: rgba(245, 158, 11, 0.25);
 
     &:hover {
-      border-color: rgba(245, 158, 11, 0.45);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(245, 158, 11, 0.25);
+      border-color: var(--partner);
     }
   }
 }
 
-// Card type badge
+// ── Card Type Badge
 .card-badge {
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
   font-size: 0.6875rem;
-  font-weight: 700;
+  font-weight: 600;
+  font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 3px 9px;
-  border-radius: var(--radius-full);
-  background: var(--partner-dim);
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  background-color: var(--partner-dim);
   color: var(--partner);
-  border: 1px solid rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.3);
   margin-bottom: 16px;
 
   &.card-badge-service {
-    background: var(--accent-dim);
+    background-color: var(--accent-dim);
     color: var(--accent);
-    border-color: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.3);
   }
 }
 
-.card-top { margin-bottom: 18px; }
+.card-top {
+  margin-bottom: 16px;
+}
 
 .card-name {
-  font-size: 1.25rem;
+  font-size: 1.1875rem;
   font-weight: 700;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   color: var(--text);
   margin-bottom: 6px;
 }
@@ -109,29 +111,30 @@
 .card-name-link {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   color: var(--text);
-  transition: color var(--t-fast);
 
-  &:hover { color: var(--accent); }
+  &:hover {
+    color: var(--accent);
 
-  .icon-ext {
-    width: 13px;
-    height: 13px;
-    opacity: 0.5;
-    transition: opacity var(--t-fast), transform var(--t-fast);
+    .icon-ext {
+      opacity: 1;
+      transform: translate(2px, -2px);
+    }
   }
 
-  &:hover .icon-ext {
-    opacity: 1;
-    transform: translate(2px, -2px);
+  .icon-ext {
+    width: 14px;
+    height: 14px;
+    opacity: 0.5;
+    transition: opacity var(--t-fast), transform var(--t-fast);
   }
 }
 
 .card-tagline {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
 .card-links {
@@ -147,32 +150,32 @@
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.84375rem;
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
   font-weight: 500;
   color: var(--text-secondary);
   padding: 6px 10px;
-  border-radius: var(--radius-sm);
-  background: var(--bg-alt);
+  border-radius: var(--radius-xs);
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border-subtle);
   transition: all var(--t-fast);
 
   &:hover {
     color: var(--text);
-    background: var(--bg-elevated);
+    background-color: var(--bg-elevated);
+    border-color: var(--border-hover);
     transform: translateX(2px);
   }
 
   .icon-arrow {
     width: 13px;
     height: 13px;
-    opacity: 0.5;
+    opacity: 0.6;
     flex-shrink: 0;
   }
 }
 
-// =============================================================================
-// Services Grid
-// =============================================================================
-
+// ── Services Section & Grid
 .services-section {
   @extend .section;
   @extend .section-alt;
@@ -180,14 +183,11 @@
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   gap: 20px;
 }
 
-// =============================================================================
-// Mission / Values Section
-// =============================================================================
-
+// ── Mission / Values Section
 .mission-section {
   @extend .section;
   @extend .section-base;
@@ -197,32 +197,40 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
-  margin-top: 48px;
 }
 
 .mission-card {
-  background: var(--bg-surface);
+  background-color: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 28px;
+  padding: 24px;
   box-shadow: var(--card-shadow);
+  transition: border-color var(--t-fast);
+
+  &:hover {
+    border-color: var(--border-hover);
+  }
 
   .mission-icon {
     width: 40px;
     height: 40px;
     border-radius: var(--radius-sm);
-    background: var(--accent-dim);
+    background-color: var(--accent-dim);
+    border: 1px solid var(--border-active);
     color: var(--accent);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
 
-    svg { width: 20px; height: 20px; }
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   .mission-title {
-    font-size: 1rem;
+    font-size: 1.0625rem;
     font-weight: 700;
     color: var(--text);
     margin-bottom: 8px;
@@ -232,14 +240,11 @@
   .mission-desc {
     font-size: 0.875rem;
     color: var(--text-muted);
-    line-height: 1.65;
+    line-height: 1.6;
   }
 }
 
-// =============================================================================
-// Team Section
-// =============================================================================
-
+// ── Team Section
 .team-section {
   @extend .section;
   @extend .section-alt;
@@ -248,7 +253,7 @@
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  gap: 20px;
   max-width: 680px;
   margin: 0 auto;
 }
@@ -256,15 +261,15 @@
 .team-card {
   text-align: center;
   align-items: center;
-  background: var(--bg-surface);
+  background-color: var(--bg-surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 36px 28px;
+  border-radius: var(--radius);
+  padding: 32px 24px;
   box-shadow: var(--card-shadow);
   transition: transform var(--t), border-color var(--t), box-shadow var(--t);
 
   &:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     border-color: var(--border-hover);
     box-shadow: var(--card-hover-shadow);
   }
@@ -274,9 +279,11 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  padding: 2px;
-  background: linear-gradient(135deg, var(--accent) 0%, #818cf8 100%);
-  margin: 0 auto 20px;
+  border: 2px solid var(--border-hover);
+  background-color: var(--bg-elevated);
+  margin: 0 auto 16px;
+  overflow: hidden;
+  position: relative;
 }
 
 .team-avatar-img,
@@ -285,16 +292,14 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  background-color: var(--bg-elevated);
 }
 
 .team-avatar-fallback {
   display: none;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--text);
+  background-color: var(--bg-elevated);
+  color: var(--text-muted);
 }
 
 .team-name {
@@ -306,10 +311,11 @@
 }
 
 .team-role {
-  font-size: 0.84375rem;
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
   color: var(--accent);
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .team-links {
@@ -322,38 +328,38 @@
 .team-link {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 0.84375rem;
+  gap: 6px;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text-secondary);
-  padding: 7px 14px;
-  border-radius: var(--radius-full);
-  background: var(--bg-alt);
+  padding: 6px 12px;
+  border-radius: var(--radius-xs);
+  background-color: var(--bg-alt);
   border: 1px solid var(--border);
   transition: all var(--t-fast);
 
-  svg { width: 13px; height: 13px; }
+  svg {
+    width: 14px;
+    height: 14px;
+  }
 
   &:hover {
-    background: var(--bg-elevated);
+    background-color: var(--bg-elevated);
     border-color: var(--border-hover);
     color: var(--text);
     transform: translateY(-1px);
   }
 
-  &.team-link-github {
-    &:hover { color: var(--accent); }
+  &.team-link-github:hover {
+    color: var(--text);
   }
 }
 
-// =============================================================================
-// Stats / Numbers Section
-// =============================================================================
-
+// ── Stats Section
 .stats-section {
   @extend .section;
   @extend .section-base;
-  padding: 72px 0;
+  padding: 64px 0;
 }
 
 .stats-grid {
@@ -364,10 +370,10 @@
 
 .stat-item {
   position: relative;
-  background: var(--bg-surface);
+  background-color: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 32px 24px;
+  padding: 28px 20px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -377,29 +383,28 @@
   text-decoration: none;
 
   &:hover {
-    transform: translateY(-3px);
-    border-color: var(--accent);
+    transform: translateY(-2px);
+    border-color: var(--border-active);
     box-shadow: var(--card-hover-shadow);
 
-    .stat-cta .icon-arrow-sm { transform: translateX(3px); }
+    .stat-cta .icon-arrow-sm {
+      transform: translateX(3px);
+    }
   }
 }
 
 .stat-value {
-  font-size: 2.75rem;
-  font-weight: 900;
-  letter-spacing: -0.05em;
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  letter-spacing: -0.04em;
   line-height: 1;
   color: var(--text);
-  margin-bottom: 6px;
-  background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  margin-bottom: 8px;
 }
 
 .stat-label {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: var(--text-muted);
   font-weight: 500;
   margin-bottom: 12px;
@@ -408,40 +413,39 @@
 .stat-cta {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 0.8125rem;
+  gap: 6px;
+  font-size: 0.75rem;
   font-weight: 600;
+  font-family: var(--font-mono);
   color: var(--accent);
   margin-top: auto;
 
   .icon-arrow-sm {
-    width: 11px;
-    height: 11px;
+    width: 12px;
+    height: 12px;
     transition: transform var(--t-fast);
   }
 }
 
-// =============================================================================
-// Domain listing — badge styles reused across pages
-// =============================================================================
-
+// ── Shared Badges
 .badge {
   font-size: 0.6875rem;
-  font-weight: 700;
-  padding: 2px 7px;
-  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .badge-github {
-  background: rgba(168, 85, 247, 0.12);
-  color: #c084fc;
-  border: 1px solid rgba(168, 85, 247, 0.25);
+  background-color: var(--purple-dim);
+  color: var(--purple);
+  border: 1px solid rgba(168, 85, 247, 0.3);
 }
 
 .badge-client {
-  background: rgba(16, 185, 129, 0.12);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  background-color: var(--green-dim);
+  color: var(--green);
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }

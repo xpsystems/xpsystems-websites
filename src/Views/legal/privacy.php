@@ -7,7 +7,7 @@
   <meta name="description" content="<?= $e($pageDescription) ?>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <script>
   (function(){
@@ -31,9 +31,14 @@
 
 <header class="hero">
   <div class="container hero-inner">
-    <div class="hero-eyebrow reveal">Data Protection</div>
+    <div class="hero-eyebrow reveal">
+      <svg class="eyebrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      Data Protection
+    </div>
     <h1 class="hero-title reveal" style="--delay: 50ms">Datenschutzerklärung</h1>
-    <p class="hero-description reveal" style="--delay: 100ms">
+    <p class="hero-tagline reveal" style="--delay: 100ms">
       Informationen über die Verarbeitung personenbezogener Daten gemäß DSGVO.
     </p>
   </div>
