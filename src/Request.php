@@ -24,15 +24,13 @@ final class Request
         ?bool $isHttps = null
     ) {
         $rawHost = $host ?? $_SERVER['HTTP_HOST'] ?? 'xpsystems.eu';
-        // Strip optional port from host string
         if (str_contains($rawHost, ':')) {
-            [$this->hostname, $portStr] = explode(':', $rawHost, 2);
+            [$extractedHost, $portStr] = explode(':', $rawHost, 2);
             $this->port = (int) $portStr;
         } else {
-            $this->hostname = $rawHost;
+            $extractedHost = $rawHost;
             $this->port = isset($_SERVER['SERVER_PORT']) ? (int)$_SERVER['SERVER_PORT'] : 80;
         }
-        $this->host = strtolower($this->hostname);
 
         $this->method = strtoupper($method ?? $_SERVER['REQUEST_METHOD'] ?? 'GET');
         $rawUri = $uri ?? $_SERVER['REQUEST_URI'] ?? '/';
@@ -48,6 +46,23 @@ final class Request
             $queryParams = $_GET ?? [];
         }
         $this->query = $queryParams;
+
+        // Support ?domain= (or ?host=) override for dev server testing
+        $simulatedDomain = $queryParams['domain'] ?? $queryParams['host'] ?? null;
+        if (!empty($simulatedDomain) && is_string($simulatedDomain)) {
+            $simulatedDomain = strtolower(trim($simulatedDomain));
+            if (!str_contains($simulatedDomain, '.')) {
+                $simulatedDomain .= '.xpsystems.eu';
+            }
+            $activeHost = $simulatedDomain;
+            $activeHostname = $simulatedDomain;
+        } else {
+            $activeHost = strtolower($extractedHost);
+            $activeHostname = $extractedHost;
+        }
+
+        $this->hostname = $activeHostname;
+        $this->host = $activeHost;
 
         $this->isHttps = $isHttps ?? (
             (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
