@@ -17,6 +17,21 @@ final class Response
         $this->headers = $headers;
     }
 
+    public function getStatusCode(): int
+    {
+        return $this->statusCode;
+    }
+
+    public function getContent(): string
+    {
+        return $this->content;
+    }
+
+    public function getHeaders(): array
+    {
+        return $this->headers;
+    }
+
     public static function html(string $html, int $status = 200, array $headers = []): self
     {
         $defaultHeaders = [

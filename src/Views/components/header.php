@@ -1,6 +1,6 @@
 <header class="nav-header" id="nav-header">
   <div class="nav-inner">
-    <a href="<?= $currentContext === 'main' ? '/' : 'https://xpsystems.' . $currentTld ?>" class="nav-logo">
+    <a href="<?= htmlspecialchars(url('main')) ?>" class="nav-logo">
       <?= htmlspecialchars($brand['name'] ?? 'xpsystems') ?>
     </a>
 

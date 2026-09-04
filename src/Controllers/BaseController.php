@@ -20,8 +20,7 @@ abstract class BaseController
         
         // Add Home link if on a subdomain or non-root
         if ($isSubdomain) {
-            $homeUrl = 'https://xpsystems.' . $request->tld;
-            $nav[] = ['label' => 'Home', 'href' => $homeUrl, 'external' => false];
+            $nav[] = ['label' => 'Home', 'href' => $request->url('main'), 'external' => false];
         }
 
         foreach ($rawNav as $item) {
@@ -30,31 +29,28 @@ abstract class BaseController
                 continue;
             }
 
-            // Adapt URLs to match current TLD (.eu or .de)
-            $href = $item['href'];
-            if (str_contains($href, 'xpsystems.eu') && $request->tld === 'de') {
-                $href = str_replace('xpsystems.eu', 'xpsystems.de', $href);
+            $resolvedHref = $request->url($item['href']);
+            $isExternal = $item['external'] ?? false;
+            // On local dev server, internal routes stay within same tab
+            if ($request->isLocal && (str_starts_with($resolvedHref, '/') || str_starts_with($resolvedHref, '#'))) {
+                $isExternal = false;
             }
 
             $nav[] = [
                 'label'    => $item['label'],
-                'href'     => $href,
-                'external' => $item['external'] ?? false,
+                'href'     => $resolvedHref,
+                'external' => $isExternal,
                 'active'   => (isset($item['route']) && $item['route'] === $request->path)
                               || (isset($item['label']) && strtolower($item['label']) === $currentContext),
             ];
         }
 
-        // Adapt footer links to match current TLD
+        // Adapt footer links using url helper
         $footerLinks = [];
         foreach (Config::get('footer_links', []) as $fl) {
-            $href = $fl['href'];
-            if (str_contains($href, 'xpsystems.eu') && $request->tld === 'de') {
-                $href = str_replace('xpsystems.eu', 'xpsystems.de', $href);
-            }
             $footerLinks[] = [
                 'label' => $fl['label'],
-                'href'  => $href,
+                'href'  => $request->url($fl['href']),
             ];
         }
 

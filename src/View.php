@@ -34,6 +34,11 @@ final class View
             echo View::render('components/' . $name, array_merge($data, $params));
         };
 
+        $req = $data['request'] ?? Request::current();
+        $url = static function (string $target = '/', string|array|null $subdomainOrParams = null, array $params = []) use ($req): string {
+            return Request::buildUrl($target, $subdomainOrParams, $params, $req);
+        };
+
         // Extract variables into current scope
         extract($data, EXTR_SKIP);
 

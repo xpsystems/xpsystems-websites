@@ -17,7 +17,12 @@ final class LandingController extends BaseController
 
         $services = Config::get('services', []);
         $team = Config::get('team', []);
-        $stats = Config::get('stats', []);
+        $stats = array_map(function (array $stat) use ($request): array {
+            if (!empty($stat['url'])) {
+                $stat['url'] = $request->url($stat['url']);
+            }
+            return $stat;
+        }, Config::get('stats', []));
         $heroCtas = Config::get('hero_ctas', []);
 
         $pageData = array_merge($common, [
