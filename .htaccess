@@ -1,0 +1,23 @@
+# Apache rewrite rules for xpsystems
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Prevent direct access to protected directories and config
+    RewriteRule ^(\.git|config|src|\.initial) - [F,L,NC]
+
+    # Handle static assets
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+
+    # Route all other traffic to public/index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ public/index.php [QSA,L]
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
