@@ -45,3 +45,32 @@
     </div>
   </div>
 </div>
+
+<script>
+(function() {
+  var l = document.getElementById("xps-loader");
+  if (!l) return;
+  function dismiss() {
+    if (!l || l.classList.contains("is-loaded")) return;
+    var fill = document.getElementById("loader-progress-fill");
+    var txt = document.getElementById("loader-status-text");
+    if (fill) fill.style.width = "100%";
+    if (txt) txt.textContent = "ready!";
+    setTimeout(function() {
+      if (l) l.classList.add("is-loaded");
+      setTimeout(function() {
+        if (l && l.parentNode) l.parentNode.removeChild(l);
+      }, 350);
+    }, 120);
+  }
+
+  // Fast trigger: on DOM ready or immediate if already interactive
+  if (document.readyState === "interactive" || document.readyState === "complete") {
+    setTimeout(dismiss, 180);
+  } else {
+    document.addEventListener("DOMContentLoaded", function() { setTimeout(dismiss, 180); }, { once: true });
+    window.addEventListener("load", function() { setTimeout(dismiss, 100); }, { once: true });
+    setTimeout(dismiss, 500); // 500ms guaranteed fallback
+  }
+})();
+</script>

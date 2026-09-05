@@ -89,7 +89,7 @@
   const statusText = document.getElementById("loader-status-text");
 
   const loaderStartTime = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
-  const MIN_LOADER_TIME = 400; // ms to ensure smooth, pleasant entrance & exit
+  const MIN_LOADER_TIME = 120; // Snappy display time (ms)
   let loaderDismissed = false;
 
   const playfulMessages = [
@@ -107,23 +107,20 @@
       if (loaderDismissed) return;
       msgIndex = (msgIndex + 1) % playfulMessages.length;
       statusText.textContent = playfulMessages[msgIndex];
-    }, 450);
+    }, 250);
   }
 
   // Initial progress jump
   if (progressFill) {
     requestAnimationFrame(function () {
-      progressFill.style.width = "40%";
-      setTimeout(function () {
-        if (!loaderDismissed) progressFill.style.width = "75%";
-      }, 250);
+      progressFill.style.width = "60%";
     });
   }
 
   if (bar) {
     requestAnimationFrame(function () {
-      bar.style.transition = "width 600ms cubic-bezier(.23,.49,.55,.98)";
-      bar.style.width = "75%";
+      bar.style.transition = "width 300ms cubic-bezier(.23,.49,.55,.98)";
+      bar.style.width = "80%";
     });
   }
 
@@ -151,8 +148,8 @@
       setTimeout(function () {
         if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
         if (bar && bar.parentNode) bar.parentNode.removeChild(bar);
-      }, 450);
-    }, 180);
+      }, 300);
+    }, 80);
   }
 
   function scheduleDismiss() {
@@ -162,12 +159,12 @@
     setTimeout(dismissLoader, remaining);
   }
 
-  if (document.readyState === "complete") {
+  if (document.readyState === "interactive" || document.readyState === "complete") {
     scheduleDismiss();
   } else {
+    document.addEventListener("DOMContentLoaded", scheduleDismiss, { once: true });
     window.addEventListener("load", scheduleDismiss, { once: true });
-    // Safety fallback: dismiss within 2.5s even if network or external resources stall
-    setTimeout(dismissLoader, 2500);
+    setTimeout(dismissLoader, 450); // Fallback: guaranteed dismiss in max 450ms
   }
 
   /* ── 4. Theme Management ─────────────────────────────────────────── */

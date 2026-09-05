@@ -15,16 +15,18 @@
   padding: 24px;
   opacity: 1;
   visibility: visible;
+  animation: loaderAutoDismiss 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.75s;
   transition:
-    opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-    visibility 0.38s;
+    opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.28s;
 
   &.is-loaded {
-    opacity: 0;
-    transform: scale(0.98) translateY(-6px);
-    pointer-events: none;
-    visibility: hidden;
+    animation: none !important;
+    opacity: 0 !important;
+    transform: scale(0.98) translateY(-6px) !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
   }
 }
 
@@ -187,6 +189,18 @@
   50% {
     opacity: 0.3;
     transform: scale(0.7);
+  }
+}
+
+@keyframes loaderAutoDismiss {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 }
 
