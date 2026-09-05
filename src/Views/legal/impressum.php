@@ -120,7 +120,7 @@
               <div class="kv-value"><strong>ternis-edv</strong> (<a href="https://ternis.dev" target="_blank" rel="noopener">ternis.dev</a> &middot; <a href="https://ternis-edv.de" target="_blank" rel="noopener">ternis-edv.de</a>)</div>
 
               <div class="kv-label">Inhaber / Leitung</div>
-              <div class="kv-value">Fabian Ternis</div>
+              <div class="kv-value">Fabian Ternis &middot; <a href="https://fabianternis.de" target="_blank" rel="noopener">fabianternis.de</a> &middot; <a href="https://github.com/fabianternis" target="_blank" rel="noopener">GitHub @fabianternis</a></div>
 
               <div class="kv-label">Tätigkeitsbereich</div>
               <div class="kv-value">IT-Dienstleistungen, Web-Infrastructure &amp; Hosting Services, Software Engineering</div>

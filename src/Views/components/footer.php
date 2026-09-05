@@ -233,6 +233,11 @@
             <span>ternis.dev (Parent)</span>
             <span class="footer-ext-arrow">&nearr;</span>
           </a>
+        <li>
+          <a href="https://fabianternis.de" target="_blank" rel="noopener noreferrer" class="footer-nav-link">
+            <span>fabianternis.de (Founder)</span>
+            <span class="footer-ext-arrow">&nearr;</span>
+          </a>
         </li>
         <li><a href="mailto:xpsystems@ternismail.de" class="footer-nav-link footer-nav-highlight">xpsystems@ternismail.de</a></li>
         <li><a href="mailto:f.ternis@xpsystems.eu" class="footer-nav-link">Founder Direct</a></li>
