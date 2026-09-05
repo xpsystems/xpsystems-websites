@@ -33,7 +33,8 @@
 <?php $component('transition-banner'); ?>
 
 <!-- Hero Section -->
-<header class="hero">
+<header class="hero hero--subpage">
+  <div class="grid-backdrop" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-eyebrow reveal">
       <svg class="eyebrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -41,7 +42,7 @@
       </svg>
       <span>Verified Communication</span>
     </div>
-    <h1 class="hero-title reveal" style="--delay:60ms"><?= $e($contact['title'] ?? 'Get in Touch') ?></h1>
+    <h1 class="hero-title reveal" style="--delay:60ms"><span class="text-gradient"><?= $e($contact['title'] ?? 'Get in Touch') ?></span></h1>
     <p class="hero-tagline reveal" style="--delay:120ms">
       <?= $e($contact['description'] ?? "We'd love to hear from you. Reach out through any of the official channels below.") ?>
     </p>
@@ -53,7 +54,7 @@
   <div class="container">
 
     <!-- Interactive Topic Pre-Selector -->
-    <div class="contact-interactive-box reveal">
+    <div class="contact-interactive-box spotlight-card reveal">
       <h3 class="interactive-box-title">What would you like to discuss?</h3>
       <p class="interactive-box-sub">Select a topic below to pre-configure your inquiry:</p>
       <div class="subject-pill-row">
@@ -75,7 +76,7 @@
       </h2>
       <div class="contact-grid">
         <?php foreach (($contact['emails'] ?? []) as $item): ?>
-          <div class="contact-card">
+          <div class="contact-card spotlight-card">
             <div class="contact-main-info">
               <div class="contact-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -119,7 +120,7 @@
           <span>Founder Direct Channel</span>
         </h2>
         <div class="contact-grid">
-          <div class="contact-card contact-card--highlight">
+          <div class="contact-card contact-card--highlight spotlight-card">
             <div class="contact-main-info">
               <div class="contact-icon contact-icon--founder">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -168,7 +169,7 @@
       </h2>
       <div class="contact-grid">
         <?php foreach (($contact['socials'] ?? []) as $social): ?>
-          <a href="<?= $e($social['url']) ?>" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <a href="<?= $e($social['url']) ?>" target="_blank" rel="noopener noreferrer" class="contact-card spotlight-card">
             <div class="contact-main-info">
               <div class="contact-icon<?= strtolower($social['platform']) === 'instagram' ? ' contact-icon--instagram' : '' ?>">
                 <?php if (strtolower($social['platform']) === 'instagram'): ?>

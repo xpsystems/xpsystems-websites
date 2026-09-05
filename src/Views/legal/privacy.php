@@ -33,6 +33,7 @@
 <?php $component('transition-banner'); ?>
 
 <header class="hero hero--subpage">
+  <div class="grid-backdrop" aria-hidden="true"></div>
   <div class="hero-backdrop-glow" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-eyebrow reveal">
@@ -41,7 +42,7 @@
       </svg>
       <span>DSGVO / GDPR Konformität</span>
     </div>
-    <h1 class="hero-title reveal" style="--delay: 50ms">Datenschutzerklärung</h1>
+    <h1 class="hero-title reveal" style="--delay: 50ms"><span class="text-gradient">Datenschutzerklärung</span></h1>
     <p class="hero-tagline reveal" style="--delay: 100ms">
       Transparente Informationen über die Art, den Umfang und die Zwecke der Verarbeitung personenbezogener Daten im xpsystems-Netzwerk.
     </p>
@@ -53,7 +54,7 @@
 
     <!-- Privacy Guarantees Strip -->
     <div class="privacy-highlights reveal">
-      <div class="privacy-highlight-card">
+      <div class="privacy-highlight-card spotlight-card">
         <div class="highlight-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -65,7 +66,7 @@
         </div>
       </div>
 
-      <div class="privacy-highlight-card">
+      <div class="privacy-highlight-card spotlight-card">
         <div class="highlight-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
@@ -78,7 +79,7 @@
         </div>
       </div>
 
-      <div class="privacy-highlight-card">
+      <div class="privacy-highlight-card spotlight-card">
         <div class="highlight-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>

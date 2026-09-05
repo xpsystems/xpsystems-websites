@@ -33,6 +33,7 @@
 <?php $component('transition-banner'); ?>
 
 <header class="hero hero--subpage">
+  <div class="grid-backdrop" aria-hidden="true"></div>
   <div class="hero-backdrop-glow" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-eyebrow reveal">
@@ -40,14 +41,14 @@
       <span>Real-Time Network Telemetry</span>
     </div>
     
-    <h1 class="hero-title reveal" style="--delay: 50ms">System Status</h1>
+    <h1 class="hero-title reveal" style="--delay: 50ms"><span class="text-gradient">System Status</span></h1>
     
     <p class="hero-tagline reveal" style="--delay: 100ms">
       Continuous health verification, automated multi-PoP latency benchmarks, and 90-day historical uptime records across European bare-metal nodes.
     </p>
 
     <!-- Overall Status Banner -->
-    <div class="status-hero-banner status-hero-banner--<?= $e($overall) ?> reveal" style="--delay: 150ms">
+    <div class="status-hero-banner status-hero-banner--<?= $e($overall) ?> spotlight-card reveal" style="--delay: 150ms">
       <div class="status-hero-icon">
         <?php if ($overall === 'operational'): ?>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -112,22 +113,22 @@
 
     <!-- Quick Stats Grid -->
     <div class="status-stats-grid reveal">
-      <div class="status-stat-card">
+      <div class="status-stat-card spotlight-card">
         <span class="stat-label">Network Availability</span>
         <span class="stat-value stat-value--green">99.98%</span>
         <span class="stat-sub">Aggregated 90-day baseline</span>
       </div>
-      <div class="status-stat-card">
+      <div class="status-stat-card spotlight-card">
         <span class="stat-label">Monitored Endpoints</span>
         <span class="stat-value stat-value--cyan"><?= count($services) ?></span>
         <span class="stat-sub"><?= (int)$deployedCount ?> live, <?= count($services) - (int)$deployedCount ?> scheduled</span>
       </div>
-      <div class="status-stat-card">
+      <div class="status-stat-card spotlight-card">
         <span class="stat-label">PoP Network Hubs</span>
         <span class="stat-value stat-value--amber">4 Locations</span>
         <span class="stat-sub">Frankfurt, Falkenstein, Amsterdam, Helsinki</span>
       </div>
-      <div class="status-stat-card">
+      <div class="status-stat-card spotlight-card">
         <span class="stat-label">Telemetry Latency</span>
         <span class="stat-value stat-value--green">&sim;18ms</span>
         <span class="stat-sub">Core intra-datacenter ping</span>
@@ -162,7 +163,7 @@
               $avgLat   = $summary['avg_latency_ms'] ?? null;
               $status   = $svc['status'] ?? 'unknown';
             ?>
-            <div class="status-service-card <?= empty($svc['is_deployed']) ? 'status-service-card--not-deployed' : '' ?>" data-slug="<?= $e($svc['slug']) ?>">
+            <div class="status-service-card spotlight-card <?= empty($svc['is_deployed']) ? 'status-service-card--not-deployed' : '' ?>" data-slug="<?= $e($svc['slug']) ?>">
               <div class="service-card-top">
                 <div class="service-identity">
                   <span class="service-indicator service-indicator--<?= $e($status) ?>" aria-hidden="true"></span>

@@ -31,9 +31,10 @@
 
 <?php $component('header'); ?>
 
-<main class="error-page">
+<main class="error-page" style="position: relative; overflow: hidden;">
+  <div class="grid-backdrop" aria-hidden="true"></div>
   <div class="hero-backdrop-glow" aria-hidden="true"></div>
-  <div class="container">
+  <div class="container" style="position: relative; z-index: 10;">
     <div class="error-container">
       
       <div class="error-badge reveal">
@@ -43,14 +44,14 @@
 
       <div class="error-code reveal" style="--delay: 50ms">404</div>
 
-      <h1 class="error-title reveal" style="--delay: 100ms">Route Resolution Failed</h1>
+      <h1 class="error-title reveal" style="--delay: 100ms"><span class="text-gradient">Route Resolution Failed</span></h1>
       
       <p class="error-desc reveal" style="--delay: 150ms">
         The requested resource, host, or subdomain could not be resolved by our ingress edge routing mesh.
       </p>
 
       <!-- High-Tech Diagnostic Terminal Box -->
-      <div class="error-terminal reveal" style="--delay: 200ms">
+      <div class="error-terminal spotlight-card reveal" style="--delay: 200ms">
         <div class="terminal-bar">
           <span class="term-dot term-dot--red"></span>
           <span class="term-dot term-dot--yellow"></span>

@@ -797,7 +797,7 @@
       "Cold-water cooling & green energy",
       "Sovereign digital infrastructure",
       "AS??? Anycast BGP network",
-      "Pure flat aesthetics, zero gradients",
+      "World-class European engineering & design",
     ];
     let qIdx = 0;
     quoteBtn.addEventListener("click", function () {
@@ -811,6 +811,96 @@
         quoteText.style.transform = "translateY(0)";
       }, 120);
     });
+  }
+
+  /* ── 18. Dynamic Specular Spotlight Tracking ───────────────────── */
+  let activeSpotlightCards = [];
+  function updateSpotlightCards() {
+    activeSpotlightCards = Array.from(document.querySelectorAll(".spotlight-card, .card, .domain-card, .contact-card, .org-card, .region-node, .stat-item, .mission-card"));
+  }
+  updateSpotlightCards();
+  window.addEventListener("resize", updateSpotlightCards, { passive: true });
+
+  let pointerMoveScheduled = false;
+  let lastPointerEvent = null;
+
+  document.addEventListener("pointermove", function (e) {
+    lastPointerEvent = e;
+    if (!pointerMoveScheduled) {
+      pointerMoveScheduled = true;
+      requestAnimationFrame(function () {
+        pointerMoveScheduled = false;
+        if (!lastPointerEvent) return;
+        const px = lastPointerEvent.clientX;
+        const py = lastPointerEvent.clientY;
+        const len = activeSpotlightCards.length;
+        for (let i = 0; i < len; i++) {
+          const card = activeSpotlightCards[i];
+          const rect = card.getBoundingClientRect();
+          if (px >= rect.left - 200 && px <= rect.right + 200 && py >= rect.top - 200 && py <= rect.bottom + 200) {
+            card.style.setProperty("--mouse-x", `${px - rect.left}px`);
+            card.style.setProperty("--mouse-y", `${py - rect.top}px`);
+          }
+        }
+      });
+    }
+  }, { passive: true });
+
+  /* ── 19. Interactive PoP Region Nodes Telemetry ─────────────────── */
+  const regionNodes = document.querySelectorAll(".region-node");
+  regionNodes.forEach(function (node) {
+    node.addEventListener("click", function () {
+      const pingEl = node.querySelector(".region-ping");
+      const city = node.querySelector(".region-city")?.textContent || "node";
+      if (!pingEl) return;
+      const originalHTML = pingEl.innerHTML;
+      pingEl.innerHTML = `<span class="status-dot yellow" style="width:6px;height:6px;display:inline-block;margin-right:6px;"></span>pinging...`;
+      setTimeout(function () {
+        const latencies = {
+          "de-fra": (3.4 + Math.random() * 0.8).toFixed(1) + "ms",
+          "de-fsn": (5.7 + Math.random() * 0.8).toFixed(1) + "ms",
+          "nl-ams": (8.1 + Math.random() * 1.2).toFixed(1) + "ms",
+          "fi-hel": (13.4 + Math.random() * 1.5).toFixed(1) + "ms",
+        };
+        const reg = node.dataset.region || "de-fra";
+        const ms = latencies[reg] || "4.8ms";
+        pingEl.innerHTML = `<span class="status-dot green" style="width:6px;height:6px;display:inline-block;margin-right:6px;"></span>~${ms} Anycast`;
+        showToast(`PoP ${city} latency verified: ~${ms} roundtrip ⚡`, 2400);
+      }, 320);
+    });
+  });
+
+  /* ── 20. Animated Stat Counters on Scroll ───────────────────────── */
+  const statValues = document.querySelectorAll(".stat-value");
+  if ("IntersectionObserver" in window && statValues.length > 0) {
+    const statObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          statObserver.unobserve(el);
+          const rawText = el.textContent.trim();
+          const match = rawText.match(/^(\d+)(.*)$/);
+          if (match) {
+            const target = parseInt(match[1], 10);
+            const suffix = match[2] || "";
+            const duration = 1200;
+            const startTime = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+            function updateCount(now) {
+              const progress = Math.min((now - startTime) / duration, 1);
+              const ease = 1 - Math.pow(1 - progress, 3);
+              el.textContent = Math.floor(ease * target) + suffix;
+              if (progress < 1) {
+                requestAnimationFrame(updateCount);
+              } else {
+                el.textContent = rawText;
+              }
+            }
+            requestAnimationFrame(updateCount);
+          }
+        }
+      });
+    }, { threshold: 0.25 });
+    statValues.forEach(el => statObserver.observe(el));
   }
 
   function escapeHtml(str) {

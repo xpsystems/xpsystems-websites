@@ -33,7 +33,8 @@
 <?php $component('transition-banner'); ?>
 
 <!-- Hero -->
-<header class="hero oss-hero">
+<header class="hero hero--subpage oss-hero">
+  <div class="grid-backdrop" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-eyebrow reveal">
       <svg class="eyebrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -42,7 +43,7 @@
       <span>Open Source Ecosystem &bull; oss.ternis.org</span>
     </div>
     <h1 class="hero-title reveal" style="--delay:60ms">
-      We build<br><span class="hero-title-accent">in the open.</span>
+      <span class="text-gradient">We build</span><br><span class="hero-title-accent">in the open.</span>
     </h1>
     <p class="hero-tagline reveal" style="--delay:120ms">
       Infrastructure automation, developer tooling, and open web experiments — anchored at <a href="https://oss.ternis.org" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">oss.ternis.org</a> and public GitHub repositories.
@@ -102,7 +103,7 @@
 
     <div class="org-grid">
       <?php foreach ($sources as $src): ?>
-        <a href="<?= $e($src['url']) ?>" target="_blank" rel="noopener noreferrer" class="org-card reveal" data-handle="<?= $e($src['handle']) ?>">
+        <a href="<?= $e($src['url']) ?>" target="_blank" rel="noopener noreferrer" class="org-card spotlight-card reveal" data-handle="<?= $e($src['handle']) ?>">
           <div class="org-card-top">
             <div class="org-avatar" id="avatar-<?= $e($src['handle']) ?>">
               <div class="org-avatar-placeholder">

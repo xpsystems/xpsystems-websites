@@ -33,6 +33,7 @@
 <?php $component('transition-banner'); ?>
 
 <header class="hero hero--subpage">
+  <div class="grid-backdrop" aria-hidden="true"></div>
   <div class="hero-backdrop-glow" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-eyebrow reveal">
@@ -45,7 +46,7 @@
       </svg>
       <span>Rechtliche Angaben &middot; § 5 DDG</span>
     </div>
-    <h1 class="hero-title reveal" style="--delay: 50ms">Impressum</h1>
+    <h1 class="hero-title reveal" style="--delay: 50ms"><span class="text-gradient">Impressum</span></h1>
     <p class="hero-tagline reveal" style="--delay: 100ms">
       Gesetzliche Pflichtangaben gemäß § 5 Digitale-Dienste-Gesetz (DDG) und § 18 Abs. 2 MStV für alle Dienste unter xpsystems.eu und xpsystems.de.
     </p>

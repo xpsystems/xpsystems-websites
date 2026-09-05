@@ -1,85 +1,91 @@
 // =============================================================================
 // xpsystems — Master Design Tokens
-// Professional-Grade Flat Architecture with Playful Accents & Generous Roundings
+// World-Class Web Agency Architecture: Specular Lighting, Luminous Depth, Editorial Precision
 // =============================================================================
 
 :root {
-  // ── Surface Backgrounds (Solid, Flat Layers — No Gradients, No Glass)
-  --bg:               #0b0f17;
-  --bg-subtle:        #101622;
-  --bg-alt:           #141c2b;
-  --bg-surface:       #182235;
-  --bg-surface-hover: #1f2c44;
-  --bg-elevated:      #253553;
-  --bg-glass:         rgba(11, 15, 23, 0.94); // Nav header only
-  --bg-glass-card:    #182235;
+  // ── Surface Backgrounds (Deep Obsidian Cosmic Space & Subtle Ambient Glass)
+  --bg:               #06080f;
+  --bg-subtle:        #0b0f19;
+  --bg-alt:           #0f1422;
+  --bg-surface:       #111726;
+  --bg-surface-hover: #162035;
+  --bg-elevated:      #19243d;
+  --bg-glass:         rgba(6, 8, 15, 0.82);
+  --bg-glass-card:    rgba(17, 23, 38, 0.72);
 
-  // ── Flat Crisp Borders
-  --border:           #233149;
-  --border-subtle:    #192437;
-  --border-hover:     #3b82f6;
+  // ── Specular Hairline Borders & Edge Highlights
+  --border:           rgba(255, 255, 255, 0.09);
+  --border-subtle:    rgba(255, 255, 255, 0.05);
+  --border-hover:     rgba(96, 165, 250, 0.55);
   --border-active:    #3b82f6;
-  --border-highlight: #2f405c;
+  --border-highlight: rgba(255, 255, 255, 0.16);
 
   // ── Text & Typography
   --text:             #f8fafc;
   --text-secondary:   #cbd5e1;
-  --text-muted:       #8ea0b8;
-  --text-dim:         #5a6f8b;
-  --text-inverse:     #0b0f17;
+  --text-muted:       #94a3b8;
+  --text-dim:         #64748b;
+  --text-inverse:     #06080f;
 
-  // ── Primary Brand Accent (Electric Cobalt)
+  // ── Primary Brand Accent (Electric Sapphire & Radiant Aura)
   --accent:           #3b82f6;
   --accent-hover:     #60a5fa;
   --accent-active:    #2563eb;
-  --accent-dim:       #172948;
-  --accent-glow:      transparent; // No glowing blurs
+  --accent-dim:       rgba(59, 130, 246, 0.12);
+  --accent-glow:      rgba(59, 130, 246, 0.3);
+  --accent-glow-strong: rgba(59, 130, 246, 0.55);
   --accent-strong:    #2563eb;
   --accent-text:      #ffffff;
+  --accent-gradient:  linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #38bdf8 100%);
+  --text-gradient:    linear-gradient(180deg, #ffffff 0%, #e2e8f0 65%, #94a3b8 100%);
 
-  // ── Secondary Accent (Cyan Infrastructure)
+  // ── Secondary Accent (Cyan Infrastructure Edge)
   --cyan:             #06b6d4;
   --cyan-hover:       #22d3ee;
-  --cyan-dim:         #133342;
-  --cyan-glow:        transparent;
+  --cyan-dim:         rgba(6, 182, 212, 0.12);
+  --cyan-glow:        rgba(6, 182, 212, 0.35);
 
-  // ── Partner Accent (Warm Amber)
+  // ── Partner Accent (Warm Amber / Gold)
   --partner:          #f59e0b;
   --partner-hover:    #fbbf24;
-  --partner-dim:      #3d280a;
-  --partner-glow:     transparent;
+  --partner-dim:      rgba(245, 158, 11, 0.12);
+  --partner-glow:     rgba(245, 158, 11, 0.35);
   --partner-strong:   #d97706;
 
-  // ── Functional / Status Semantics (Solid Flat)
+  // ── Functional / Status Semantics
   --green:            #10b981;
   --green-hover:      #34d399;
-  --green-dim:        #103828;
-  --green-glow:       transparent;
+  --green-dim:        rgba(16, 185, 129, 0.12);
+  --green-glow:       rgba(16, 185, 129, 0.4);
   --yellow:           #f59e0b;
-  --yellow-dim:       #3d280a;
+  --yellow-dim:       rgba(245, 158, 11, 0.12);
+  --yellow-glow:      rgba(245, 158, 11, 0.35);
   --red:              #f43f5e;
-  --red-dim:          #3a1622;
+  --red-dim:          rgba(244, 63, 94, 0.12);
+  --red-glow:         rgba(244, 63, 94, 0.35);
   --purple:           #a855f7;
-  --purple-dim:       #2e1948;
+  --purple-dim:       rgba(168, 85, 247, 0.12);
+  --purple-glow:      rgba(168, 85, 247, 0.35);
   --grey:             #64748b;
-  --grey-dim:         #1e293b;
+  --grey-dim:         rgba(100, 116, 139, 0.15);
 
   // ── Playful Coral Accent
   --coral:            #fb7185;
-  --coral-dim:        #381a24;
+  --coral-dim:        rgba(251, 113, 133, 0.14);
 
-  // ── Elevation (Flat Design: No Blurry Drop Shadows)
-  --shadow-xs:        none;
-  --shadow-sm:        none;
-  --shadow-md:        none;
-  --shadow-lg:        none;
-  --shadow-glow:      none;
-  --card-shadow:      none;
-  --card-hover-shadow:none;
+  // ── Elevation & Specular Shadows (High Agency Polish)
+  --shadow-xs:        0 1px 2px 0 rgba(0, 0, 0, 0.25);
+  --shadow-sm:        0 2px 8px -2px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md:        0 10px 25px -4px rgba(0, 0, 0, 0.5), 0 3px 8px -1px rgba(0, 0, 0, 0.35);
+  --shadow-lg:        0 20px 45px -8px rgba(0, 0, 0, 0.65), 0 5px 15px -2px rgba(0, 0, 0, 0.4);
+  --shadow-glow:      0 0 35px -5px rgba(59, 130, 246, 0.35);
+  --card-shadow:      0 4px 20px -2px rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  --card-hover-shadow:0 20px 45px -10px rgba(0, 0, 0, 0.65), 0 0 30px -5px rgba(59, 130, 246, 0.22), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
 
-  // ── Generous Geometry & Roundings (Playful & Friendly)
-  --nav-height:       68px;
-  --container-max:    1180px;
+  // ── Generous Geometry & Roundings
+  --nav-height:       72px;
+  --container-max:    1200px;
   --radius-xs:        8px;
   --radius-sm:        12px;
   --radius:           18px;
@@ -87,35 +93,35 @@
   --radius-xl:        32px;
   --radius-full:      9999px;
 
-  // ── Motion
+  // ── Motion Curves (Fluid Spring Acceleration)
   --t-fast:           0.15s cubic-bezier(0.16, 1, 0.3, 1);
-  --t:                0.22s cubic-bezier(0.16, 1, 0.3, 1);
-  --t-smooth:         0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  --t-bounce:         0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --t:                0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --t-smooth:         0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --t-bounce:         0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 
   // ── Typography
   --font-sans:        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --font-mono:        'JetBrains Mono', 'SF Mono', Consolas, Menlo, Monaco, monospace;
 }
 
-// Light Theme (Clean, Flat, High-Contrast)
+// Light Theme (Clean Swiss Editorial Agency with Micro-Gradients & Specular Depth)
 [data-theme="light"] {
-  --bg:               #f8fafc;
-  --bg-subtle:        #f1f5f9;
-  --bg-alt:           #e9eef5;
+  --bg:               #fbfcfe;
+  --bg-subtle:        #f4f6fb;
+  --bg-alt:           #edf2f9;
   --bg-surface:       #ffffff;
-  --bg-surface-hover: #f1f5f9;
+  --bg-surface-hover: #f8fafc;
   --bg-elevated:      #ffffff;
-  --bg-glass:         rgba(248, 250, 252, 0.94); // Nav header only
-  --bg-glass-card:    #ffffff;
+  --bg-glass:         rgba(251, 252, 254, 0.86);
+  --bg-glass-card:    rgba(255, 255, 255, 0.92);
 
-  --border:           #e2e8f0;
-  --border-subtle:    #edf2f7;
-  --border-hover:     #2563eb;
+  --border:           rgba(0, 0, 0, 0.08);
+  --border-subtle:    rgba(0, 0, 0, 0.04);
+  --border-hover:     rgba(37, 99, 235, 0.45);
   --border-active:    #2563eb;
-  --border-highlight: #cbd5e1;
+  --border-highlight: rgba(0, 0, 0, 0.12);
 
-  --text:             #0f172a;
+  --text:             #090d16;
   --text-secondary:   #334155;
   --text-muted:       #64748b;
   --text-dim:         #94a3b8;
@@ -124,43 +130,46 @@
   --accent:           #2563eb;
   --accent-hover:     #1d4ed8;
   --accent-active:    #1e40af;
-  --accent-dim:       #eff6ff;
-  --accent-glow:      transparent;
+  --accent-dim:       rgba(37, 99, 235, 0.08);
+  --accent-glow:      rgba(37, 99, 235, 0.18);
+  --accent-glow-strong: rgba(37, 99, 235, 0.35);
   --accent-strong:    #1d4ed8;
   --accent-text:      #ffffff;
+  --accent-gradient:  linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #06b6d4 100%);
+  --text-gradient:    linear-gradient(180deg, #090d16 0%, #1e293b 70%, #475569 100%);
 
   --cyan:             #0891b2;
   --cyan-hover:       #0e7490;
-  --cyan-dim:         #ecfeff;
-  --cyan-glow:        transparent;
+  --cyan-dim:         rgba(8, 145, 178, 0.08);
+  --cyan-glow:        rgba(8, 145, 178, 0.2);
 
   --partner:          #d97706;
   --partner-hover:    #b45309;
-  --partner-dim:      #fffbeb;
-  --partner-glow:     transparent;
+  --partner-dim:      rgba(217, 119, 6, 0.08);
+  --partner-glow:     rgba(217, 119, 6, 0.2);
   --partner-strong:   #b45309;
 
   --green:            #059669;
   --green-hover:      #047857;
-  --green-dim:        #ecfdf5;
-  --green-glow:       transparent;
+  --green-dim:        rgba(5, 150, 105, 0.08);
+  --green-glow:       rgba(5, 150, 105, 0.25);
   --yellow:           #d97706;
-  --yellow-dim:       #fffbeb;
+  --yellow-dim:       rgba(217, 119, 6, 0.08);
   --red:              #e11d48;
-  --red-dim:          #fff1f2;
+  --red-dim:          rgba(225, 29, 72, 0.08);
   --purple:           #7c3aed;
-  --purple-dim:       #faf5ff;
+  --purple-dim:       rgba(124, 58, 237, 0.08);
   --grey:             #64748b;
-  --grey-dim:         #f1f5f9;
+  --grey-dim:         rgba(100, 116, 139, 0.08);
 
   --coral:            #e11d48;
-  --coral-dim:        #fff1f2;
+  --coral-dim:        rgba(225, 29, 72, 0.08);
 
-  --shadow-xs:        none;
-  --shadow-sm:        none;
-  --shadow-md:        none;
-  --shadow-lg:        none;
-  --shadow-glow:      none;
-  --card-shadow:      none;
-  --card-hover-shadow:none;
+  --shadow-xs:        0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  --shadow-sm:        0 2px 6px -1px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md:        0 8px 24px -4px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg:        0 20px 40px -8px rgba(0, 0, 0, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.06);
+  --shadow-glow:      0 0 35px -5px rgba(37, 99, 235, 0.2);
+  --card-shadow:      0 2px 12px -2px rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  --card-hover-shadow:0 16px 36px -8px rgba(0, 0, 0, 0.12), 0 0 24px -4px rgba(37, 99, 235, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
 }

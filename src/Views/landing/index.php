@@ -34,6 +34,7 @@
 
 <!-- ═══════════════════════════════════════════════════════════ HERO -->
 <section class="hero">
+  <div class="grid-backdrop" aria-hidden="true"></div>
   <div class="hero-inner">
 
     <div class="hero-eyebrow reveal">
@@ -82,7 +83,7 @@
     </div>
 
     <!-- Quick Developer Terminal Snippet -->
-    <div class="hero-terminal reveal" style="--delay:180ms" data-copy="curl -sI https://xpsystems.eu" data-copy-label="curl command">
+    <div class="hero-terminal spotlight-card reveal" style="--delay:180ms" data-copy="curl -sI https://xpsystems.eu" data-copy-label="curl command">
       <span class="terminal-prompt">$</span>
       <span class="terminal-cmd">curl -sI https://xpsystems.eu | grep -i "server\|region"</span>
       <button class="terminal-copy-btn" title="Click to copy command" type="button">
@@ -119,7 +120,8 @@
 
 <!-- ═══════════════════════════════════════════════════════ SERVICES & BLUEPRINT -->
 <section class="section section-alt" id="services">
-  <div class="container">
+  <div class="grid-backdrop" aria-hidden="true"></div>
+  <div class="container" style="position:relative;z-index:2;">
     <div class="section-header">
       <span class="section-eyebrow reveal">Network Architecture</span>
       <h2 class="section-title reveal" style="--delay:40ms">Services &amp; Sovereign Infrastructure</h2>
@@ -152,7 +154,7 @@
       </div>
 
       <div class="blueprint-regions">
-        <div class="region-node">
+        <div class="region-node spotlight-card" data-region="de-fra">
           <div class="region-top">
             <span class="region-city">Frankfurt am Main</span>
             <span class="region-flag">DE-FRA</span>
@@ -161,9 +163,13 @@
             <span>Primary Core &bull; DE-CIX</span>
             <span class="region-status">Live</span>
           </div>
+          <div class="region-telemetry">
+            <span class="region-ping"><span class="status-dot green" style="width:6px;height:6px;display:inline-block;margin-right:6px;"></span>~3.8ms Anycast</span>
+            <span class="region-meta">100Gbps Edge</span>
+          </div>
         </div>
 
-        <div class="region-node">
+        <div class="region-node spotlight-card" data-region="de-fsn">
           <div class="region-top">
             <span class="region-city">Falkenstein</span>
             <span class="region-flag">DE-FSN</span>
@@ -172,9 +178,13 @@
             <span>Bare-Metal &bull; Dedicated</span>
             <span class="region-status">Live</span>
           </div>
+          <div class="region-telemetry">
+            <span class="region-ping"><span class="status-dot green" style="width:6px;height:6px;display:inline-block;margin-right:6px;"></span>~6.2ms Dedicated</span>
+            <span class="region-meta">Tier IV Cluster</span>
+          </div>
         </div>
 
-        <div class="region-node">
+        <div class="region-node spotlight-card" data-region="nl-ams">
           <div class="region-top">
             <span class="region-city">Amsterdam</span>
             <span class="region-flag">NL-AMS</span>
@@ -183,9 +193,13 @@
             <span>AMS-IX &bull; Edge Proxy</span>
             <span class="region-status">Live</span>
           </div>
+          <div class="region-telemetry">
+            <span class="region-ping"><span class="status-dot green" style="width:6px;height:6px;display:inline-block;margin-right:6px;"></span>~8.9ms AMS-IX</span>
+            <span class="region-meta">Global Transit</span>
+          </div>
         </div>
 
-        <div class="region-node">
+        <div class="region-node spotlight-card" data-region="fi-hel">
           <div class="region-top">
             <span class="region-city">Helsinki</span>
             <span class="region-flag">FI-HEL</span>
@@ -194,6 +208,10 @@
             <span>Encrypted Vault &bull; Backup</span>
             <span class="region-status">Live</span>
           </div>
+          <div class="region-telemetry">
+            <span class="region-ping"><span class="status-dot green" style="width:6px;height:6px;display:inline-block;margin-right:6px;"></span>~14.1ms Vault</span>
+            <span class="region-meta">Cold Vault</span>
+          </div>
         </div>
       </div>
     </div>
@@ -201,7 +219,7 @@
     <div class="services-grid">
       <?php foreach ($services as $i => $service): ?>
         <article
-          class="card <?= $service['type'] === 'partner' ? 'card-partner' : '' ?> reveal"
+          class="card spotlight-card <?= $service['type'] === 'partner' ? 'card-partner' : '' ?> reveal"
           style="--delay:<?= $i * 50 ?>ms"
         >
           <span class="card-badge <?= $service['type'] === 'parent' ? 'card-badge-parent' : ($service['type'] === 'service' ? 'card-badge-service' : '') ?>">
@@ -255,7 +273,8 @@
 
     <div class="mission-grid">
 
-      <div class="mission-card reveal" style="--delay:0ms">
+      <div class="mission-card spotlight-card reveal" style="--delay:0ms">
+        <span class="mission-num">01</span>
         <div class="mission-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
@@ -265,7 +284,8 @@
         <p class="mission-desc">Zero tracking cookies, zero user surveillance, and zero third-party telemetry. Your data stays in Europe under full GDPR compliance.</p>
       </div>
 
-      <div class="mission-card reveal" style="--delay:60ms">
+      <div class="mission-card spotlight-card reveal" style="--delay:60ms">
+        <span class="mission-num">02</span>
         <div class="mission-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
@@ -275,7 +295,8 @@
         <p class="mission-desc">We publish our tools, libraries, and core platforms publicly on GitHub. Transparent code fosters trust, security, and true developer autonomy.</p>
       </div>
 
-      <div class="mission-card reveal" style="--delay:120ms">
+      <div class="mission-card spotlight-card reveal" style="--delay:120ms">
+        <span class="mission-num">03</span>
         <div class="mission-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
@@ -285,7 +306,8 @@
         <p class="mission-desc">Bare-metal servers, automated DNS orchestration, and redundant power across Germany and Europe, architected for long-term uptime.</p>
       </div>
 
-      <div class="mission-card reveal" style="--delay:180ms">
+      <div class="mission-card spotlight-card reveal" style="--delay:180ms">
+        <span class="mission-num">04</span>
         <div class="mission-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -313,7 +335,7 @@
 
     <div class="team-grid">
       <?php foreach ($team as $i => $member): ?>
-        <article class="team-card reveal" style="--delay:<?= $i * 70 ?>ms">
+        <article class="team-card spotlight-card reveal" style="--delay:<?= $i * 70 ?>ms">
           <div class="team-avatar-wrap">
             <img
               class="team-avatar-img"
@@ -358,12 +380,12 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════════════════════ STATS -->
+<!-- ═══════════════════════════════════════════════════════ STATS -->
 <section class="stats-section">
   <div class="container">
     <div class="stats-grid">
       <?php foreach ($stats as $i => $stat): ?>
-        <a class="stat-item reveal" href="<?= $e($stat['url']) ?>" <?= str_starts_with($stat['url'], 'http') ? 'target="_blank" rel="noopener noreferrer"' : '' ?> style="--delay:<?= $i * 60 ?>ms">
+        <a class="stat-item spotlight-card reveal" href="<?= $e($stat['url']) ?>" <?= str_starts_with($stat['url'], 'http') ? 'target="_blank" rel="noopener noreferrer"' : '' ?> style="--delay:<?= $i * 60 ?>ms">
           <span class="stat-value"><?= $e($stat['value']) ?></span>
           <span class="stat-label"><?= $e($stat['label']) ?></span>
           <span class="stat-cta">

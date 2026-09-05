@@ -33,6 +33,7 @@
 <?php $component('transition-banner'); ?>
 
 <header class="hero hero--subpage">
+  <div class="grid-backdrop" aria-hidden="true"></div>
   <div class="hero-backdrop-glow" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-eyebrow reveal">
@@ -43,7 +44,7 @@
       <span>Telemetry Integration &middot; REST JSON</span>
     </div>
     
-    <h1 class="hero-title reveal" style="--delay: 50ms">Status API Reference</h1>
+    <h1 class="hero-title reveal" style="--delay: 50ms"><span class="text-gradient">Status API Reference</span></h1>
     
     <p class="hero-tagline reveal" style="--delay: 100ms">
       Public, unauthenticated REST endpoints for live uptime metrics, 90-day historical check records, and incident timelines across xpsystems.

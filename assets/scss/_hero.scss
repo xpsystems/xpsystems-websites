@@ -1,81 +1,147 @@
 // =============================================================================
 // Hero Section
-// Professional-Grade Flat Architectural Hero, Clean Layout, Developer Deck
+// World-Class Agency Hero: Atmospheric Aurora, Monumental Display Typography, Specular Polish
 // =============================================================================
 
 .hero {
   position: relative;
-  padding: calc(var(--nav-height) + 72px) 0 80px;
+  padding: calc(var(--nav-height) + 84px) 0 96px;
   background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 75% 55% at 50% -10%, rgba(59, 130, 246, 0.22), transparent 70%),
+    radial-gradient(ellipse 45% 35% at 80% 15%, rgba(168, 85, 247, 0.14), transparent 60%),
+    radial-gradient(ellipse 40% 30% at 20% 30%, rgba(6, 182, 212, 0.1), transparent 50%);
   text-align: center;
   border-bottom: 1px solid var(--border);
   overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    pointer-events: none;
+  }
+}
+
+.hero--subpage {
+  padding-top: calc(var(--nav-height) + 56px);
+  padding-bottom: 60px;
+
+  .hero-title {
+    font-size: clamp(2.25rem, 4.8vw, 3.5rem);
+    margin-bottom: 16px;
+  }
+
+  .hero-tagline {
+    margin-bottom: 24px;
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+  }
+}
+
+.hero-backdrop-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1000px;
+  height: 100%;
+  background: radial-gradient(ellipse 65% 55% at 50% 0%, rgba(59, 130, 246, 0.16), transparent 70%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .hero-inner {
   position: relative;
   z-index: 10;
-  max-width: 880px;
+  max-width: 940px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-// ── Eyebrow Badge (Flat Pill)
+// ── Eyebrow Badge (Luminous Glass Pill)
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 0.75rem;
   font-weight: 700;
   font-family: var(--font-mono);
-  color: var(--accent);
-  background-color: var(--accent-dim);
-  border: 1px solid var(--border-hover);
-  padding: 6px 16px;
+  color: var(--accent-hover);
+  background-color: rgba(59, 130, 246, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  box-shadow: 0 0 24px -4px var(--accent-glow), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+  padding: 7px 18px;
   border-radius: var(--radius-full);
-  margin-bottom: 28px;
-  letter-spacing: 0.04em;
+  margin-bottom: 32px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  transition: all var(--t);
+
+  &:hover {
+    border-color: var(--accent-hover);
+    box-shadow: 0 0 30px -2px var(--accent-glow-strong);
+    transform: translateY(-1px);
+  }
 
   .eyebrow-icon {
     width: 14px;
     height: 14px;
     color: var(--accent);
+    filter: drop-shadow(0 0 6px var(--accent));
   }
 
   .eyebrow-separator {
-    color: var(--border-hover);
+    color: rgba(96, 165, 250, 0.4);
     font-size: 0.7rem;
   }
 }
 
-// ── Hero Title (Flat, High-Contrast Editorial Typography)
+// ── Hero Title (Monumental Display Typography with Metallic Shimmer)
 .hero-title {
-  font-size: clamp(2.5rem, 6.5vw, 4.5rem);
+  font-size: clamp(2.75rem, 6.8vw, 5.25rem);
   font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -0.04em;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
   color: var(--text);
-  margin-bottom: 22px;
+  background: var(--text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 26px;
+  text-wrap: balance;
 
   .hero-title-accent {
-    color: var(--accent);
+    background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 50%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 35px rgba(59, 130, 246, 0.35));
+    display: inline-block;
   }
 
   .hero-title-cyan {
-    color: var(--cyan);
+    background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.35));
   }
 }
 
 // ── Hero Tagline
 .hero-tagline {
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-size: clamp(1.125rem, 2.2vw, 1.3125rem);
   font-weight: 400;
   color: var(--text-muted);
-  line-height: 1.65;
-  max-width: 660px;
-  margin: 0 auto 36px;
-  letter-spacing: -0.01em;
+  line-height: 1.7;
+  max-width: 720px;
+  margin: 0 auto 40px;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
 }
 
 // ── CTA Button Row
@@ -83,34 +149,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 36px;
+  margin-bottom: 42px;
 }
 
-// ── Developer Quick Terminal Snippet (Flat Pill)
+// ── Developer Quick Terminal Snippet
 .hero-terminal {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   background-color: var(--bg-surface);
-  border: 1.5px solid var(--border);
-  padding: 8px 18px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08), 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+  padding: 9px 20px;
   border-radius: var(--radius-full);
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   color: var(--text-secondary);
-  margin-bottom: 48px;
-  transition: all var(--t-fast);
+  margin-bottom: 54px;
+  transition: all var(--t);
+  cursor: pointer;
 
   &:hover {
     border-color: var(--accent);
     background-color: var(--bg-surface-hover);
     color: var(--text);
+    box-shadow: 0 0 24px -4px var(--accent-glow), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
   }
 
   .terminal-prompt {
-    color: var(--accent);
+    color: var(--accent-hover);
     font-weight: 700;
   }
 
@@ -123,7 +195,7 @@
     align-items: center;
     justify-content: center;
     color: var(--text-dim);
-    padding: 4px;
+    padding: 5px;
     border-radius: var(--radius-full);
     transition: all var(--t-fast);
 
@@ -139,35 +211,51 @@
   }
 }
 
-// ── Trust Strip (Flat Rounded Chips)
+// ── Trust Strip (Luminous Frosted Badges)
 .hero-trust {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
-  padding-top: 36px;
+  padding-top: 40px;
   border-top: 1px solid var(--border-subtle);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 30%;
+    right: 30%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+  }
 }
 
 .trust-item {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-secondary);
   font-family: var(--font-mono);
   background-color: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
-  padding: 6px 14px;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), var(--shadow-xs);
+  padding: 7px 16px;
   border-radius: var(--radius-full);
   transition: all var(--t-fast);
 
   &:hover {
-    border-color: var(--border-hover);
+    border-color: var(--accent);
     color: var(--text);
     background-color: var(--bg-surface-hover);
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.3), 0 0 15px -3px var(--accent-glow);
+    transform: translateY(-2px);
   }
 
   svg {
@@ -178,7 +266,7 @@
   }
 }
 
-// ── Transition Banner (Migration to ternis.dev)
+// ── Transition Banner (Migration to ternis.dev with Glowing Edge)
 .transition-banner {
   padding-top: calc(var(--nav-height) + 16px);
   padding-bottom: 16px;
@@ -190,17 +278,32 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    background-color: var(--surface);
-    border: 1px solid var(--border-hover);
+    background-color: var(--bg-surface);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-lg);
-    padding: 12px 20px;
+    padding: 14px 22px;
     font-size: 0.8125rem;
     line-height: 1.5;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent-gradient);
+    }
 
     @media (max-width: 900px) {
       flex-direction: column;
       align-items: flex-start;
-      padding: 14px 16px;
+      padding: 16px 18px;
     }
   }
 
@@ -215,16 +318,17 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 3px 10px;
+    padding: 4px 12px;
     background-color: var(--accent-dim);
-    color: var(--accent);
-    border: 1px solid var(--accent);
+    color: var(--accent-hover);
+    border: 1px solid rgba(96, 165, 250, 0.4);
+    box-shadow: 0 0 12px -2px var(--accent-glow);
     border-radius: var(--radius-full);
     font-size: 0.6875rem;
     font-weight: 700;
     font-family: var(--font-mono);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
     flex-shrink: 0;
   }
 
@@ -233,6 +337,7 @@
     height: 6px;
     border-radius: 50%;
     background-color: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
   }
 
   .transition-text {
@@ -244,12 +349,13 @@
   }
 
   .transition-link {
-    color: var(--accent);
+    color: var(--accent-hover);
     text-decoration: underline;
     font-weight: 600;
 
     &:hover {
-      color: var(--accent-hover);
+      color: #ffffff;
+      text-shadow: 0 0 10px var(--accent);
     }
   }
 
@@ -266,11 +372,11 @@
 
   .transition-code {
     display: inline-block;
-    padding: 1px 6px;
+    padding: 2px 8px;
     font-size: 0.75rem;
     font-family: var(--font-mono);
     font-weight: 600;
-    background-color: var(--surface-2);
+    background-color: var(--bg-alt);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     color: var(--text);
@@ -279,7 +385,8 @@
 
     &:hover {
       border-color: var(--accent);
-      color: var(--accent);
+      color: var(--accent-hover);
+      box-shadow: 0 0 10px -2px var(--accent-glow);
     }
   }
 
@@ -287,7 +394,7 @@
     flex-shrink: 0;
 
     .transition-btn {
-      padding: 6px 14px;
+      padding: 7px 16px;
       font-size: 0.75rem;
       border-radius: var(--radius-full);
       white-space: nowrap;

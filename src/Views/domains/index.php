@@ -34,6 +34,7 @@
 
 <!-- Hero Section -->
 <header class="hero">
+  <div class="grid-backdrop" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-eyebrow reveal">
       <svg class="eyebrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -55,6 +56,8 @@
 
 <!-- Active Domains Explorer -->
 <main class="section section-alt">
+  <div class="grid-backdrop" aria-hidden="true"></div>
+  <div class="container" style="position:relative;z-index:2;">
     <!-- Official Anycast Nameservers -->
     <div class="domain-ns-card reveal" style="--delay: 20ms">
       <div class="ns-card-left">
@@ -113,7 +116,7 @@
 
     <div class="services-grid">
       <?php foreach ($activeGroups as $idx => $category): ?>
-        <div class="domain-card <?= !empty($category['highlight']) ? 'domain-card--highlight' : '' ?> reveal" data-category="cat-<?= $idx ?>" style="--delay: <?= 40 + ($idx * 30) ?>ms">
+        <div class="domain-card spotlight-card <?= !empty($category['highlight']) ? 'domain-card--highlight' : '' ?> reveal" data-category="cat-<?= $idx ?>" style="--delay: <?= 40 + ($idx * 30) ?>ms">
           <div class="domain-card-header">
             <h3 class="domain-category-title"><?= $e($category['title']) ?></h3>
             <span class="domain-count-badge"><?= count($category['domains']) ?> domains</span>
