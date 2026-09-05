@@ -127,7 +127,7 @@
         </svg>
         <span>v<?= htmlspecialchars($app['version'] ?? '3.4.0') ?></span>
         <span class="pill-divider">&bull;</span>
-        <span>AS216390 (EU)</span>
+        <span>AS??? (EU)</span>
       </span>
 
       <?php $component('theme-toggle'); ?>

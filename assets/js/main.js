@@ -86,7 +86,7 @@
   const loader = document.getElementById("xps-loader");
   const bar = document.getElementById("preload-bar");
   const progressFill = document.getElementById("loader-progress-fill");
-  const statusText = document.getElementById("loader-status-text");
+  const loaderStatusText = document.getElementById("loader-status-text");
 
   const loaderStartTime = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
   const MIN_LOADER_TIME = 120; // Snappy display time (ms)
@@ -102,11 +102,11 @@
   let msgIndex = 0;
 
   let msgInterval = null;
-  if (statusText) {
+  if (loaderStatusText) {
     msgInterval = setInterval(function () {
       if (loaderDismissed) return;
       msgIndex = (msgIndex + 1) % playfulMessages.length;
-      statusText.textContent = playfulMessages[msgIndex];
+      loaderStatusText.textContent = playfulMessages[msgIndex];
     }, 250);
   }
 
@@ -129,8 +129,8 @@
     loaderDismissed = true;
     if (msgInterval) clearInterval(msgInterval);
 
-    if (statusText) {
-      statusText.textContent = "ready!";
+    if (loaderStatusText) {
+      loaderStatusText.textContent = "ready!";
     }
     if (progressFill) {
       progressFill.style.width = "100%";
