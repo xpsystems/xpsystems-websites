@@ -1,12 +1,12 @@
 // =============================================================================
 // Section Layouts & Shared Components
-// Crisp surfaces, pure SVGs, zero gradients
+// Modern European Infrastructure Surfaces, Specular Highlights, Blueprint Architecture
 // =============================================================================
 
 // ── Shared Section Foundations
 .section {
   position: relative;
-  padding: 80px 0;
+  padding: 88px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -15,34 +15,38 @@
 
 .section-header {
   text-align: center;
-  max-width: 620px;
-  margin: 0 auto 48px;
+  max-width: 660px;
+  margin: 0 auto 52px;
 }
 
 .section-eyebrow {
   display: inline-block;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--accent);
-  margin-bottom: 10px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 14px;
 }
 
 .section-title {
-  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
   color: var(--text);
-  line-height: 1.2;
-  margin-bottom: 12px;
+  line-height: 1.15;
+  margin-bottom: 14px;
 }
 
 .section-sub {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 // ── Base Card Component
@@ -51,16 +55,35 @@
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 24px;
+  padding: 26px;
   display: flex;
   flex-direction: column;
   box-shadow: var(--card-shadow);
   transition: transform var(--t), border-color var(--t), box-shadow var(--t);
+  overflow: hidden;
+
+  // Specular top highlight line
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+    opacity: 0.6;
+    transition: opacity var(--t);
+  }
 
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     border-color: var(--border-hover);
     box-shadow: var(--card-hover-shadow);
+
+    &::before {
+      opacity: 1;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
   }
 
   &.card-partner {
@@ -68,6 +91,10 @@
 
     &:hover {
       border-color: var(--partner);
+
+      &::before {
+        background: linear-gradient(90deg, transparent, var(--partner), transparent);
+      }
     }
   }
 }
@@ -76,14 +103,15 @@
 .card-badge {
   display: inline-flex;
   align-items: center;
+  gap: 5px;
   align-self: flex-start;
   font-size: 0.6875rem;
-  font-weight: 600;
+  font-weight: 700;
   font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 3px 8px;
-  border-radius: var(--radius-xs);
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
   background-color: var(--partner-dim);
   color: var(--partner);
   border: 1px solid rgba(245, 158, 11, 0.3);
@@ -101,21 +129,21 @@
 }
 
 .card-name {
-  font-size: 1.1875rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: var(--text);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .card-name-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   color: var(--text);
 
   &:hover {
-    color: var(--accent);
+    color: var(--accent-hover);
 
     .icon-ext {
       opacity: 1;
@@ -124,8 +152,8 @@
   }
 
   .icon-ext {
-    width: 14px;
-    height: 14px;
+    width: 15px;
+    height: 15px;
     opacity: 0.5;
     transition: opacity var(--t-fast), transform var(--t-fast);
   }
@@ -139,7 +167,7 @@
 
 .card-links {
   margin-top: auto;
-  padding-top: 16px;
+  padding-top: 18px;
   border-top: 1px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
@@ -154,8 +182,8 @@
   font-family: var(--font-mono);
   font-weight: 500;
   color: var(--text-secondary);
-  padding: 6px 10px;
-  border-radius: var(--radius-xs);
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
   background-color: var(--bg-alt);
   border: 1px solid var(--border-subtle);
   transition: all var(--t-fast);
@@ -172,56 +200,71 @@
     height: 13px;
     opacity: 0.6;
     flex-shrink: 0;
+    transition: transform var(--t-fast);
+  }
+
+  &:hover .icon-arrow {
+    opacity: 1;
+    transform: translateX(2px);
   }
 }
 
-// ── Services Section & Grid
-.services-section {
-  @extend .section;
-  @extend .section-alt;
-}
-
+// ── Services Grid
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
 }
 
-// ── Mission / Values Section
-.mission-section {
-  @extend .section;
-  @extend .section-base;
-}
-
-.mission-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-
-.mission-card {
+// ── Infrastructure Blueprint Interactive Section
+.infra-blueprint {
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  box-shadow: var(--card-shadow);
-  transition: border-color var(--t-fast);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 64px;
+  position: relative;
+  overflow: hidden;
 
-  &:hover {
-    border-color: var(--border-hover);
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--cyan-glow) 0%, transparent 70%);
+    pointer-events: none;
   }
+}
 
-  .mission-icon {
+.blueprint-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 28px;
+}
+
+.blueprint-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .blueprint-icon {
     width: 40px;
     height: 40px;
     border-radius: var(--radius-sm);
-    background-color: var(--accent-dim);
-    border: 1px solid var(--border-active);
-    color: var(--accent);
+    background: var(--cyan-dim);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    color: var(--cyan);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
 
     svg {
       width: 20px;
@@ -229,32 +272,157 @@
     }
   }
 
-  .mission-title {
-    font-size: 1.0625rem;
+  h3 {
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--text);
-    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+}
+
+.blueprint-regions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.region-node {
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all var(--t-fast);
+
+  &:hover {
+    border-color: var(--cyan);
+    background-color: var(--bg-elevated);
+    transform: translateY(-2px);
+  }
+
+  .region-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .region-city {
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--text);
+  }
+
+  .region-flag {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--text-dim);
+    padding: 2px 6px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xs);
+  }
+
+  .region-specs {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .region-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--green);
+    font-weight: 600;
+
+    &::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 6px var(--green);
+    }
+  }
+}
+
+// ── Mission / Values Section
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.mission-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  box-shadow: var(--card-shadow);
+  transition: all var(--t);
+  position: relative;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-hover);
+    box-shadow: var(--card-hover-shadow);
+
+    .mission-icon {
+      transform: scale(1.08);
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+  }
+
+  .mission-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background-color: var(--accent-dim);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: transform var(--t), box-shadow var(--t);
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  .mission-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
     letter-spacing: -0.02em;
   }
 
   .mission-desc {
     font-size: 0.875rem;
     color: var(--text-muted);
-    line-height: 1.6;
+    line-height: 1.65;
   }
 }
 
 // ── Team Section
-.team-section {
-  @extend .section;
-  @extend .section-alt;
-}
-
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  max-width: 680px;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 24px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
@@ -264,26 +432,32 @@
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 32px 24px;
+  padding: 36px 28px;
   box-shadow: var(--card-shadow);
   transition: transform var(--t), border-color var(--t), box-shadow var(--t);
 
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     border-color: var(--border-hover);
     box-shadow: var(--card-hover-shadow);
+
+    .team-avatar-wrap {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
   }
 }
 
 .team-avatar-wrap {
-  width: 80px;
-  height: 80px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   border: 2px solid var(--border-hover);
   background-color: var(--bg-elevated);
-  margin: 0 auto 16px;
+  margin: 0 auto 18px;
   overflow: hidden;
   position: relative;
+  transition: all var(--t);
 }
 
 .team-avatar-img,
@@ -303,7 +477,7 @@
 }
 
 .team-name {
-  font-size: 1.125rem;
+  font-size: 1.1875rem;
   font-weight: 700;
   color: var(--text);
   margin-bottom: 4px;
@@ -315,14 +489,14 @@
   font-family: var(--font-mono);
   color: var(--accent);
   font-weight: 600;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .team-links {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .team-link {
@@ -332,8 +506,8 @@
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text-secondary);
-  padding: 6px 12px;
-  border-radius: var(--radius-xs);
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
   background-color: var(--bg-alt);
   border: 1px solid var(--border);
   transition: all var(--t-fast);
@@ -349,23 +523,20 @@
     color: var(--text);
     transform: translateY(-1px);
   }
-
-  &.team-link-github:hover {
-    color: var(--text);
-  }
 }
 
 // ── Stats Section
 .stats-section {
-  @extend .section;
-  @extend .section-base;
-  padding: 64px 0;
+  position: relative;
+  background-color: var(--bg);
+  padding: 72px 0;
+  border-bottom: 1px solid var(--border);
 }
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
 }
 
 .stat-item {
@@ -373,7 +544,7 @@
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 28px 20px;
+  padding: 32px 24px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -383,31 +554,36 @@
   text-decoration: none;
 
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     border-color: var(--border-active);
     box-shadow: var(--card-hover-shadow);
 
+    .stat-value {
+      color: var(--accent);
+    }
+
     .stat-cta .icon-arrow-sm {
-      transform: translateX(3px);
+      transform: translateX(4px);
     }
   }
 }
 
 .stat-value {
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   font-weight: 800;
   font-family: var(--font-mono);
   letter-spacing: -0.04em;
   line-height: 1;
   color: var(--text);
   margin-bottom: 8px;
+  transition: color var(--t-fast);
 }
 
 .stat-label {
   font-size: 0.875rem;
   color: var(--text-muted);
   font-weight: 500;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .stat-cta {
@@ -421,8 +597,8 @@
   margin-top: auto;
 
   .icon-arrow-sm {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     transition: transform var(--t-fast);
   }
 }
@@ -432,8 +608,8 @@
   font-size: 0.6875rem;
   font-weight: 600;
   font-family: var(--font-mono);
-  padding: 2px 6px;
-  border-radius: var(--radius-xs);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -441,7 +617,7 @@
 .badge-github {
   background-color: var(--purple-dim);
   color: var(--purple);
-  border: 1px solid rgba(168, 85, 247, 0.3);
+  border: 1px solid rgba(139, 92, 246, 0.3);
 }
 
 .badge-client {
@@ -449,3 +625,4 @@
   color: var(--green);
   border: 1px solid rgba(16, 185, 129, 0.3);
 }
+

@@ -1,6 +1,6 @@
 // =============================================================================
 // Reset & Base Styling
-// Precision engineering base, zero sloppy styles
+// Precision engineering base, high-contrast typography, technical grid
 // =============================================================================
 
 *,
@@ -30,11 +30,34 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  background-image: 
+    radial-gradient(var(--border-subtle) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 ::selection {
   background-color: var(--accent);
-  color: var(--accent-text);
+  color: #ffffff;
+}
+
+// ── Custom Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
 
 main {
@@ -44,7 +67,7 @@ main {
 a {
   color: inherit;
   text-decoration: none;
-  transition: color var(--t-fast), border-color var(--t-fast), background-color var(--t-fast);
+  transition: color var(--t-fast), border-color var(--t-fast), background-color var(--t-fast), transform var(--t-fast);
 }
 
 img {
@@ -73,6 +96,12 @@ textarea {
   color: inherit;
 }
 
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
@@ -81,6 +110,7 @@ textarea {
 // ── Typography & Utilities
 .mono {
   font-family: var(--font-mono);
+  letter-spacing: -0.02em;
 }
 
 .container {
@@ -88,6 +118,18 @@ textarea {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 24px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 // Technical hairline border utilities
@@ -99,10 +141,52 @@ html.is-switching-theme,
 html.is-switching-theme *::before,
 html.is-switching-theme *::after {
   transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    border-color 0.2s ease,
-    fill 0.2s ease,
-    stroke 0.2s ease,
-    box-shadow 0.2s ease !important;
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    fill 0.25s ease,
+    stroke 0.25s ease,
+    box-shadow 0.25s ease !important;
 }
+
+// ── Global Toast Notification (Copy to clipboard, etc.)
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--bg-surface);
+  color: var(--text);
+  border: 1px solid var(--border-active);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg), 0 0 20px var(--accent-glow);
+  transform: translateY(20px) scale(0.95);
+  opacity: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+
+  &.toast-show {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  .toast-icon {
+    color: var(--green);
+    width: 16px;
+    height: 16px;
+  }
+}
+

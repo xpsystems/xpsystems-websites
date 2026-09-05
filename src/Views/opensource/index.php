@@ -36,28 +36,27 @@
       <svg class="eyebrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
       </svg>
-      Open Source at XP-Systems
+      <span>Open Source Ecosystem</span>
     </div>
     <h1 class="hero-title reveal" style="--delay:60ms">
       We build<br><span class="hero-title-accent">in the open.</span>
     </h1>
     <p class="hero-tagline reveal" style="--delay:120ms">
-      Infrastructure, tooling, and experiments — publicly available on GitHub.<br>
-      Contributions, issues, and forks are always welcome.
+      Infrastructure automation, developer tooling, and experimental services — publicly available on GitHub. Contributions, issues, and forks are always welcome.
     </p>
 
     <div class="hero-ctas reveal" style="--delay:180ms">
-      <a href="https://github.com/xpsystems" class="btn btn-primary" target="_blank" rel="noopener">
+      <a href="https://github.com/xpsystems" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
         <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
         </svg>
         <span>github.com/xpsystems</span>
       </a>
-      <a href="#repos" class="btn btn-secondary">
+      <a href="#repos" class="btn btn-secondary btn-lg">
         <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><polyline points="9 22 9 12 15 12 15 22"/>
         </svg>
-        <span>Browse Repos</span>
+        <span>Explore Repositories</span>
       </a>
     </div>
 
@@ -82,17 +81,17 @@
 </header>
 
 <!-- Organizations & Accounts -->
-<section class="services-section">
+<section class="section section-alt">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-eyebrow">Profiles</span>
-      <h2 class="section-title">GitHub Accounts</h2>
-      <p class="section-sub">We maintain organizations and tooling profiles for open source projects.</p>
+      <span class="section-eyebrow">GitHub Hubs</span>
+      <h2 class="section-title">Organizations &amp; Profiles</h2>
+      <p class="section-sub">We maintain dedicated organizations and automated profiles across our open source ecosystem.</p>
     </div>
 
     <div class="org-grid">
       <?php foreach ($sources as $src): ?>
-        <a href="<?= $e($src['url']) ?>" target="_blank" rel="noopener" class="org-card reveal" data-handle="<?= $e($src['handle']) ?>">
+        <a href="<?= $e($src['url']) ?>" target="_blank" rel="noopener noreferrer" class="org-card reveal" data-handle="<?= $e($src['handle']) ?>">
           <div class="org-card-top">
             <div class="org-avatar" id="avatar-<?= $e($src['handle']) ?>">
               <div class="org-avatar-placeholder">
@@ -103,23 +102,23 @@
             </div>
             <div class="org-info">
               <div class="org-name-row">
-                <h3 class="org-name mono">@<?= $e($src['handle']) ?></h3>
-                <span class="org-type-badge"><?= $src['type'] === 'org' ? 'org' : 'user' ?></span>
+                <h3 class="org-name">@<?= $e($src['handle']) ?></h3>
+                <span class="org-type-badge"><?= $src['type'] === 'org' ? 'Organization' : 'Profile' ?></span>
               </div>
               <p class="org-desc"><?= $e($src['description']) ?></p>
             </div>
           </div>
           <div class="org-card-stats">
             <span class="org-stat" id="org-repos-<?= $e($src['handle']) ?>">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
               </svg>
-              <span class="org-stat-num">…</span> repos
+              <span class="org-stat-num">…</span> repositories
             </span>
           </div>
           <div class="org-link-hint">
             <span>View on GitHub</span>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
             </svg>
           </div>
@@ -130,12 +129,12 @@
 </section>
 
 <!-- Repositories Explorer -->
-<section class="team-section" id="repos" style="padding-top:60px;">
+<section class="section section-base" id="repos">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-eyebrow">Code</span>
-      <h2 class="section-title">Repositories</h2>
-      <p class="section-sub">Public repositories across our GitHub ecosystem, updated live.</p>
+      <span class="section-eyebrow">Public Repositories</span>
+      <h2 class="section-title">Live Repository Explorer</h2>
+      <p class="section-sub">Real-time telemetry and codebases synchronized directly with GitHub API.</p>
     </div>
 
     <!-- Filter & Search Controls -->
@@ -144,12 +143,12 @@
         <svg class="repo-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
-        <input type="text" id="repo-search" class="repo-search" placeholder="Filter repositories…" autocomplete="off">
+        <input type="text" id="repo-search" class="repo-search" placeholder="Search by name, language, or keyword…" autocomplete="off">
       </div>
       <div class="repo-filters">
-        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn active" data-filter="all" type="button">All Accounts</button>
         <?php foreach ($sources as $src): ?>
-          <button class="filter-btn" data-filter="<?= $e($src['handle']) ?>"><?= $e($src['label']) ?></button>
+          <button class="filter-btn" data-filter="<?= $e($src['handle']) ?>" type="button"><?= $e($src['label']) ?></button>
         <?php endforeach; ?>
       </div>
     </div>
@@ -195,7 +194,7 @@
         </tbody>
       </table>
       <div class="repo-empty" id="repo-empty" style="display:none">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <p>No repositories match your filter.</p>
       </div>
     </div>
@@ -208,3 +207,4 @@
 <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
+

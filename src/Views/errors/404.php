@@ -29,37 +29,97 @@
 
 <?php $component('header'); ?>
 
-<header class="hero">
-  <div class="container hero-inner">
-    <div class="hero-eyebrow reveal" style="color:var(--red); border-color:var(--red-dim); background-color:var(--red-dim);">
-      <svg class="eyebrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-      </svg>
-      Error 404
-    </div>
-    <h1 class="hero-title reveal" style="--delay: 50ms">Page Not Found</h1>
-    <p class="hero-tagline reveal" style="--delay: 100ms">
-      The resource or subdomain you are looking for does not exist or has been moved.
-    </p>
-    <div class="hero-ctas reveal" style="--delay: 160ms">
-      <a href="/" class="btn btn-primary">
-        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-        <span>Return Home</span>
-      </a>
-      <a href="/contact" class="btn btn-secondary">
-        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-        </svg>
-        <span>Contact Support</span>
-      </a>
+<main class="error-page">
+  <div class="hero-backdrop-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="error-container">
+      
+      <div class="error-badge reveal">
+        <span class="error-pulse-dot"></span>
+        <span>STATUS_CODE: 404_NOT_FOUND</span>
+      </div>
+
+      <div class="error-code reveal" style="--delay: 50ms">404</div>
+
+      <h1 class="error-title reveal" style="--delay: 100ms">Route Resolution Failed</h1>
+      
+      <p class="error-desc reveal" style="--delay: 150ms">
+        The requested resource, host, or subdomain could not be resolved by our ingress edge routing mesh.
+      </p>
+
+      <!-- High-Tech Diagnostic Terminal Box -->
+      <div class="error-terminal reveal" style="--delay: 200ms">
+        <div class="terminal-bar">
+          <span class="term-dot term-dot--red"></span>
+          <span class="term-dot term-dot--yellow"></span>
+          <span class="term-dot term-dot--green"></span>
+          <span class="term-label">ingress-edge-diagnostics</span>
+        </div>
+        <div class="terminal-line">
+          <span class="term-key">TIMESTAMP</span>
+          <span class="term-val"><?= gmdate('Y-m-d\TH:i:s\Z') ?></span>
+        </div>
+        <div class="terminal-line">
+          <span class="term-key">HOST</span>
+          <span class="term-val"><?= htmlspecialchars($_SERVER['HTTP_HOST'] ?? 'xpsystems.eu', ENT_QUOTES, 'UTF-8') ?></span>
+        </div>
+        <div class="terminal-line">
+          <span class="term-key">REQUEST_URI</span>
+          <span class="term-val"><?= htmlspecialchars($_SERVER['REQUEST_URI'] ?? '/unknown', ENT_QUOTES, 'UTF-8') ?></span>
+        </div>
+        <div class="terminal-line">
+          <span class="term-key">NODE_POP</span>
+          <span class="term-val">DE-FRA-EDGE-01 (Frankfurt)</span>
+        </div>
+        <div class="terminal-line">
+          <span class="term-key">STATUS</span>
+          <span class="term-val term-val--err">ERR_TARGET_NODE_UNREACHABLE_OR_UNKNOWN</span>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="error-actions reveal" style="--delay: 250ms">
+        <a href="/" class="btn btn-primary">
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Return Home</span>
+        </a>
+
+        <a href="/domains" class="btn btn-secondary">
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span>Domain Registry</span>
+        </a>
+
+        <a href="/opensource" class="btn btn-secondary">
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+          <span>Open Source</span>
+        </a>
+
+        <a href="/contact" class="btn btn-secondary">
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <span>Contact Desk</span>
+        </a>
+      </div>
+
     </div>
   </div>
-</header>
+</main>
 
 <?php $component('footer'); ?>
 
 <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
+

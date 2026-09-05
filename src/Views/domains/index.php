@@ -38,74 +38,105 @@
         <line x1="2" y1="12" x2="22" y2="12"/>
         <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
       </svg>
-      Domain Portfolio
+      <span>Autonomous System &bull; Domain Portfolio</span>
     </div>
-    <h1 class="hero-title reveal" style="--delay: 50ms">Our Digital Footprint</h1>
+    <h1 class="hero-title reveal" style="--delay: 50ms">
+      Our Digital Footprint<br>
+      <span class="hero-title-accent">&amp; Sovereign Namespaces</span>
+    </h1>
     <p class="hero-tagline reveal" style="--delay: 100ms">
-      A comprehensive registry of domains and cloud infrastructure owned and operated by xpsystems.
+      A comprehensive registry of European domains, dedicated infrastructure nodes, and project gateways operated by xpsystems.
     </p>
   </div>
 </header>
 
-<!-- Active Domains Grid -->
-<main class="services-section">
+<!-- Active Domains Explorer -->
+<main class="section section-alt">
   <div class="container">
-    <div class="domain-search-wrap reveal">
-      <svg class="domain-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-      <input type="text" id="domain-search" class="domain-search-input" placeholder="Filter domains (e.g. host, eu, ptero)…" autocomplete="off">
+    <div class="domain-toolbar reveal">
+      <div class="domain-search-wrap">
+        <svg class="domain-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" id="domain-search" class="domain-search-input" placeholder="Search domains by name or extension (e.g. host, eu, de, ptero)…" autocomplete="off">
+        <div class="domain-search-kbd">
+          <kbd>/</kbd>
+        </div>
+      </div>
+
+      <div class="domain-filters-bar">
+        <button class="domain-filter-pill active" data-filter="all" type="button">
+          All Namespaces
+        </button>
+        <?php foreach ($activeGroups as $idx => $cat): ?>
+          <button class="domain-filter-pill" data-filter="cat-<?= $idx ?>" type="button">
+            <?= $e($cat['title']) ?>
+            <span class="pill-count">(<?= count($cat['domains']) ?>)</span>
+          </button>
+        <?php endforeach; ?>
+      </div>
     </div>
 
+    <p class="domain-counter-status" id="domain-counter-status"></p>
+
     <div class="services-grid">
-      <?php foreach ($activeGroups as $index => $category): ?>
-        <div class="card <?= !empty($category['highlight']) ? 'card-partner' : '' ?> reveal" style="--delay: <?= 60 + ($index * 35) ?>ms">
-          <div class="card-top">
-            <span class="card-badge <?= !empty($category['highlight']) ? 'card-badge-service' : '' ?>">
-              <?= $e($category['title']) ?>
-            </span>
-            <h3 class="card-name"><?= count($category['domains']) ?> Domains</h3>
+      <?php foreach ($activeGroups as $idx => $category): ?>
+        <div class="domain-card <?= !empty($category['highlight']) ? 'domain-card--highlight' : '' ?> reveal" data-category="cat-<?= $idx ?>" style="--delay: <?= 40 + ($idx * 30) ?>ms">
+          <div class="domain-card-header">
+            <h3 class="domain-category-title"><?= $e($category['title']) ?></h3>
+            <span class="domain-count-badge"><?= count($category['domains']) ?> domains</span>
           </div>
-          <ul class="link-list">
+
+          <div class="domain-list">
             <?php foreach ($category['domains'] as $item): ?>
               <?php $dName = $item['domain']; ?>
-              <li>
-                <a href="https://<?= $e($dName) ?>" target="_blank" rel="noopener noreferrer" class="card-sublink">
-                  <span class="mono"><?= $e($dName) ?></span>
+              <div class="domain-row" data-domain="<?= $e(strtolower($dName)) ?>">
+                <div class="domain-left">
+                  <span class="domain-status-dot" title="Operational"></span>
+                  <span class="domain-name"><?= $e($dName) ?></span>
                   <?php if (!empty($item['badge'])): ?>
                     <span class="badge badge-<?= strtolower($item['badge']) ?>"><?= $e($item['badge']) ?></span>
                   <?php endif; ?>
-                  <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                  </svg>
-                </a>
-              </li>
+                </div>
+
+                <div class="domain-actions">
+                  <button class="domain-copy-btn" title="Copy domain" data-copy="<?= $e($dName) ?>" data-copy-label="<?= $e($dName) ?>" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                  </button>
+                  <a href="https://<?= $e($dName) ?>" target="_blank" rel="noopener noreferrer" class="domain-ext-btn" title="Open https://<?= $e($dName) ?>">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
             <?php endforeach; ?>
-          </ul>
+          </div>
         </div>
       <?php endforeach; ?>
     </div>
   </div>
 </main>
 
-<!-- Legacy Section -->
+<!-- Legacy Archive Section -->
 <?php if (!empty($legacyGroup)): ?>
   <section class="legacy-section">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-eyebrow">Archive</span>
+        <span class="section-eyebrow">Archive &amp; Deprecated</span>
         <h2 class="section-title"><?= $e($legacyGroup['title']) ?></h2>
-        <p class="section-sub">Historical domains previously part of the network.</p>
+        <p class="section-sub">Historical domains previously part of the network, cataloged for archival integrity.</p>
       </div>
       <div class="legacy-grid reveal" style="--delay: 100ms">
         <?php foreach ($legacyGroup['domains'] as $item): ?>
           <div class="legacy-item">
-            <span class="expired-link">
-              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
-              </svg>
-              <?= $e($item['domain']) ?>
-            </span>
+            <span><?= $e($item['domain']) ?></span>
+            <svg class="expired-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
+            </svg>
           </div>
         <?php endforeach; ?>
       </div>
@@ -118,3 +149,4 @@
 <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
+

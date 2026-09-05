@@ -1,135 +1,158 @@
 // =============================================================================
-// Design Tokens — CSS Custom Properties
-// Clean, Modern, Precision Engineering Aesthetics
-// STRICT RULE: ZERO GRADIENTS. SOLID COLORS ONLY.
+// xpsystems — Master Design Tokens
+// Modern European Infrastructure & Cloud Engineering Aesthetic
 // =============================================================================
 
-// Dark Theme (default)
 :root {
-  // ── Surface Backgrounds (Solid, layered darks)
-  --bg:               #090b10;
-  --bg-alt:           #0f1219;
-  --bg-surface:       #131823;
-  --bg-surface-hover: #19202e;
-  --bg-elevated:      #1e2637;
-  --bg-glass:         rgba(9, 11, 16, 0.92);
+  // ── Surface Backgrounds (Dark Obsidian Layering)
+  --bg:               #07090e;
+  --bg-subtle:        #0b0f17;
+  --bg-alt:           #0f1420;
+  --bg-surface:       #131a2a;
+  --bg-surface-hover: #182338;
+  --bg-elevated:      #1d2a45;
+  --bg-glass:         rgba(7, 9, 14, 0.85);
+  --bg-glass-card:    rgba(19, 26, 42, 0.75);
 
-  // ── Hairline Borders (Crisp, technical, 1px)
-  --border:           #202737;
-  --border-subtle:    #161c29;
-  --border-hover:     #323d54;
+  // ── Hairline Borders & Specular Edges
+  --border:           rgba(255, 255, 255, 0.08);
+  --border-subtle:    rgba(255, 255, 255, 0.04);
+  --border-hover:     rgba(255, 255, 255, 0.18);
   --border-active:    #3b82f6;
+  --border-highlight: rgba(255, 255, 255, 0.12);
 
-  // ── Text & Typography (High contrast, readable)
+  // ── Text & Typography
   --text:             #f8fafc;
   --text-secondary:   #cbd5e1;
   --text-muted:       #8291a8;
-  --text-dim:         #4f5c73;
+  --text-dim:         #475569;
+  --text-inverse:     #07090e;
 
-  // ── Primary Brand Accent (Solid Electric Cobalt)
+  // ── Primary Brand Accent (Electric European Cobalt)
   --accent:           #3b82f6;
   --accent-hover:     #60a5fa;
   --accent-active:    #2563eb;
-  --accent-dim:       #132240;
+  --accent-dim:       rgba(59, 130, 246, 0.12);
+  --accent-glow:      rgba(59, 130, 246, 0.25);
   --accent-strong:    #2563eb;
   --accent-text:      #ffffff;
 
-  // ── Partner Accent (Solid Warm Amber)
+  // ── Secondary Accent (Nordic Cyan Infrastructure)
+  --cyan:             #06b6d4;
+  --cyan-hover:       #22d3ee;
+  --cyan-dim:         rgba(6, 182, 212, 0.12);
+  --cyan-glow:        rgba(6, 182, 212, 0.22);
+
+  // ── Partner Accent (Warm Amber)
   --partner:          #f59e0b;
   --partner-hover:    #fbbf24;
-  --partner-dim:      #382405;
+  --partner-dim:      rgba(245, 158, 11, 0.12);
+  --partner-glow:     rgba(245, 158, 11, 0.22);
   --partner-strong:   #d97706;
 
-  // ── Status & Functional Semantics
+  // ── Functional / Status Semantics
   --green:            #10b981;
-  --green-dim:        #062d20;
+  --green-hover:      #34d399;
+  --green-dim:        rgba(16, 185, 129, 0.12);
+  --green-glow:       rgba(16, 185, 129, 0.35);
   --yellow:           #f59e0b;
-  --yellow-dim:       #382405;
-  --red:              #ef4444;
-  --red-dim:          #391313;
-  --purple:           #a855f7;
-  --purple-dim:       #2b1342;
+  --yellow-dim:       rgba(245, 158, 11, 0.12);
+  --red:              #f43f5e;
+  --red-dim:          rgba(244, 63, 94, 0.12);
+  --purple:           #8b5cf6;
+  --purple-dim:       rgba(139, 92, 246, 0.12);
   --grey:             #64748b;
-  --grey-dim:         #1e2533;
+  --grey-dim:         rgba(100, 116, 139, 0.12);
 
-  // ── Footer & Bars
-  --footer-bg:        #06080c;
+  // ── Elevation & Specular Shadows
+  --shadow-xs:        0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-sm:        0 2px 6px rgba(0, 0, 0, 0.5);
+  --shadow-md:        0 6px 18px rgba(0, 0, 0, 0.55);
+  --shadow-lg:        0 12px 36px rgba(0, 0, 0, 0.65);
+  --shadow-glow:      0 0 30px rgba(59, 130, 246, 0.18);
+  --card-shadow:      0 2px 10px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --card-hover-shadow:0 12px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(59, 130, 246, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
-  // ── Subtle Crisp Elevation (No blurred gradient halos)
-  --shadow-xs:        0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-sm:        0 2px 4px rgba(0, 0, 0, 0.4);
-  --shadow-md:        0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-lg:        0 8px 24px rgba(0, 0, 0, 0.6);
-  --card-shadow:      0 2px 8px rgba(0, 0, 0, 0.35);
-  --card-hover-shadow:0 8px 24px rgba(0, 0, 0, 0.5);
-
-  // ── Spacing & Geometry
-  --nav-height:       64px;
-  --container-max:    1140px;
+  // ── Geometry & Sizing
+  --nav-height:       68px;
+  --container-max:    1180px;
   --radius-xs:        4px;
-  --radius-sm:        6px;
-  --radius:           10px;
-  --radius-lg:        14px;
+  --radius-sm:        8px;
+  --radius:           12px;
+  --radius-lg:        18px;
+  --radius-xl:        24px;
   --radius-full:      9999px;
 
   // ── Motion
-  --t-fast:           0.12s ease;
-  --t:                0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  --t-smooth:         0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast:           0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --t:                0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --t-smooth:         0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
-  // ── Fonts
-  --font-sans:        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono:        'JetBrains Mono', 'SF Mono', Consolas, Menlo, monospace;
+  // ── Typography
+  --font-sans:        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:        'JetBrains Mono', 'SF Mono', Consolas, Menlo, Monaco, monospace;
 }
 
-// Light Theme
+// Light Theme (Technical, Crisp, High-Contrast)
 [data-theme="light"] {
-  --bg:               #ffffff;
-  --bg-alt:           #f8fafc;
+  --bg:               #f8fafc;
+  --bg-subtle:        #f1f5f9;
+  --bg-alt:           #eef2f6;
   --bg-surface:       #ffffff;
-  --bg-surface-hover: #f1f5f9;
-  --bg-elevated:      #f8fafc;
-  --bg-glass:         rgba(255, 255, 255, 0.94);
+  --bg-surface-hover: #f8fafc;
+  --bg-elevated:      #ffffff;
+  --bg-glass:         rgba(248, 250, 252, 0.88);
+  --bg-glass-card:    rgba(255, 255, 255, 0.85);
 
-  --border:           #e2e8f0;
-  --border-subtle:    #edf2f7;
-  --border-hover:     #cbd5e1;
+  --border:           rgba(15, 23, 42, 0.09);
+  --border-subtle:    rgba(15, 23, 42, 0.05);
+  --border-hover:     rgba(15, 23, 42, 0.18);
   --border-active:    #2563eb;
+  --border-highlight: rgba(255, 255, 255, 0.8);
 
   --text:             #0f172a;
   --text-secondary:   #334155;
   --text-muted:       #64748b;
   --text-dim:         #94a3b8;
+  --text-inverse:     #ffffff;
 
   --accent:           #2563eb;
   --accent-hover:     #1d4ed8;
   --accent-active:    #1e40af;
-  --accent-dim:       #eff6ff;
+  --accent-dim:       rgba(37, 99, 235, 0.08);
+  --accent-glow:      rgba(37, 99, 235, 0.18);
   --accent-strong:    #1d4ed8;
   --accent-text:      #ffffff;
 
+  --cyan:             #0891b2;
+  --cyan-hover:       #0e7490;
+  --cyan-dim:         rgba(8, 145, 178, 0.08);
+  --cyan-glow:        rgba(8, 145, 178, 0.16);
+
   --partner:          #d97706;
   --partner-hover:    #b45309;
-  --partner-dim:      #fef3c7;
-  --partner-strong:   #92400e;
+  --partner-dim:      rgba(217, 119, 6, 0.08);
+  --partner-glow:     rgba(217, 119, 6, 0.16);
+  --partner-strong:   #b45309;
 
   --green:            #059669;
-  --green-dim:        #ecfdf5;
+  --green-hover:      #047857;
+  --green-dim:        rgba(5, 150, 105, 0.08);
+  --green-glow:       rgba(5, 150, 105, 0.2);
   --yellow:           #d97706;
-  --yellow-dim:       #fffbeb;
-  --red:              #dc2626;
-  --red-dim:          #fef2f2;
+  --yellow-dim:       rgba(217, 119, 6, 0.08);
+  --red:              #e11d48;
+  --red-dim:          rgba(225, 29, 72, 0.08);
   --purple:           #7c3aed;
-  --purple-dim:       #f5f3ff;
+  --purple-dim:       rgba(124, 58, 237, 0.08);
   --grey:             #64748b;
-  --grey-dim:         #f1f5f9;
-
-  --footer-bg:        #f1f5f9;
+  --grey-dim:         rgba(100, 116, 139, 0.08);
 
   --shadow-xs:        0 1px 2px rgba(15, 23, 42, 0.05);
-  --shadow-sm:        0 2px 4px rgba(15, 23, 42, 0.06);
-  --shadow-md:        0 4px 12px rgba(15, 23, 42, 0.08);
-  --shadow-lg:        0 8px 24px rgba(15, 23, 42, 0.1);
-  --card-shadow:      0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
-  --card-hover-shadow:0 8px 20px rgba(15, 23, 42, 0.1);
+  --shadow-sm:        0 2px 6px rgba(15, 23, 42, 0.07);
+  --shadow-md:        0 6px 16px rgba(15, 23, 42, 0.09);
+  --shadow-lg:        0 12px 32px rgba(15, 23, 42, 0.12);
+  --shadow-glow:      0 0 25px rgba(37, 99, 235, 0.12);
+  --card-shadow:      0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --card-hover-shadow:0 12px 28px rgba(15, 23, 42, 0.1), 0 0 16px rgba(37, 99, 235, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
 }

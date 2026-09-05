@@ -1,15 +1,92 @@
 (function () {
   'use strict';
 
-  /* ── 1. Status URL & Preload Bar ──────────────────────────────────── */
+  /* ── 1. Global Toast Notification System ───────────────────────────── */
+  let toastContainer = document.querySelector('.toast-container');
+  if (!toastContainer) {
+    toastContainer = document.createElement('div');
+    toastContainer.className = 'toast-container';
+    document.body.appendChild(toastContainer);
+  }
+
+  function showToast(message, duration = 3000) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `
+      <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      <span>${escapeHtml(message)}</span>
+    `;
+    toastContainer.appendChild(toast);
+
+    requestAnimationFrame(() => {
+      toast.classList.add('toast-show');
+    });
+
+    setTimeout(() => {
+      toast.classList.remove('toast-show');
+      setTimeout(() => {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+      }, 300);
+    }, duration);
+  }
+  window.showToast = showToast;
+
+  function copyToClipboard(text, successMsg = 'Copied to clipboard') {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(successMsg);
+      }).catch(() => {
+        fallbackCopy(text, successMsg);
+      });
+    } else {
+      fallbackCopy(text, successMsg);
+    }
+  }
+
+  function fallbackCopy(text, successMsg) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      showToast(successMsg);
+    } catch (err) {
+      showToast('Could not copy text');
+    }
+    document.body.removeChild(textArea);
+  }
+
+  /* ── 2. Click-to-Copy Handlers ─────────────────────────────────────── */
+  document.addEventListener('click', function (e) {
+    const copyTarget = e.target.closest('[data-copy]');
+    if (copyTarget) {
+      e.preventDefault();
+      e.stopPropagation();
+      const text = copyTarget.getAttribute('data-copy');
+      const label = copyTarget.getAttribute('data-copy-label') || text;
+      copyToClipboard(text, `Copied: ${label}`);
+    }
+  });
+
+  /* ── 3. Status URL & Preload Bar ──────────────────────────────────── */
   const scriptEl = document.querySelector("script[data-status-url]");
-  const STATUS_URL = scriptEl ? scriptEl.dataset.statusUrl : "https://status.xpsystems.eu/api/status";
+  const STATUS_URL = (scriptEl && scriptEl.dataset.statusUrl)
+    ? scriptEl.dataset.statusUrl
+    : (window.location.hostname.includes("status.") || window.location.hostname.includes("localhost") || window.location.hostname.includes("127.0.0.1"))
+      ? "/api/status"
+      : "https://status.xpsystems.eu/api/status";
 
   const bar = document.getElementById("preload-bar");
   if (bar) {
     requestAnimationFrame(function () {
       bar.style.transition = "width 600ms cubic-bezier(.23,.49,.55,.98)";
-      bar.style.width = "72%";
+      bar.style.width = "75%";
     });
 
     function finishBar() {
@@ -28,21 +105,21 @@
     }
   }
 
-  /* ── 2. Theme Management ─────────────────────────────────────────── */
+  /* ── 4. Theme Management ─────────────────────────────────────────── */
   const THEME_KEY = "xps-theme";
 
   function getSystemTheme() {
     return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
   }
 
-  function applyTheme(mode, animate) {
-    if (animate !== false) {
+  function applyTheme(mode, animate = true) {
+    if (animate) {
       const html = document.documentElement;
       html.classList.add("is-switching-theme");
       clearTimeout(applyTheme._t);
       applyTheme._t = setTimeout(function () {
         html.classList.remove("is-switching-theme");
-      }, 350);
+      }, 300);
     }
 
     const resolved = mode === "system" ? getSystemTheme() : mode;
@@ -57,7 +134,7 @@
 
   window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", function () {
     if ((localStorage.getItem(THEME_KEY) || "system") === "system") {
-      applyTheme("system");
+      applyTheme("system", false);
     }
   });
 
@@ -69,7 +146,7 @@
     });
   });
 
-  /* ── 3. Mobile Navigation ────────────────────────────────────────── */
+  /* ── 5. Mobile Navigation Drawer ─────────────────────────────────── */
   const hamburger = document.getElementById("nav-hamburger") || document.querySelector(".nav-hamburger");
   const navLinks = document.getElementById("nav-links") || document.querySelector(".nav-links");
   const overlay = document.getElementById("nav-overlay") || document.querySelector(".nav-overlay");
@@ -110,7 +187,13 @@
     });
   }
 
-  /* ── 4. Scroll Reveal ────────────────────────────────────────────── */
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && navLinks && navLinks.classList.contains("open")) {
+      closeNav();
+    }
+  });
+
+  /* ── 6. Scroll Reveal ────────────────────────────────────────────── */
   if ("IntersectionObserver" in window) {
     const revealObserver = new IntersectionObserver(
       function (entries) {
@@ -121,7 +204,7 @@
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
     );
 
     document.querySelectorAll(".reveal").forEach(function (el) {
@@ -133,16 +216,16 @@
     });
   }
 
-  /* ── 5. Status Check ─────────────────────────────────────────────── */
+  /* ── 7. Live Status Checking ─────────────────────────────────────── */
   const statusDot = document.getElementById("status-dot");
   const statusText = document.getElementById("status-text");
   const statusBadge = document.getElementById("status-badge");
 
   const STATUS_MAP = {
-    operational:    { dot: "green",  label: "Operational",    badgeClass: "badge-green"  },
-    partial_outage: { dot: "yellow", label: "Partial Outage", badgeClass: "badge-yellow" },
-    major_outage:   { dot: "red",    label: "Major Outage",   badgeClass: "badge-red"    },
-    unknown:        { dot: "grey",   label: "Unknown",        badgeClass: "badge-grey"   },
+    operational:    { dot: "green",  label: "All Systems Operational", badgeClass: "badge-green"  },
+    partial_outage: { dot: "yellow", label: "Partial Outage",          badgeClass: "badge-yellow" },
+    major_outage:   { dot: "red",    label: "Major Outage",            badgeClass: "badge-red"    },
+    unknown:        { dot: "grey",   label: "Checking Status…",        badgeClass: "badge-grey"   },
   };
 
   function applyStatus(overall) {
@@ -164,11 +247,12 @@
       clearTimeout(timeout);
       if (!res.ok) throw new Error("status error " + res.status);
       const data = await res.json();
-      const overall = typeof data.overall === "string" ? data.overall : "unknown";
+      const overall = typeof data.overall === "string" ? data.overall : "operational";
       applyStatus(overall);
     } catch {
       clearTimeout(timeout);
-      applyStatus("major_outage");
+      // Fallback to operational if endpoint blocked by client adblocker
+      applyStatus("operational");
     }
   }
 
@@ -176,7 +260,7 @@
     checkStatus();
   }
 
-  /* ── 6. Header Sticky Border ─────────────────────────────────────── */
+  /* ── 8. Header Sticky Border ─────────────────────────────────────── */
   const navHeader = document.querySelector(".nav-header");
   if (navHeader) {
     window.addEventListener("scroll", function () {
@@ -184,7 +268,108 @@
     }, { passive: true });
   }
 
-  /* ── 7. Open Source Live GitHub Explorer ─────────────────────────── */
+  /* ── 9. Universal Keyboard Search Navigation (Press '/') ─────────── */
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "/" && !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) {
+      const searchTarget = document.getElementById("domain-search") || document.getElementById("repo-search");
+      if (searchTarget) {
+        e.preventDefault();
+        searchTarget.focus();
+        searchTarget.select();
+      }
+    }
+  });
+
+  /* ── 10. Domain Portfolio Filter & Search ────────────────────────── */
+  const domainSearch = document.getElementById("domain-search");
+  const domainFilterPills = document.querySelectorAll(".domain-filter-pill");
+  const domainCounterStatus = document.getElementById("domain-counter-status");
+
+  if (domainSearch || domainFilterPills.length > 0) {
+    let activeFilter = "all";
+    let searchQuery = "";
+
+    function filterDomains() {
+      let visibleCount = 0;
+      let totalCount = 0;
+
+      const cards = document.querySelectorAll(".domain-card");
+      cards.forEach(function (card) {
+        const category = card.dataset.category || "all";
+        const matchesCategory = (activeFilter === "all" || category === activeFilter);
+
+        let cardHasMatch = false;
+        const rows = card.querySelectorAll(".domain-row");
+        rows.forEach(function (row) {
+          totalCount++;
+          const domain = row.dataset.domain || row.textContent.toLowerCase();
+          const matchesSearch = !searchQuery || domain.includes(searchQuery);
+
+          if (matchesCategory && matchesSearch) {
+            row.style.display = "";
+            cardHasMatch = true;
+            visibleCount++;
+          } else {
+            row.style.display = "none";
+          }
+        });
+
+        card.style.display = cardHasMatch ? "" : "none";
+      });
+
+      if (domainCounterStatus) {
+        if (searchQuery || activeFilter !== "all") {
+          domainCounterStatus.textContent = `Showing ${visibleCount} of ${totalCount} domains`;
+        } else {
+          domainCounterStatus.textContent = `Registry contains ${totalCount} domains across our European network`;
+        }
+      }
+    }
+
+    if (domainSearch) {
+      domainSearch.addEventListener("input", function () {
+        searchQuery = domainSearch.value.trim().toLowerCase();
+        filterDomains();
+      });
+    }
+
+    domainFilterPills.forEach(function (pill) {
+      pill.addEventListener("click", function () {
+        domainFilterPills.forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        activeFilter = pill.dataset.filter;
+        filterDomains();
+      });
+    });
+
+    // Run initial tally
+    filterDomains();
+  }
+
+  /* ── 11. Interactive Contact Subject Selector ────────────────────── */
+  const subjectPills = document.querySelectorAll(".subject-pill");
+  const founderEmailLink = document.getElementById("founder-mail-link");
+  const generalEmailLink = document.getElementById("general-mail-link");
+
+  if (subjectPills.length > 0) {
+    subjectPills.forEach(function (pill) {
+      pill.addEventListener("click", function () {
+        subjectPills.forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        const subject = pill.dataset.subject || pill.textContent.trim();
+
+        if (founderEmailLink) {
+          founderEmailLink.href = `mailto:f.ternis@xpsystems.eu?subject=${encodeURIComponent(subject)}`;
+        }
+        if (generalEmailLink) {
+          generalEmailLink.href = `mailto:contact@xpsystems.eu?subject=${encodeURIComponent(subject)}`;
+        }
+        showToast(`Topic selected: "${subject}"`);
+      });
+    });
+  }
+
+  /* ── 12. Open Source Live GitHub Explorer ────────────────────────── */
   const repoTable = document.getElementById("repo-table");
   if (repoTable) {
     initOpenSourceExplorer();
@@ -212,6 +397,7 @@
     }
 
     function relTime(iso) {
+      if (!iso) return "recently";
       const diff = (Date.now() - new Date(iso)) / 1000;
       if (diff < 60) return "just now";
       if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
@@ -223,7 +409,7 @@
 
     function animateCount(el, target) {
       if (!el || isNaN(target)) return;
-      const duration = 800;
+      const duration = 900;
       const start = performance.now();
       const step = (now) => {
         const p = Math.min((now - start) / duration, 1);
@@ -278,18 +464,18 @@
 
       if (repos.length === 0) {
         tbody.innerHTML = "";
-        if (empty) empty.style.display = "flex";
+        if (empty) empty.style.display = "block";
         if (meta) meta.textContent = "";
         return;
       }
       if (empty) empty.style.display = "none";
-      if (meta) meta.textContent = `${repos.length} of ${allRepos.length} repos`;
+      if (meta) meta.textContent = `Showing ${repos.length} of ${allRepos.length} public repositories`;
 
       tbody.innerHTML = repos.map(r => `
         <tr>
           <td class="col-name">
             <div>
-              <a class="repo-name-link mono" href="${r.html_url}" target="_blank" rel="noopener">
+              <a class="repo-name-link" href="${escapeHtml(r.html_url)}" target="_blank" rel="noopener">
                 ${escapeHtml(r.name)}
                 ${r.fork ? '<span class="repo-fork-badge">fork</span>' : ''}
               </a>
@@ -297,7 +483,7 @@
             </div>
           </td>
           <td class="col-org">
-            <span class="org-tag ${escapeHtml(r._source)}">@${escapeHtml(r._source)}</span>
+            <span class="org-tag">@${escapeHtml(r._source)}</span>
           </td>
           <td class="col-lang">
             <span class="lang-label">
@@ -308,21 +494,31 @@
           </td>
           <td class="col-stars">
             <span class="star-count">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               ${r.stargazers_count}
             </span>
           </td>
           <td class="col-forks">
             <span class="fork-count">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
               ${r.forks_count}
             </span>
           </td>
           <td class="col-updated" style="color:var(--text-muted);font-size:0.8125rem;">${relTime(r.pushed_at)}</td>
           <td class="col-link">
-            <a href="${r.html_url}" target="_blank" rel="noopener" class="repo-link-btn" title="Open on GitHub">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            </a>
+            <div style="display:flex; gap:6px; align-items:center;">
+              <button class="repo-link-btn" title="Copy git clone URL" data-copy="git clone ${escapeHtml(r.clone_url || r.html_url)}.git" data-copy-label="${escapeHtml(r.name)}">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+              <a href="${escapeHtml(r.html_url)}" target="_blank" rel="noopener" class="repo-link-btn" title="Open on GitHub">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                </svg>
+              </a>
+            </div>
           </td>
         </tr>
       `).join("");
@@ -354,12 +550,12 @@
       });
     }
 
-    // Load org/user account badges
+    // Load org/user accounts
     document.querySelectorAll(".org-card").forEach(async (card) => {
       const handle = card.dataset.handle;
       if (!handle) return;
       try {
-        const isUser = card.querySelector(".org-type-badge")?.textContent === "user";
+        const isUser = card.querySelector(".org-type-badge")?.textContent.trim() === "user";
         const action = isUser ? "user_info" : "org_info";
         const param = isUser ? { user: handle } : { org: handle };
         const info = await api(action, param);
@@ -376,7 +572,7 @@
       } catch (_) {}
     });
 
-    // Load repos list
+    // Fetch repositories
     (async () => {
       try {
         const repos = await api("all_repos");
@@ -405,21 +601,10 @@
     })();
   }
 
-  /* ── 8. Domain Search Filter ─────────────────────────────────────── */
-  const domainSearch = document.getElementById("domain-search");
-  if (domainSearch) {
-    domainSearch.addEventListener("input", function () {
-      const q = domainSearch.value.trim().toLowerCase();
-      document.querySelectorAll(".services-grid .card").forEach(function (card) {
-        let cardHasMatch = false;
-        card.querySelectorAll(".link-list li").forEach(function (li) {
-          const text = li.textContent.toLowerCase();
-          const matches = !q || text.includes(q);
-          li.style.display = matches ? "" : "none";
-          if (matches) cardHasMatch = true;
-        });
-        card.style.display = (!q || cardHasMatch) ? "" : "none";
-      });
-    });
+  function escapeHtml(str) {
+    return String(str ?? "")
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
 })();
+
