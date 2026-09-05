@@ -139,6 +139,17 @@ return [
             'links'   => [],
         ],
         [
+            'name'    => 'DNBX.de',
+            'type'    => 'service',
+            'url'     => 'https://dnbx.de',
+            'tagline' => 'Authoritative Domain & Nameserver Intelligence API',
+            'links'   => [
+                ['label' => 'api/stats',       'href' => 'https://dnbx.de/api/stats'],
+                ['label' => 'api/nameservers', 'href' => 'https://dnbx.de/api/nameservers'],
+                ['label' => 'api/domains',     'href' => 'https://dnbx.de/api/domains'],
+            ],
+        ],
+        [
             'name'    => 'xpsys.eu',
             'type'    => 'service',
             'url'     => 'https://xpsys.eu',
@@ -247,6 +258,7 @@ return [
                 ['domain' => 'xpsystems.eu'],
                 ['domain' => 'xpsystems.de'],
                 ['domain' => 'xpsys.de'],
+                ['domain' => 'dnbx.de', 'badge' => 'API'],
                 ['domain' => 'xp-mail.eu'],
                 ['domain' => 'xp-ad.de'],
                 ['domain' => 'ptero01.eu'],

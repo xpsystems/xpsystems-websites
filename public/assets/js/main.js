@@ -821,6 +821,100 @@
     });
   }
 
+  /* ── 17c. DNBX.de Live Telemetry & API Showcase ──────────────────── */
+  const dnbxActiveVal = document.getElementById("dnbx-active-val");
+  const dnbxTotalVal = document.getElementById("dnbx-total-val");
+  const dnbxTldsVal = document.getElementById("dnbx-tlds-val");
+  const dnbxPingVal = document.getElementById("dnbx-ping-val");
+  const dnbxApiHealth = document.getElementById("dnbx-api-health");
+  const dnbxTabs = document.querySelectorAll(".dnbx-tab-btn");
+  const dnbxUrlText = document.getElementById("dnbx-url-text");
+  const dnbxRunBtn = document.getElementById("dnbx-run-btn");
+  const dnbxCopyBtn = document.getElementById("dnbx-copy-btn");
+  const dnbxTerminalOutput = document.getElementById("dnbx-terminal-output");
+
+  if (dnbxActiveVal || dnbxTerminalOutput) {
+    // 1. Initial live ping & stats fetch
+    const t0 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+    fetch("https://dnbx.de/api/ping", { cache: "no-store" })
+      .then(r => r.json())
+      .then(() => {
+        const t1 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+        const pingMs = Math.max(2, Math.round(t1 - t0));
+        if (dnbxPingVal) dnbxPingVal.textContent = `~${pingMs}ms`;
+        if (dnbxApiHealth) dnbxApiHealth.innerHTML = `<span class="health-dot"></span>Online (${pingMs}ms)`;
+      })
+      .catch(() => {
+        if (dnbxPingVal) dnbxPingVal.textContent = "Online";
+      });
+
+    fetch("https://dnbx.de/api/stats", { cache: "no-store" })
+      .then(r => r.json())
+      .then(res => {
+        if (res && res.data) {
+          if (dnbxActiveVal && res.data.active_domains) dnbxActiveVal.textContent = res.data.active_domains;
+          if (dnbxTotalVal && res.data.total_managed) dnbxTotalVal.textContent = res.data.total_managed;
+          if (dnbxTldsVal && res.data.unique_tlds) dnbxTldsVal.textContent = res.data.unique_tlds;
+        }
+      })
+      .catch(() => {});
+
+    // 2. Interactive Terminal Endpoint Runner
+    let currentEndpoint = "stats";
+    const endpointUrls = {
+      stats: "https://dnbx.de/api/stats",
+      nameservers: "https://dnbx.de/api/nameservers",
+      domains: "https://dnbx.de/api/domains?limit=3",
+      tlds: "https://dnbx.de/api/tlds",
+      ping: "https://dnbx.de/api/ping"
+    };
+
+    function executeDnbxQuery(ep) {
+      const url = endpointUrls[ep] || endpointUrls.stats;
+      if (dnbxUrlText) dnbxUrlText.textContent = url;
+      if (dnbxTerminalOutput) dnbxTerminalOutput.textContent = `// Querying ${url}…`;
+
+      fetch(url, { cache: "no-store" })
+        .then(r => r.json())
+        .then(data => {
+          if (dnbxTerminalOutput) {
+            dnbxTerminalOutput.textContent = JSON.stringify(data, null, 2);
+          }
+          showToast(`DNBX API: Successfully queried /api/${ep} ⚡`, 2000);
+        })
+        .catch(err => {
+          if (dnbxTerminalOutput) {
+            dnbxTerminalOutput.textContent = `// Error fetching ${url}:\n${err.message}`;
+          }
+        });
+    }
+
+    dnbxTabs.forEach(btn => {
+      btn.addEventListener("click", function () {
+        dnbxTabs.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentEndpoint = btn.dataset.endpoint || "stats";
+        executeDnbxQuery(currentEndpoint);
+      });
+    });
+
+    if (dnbxRunBtn) {
+      dnbxRunBtn.addEventListener("click", function () {
+        executeDnbxQuery(currentEndpoint);
+      });
+    }
+
+    if (dnbxCopyBtn && dnbxTerminalOutput) {
+      dnbxCopyBtn.addEventListener("click", function () {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(dnbxTerminalOutput.textContent).then(() => {
+            showToast("Copied DNBX JSON response to clipboard! 📋", 2000);
+          });
+        }
+      });
+    }
+  }
+
   /* ── 18. Dynamic Specular Spotlight Tracking ───────────────────── */
   let activeSpotlightCards = [];
   function updateSpotlightCards() {

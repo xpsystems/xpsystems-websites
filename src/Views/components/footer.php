@@ -149,6 +149,12 @@
             <span class="footer-ext-arrow">&nearr;</span>
           </a>
         </li>
+        <li>
+          <a href="https://dnbx.de" target="_blank" rel="noopener noreferrer" class="footer-nav-link">
+            <span>DNBX.de (Domain API)</span>
+            <span class="footer-ext-arrow">&nearr;</span>
+          </a>
+        </li>
       </ul>
 
       <!-- Nameserver Box with Click-to-Copy -->
