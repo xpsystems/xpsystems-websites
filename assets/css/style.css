@@ -3638,9 +3638,16 @@ kbd {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
-  padding-bottom: 36px;
+  padding-bottom: 32px;
   border-bottom: 1px solid var(--border-subtle);
-  margin-bottom: 48px;
+  margin-bottom: 44px;
+}
+
+.footer-status-cluster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .footer-status-pill {
@@ -3664,15 +3671,104 @@ kbd {
   flex-shrink: 0;
   animation: pingAnimation 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
-.footer-status-pill .footer-latency-badge {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
+.footer-status-pill .footer-status-title {
+  color: var(--text);
   font-weight: 700;
+}
+.footer-status-pill .footer-status-sep {
+  color: var(--border-hover);
+}
+.footer-status-pill .footer-status-locs {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+}
+
+.footer-ping-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--t-bounce);
+  user-select: none;
+}
+.footer-ping-pill .ping-icon {
   color: var(--accent);
-  background-color: var(--accent-dim);
-  border: 1px solid var(--accent);
+  transition: transform var(--t-fast);
+}
+.footer-ping-pill .ping-label {
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+.footer-ping-pill .ping-action-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   padding: 2px 8px;
   border-radius: var(--radius-full);
+  background-color: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  transition: all var(--t-fast);
+}
+.footer-ping-pill:hover {
+  border-color: var(--accent);
+  background-color: var(--bg-surface-hover);
+  transform: translateY(-2px);
+}
+.footer-ping-pill:hover .ping-icon {
+  transform: scale(1.2);
+}
+.footer-ping-pill:hover .ping-action-badge {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+.footer-ping-pill:active {
+  transform: scale(0.96);
+}
+.footer-ping-pill.measuring {
+  border-color: var(--cyan);
+}
+.footer-ping-pill.measuring .ping-icon {
+  animation: spin 0.8s linear infinite;
+  color: var(--cyan);
+}
+.footer-ping-pill.measuring .ping-label {
+  color: var(--cyan);
+}
+
+.footer-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-time-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.footer-time-pill svg {
+  color: var(--cyan);
+  flex-shrink: 0;
 }
 
 .footer-highfive-btn {
@@ -3725,7 +3821,7 @@ kbd {
 
 .footer-main-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1.1fr 1.1fr 1.1fr;
   gap: 40px;
   align-items: flex-start;
   margin-bottom: 48px;
@@ -3783,6 +3879,16 @@ kbd {
   color: var(--text-muted);
   line-height: 1.6;
   max-width: 380px;
+}
+
+.footer-inline-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--t-fast);
+}
+.footer-inline-link:hover {
+  color: var(--accent-hover);
 }
 
 .footer-trust-chips {
@@ -3892,6 +3998,75 @@ kbd {
 .footer-nav-link .footer-bullet-dot.green {
   background-color: var(--green);
 }
+.footer-nav-link.footer-nav-highlight {
+  color: var(--accent);
+  font-weight: 600;
+}
+.footer-nav-link.footer-nav-highlight svg {
+  color: var(--accent);
+}
+
+.footer-ns-box {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.footer-ns-box .footer-ns-title {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+}
+.footer-ns-box .footer-ns-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all var(--t-fast);
+  user-select: none;
+}
+.footer-ns-box .footer-ns-item code {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text);
+  background: transparent;
+  padding: 0;
+}
+.footer-ns-box .footer-ns-item .ns-copy-icon {
+  color: var(--text-dim);
+  transition: color var(--t-fast), transform var(--t-fast);
+  flex-shrink: 0;
+}
+.footer-ns-box .footer-ns-item:hover {
+  border-color: var(--accent);
+  background-color: var(--bg-surface-hover);
+  transform: translateY(-1px);
+}
+.footer-ns-box .footer-ns-item:hover .ns-copy-icon {
+  color: var(--accent);
+}
+.footer-ns-box .footer-ns-item.copied {
+  border-color: var(--green);
+  background-color: var(--green-dim);
+}
+.footer-ns-box .footer-ns-item.copied code {
+  color: var(--green);
+}
+.footer-ns-box .footer-ns-item.copied .ns-copy-icon {
+  color: var(--green);
+}
 
 .footer-bottom-strip {
   padding-top: 28px;
@@ -3912,7 +4087,41 @@ kbd {
 .footer-bottom-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-quote-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--t-bounce);
+  user-select: none;
+}
+.footer-quote-pill .quote-sparkle {
+  font-size: 0.8rem;
+  transition: transform var(--t-fast);
+}
+.footer-quote-pill:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  background-color: var(--bg-surface-hover);
+  transform: translateY(-1px);
+}
+.footer-quote-pill:hover .quote-sparkle {
+  transform: rotate(20deg) scale(1.2);
+}
+.footer-quote-pill:active {
+  transform: scale(0.96);
 }
 
 .footer-version-pill {

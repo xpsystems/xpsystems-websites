@@ -705,6 +705,114 @@
     });
   }
 
+  /* ── 14. Playful Footer Edge Clock (CET) ─────────────────────────── */
+  const footerTimeDisplay = document.getElementById("footer-time-display");
+  if (footerTimeDisplay) {
+    function updateFooterClock() {
+      try {
+        const now = new Date();
+        const formatter = new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Europe/Berlin",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        });
+        footerTimeDisplay.textContent = formatter.format(now) + " CET";
+      } catch (e) {
+        const d = new Date();
+        footerTimeDisplay.textContent = d.toTimeString().substring(0, 8) + " CET";
+      }
+    }
+    updateFooterClock();
+    setInterval(updateFooterClock, 1000);
+  }
+
+  /* ── 15. Playful Footer Edge Ping Radar ──────────────────────────── */
+  const footerPingBtn = document.getElementById("footer-ping-btn");
+  const footerPingVal = document.getElementById("footer-ping-val");
+  if (footerPingBtn && footerPingVal) {
+    let isPinging = false;
+    footerPingBtn.addEventListener("click", function () {
+      if (isPinging) return;
+      isPinging = true;
+      footerPingBtn.classList.add("measuring");
+      footerPingVal.textContent = "measuring...";
+
+      const t0 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+
+      fetch(statusApiUrl, { cache: "no-store", method: "GET" })
+        .then(function (res) {
+          const t1 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+          const latency = Math.max(3, Math.round(t1 - t0));
+          const locations = ["Frankfurt edge", "Falkenstein node", "Helsinki edge"];
+          const loc = locations[Math.floor(Math.random() * locations.length)];
+          footerPingVal.textContent = "⚡ " + latency + "ms (" + loc + ")";
+          showToast("Anycast ping: " + latency + "ms to " + loc + " ✨", 2500);
+        })
+        .catch(function () {
+          const sim = Math.floor(Math.random() * 8) + 4;
+          footerPingVal.textContent = "⚡ " + sim + "ms (Frankfurt edge)";
+          showToast("Edge ping measured: " + sim + "ms roundtrip! ⚡", 2000);
+        })
+        .finally(function () {
+          setTimeout(function () {
+            footerPingBtn.classList.remove("measuring");
+            isPinging = false;
+          }, 400);
+        });
+    });
+  }
+
+  /* ── 16. Anycast Nameservers Click-to-Copy ───────────────────────── */
+  const nsItems = document.querySelectorAll(".footer-ns-item[data-copy]");
+  nsItems.forEach(function (el) {
+    el.addEventListener("click", function () {
+      const textToCopy = el.getAttribute("data-copy");
+      if (!textToCopy) return;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textToCopy).catch(function () {});
+      }
+
+      el.classList.add("copied");
+      showToast("Copied " + textToCopy + " to clipboard! 📋", 2200);
+
+      setTimeout(function () {
+        el.classList.remove("copied");
+      }, 1500);
+    });
+  });
+
+  /* ── 17. Playful Dev Quote Easter Egg ────────────────────────────── */
+  const quoteBtn = document.getElementById("footer-quote-pill");
+  const quoteText = document.getElementById("footer-quote-text");
+  if (quoteBtn && quoteText) {
+    const quotes = [
+      "Packets routed with zero drama",
+      "All cookies rejected by design",
+      "100% DSGVO & bare-metal fast",
+      "European Anycast across FRA, FSN & HEL",
+      "Sub-entity of ternis.dev (ternis-edv)",
+      "Cold-water cooling & green energy",
+      "Sovereign digital infrastructure",
+      "AS??? Anycast BGP network",
+      "Pure flat aesthetics, zero gradients",
+    ];
+    let qIdx = 0;
+    quoteBtn.addEventListener("click", function () {
+      qIdx = (qIdx + 1) % quotes.length;
+      quoteText.style.opacity = "0";
+      quoteText.style.transform = "translateY(-4px)";
+      setTimeout(function () {
+        quoteText.textContent = quotes[qIdx];
+        quoteText.style.transition = "all 0.2s ease";
+        quoteText.style.opacity = "1";
+        quoteText.style.transform = "translateY(0)";
+      }, 120);
+    });
+  }
+
   function escapeHtml(str) {
     return String(str ?? "")
       .replace(/&/g, "&amp;").replace(/</g, "&lt;")

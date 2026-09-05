@@ -21,6 +21,8 @@
   })();
   </script>
 
+  <link rel="icon" type="image/svg+xml" href="/assets/img/icon.svg">
+  <link rel="alternate icon" href="/favicon.ico">
   <link rel="stylesheet" href="/assets/css/build.css">
 </head>
 <body>
@@ -153,7 +155,7 @@
               <div class="kv-value"><code>one.ns.ternis.net</code> &middot; <code>two.ns.ternis.net</code></div>
 
               <div class="kv-label">Webseiten &amp; Hubs</div>
-              <div class="kv-value"><a href="https://xpsystems.eu" target="_blank" rel="noopener">https://xpsystems.eu</a> &middot; <a href="https://xpsystems.de" target="_blank" rel="noopener">https://xpsystems.de</a> &middot; <a href="https://ternis.dev" target="_blank" rel="noopener">https://ternis.dev</a> &middot; <a href="https://ternis.org" target="_blank" rel="noopener">https://ternis.org</a></div>
+              <div class="kv-value"><a href="https://xpsystems.eu" target="_blank" rel="noopener">https://xpsystems.eu</a> &middot; <a href="https://xpsystems.de" target="_blank" rel="noopener">https://xpsystems.de</a> &middot; <a href="https://ternis.dev" target="_blank" rel="noopener">https://ternis.dev</a> &middot; <a href="https://oss.ternis.org" target="_blank" rel="noopener">https://oss.ternis.org</a></div>
             </div>
 
             <div class="legal-callout">

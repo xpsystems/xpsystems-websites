@@ -12,7 +12,7 @@
           <span class="transition-sub">(ternis-edv)</span>.
           <span class="transition-extra">
             Nameservers: <code class="transition-code" data-copy="one.ns.ternis.net" title="Click to copy">one.ns.ternis.net</code> &amp; <code class="transition-code" data-copy="two.ns.ternis.net" title="Click to copy">two.ns.ternis.net</code>
-            &bull; OSS: <a href="https://ternis.org" target="_blank" rel="noopener noreferrer" class="transition-link">ternis.org</a>
+            &bull; OSS: <a href="https://oss.ternis.org" target="_blank" rel="noopener noreferrer" class="transition-link">oss.ternis.org</a>
             &bull; Contact: <a href="mailto:xpsystems@ternismail.de" class="transition-link">xpsystems@ternismail.de</a>
           </span>
         </div>

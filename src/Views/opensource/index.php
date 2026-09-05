@@ -21,6 +21,8 @@
   })();
   </script>
 
+  <link rel="icon" type="image/svg+xml" href="/assets/img/icon.svg">
+  <link rel="alternate icon" href="/favicon.ico">
   <link rel="stylesheet" href="/assets/css/build.css">
 </head>
 <body>
@@ -37,23 +39,23 @@
       <svg class="eyebrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
       </svg>
-      <span>Open Source Ecosystem &bull; ternis.org</span>
+      <span>Open Source Ecosystem &bull; oss.ternis.org</span>
     </div>
     <h1 class="hero-title reveal" style="--delay:60ms">
       We build<br><span class="hero-title-accent">in the open.</span>
     </h1>
     <p class="hero-tagline reveal" style="--delay:120ms">
-      Infrastructure automation, developer tooling, and open web experiments — anchored at <a href="https://ternis.org" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">ternis.org</a> and public GitHub repositories.
+      Infrastructure automation, developer tooling, and open web experiments — anchored at <a href="https://oss.ternis.org" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">oss.ternis.org</a> and public GitHub repositories.
     </p>
 
     <div class="hero-ctas reveal" style="--delay:180ms">
-      <a href="https://ternis.org" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
+      <a href="https://oss.ternis.org" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
         <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/>
           <line x1="2" y1="12" x2="22" y2="12"/>
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
         </svg>
-        <span>ternis.org Hub</span>
+        <span>oss.ternis.org Hub</span>
       </a>
       <a href="https://github.com/xpsystems" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">
         <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">

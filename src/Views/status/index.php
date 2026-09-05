@@ -21,6 +21,8 @@
   })();
   </script>
 
+  <link rel="icon" type="image/svg+xml" href="/assets/img/icon.svg">
+  <link rel="alternate icon" href="/favicon.ico">
   <link rel="stylesheet" href="/assets/css/build.css">
 </head>
 <body>

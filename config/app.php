@@ -18,7 +18,7 @@ return [
         'sub_entity_of'     => 'ternis.dev (ternis-edv)',
         'parent_url'        => 'https://ternis-edv.de',
         'parent_domain'     => 'ternis.dev',
-        'open_source_hub'   => 'https://ternis.org',
+        'open_source_hub'   => 'https://oss.ternis.org',
         'nameservers'       => ['one.ns.ternis.net', 'two.ns.ternis.net'],
         'transition_notice' => 'xpsystems (xpsystems.eu & xpsystems.de) has transitioned into ternis.dev (ternis-edv). Infrastructure, Anycast DNS and open-source operations continue under the ternis ecosystem.',
         'description'       => 'European infrastructure, digital sovereignty, and developer-first tooling — operated as a sub-entity of ternis-edv (ternis.dev) from Germany.',
@@ -39,7 +39,7 @@ return [
         'domain'      => 'ternis-edv.de',
         'alt_url'     => 'https://ternis.dev',
         'alt_domain'  => 'ternis.dev',
-        'oss_url'     => 'https://ternis.org',
+        'oss_url'     => 'https://oss.ternis.org',
         'description' => 'Parent IT organisation & enterprise systems',
     ],
 
@@ -66,7 +66,7 @@ return [
         ['label' => 'GitHub',        'href' => 'https://github.com/xpsystems'],
         ['label' => 'Status',        'href' => 'https://status.xpsystems.eu'],
         ['label' => 'ternis.dev',    'href' => 'https://ternis.dev'],
-        ['label' => 'ternis.org',    'href' => 'https://ternis.org'],
+        ['label' => 'oss.ternis.org', 'href' => 'https://oss.ternis.org'],
         ['label' => 'ternis-edv.de', 'href' => 'https://ternis-edv.de'],
         ['label' => 'EuropeHost',    'href' => 'https://europehost.eu'],
         ['label' => 'eu-data.org',   'href' => 'https://eu-data.org'],
@@ -205,7 +205,7 @@ return [
         [
             'value'      => 'Open',
             'label'      => 'Source Projects',
-            'url'        => 'https://ternis.org',
+            'url'        => 'https://oss.ternis.org',
             'route'      => '/opensource',
             'link_label' => 'Browse Open Source',
         ],
@@ -219,7 +219,7 @@ return [
             'domains'   => [
                 ['domain' => 'ternis-edv.de',    'badge' => 'Parent'],
                 ['domain' => 'ternis.dev',       'badge' => 'Parent'],
-                ['domain' => 'ternis.org',       'badge' => 'Open Source'],
+                ['domain' => 'oss.ternis.org',   'badge' => 'Open Source'],
                 ['domain' => 'ternis.net',       'badge' => 'Nameserver'],
                 ['domain' => 'ternismail.de',    'badge' => 'Mail'],
                 ['domain' => 'ternis.eu'],
@@ -374,9 +374,9 @@ return [
             [
                 'handle'      => 'ternis',
                 'type'        => 'org',
-                'label'       => 'ternis.org',
-                'description' => 'Official open-source ecosystem, core repositories & infrastructure automation (ternis.org).',
-                'url'         => 'https://ternis.org',
+                'label'       => 'oss.ternis.org',
+                'description' => 'Official open-source ecosystem, core repositories & infrastructure automation (oss.ternis.org).',
+                'url'         => 'https://oss.ternis.org',
             ],
             [
                 'handle'      => 'xpsystems',

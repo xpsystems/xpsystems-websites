@@ -39,6 +39,12 @@ final class Router
             return Response::file(dirname(__DIR__) . '/assets/css/style.css');
         } elseif ($path === '/script.js' || $path === '/main.js') {
             return Response::file(dirname(__DIR__) . '/assets/js/main.js');
+        } elseif ($path === '/icon.svg' || $path === '/favicon.ico') {
+            return Response::file(dirname(__DIR__) . '/public/assets/img/icon.svg');
+        } elseif ($path === '/logo.svg') {
+            return Response::file(dirname(__DIR__) . '/public/assets/img/logo.svg');
+        } elseif ($path === '/wordmark.svg') {
+            return Response::file(dirname(__DIR__) . '/public/assets/img/wordmark.svg');
         }
 
         // 2. Server-Sent Events stream for live status updates
