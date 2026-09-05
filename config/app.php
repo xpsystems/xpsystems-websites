@@ -5,7 +5,7 @@ return [
         'name' => 'xpsystems',
         'version' => '3.4.0',
         'copyright_year' => (int) date('Y'),
-        'primary_domains' => ['xpsystems.eu', 'xpsystems.de'],
+        'primary_domains' => ['xpsystems.eu', 'xpsystems.de', 'xpsys.de', 'xpsys.eu'],
         'status_url' => 'https://status.xpsystems.eu',
         'status_api_url' => 'https://status.xpsystems.eu/api/status',
         'github_org_url' => 'https://github.com/xpsystems',
@@ -16,11 +16,12 @@ return [
         'name'        => 'xpsystems',
         'tagline'     => 'German Web-Provider',
         'description' => 'European infrastructure, digital sovereignty, and developer-first tooling — built and operated from Germany.',
-        'domains'     => ['xpsystems.eu', 'xpsystems.de'],
+        'domains'     => ['xpsystems.eu', 'xpsystems.de', 'xpsys.de'],
     ],
 
     'subdomains' => [
         'main'       => ['www', 'xpsystems'],
+        'status'     => ['status'],
         'contact'    => ['contact'],
         'domains'    => ['domains'],
         'opensource' => ['opensource', 'oss'],
@@ -28,13 +29,13 @@ return [
 
     // Navigation links per subdomain or global
     'nav' => [
-        ['label' => 'Services',   'href' => '#services',                 'external' => false, 'contexts' => ['main']],
-        ['label' => 'Team',       'href' => '#team',                     'external' => false, 'contexts' => ['main']],
-        ['label' => 'Status',     'href' => 'https://status.xpsystems.eu', 'external' => true],
-        ['label' => 'Domains',    'href' => 'https://domains.xpsystems.eu', 'external' => true, 'route' => '/domains'],
-        ['label' => 'OpenSource', 'href' => 'https://opensource.xpsystems.eu', 'external' => true, 'route' => '/opensource'],
-        ['label' => 'Contact',    'href' => 'https://contact.xpsystems.eu', 'external' => true, 'route' => '/contact'],
-        ['label' => 'GitHub',     'href' => 'https://github.com/xpsystems', 'external' => true],
+        ['label' => 'Services',   'href' => '#services',                    'external' => false, 'contexts' => ['main']],
+        ['label' => 'Team',       'href' => '#team',                        'external' => false, 'contexts' => ['main']],
+        ['label' => 'Status',     'href' => 'https://status.xpsystems.eu',   'external' => true,  'route' => '/status'],
+        ['label' => 'Domains',    'href' => 'https://domains.xpsystems.eu',  'external' => true,  'route' => '/domains'],
+        ['label' => 'OpenSource', 'href' => 'https://opensource.xpsystems.eu', 'external' => true,  'route' => '/opensource'],
+        ['label' => 'Contact',    'href' => 'https://contact.xpsystems.eu',  'external' => true,  'route' => '/contact'],
+        ['label' => 'GitHub',     'href' => 'https://github.com/xpsystems',  'external' => true],
     ],
 
     'footer_links' => [
@@ -342,4 +343,7 @@ return [
         ],
         'team_github_handles' => ['michaelninder', 'dogwaterdev'],
     ],
+
+    'status' => require __DIR__ . '/status.php',
 ];
+

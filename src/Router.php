@@ -8,6 +8,7 @@ use App\Controllers\LandingController;
 use App\Controllers\ContactController;
 use App\Controllers\DomainsController;
 use App\Controllers\OpenSourceController;
+use App\Controllers\StatusController;
 use App\Controllers\ApiController;
 use App\Controllers\LegalController;
 use App\Controllers\ErrorController;
@@ -40,12 +41,39 @@ final class Router
             return Response::file(dirname(__DIR__) . '/assets/js/main.js');
         }
 
-        // 2. API routes (support both api.php, /api/..., and direct queries)
+        // 2. Server-Sent Events stream for live status updates
+        if ($path === '/events') {
+            return (new StatusController())->events($request);
+        }
+
+        // 3. Status health check runner trigger
+        if ($path === '/check' || $path === '/check.php') {
+            return (new StatusController())->check($request);
+        }
+
+        // 4. API routes (Status API vs OpenSource GitHub API)
+        $statusApiPrefixes = ['/api/status', '/api/services', '/api/service', '/api/history', '/api/day', '/api/ping'];
+        $isStatusApi = false;
+        foreach ($statusApiPrefixes as $prefix) {
+            if ($path === $prefix || str_starts_with($path, $prefix . '/')) {
+                $isStatusApi = true;
+                break;
+            }
+        }
+
+        if ($subdomain === 'status' && (str_starts_with($path, '/api/') || $path === '/api' || $path === '/api.php')) {
+            return (new StatusController())->api($request);
+        }
+
+        if ($isStatusApi) {
+            return (new StatusController())->api($request);
+        }
+
         if ($path === '/api' || $path === '/api.php' || str_starts_with($path, '/api/')) {
             return (new ApiController())->handle($request);
         }
 
-        // 3. Subdomain-specific dispatching
+        // 5. Subdomain-specific dispatching
         switch ($subdomain) {
             case 'contact':
                 return self::dispatchContact($request, $path);
@@ -56,12 +84,32 @@ final class Router
             case 'opensource':
                 return self::dispatchOpenSource($request, $path);
 
+            case 'status':
+                return self::dispatchStatus($request, $path);
+
             case 'main':
             default:
                 // Main domain (xpsystems.eu, xpsystems.de, www, localhost, etc.)
-                // Also handles paths: /contact, /domains, /opensource, /impressum, /privacy
+                // Also handles paths: /status, /contact, /domains, /opensource, /impressum, /privacy
                 return self::dispatchMain($request, $path);
         }
+    }
+
+    private static function dispatchStatus(Request $request, string $path): Response
+    {
+        if ($path === '/' || $path === '/status') {
+            return (new StatusController())->index($request);
+        }
+        if ($path === '/api-docs') {
+            return (new StatusController())->apiDocs($request);
+        }
+        if ($path === '/impressum') {
+            return (new LegalController())->impressum($request);
+        }
+        if ($path === '/privacy') {
+            return (new LegalController())->privacy($request);
+        }
+        return (new ErrorController())->notFound($request);
     }
 
     private static function dispatchContact(Request $request, string $path): Response
@@ -110,13 +158,15 @@ final class Router
     {
         // Path routing on main domain or localhost
         return match ($path) {
-            '/' => (new LandingController())->index($request),
-            '/contact' => (new ContactController())->index($request),
-            '/domains' => (new DomainsController())->index($request),
-            '/opensource' => (new OpenSourceController())->index($request),
+            '/'          => (new LandingController())->index($request),
+            '/status'    => (new StatusController())->index($request),
+            '/api-docs'  => (new StatusController())->apiDocs($request),
+            '/contact'   => (new ContactController())->index($request),
+            '/domains'   => (new DomainsController())->index($request),
+            '/opensource'=> (new OpenSourceController())->index($request),
             '/impressum' => (new LegalController())->impressum($request),
-            '/privacy' => (new LegalController())->privacy($request),
-            default => (new ErrorController())->notFound($request),
+            '/privacy'   => (new LegalController())->privacy($request),
+            default      => (new ErrorController())->notFound($request),
         };
     }
 }

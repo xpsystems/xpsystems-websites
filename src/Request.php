@@ -165,20 +165,27 @@ final class Request
                 $queryParams = array_merge($targetQuery, $queryParams);
             }
 
-            // Internal xpsystems host recognition (excluding external status.xpsystems.eu, etc.)
+            // Internal xpsystems host recognition (including status domains)
             $internalHosts = [
-                'xpsystems.eu' => ['sub' => 'main', 'tld' => 'eu'],
-                'xpsystems.de' => ['sub' => 'main', 'tld' => 'de'],
-                'www.xpsystems.eu' => ['sub' => 'main', 'tld' => 'eu'],
-                'www.xpsystems.de' => ['sub' => 'main', 'tld' => 'de'],
+                'xpsystems.eu'        => ['sub' => 'main', 'tld' => 'eu'],
+                'xpsystems.de'        => ['sub' => 'main', 'tld' => 'de'],
+                'xpsys.de'            => ['sub' => 'main', 'tld' => 'de'],
+                'xpsys.eu'            => ['sub' => 'main', 'tld' => 'eu'],
+                'www.xpsystems.eu'    => ['sub' => 'main', 'tld' => 'eu'],
+                'www.xpsystems.de'    => ['sub' => 'main', 'tld' => 'de'],
+                'www.xpsys.de'        => ['sub' => 'main', 'tld' => 'de'],
                 'contact.xpsystems.eu' => ['sub' => 'contact', 'tld' => 'eu'],
                 'contact.xpsystems.de' => ['sub' => 'contact', 'tld' => 'de'],
                 'domains.xpsystems.eu' => ['sub' => 'domains', 'tld' => 'eu'],
                 'domains.xpsystems.de' => ['sub' => 'domains', 'tld' => 'de'],
                 'opensource.xpsystems.eu' => ['sub' => 'opensource', 'tld' => 'eu'],
                 'opensource.xpsystems.de' => ['sub' => 'opensource', 'tld' => 'de'],
-                'oss.xpsystems.eu' => ['sub' => 'opensource', 'tld' => 'eu'],
-                'oss.xpsystems.de' => ['sub' => 'opensource', 'tld' => 'de'],
+                'oss.xpsystems.eu'    => ['sub' => 'opensource', 'tld' => 'eu'],
+                'oss.xpsystems.de'    => ['sub' => 'opensource', 'tld' => 'de'],
+                'status.xpsystems.eu' => ['sub' => 'status', 'tld' => 'eu'],
+                'status.xpsystems.de' => ['sub' => 'status', 'tld' => 'de'],
+                'status.xpsys.de'     => ['sub' => 'status', 'tld' => 'de'],
+                'status.xpsys.eu'     => ['sub' => 'status', 'tld' => 'eu'],
             ];
 
             if (isset($internalHosts[$parsedHost])) {
@@ -214,13 +221,14 @@ final class Request
 
             // Check if target is a known subdomain keyword
             $knownSubdomains = [
-                'main' => 'main',
-                'home' => 'main',
-                'root' => 'main',
-                'contact' => 'contact',
-                'domains' => 'domains',
+                'main'       => 'main',
+                'home'       => 'main',
+                'root'       => 'main',
+                'status'     => 'status',
+                'contact'    => 'contact',
+                'domains'    => 'domains',
                 'opensource' => 'opensource',
-                'oss' => 'opensource',
+                'oss'        => 'opensource',
             ];
 
             $lookupKey = strtolower($trimmed);
@@ -242,7 +250,7 @@ final class Request
             $domainParam = null;
 
             if ($targetSubdomain !== null) {
-                if (in_array($targetSubdomain, ['contact', 'domains', 'opensource'], true)) {
+                if (in_array($targetSubdomain, ['contact', 'domains', 'opensource', 'status'], true)) {
                     $domainParam = $targetTld === 'de'
                         ? $targetSubdomain . '.xpsystems.de'
                         : $targetSubdomain;
@@ -268,12 +276,16 @@ final class Request
 
         // Production environment
         if ($targetSubdomain !== null) {
+            $baseDomain = str_contains($req->host, 'xpsys.') ? 'xpsys.' : 'xpsystems.';
             $prodHost = match ($targetSubdomain) {
-                'contact' => 'contact.xpsystems.' . $targetTld,
-                'domains' => 'domains.xpsystems.' . $targetTld,
-                'opensource' => 'opensource.xpsystems.' . $targetTld,
-                'main' => 'xpsystems.' . $targetTld,
-                default => $req->host,
+                'contact'    => 'contact.' . $baseDomain . $targetTld,
+                'domains'    => 'domains.' . $baseDomain . $targetTld,
+                'opensource' => 'opensource.' . $baseDomain . $targetTld,
+                'status'     => (str_contains($req->host, 'xpsys.de') || $targetTld === 'de' && str_contains($req->host, 'xpsys'))
+                    ? 'status.xpsys.de'
+                    : 'status.xpsystems.' . $targetTld,
+                'main'       => $baseDomain . $targetTld,
+                default      => $req->host,
             };
 
             $queryStr = !empty($queryParams) ? '?' . http_build_query($queryParams) : '';

@@ -1,0 +1,1022 @@
+[
+    {
+        "ts": 1774733722,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 270
+            },
+            "xpsystems-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 256
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 212
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 254
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 241
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 299
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 252
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 301
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 257
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 340
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 276
+            }
+        }
+    },
+    {
+        "ts": 1774733722,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 243
+            },
+            "xpsystems-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 254
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 223
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 244
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 241
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 300
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 255
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 297
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 258
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 342
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 274
+            }
+        }
+    },
+    {
+        "ts": 1774733722,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 201
+            },
+            "xpsystems-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 265
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 223
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 244
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 255
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 246
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 294
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 309
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 228
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 358
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 279
+            }
+        }
+    },
+    {
+        "ts": 1774733722,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 248
+            },
+            "xpsystems-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 254
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 214
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 264
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 232
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 300
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 256
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 296
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 266
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 324
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 285
+            }
+        }
+    },
+    {
+        "ts": 1774733755,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 187
+            },
+            "xpsystems-de": {
+                "status": "down",
+                "code": null,
+                "latency_ms": 6002
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 192
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 222
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 179
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 184
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 177
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 186
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 173
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 158
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 167
+            }
+        }
+    },
+    {
+        "ts": 1774733793,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 176
+            },
+            "xpsystems-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 153
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 173
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 153
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 178
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 186
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 153
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 190
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 206
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 206
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 345
+            }
+        }
+    },
+    {
+        "ts": 1774733825,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 835
+            },
+            "xpsystems-de": {
+                "status": "down",
+                "code": null,
+                "latency_ms": 6003
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 234
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 205
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 209
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 220
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 229
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 283
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 188
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 165
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 161
+            }
+        }
+    },
+    {
+        "ts": 1774733864,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 183
+            },
+            "xpsystems-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 175
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 151
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 252
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 164
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 138
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 158
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 172
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 178
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 216
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 180
+            }
+        }
+    },
+    {
+        "ts": 1774733896,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 228
+            },
+            "xpsystems-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 233
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 155
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 206
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 220
+            },
+            "opensource-xpsystems-eu": {
+                "status": "down",
+                "code": null,
+                "latency_ms": 6003
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 206
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 161
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 168
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 185
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 332
+            }
+        }
+    },
+    {
+        "ts": 1774733905,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 339
+            },
+            "xpsystems-de": {
+                "status": "down",
+                "code": null,
+                "latency_ms": 6002
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 237
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 281
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 258
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 253
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 213
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 496
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 266
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 288
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 228
+            }
+        }
+    },
+    {
+        "ts": 1774733915,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 210
+            },
+            "xpsystems-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 270
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 232
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 231
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 238
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 323
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 161
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 215
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 190
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 158
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 247
+            }
+        }
+    },
+    {
+        "ts": 1774733948,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 240
+            },
+            "xpsystems-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 317
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 214
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 161
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 253
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 651
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 157
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 173
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 191
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 157
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 203
+            }
+        }
+    },
+    {
+        "ts": 1774733981,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 165
+            },
+            "xpsystems-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 203
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 195
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 206
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 194
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 196
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 137
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 196
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 212
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 128
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 317
+            }
+        }
+    },
+    {
+        "ts": 1774733984,
+        "services": {
+            "xpsystems-eu": {
+                "status": "down",
+                "code": null,
+                "latency_ms": 6003
+            },
+            "xpsystems-de": {
+                "status": "down",
+                "code": null,
+                "latency_ms": 6003
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 233
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 237
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 319
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 237
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 207
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 239
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 206
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 221
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 167
+            }
+        }
+    },
+    {
+        "ts": 1774734028,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 177
+            },
+            "xpsystems-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 196
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 181
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 182
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 220
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 170
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 145
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 230
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 176
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 154
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 168
+            }
+        }
+    },
+    {
+        "ts": 1774734031,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 195
+            },
+            "xpsystems-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 204
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 184
+            },
+            "contact-xpsystems-eu": {
+                "status": "down",
+                "code": null,
+                "latency_ms": 6002
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 211
+            },
+            "opensource-xpsystems-eu": {
+                "status": "down",
+                "code": null,
+                "latency_ms": 6003
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 157
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 173
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 180
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 178
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 612
+            }
+        }
+    },
+    {
+        "ts": 1774734075,
+        "services": {
+            "xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 221
+            },
+            "xpsystems-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 188
+            },
+            "xpsys-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 225
+            },
+            "contact-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 231
+            },
+            "domains-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 249
+            },
+            "opensource-xpsystems-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 303
+            },
+            "europehost-eu": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 183
+            },
+            "eu-data-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 323
+            },
+            "eu-search-org": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 222
+            },
+            "api-sandbox-de": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 310
+            },
+            "status-node-1": {
+                "status": "up",
+                "code": 200,
+                "latency_ms": 340
+            }
+        }
+    }
+]

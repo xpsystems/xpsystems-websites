@@ -12,7 +12,7 @@ abstract class BaseController
     protected function getCommonData(Request $request): array
     {
         $currentContext = $request->getSubdomainNormalized();
-        $isSubdomain = in_array($currentContext, ['contact', 'domains', 'opensource'], true);
+        $isSubdomain = in_array($currentContext, ['contact', 'domains', 'opensource', 'status'], true);
 
         // Compute context-aware navigation links
         $nav = [];

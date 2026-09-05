@@ -1,0 +1,66 @@
+{
+    "checked_at": 1788634009,
+    "overall": "major_outage",
+    "services": {
+        "xpsystems-eu": {
+            "status": "up",
+            "code": 200,
+            "latency_ms": 232
+        },
+        "xpsystems-de": {
+            "status": "up",
+            "code": 200,
+            "latency_ms": 335
+        },
+        "xpsys-de": {
+            "status": "up",
+            "code": 200,
+            "latency_ms": 166
+        },
+        "contact-xpsystems-eu": {
+            "status": "up",
+            "code": 200,
+            "latency_ms": 235
+        },
+        "domains-xpsystems-eu": {
+            "status": "up",
+            "code": 200,
+            "latency_ms": 251
+        },
+        "opensource-xpsystems-eu": {
+            "status": "up",
+            "code": 200,
+            "latency_ms": 299
+        },
+        "europehost-eu": {
+            "status": "up",
+            "code": 200,
+            "latency_ms": 292
+        },
+        "eu-data-org": {
+            "status": "up",
+            "code": 200,
+            "latency_ms": 533
+        },
+        "eu-search-org": {
+            "status": "up",
+            "code": 200,
+            "latency_ms": 279
+        },
+        "api-sandbox-de": {
+            "status": "up",
+            "code": 200,
+            "latency_ms": 239
+        },
+        "status-node-1": {
+            "status": "up",
+            "code": 200,
+            "latency_ms": 243
+        },
+        "status-node-2": {
+            "status": "down",
+            "code": null,
+            "latency_ms": 138
+        }
+    }
+}
