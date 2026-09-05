@@ -2,7 +2,6 @@
   <div class="nav-inner">
     <a href="<?= htmlspecialchars(url('main')) ?>" class="nav-logo" aria-label="xpsystems home">
       <span class="nav-logo-text">xpsystems</span>
-      <span class="nav-badge-pill">DE &bull; EU</span>
     </a>
 
     <nav class="nav-links" id="nav-links" aria-label="Main navigation">

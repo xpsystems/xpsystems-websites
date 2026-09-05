@@ -1,0 +1,209 @@
+// =============================================================================
+// Custom Loading Screen
+// Professional-Grade Flat Loading Screen: Playful SVG Network, Zero Gradients,
+// Precision Flat Surface, Pill Roundings & Dynamic Status Feed
+// =============================================================================
+
+.xps-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.38s;
+
+  &.is-loaded {
+    opacity: 0;
+    transform: scale(0.98) translateY(-6px);
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
+.loader-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 36px 36px 28px;
+  max-width: 340px;
+  width: 100%;
+  user-select: none;
+}
+
+// ── Playful SVG Network Visual
+.loader-art {
+  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .loader-network-svg {
+    overflow: visible;
+  }
+
+  .loader-active-track {
+    stroke-dasharray: 88;
+    stroke-dashoffset: 88;
+    animation: loaderTrackDash 1.8s ease-in-out infinite alternate;
+  }
+
+  .loader-pulse-dot {
+    transform-box: fill-box;
+    transform-origin: center;
+
+    &.dot-1 {
+      animation: loaderDotPop 1.8s ease-in-out infinite;
+    }
+
+    &.dot-2 {
+      animation: loaderDotPop 1.8s ease-in-out infinite 0.45s;
+    }
+
+    &.dot-3 {
+      animation: loaderDotPop 1.8s ease-in-out infinite 0.9s;
+    }
+  }
+
+  .loader-packet-runner {
+    animation: loaderPacketMove 1.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+  }
+}
+
+// ── Wordmark
+.loader-brand {
+  margin-bottom: 20px;
+
+  .loader-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    display: inline-block;
+  }
+}
+
+// ── Progress Bar Pill (Flat Solid Accent)
+.loader-progress-track {
+  width: 100%;
+  height: 6px;
+  background-color: var(--surface-3);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.loader-progress-fill {
+  height: 100%;
+  width: 12%;
+  background-color: var(--accent);
+  border-radius: var(--radius-full);
+  transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+// ── Status Pill Badge
+.loader-footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.loader-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.loader-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  flex-shrink: 0;
+  animation: loaderStatusDotPulse 1.2s ease-in-out infinite;
+}
+
+.loader-status-text {
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+// ── Keyframe Animations
+@keyframes loaderPacketMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(88px);
+  }
+}
+
+@keyframes loaderTrackDash {
+  0% {
+    stroke-dashoffset: 88;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes loaderDotPop {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 1;
+  }
+}
+
+@keyframes loaderStatusDotPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.7);
+  }
+}
+
+// ── Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  .xps-loader {
+    transition: none;
+  }
+
+  .loader-active-track,
+  .loader-pulse-dot,
+  .loader-packet-runner,
+  .loader-status-dot {
+    animation: none !important;
+  }
+
+  .loader-progress-fill {
+    transition: none;
+  }
+}

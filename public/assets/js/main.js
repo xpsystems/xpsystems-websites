@@ -82,27 +82,92 @@
       ? "/api/status"
       : "https://status.xpsystems.eu/api/status";
 
+  /* ── 3. Custom Loading Screen & Preload Bar ─────────────────────── */
+  const loader = document.getElementById("xps-loader");
   const bar = document.getElementById("preload-bar");
+  const progressFill = document.getElementById("loader-progress-fill");
+  const statusText = document.getElementById("loader-status-text");
+
+  const loaderStartTime = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+  const MIN_LOADER_TIME = 400; // ms to ensure smooth, pleasant entrance & exit
+  let loaderDismissed = false;
+
+  const playfulMessages = [
+    "initializing system...",
+    "routing packets...",
+    "checking nodes...",
+    "polishing pixels...",
+    "syncing services...",
+  ];
+  let msgIndex = 0;
+
+  let msgInterval = null;
+  if (statusText) {
+    msgInterval = setInterval(function () {
+      if (loaderDismissed) return;
+      msgIndex = (msgIndex + 1) % playfulMessages.length;
+      statusText.textContent = playfulMessages[msgIndex];
+    }, 450);
+  }
+
+  // Initial progress jump
+  if (progressFill) {
+    requestAnimationFrame(function () {
+      progressFill.style.width = "40%";
+      setTimeout(function () {
+        if (!loaderDismissed) progressFill.style.width = "75%";
+      }, 250);
+    });
+  }
+
   if (bar) {
     requestAnimationFrame(function () {
       bar.style.transition = "width 600ms cubic-bezier(.23,.49,.55,.98)";
       bar.style.width = "75%";
     });
+  }
 
-    function finishBar() {
+  function dismissLoader() {
+    if (loaderDismissed) return;
+    loaderDismissed = true;
+    if (msgInterval) clearInterval(msgInterval);
+
+    if (statusText) {
+      statusText.textContent = "ready!";
+    }
+    if (progressFill) {
+      progressFill.style.width = "100%";
+    }
+    if (bar) {
       bar.classList.add("done");
       bar.style.width = "100%";
       bar.style.opacity = "0";
-      setTimeout(function () {
-        if (bar.parentNode) bar.parentNode.removeChild(bar);
-      }, 600);
     }
 
-    if (document.readyState === "complete") {
-      finishBar();
-    } else {
-      window.addEventListener("load", finishBar, { once: true });
-    }
+    setTimeout(function () {
+      if (loader) {
+        loader.classList.add("is-loaded");
+      }
+      setTimeout(function () {
+        if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+        if (bar && bar.parentNode) bar.parentNode.removeChild(bar);
+      }, 450);
+    }, 180);
+  }
+
+  function scheduleDismiss() {
+    const now = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+    const elapsed = now - loaderStartTime;
+    const remaining = Math.max(0, MIN_LOADER_TIME - elapsed);
+    setTimeout(dismissLoader, remaining);
+  }
+
+  if (document.readyState === "complete") {
+    scheduleDismiss();
+  } else {
+    window.addEventListener("load", scheduleDismiss, { once: true });
+    // Safety fallback: dismiss within 2.5s even if network or external resources stall
+    setTimeout(dismissLoader, 2500);
   }
 
   /* ── 4. Theme Management ─────────────────────────────────────────── */

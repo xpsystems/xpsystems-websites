@@ -25,7 +25,7 @@
 </head>
 <body>
 
-<div id="preload-bar"></div>
+<?php $component('loader'); ?>
 
 <?php $component('header'); ?>
 
