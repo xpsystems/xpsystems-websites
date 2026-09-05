@@ -1,6 +1,6 @@
 // =============================================================================
 // Section Layouts & Shared Components
-// Modern European Infrastructure Surfaces, Specular Highlights, Blueprint Architecture
+// Professional-Grade Flat Surfaces, Generous Roundings, Playful Architectural Cards
 // =============================================================================
 
 // ── Shared Section Foundations
@@ -25,11 +25,11 @@
   font-weight: 700;
   font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--accent);
-  background: var(--accent-dim);
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  padding: 4px 12px;
+  background-color: var(--accent-dim);
+  border: 1px solid var(--border-hover);
+  padding: 4px 14px;
   border-radius: var(--radius-full);
   margin-bottom: 14px;
 }
@@ -49,78 +49,55 @@
   line-height: 1.65;
 }
 
-// ── Base Card Component
+// ── Base Card Component (Flat, Solid, Generously Rounded)
 .card {
   position: relative;
   background-color: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 26px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--card-shadow);
-  transition: transform var(--t), border-color var(--t), box-shadow var(--t);
+  transition: transform var(--t), border-color var(--t), background-color var(--t);
   overflow: hidden;
 
-  // Specular top highlight line
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
-    opacity: 0.6;
-    transition: opacity var(--t);
-  }
-
   &:hover {
-    transform: translateY(-3px);
-    border-color: var(--border-hover);
-    box-shadow: var(--card-hover-shadow);
-
-    &::before {
-      opacity: 1;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    }
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    background-color: var(--bg-surface-hover);
   }
 
   &.card-partner {
-    border-color: rgba(245, 158, 11, 0.25);
+    border-color: var(--border);
 
     &:hover {
       border-color: var(--partner);
-
-      &::before {
-        background: linear-gradient(90deg, transparent, var(--partner), transparent);
-      }
     }
   }
 }
 
-// ── Card Type Badge
+// ── Card Type Badge (Flat Pill)
 .card-badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   align-self: flex-start;
   font-size: 0.6875rem;
   font-weight: 700;
   font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 3px 10px;
+  letter-spacing: 0.06em;
+  padding: 3px 12px;
   border-radius: var(--radius-full);
   background-color: var(--partner-dim);
   color: var(--partner);
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  border: 1px solid var(--partner);
   margin-bottom: 16px;
 
   &.card-badge-service {
     background-color: var(--accent-dim);
     color: var(--accent);
-    border-color: rgba(59, 130, 246, 0.3);
+    border-color: var(--accent);
   }
 }
 
@@ -130,7 +107,7 @@
 
 .card-name {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.025em;
   color: var(--text);
   margin-bottom: 8px;
@@ -143,7 +120,7 @@
   color: var(--text);
 
   &:hover {
-    color: var(--accent-hover);
+    color: var(--accent);
 
     .icon-ext {
       opacity: 1;
@@ -171,7 +148,7 @@
   border-top: 1px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .card-sublink {
@@ -182,8 +159,8 @@
   font-family: var(--font-mono);
   font-weight: 500;
   color: var(--text-secondary);
-  padding: 7px 12px;
-  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
   background-color: var(--bg-alt);
   border: 1px solid var(--border-subtle);
   transition: all var(--t-fast);
@@ -192,7 +169,7 @@
     color: var(--text);
     background-color: var(--bg-elevated);
     border-color: var(--border-hover);
-    transform: translateX(2px);
+    transform: translateX(3px);
   }
 
   .icon-arrow {
@@ -216,27 +193,15 @@
   gap: 24px;
 }
 
-// ── Infrastructure Blueprint Interactive Section
+// ── Infrastructure Blueprint Section (Flat, Rounded, No Gradients)
 .infra-blueprint {
   background-color: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-xl);
   padding: 36px 32px;
-  box-shadow: var(--shadow-md);
   margin-bottom: 64px;
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, var(--cyan-glow) 0%, transparent 70%);
-    pointer-events: none;
-  }
 }
 
 .blueprint-header {
@@ -253,28 +218,28 @@
 .blueprint-title-wrap {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 
   .blueprint-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: var(--radius-sm);
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius);
     background: var(--cyan-dim);
-    border: 1px solid rgba(6, 182, 212, 0.3);
+    border: 1px solid var(--cyan);
     color: var(--cyan);
     display: flex;
     align-items: center;
     justify-content: center;
 
     svg {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
     }
   }
 
   h3 {
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--text);
     letter-spacing: -0.02em;
   }
@@ -293,12 +258,12 @@
 
 .region-node {
   background-color: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   transition: all var(--t-fast);
 
   &:hover {
@@ -323,10 +288,10 @@
     font-size: 0.75rem;
     font-family: var(--font-mono);
     color: var(--text-dim);
-    padding: 2px 6px;
+    padding: 2px 8px;
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-xs);
+    border-radius: var(--radius-full);
   }
 
   .region-specs {
@@ -341,22 +306,21 @@
   .region-status {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
     color: var(--green);
     font-weight: 600;
 
     &::before {
       content: '';
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: var(--green);
-      box-shadow: 0 0 6px var(--green);
     }
   }
 }
 
-// ── Mission / Values Section
+// ── Mission / Values Section (Playful Rounded Geometry)
 .mission-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -365,46 +329,45 @@
 
 .mission-card {
   background-color: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px 24px;
-  box-shadow: var(--card-shadow);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 26px;
   transition: all var(--t);
   position: relative;
 
   &:hover {
-    transform: translateY(-3px);
-    border-color: var(--border-hover);
-    box-shadow: var(--card-hover-shadow);
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    background-color: var(--bg-surface-hover);
 
     .mission-icon {
-      transform: scale(1.08);
-      box-shadow: 0 0 16px var(--accent-glow);
+      transform: scale(1.06);
+      border-color: var(--accent);
     }
   }
 
   .mission-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: var(--radius-sm);
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius);
     background-color: var(--accent-dim);
-    border: 1px solid rgba(59, 130, 246, 0.3);
+    border: 1px solid var(--border-hover);
     color: var(--accent);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    transition: transform var(--t), box-shadow var(--t);
+    transition: transform var(--t), border-color var(--t);
 
     svg {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
     }
   }
 
   .mission-title {
     font-size: 1.125rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--text);
     margin-bottom: 10px;
     letter-spacing: -0.02em;
@@ -417,7 +380,7 @@
   }
 }
 
-// ── Team Section
+// ── Team Section (Flat, Rounded, Playful)
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -430,34 +393,31 @@
   text-align: center;
   align-items: center;
   background-color: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: 36px 28px;
-  box-shadow: var(--card-shadow);
-  transition: transform var(--t), border-color var(--t), box-shadow var(--t);
+  transition: transform var(--t), border-color var(--t);
 
   &:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     border-color: var(--border-hover);
-    box-shadow: var(--card-hover-shadow);
 
     .team-avatar-wrap {
       border-color: var(--accent);
-      box-shadow: 0 0 20px var(--accent-glow);
     }
   }
 }
 
 .team-avatar-wrap {
-  width: 88px;
-  height: 88px;
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
-  border: 2px solid var(--border-hover);
+  border: 2px solid var(--border);
   background-color: var(--bg-elevated);
   margin: 0 auto 18px;
   overflow: hidden;
   position: relative;
-  transition: all var(--t);
+  transition: border-color var(--t);
 }
 
 .team-avatar-img,
@@ -477,8 +437,8 @@
 }
 
 .team-name {
-  font-size: 1.1875rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 800;
   color: var(--text);
   margin-bottom: 4px;
   letter-spacing: -0.02em;
@@ -506,8 +466,8 @@
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text-secondary);
-  padding: 7px 14px;
-  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
   background-color: var(--bg-alt);
   border: 1px solid var(--border);
   transition: all var(--t-fast);
@@ -521,11 +481,11 @@
     background-color: var(--bg-elevated);
     border-color: var(--border-hover);
     color: var(--text);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
   }
 }
 
-// ── Stats Section
+// ── Stats Section (Flat, Bold, Pill CTAs)
 .stats-section {
   position: relative;
   background-color: var(--bg);
@@ -542,21 +502,20 @@
 .stat-item {
   position: relative;
   background-color: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: 32px 24px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: var(--card-shadow);
   transition: all var(--t);
   text-decoration: none;
 
   &:hover {
-    transform: translateY(-3px);
-    border-color: var(--border-active);
-    box-shadow: var(--card-hover-shadow);
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    background-color: var(--bg-surface-hover);
 
     .stat-value {
       color: var(--accent);
@@ -583,7 +542,7 @@
   font-size: 0.875rem;
   color: var(--text-muted);
   font-weight: 500;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .stat-cta {
@@ -591,10 +550,19 @@
   align-items: center;
   gap: 6px;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   font-family: var(--font-mono);
   color: var(--accent);
+  background-color: var(--accent-dim);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
   margin-top: auto;
+  border: 1px solid transparent;
+  transition: border-color var(--t-fast);
+
+  &:hover {
+    border-color: var(--accent);
+  }
 
   .icon-arrow-sm {
     width: 14px;
@@ -603,10 +571,10 @@
   }
 }
 
-// ── Shared Badges
+// ── Shared Badges (Flat, Pill-Rounded)
 .badge {
   font-size: 0.6875rem;
-  font-weight: 600;
+  font-weight: 700;
   font-family: var(--font-mono);
   padding: 2px 8px;
   border-radius: var(--radius-full);
@@ -617,12 +585,12 @@
 .badge-github {
   background-color: var(--purple-dim);
   color: var(--purple);
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  border: 1px solid var(--purple);
 }
 
 .badge-client {
   background-color: var(--green-dim);
   color: var(--green);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid var(--green);
 }
 

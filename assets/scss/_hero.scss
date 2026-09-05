@@ -1,29 +1,15 @@
 // =============================================================================
 // Hero Section
-// High-precision architectural hero, ambient illumination, developer deck
+// Professional-Grade Flat Architectural Hero, Clean Layout, Developer Deck
 // =============================================================================
 
 .hero {
   position: relative;
-  padding: calc(var(--nav-height) + 80px) 0 84px;
+  padding: calc(var(--nav-height) + 72px) 0 80px;
   background-color: var(--bg);
   text-align: center;
   border-bottom: 1px solid var(--border);
   overflow: hidden;
-
-  // Ambient top light source
-  &::before {
-    content: '';
-    position: absolute;
-    top: -160px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 680px;
-    height: 400px;
-    background: radial-gradient(circle, var(--accent-glow) 0%, rgba(6, 182, 212, 0.08) 50%, transparent 75%);
-    pointer-events: none;
-    z-index: 1;
-  }
 }
 
 .hero-inner {
@@ -34,22 +20,21 @@
   padding: 0 24px;
 }
 
-// ── Eyebrow Badge
+// ── Eyebrow Badge (Flat Pill)
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   font-family: var(--font-mono);
   color: var(--accent);
   background-color: var(--accent-dim);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  padding: 6px 14px;
+  border: 1px solid var(--border-hover);
+  padding: 6px 16px;
   border-radius: var(--radius-full);
   margin-bottom: 28px;
-  box-shadow: 0 0 16px var(--accent-glow);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 
   .eyebrow-icon {
@@ -64,7 +49,7 @@
   }
 }
 
-// ── Hero Title
+// ── Hero Title (Flat, High-Contrast Editorial Typography)
 .hero-title {
   font-size: clamp(2.5rem, 6.5vw, 4.5rem);
   font-weight: 800;
@@ -75,12 +60,10 @@
 
   .hero-title-accent {
     color: var(--accent);
-    text-shadow: 0 0 24px var(--accent-glow);
   }
 
   .hero-title-cyan {
     color: var(--cyan);
-    text-shadow: 0 0 24px var(--cyan-glow);
   }
 }
 
@@ -105,24 +88,23 @@
   margin-bottom: 36px;
 }
 
-// ── Developer Quick Terminal Snippet
+// ── Developer Quick Terminal Snippet (Flat Pill)
 .hero-terminal {
   display: inline-flex;
   align-items: center;
   gap: 12px;
   background-color: var(--bg-surface);
-  border: 1px solid var(--border);
-  padding: 8px 16px;
+  border: 1.5px solid var(--border);
+  padding: 8px 18px;
   border-radius: var(--radius-full);
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   color: var(--text-secondary);
-  box-shadow: var(--shadow-sm);
   margin-bottom: 48px;
   transition: all var(--t-fast);
 
   &:hover {
-    border-color: var(--border-hover);
+    border-color: var(--accent);
     background-color: var(--bg-surface-hover);
     color: var(--text);
   }
@@ -142,11 +124,12 @@
     justify-content: center;
     color: var(--text-dim);
     padding: 4px;
-    border-radius: var(--radius-xs);
-    transition: color var(--t-fast);
+    border-radius: var(--radius-full);
+    transition: all var(--t-fast);
 
     &:hover {
-      color: var(--text);
+      color: var(--accent);
+      background-color: var(--accent-dim);
     }
 
     svg {
@@ -156,30 +139,42 @@
   }
 }
 
-// ── Trust Strip
+// ── Trust Strip (Flat Rounded Chips)
 .hero-trust {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: 14px;
   flex-wrap: wrap;
   padding-top: 36px;
   border-top: 1px solid var(--border-subtle);
 }
 
 .trust-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-secondary);
   font-family: var(--font-mono);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  transition: all var(--t-fast);
+
+  &:hover {
+    border-color: var(--border-hover);
+    color: var(--text);
+    background-color: var(--bg-surface-hover);
+  }
 
   svg {
     color: var(--accent);
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
   }
 }
 

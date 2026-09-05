@@ -12,3 +12,6 @@ vendor/
 # Temporary status check locks
 data/status/*.lock
 data/status/*.tmp*
+data/status/*
+data/*.db
+data/*.json

@@ -1,6 +1,6 @@
 // =============================================================================
 // Navigation Header
-// Modern European Infrastructure Navbar: Glassmorphic, Precision Controls, Pulse Dots
+// Professional-Grade Flat Navbar: Subtle Blur, Precision Controls, Pure Text Logo
 // =============================================================================
 
 .nav-header {
@@ -11,14 +11,13 @@
   z-index: 1000;
   height: var(--nav-height);
   background-color: var(--bg-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  transition: border-color var(--t), background-color var(--t), box-shadow var(--t);
+  transition: border-color var(--t), background-color var(--t);
 
   &.is-scrolled {
     background-color: var(--bg-glass);
-    box-shadow: var(--shadow-sm);
     border-bottom-color: var(--border-hover);
   }
 }
@@ -34,70 +33,50 @@
   gap: 16px;
 }
 
-// ── Logo with pure SVG mark
+// ── Pure Text Brand Logo (No Icon Box)
 .nav-logo {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   font-size: 1.125rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   user-select: none;
-  position: relative;
+  text-decoration: none;
+  transition: transform var(--t-fast);
 
-  .nav-logo-icon-wrap {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: var(--radius-sm);
-    background: var(--bg-surface);
-    border: 1px solid var(--border-highlight);
-    color: var(--accent);
-    box-shadow: 0 0 12px var(--accent-glow);
-    transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  &:hover {
+    transform: translateY(-1px);
+
+    .nav-logo-text {
+      color: var(--accent);
+    }
   }
 
   .nav-logo-text {
     display: inline-flex;
     align-items: baseline;
+    font-size: 1.25rem;
     font-weight: 800;
     color: var(--text);
     letter-spacing: -0.04em;
-  }
-
-  .nav-logo-light {
-    color: var(--text-muted);
-    font-weight: 500;
+    transition: color var(--t-fast);
   }
 
   .nav-badge-pill {
     display: inline-flex;
     align-items: center;
-    font-size: 0.65rem;
-    font-weight: 600;
+    font-size: 0.6875rem;
+    font-weight: 700;
     font-family: var(--font-mono);
     color: var(--accent);
     background: var(--accent-dim);
-    border: 1px solid rgba(59, 130, 246, 0.25);
-    padding: 2px 6px;
+    border: 1px solid var(--border-hover);
+    padding: 2px 8px;
     border-radius: var(--radius-full);
-    margin-left: 6px;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  &:hover {
-    .nav-logo-icon-wrap {
-      transform: translateY(-1px) scale(1.04);
-      border-color: var(--accent);
-      box-shadow: 0 0 16px var(--accent-glow);
-    }
-    .nav-logo-light {
-      color: var(--text);
-    }
+    letter-spacing: 0.05em;
   }
 }
 
@@ -105,7 +84,7 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 }
 
 .nav-link {
@@ -125,11 +104,10 @@
   }
 
   &.active {
-    color: var(--text);
-    background-color: var(--bg-surface);
-    border-color: var(--border-hover);
+    color: var(--accent-text);
+    background-color: var(--accent);
+    border-color: var(--accent);
     font-weight: 600;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
   }
 }
 
@@ -140,12 +118,12 @@
   gap: 10px;
 }
 
-// ── Live Infrastructure Status Badge
+// ── Live Infrastructure Status Badge (Flat, Pill-Rounded)
 .status-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: var(--radius-full);
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
@@ -155,7 +133,6 @@
   color: var(--text-muted);
   white-space: nowrap;
   transition: all var(--t-fast);
-  box-shadow: var(--shadow-xs);
 
   &:hover {
     border-color: var(--border-hover);
@@ -191,23 +168,22 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  opacity: 0.75;
+  opacity: 0.6;
   animation: pingAnimation 2s cubic-bezier(0, 0, 0.2, 1) infinite;
   display: none;
 }
 
 @keyframes pingAnimation {
   75%, 100% {
-    transform: scale(2.4);
+    transform: scale(2.2);
     opacity: 0;
   }
 }
 
-// Status variations with pulsing glow
+// Status variations (Flat solid colors, no blurry glow)
 .status-dot.green,
 .badge-green .status-dot {
   background-color: var(--green);
-  box-shadow: 0 0 8px var(--green);
 }
 
 .badge-green .status-ping {
@@ -218,7 +194,6 @@
 .status-dot.yellow,
 .badge-yellow .status-dot {
   background-color: var(--yellow);
-  box-shadow: 0 0 8px var(--yellow);
 }
 
 .badge-yellow .status-ping {
@@ -229,7 +204,6 @@
 .status-dot.red,
 .badge-red .status-dot {
   background-color: var(--red);
-  box-shadow: 0 0 8px var(--red);
 }
 
 .badge-red .status-ping {
@@ -237,7 +211,7 @@
   background-color: var(--red);
 }
 
-// ── Theme Toggle (Segmented control)
+// ── Theme Toggle (Segmented Flat Pill Control)
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -246,7 +220,6 @@
   border-radius: var(--radius-full);
   padding: 3px;
   gap: 2px;
-  box-shadow: var(--shadow-xs);
 }
 
 .theme-btn {
@@ -277,7 +250,6 @@
     color: var(--text);
     background-color: var(--bg-elevated);
     border-color: var(--border-hover);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -314,15 +286,13 @@
   display: none;
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(11, 15, 23, 0.75);
   z-index: 998;
 
   &.active { display: block; }
 }
 
-// ── Mobile Navigation Menu
+// ── Mobile Navigation Menu (Flat Solid Surface)
 @media (max-width: 900px) {
   .nav-hamburger { display: flex; }
 
@@ -332,7 +302,7 @@
     left: 0;
     right: 0;
     background-color: var(--bg-surface);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 2px solid var(--border);
     flex-direction: column;
     padding: 20px 24px;
     gap: 8px;
@@ -340,10 +310,7 @@
     opacity: 0;
     pointer-events: none;
     transition: transform var(--t-smooth), opacity var(--t);
-    box-shadow: var(--shadow-lg);
     z-index: 999;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
 
     &.open {
       display: flex;

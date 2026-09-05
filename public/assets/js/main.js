@@ -601,6 +601,48 @@
     })();
   }
 
+  /* ── 13. Playful Footer High-Five Reaction ───────────────────────── */
+  const highfiveBtn = document.getElementById("footer-highfive-btn");
+  const highfiveCount = document.getElementById("highfive-count");
+  if (highfiveBtn && highfiveCount) {
+    const HIGHFIVE_KEY = "xps-highfive-count";
+    let count = parseInt(localStorage.getItem(HIGHFIVE_KEY), 10) || 128;
+    highfiveCount.textContent = count;
+
+    highfiveBtn.addEventListener("click", function () {
+      count++;
+      localStorage.setItem(HIGHFIVE_KEY, count);
+      highfiveCount.textContent = count;
+
+      // Playful particle celebration
+      const emojiList = ["🎉", "🚀", "⚡", "❤️", "🇩🇪", "🇪🇺", "✨"];
+      const rect = highfiveBtn.getBoundingClientRect();
+      for (let i = 0; i < 6; i++) {
+        const span = document.createElement("span");
+        span.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+        span.style.position = "fixed";
+        span.style.left = (rect.left + rect.width / 2 + (Math.random() * 40 - 20)) + "px";
+        span.style.top = (rect.top + (Math.random() * 20 - 10)) + "px";
+        span.style.fontSize = "1.25rem";
+        span.style.pointerEvents = "none";
+        span.style.zIndex = "99999";
+        span.style.transition = "all 0.8s cubic-bezier(0.16, 1, 0.3, 1)";
+        document.body.appendChild(span);
+
+        requestAnimationFrame(function () {
+          span.style.transform = `translate(${Math.random() * 80 - 40}px, -${60 + Math.random() * 60}px) scale(1.4)`;
+          span.style.opacity = "0";
+        });
+
+        setTimeout(function () {
+          if (span.parentNode) span.parentNode.removeChild(span);
+        }, 850);
+      }
+
+      showToast("High five delivered! 🚀 Thanks for visiting xpsystems!", 3000);
+    });
+  }
+
   function escapeHtml(str) {
     return String(str ?? "")
       .replace(/&/g, "&amp;").replace(/</g, "&lt;")

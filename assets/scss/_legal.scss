@@ -34,10 +34,9 @@
 
 .legal-toc-card {
   background-color: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow-sm);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
 }
 
 .legal-toc-title {
@@ -72,8 +71,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 7px 10px;
-  border-radius: var(--radius-xs);
+  padding: 8px 12px;
+  border-radius: var(--radius-full);
   font-size: 0.8125rem;
   font-family: var(--font-sans);
   color: var(--text-muted);
@@ -144,10 +143,9 @@
 
 .legal-section {
   background-color: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: 32px;
-  box-shadow: var(--card-shadow);
   scroll-margin-top: calc(var(--nav-height) + 24px);
   position: relative;
 

@@ -1,114 +1,119 @@
 // =============================================================================
 // xpsystems — Master Design Tokens
-// Modern European Infrastructure & Cloud Engineering Aesthetic
+// Professional-Grade Flat Architecture with Playful Accents & Generous Roundings
 // =============================================================================
 
 :root {
-  // ── Surface Backgrounds (Dark Obsidian Layering)
-  --bg:               #07090e;
-  --bg-subtle:        #0b0f17;
-  --bg-alt:           #0f1420;
-  --bg-surface:       #131a2a;
-  --bg-surface-hover: #182338;
-  --bg-elevated:      #1d2a45;
-  --bg-glass:         rgba(7, 9, 14, 0.85);
-  --bg-glass-card:    rgba(19, 26, 42, 0.75);
+  // ── Surface Backgrounds (Solid, Flat Layers — No Gradients, No Glass)
+  --bg:               #0b0f17;
+  --bg-subtle:        #101622;
+  --bg-alt:           #141c2b;
+  --bg-surface:       #182235;
+  --bg-surface-hover: #1f2c44;
+  --bg-elevated:      #253553;
+  --bg-glass:         rgba(11, 15, 23, 0.94); // Nav header only
+  --bg-glass-card:    #182235;
 
-  // ── Hairline Borders & Specular Edges
-  --border:           rgba(255, 255, 255, 0.08);
-  --border-subtle:    rgba(255, 255, 255, 0.04);
-  --border-hover:     rgba(255, 255, 255, 0.18);
+  // ── Flat Crisp Borders
+  --border:           #233149;
+  --border-subtle:    #192437;
+  --border-hover:     #3b82f6;
   --border-active:    #3b82f6;
-  --border-highlight: rgba(255, 255, 255, 0.12);
+  --border-highlight: #2f405c;
 
   // ── Text & Typography
   --text:             #f8fafc;
   --text-secondary:   #cbd5e1;
-  --text-muted:       #8291a8;
-  --text-dim:         #475569;
-  --text-inverse:     #07090e;
+  --text-muted:       #8ea0b8;
+  --text-dim:         #5a6f8b;
+  --text-inverse:     #0b0f17;
 
-  // ── Primary Brand Accent (Electric European Cobalt)
+  // ── Primary Brand Accent (Electric Cobalt)
   --accent:           #3b82f6;
   --accent-hover:     #60a5fa;
   --accent-active:    #2563eb;
-  --accent-dim:       rgba(59, 130, 246, 0.12);
-  --accent-glow:      rgba(59, 130, 246, 0.25);
+  --accent-dim:       #172948;
+  --accent-glow:      transparent; // No glowing blurs
   --accent-strong:    #2563eb;
   --accent-text:      #ffffff;
 
-  // ── Secondary Accent (Nordic Cyan Infrastructure)
+  // ── Secondary Accent (Cyan Infrastructure)
   --cyan:             #06b6d4;
   --cyan-hover:       #22d3ee;
-  --cyan-dim:         rgba(6, 182, 212, 0.12);
-  --cyan-glow:        rgba(6, 182, 212, 0.22);
+  --cyan-dim:         #133342;
+  --cyan-glow:        transparent;
 
   // ── Partner Accent (Warm Amber)
   --partner:          #f59e0b;
   --partner-hover:    #fbbf24;
-  --partner-dim:      rgba(245, 158, 11, 0.12);
-  --partner-glow:     rgba(245, 158, 11, 0.22);
+  --partner-dim:      #3d280a;
+  --partner-glow:     transparent;
   --partner-strong:   #d97706;
 
-  // ── Functional / Status Semantics
+  // ── Functional / Status Semantics (Solid Flat)
   --green:            #10b981;
   --green-hover:      #34d399;
-  --green-dim:        rgba(16, 185, 129, 0.12);
-  --green-glow:       rgba(16, 185, 129, 0.35);
+  --green-dim:        #103828;
+  --green-glow:       transparent;
   --yellow:           #f59e0b;
-  --yellow-dim:       rgba(245, 158, 11, 0.12);
+  --yellow-dim:       #3d280a;
   --red:              #f43f5e;
-  --red-dim:          rgba(244, 63, 94, 0.12);
-  --purple:           #8b5cf6;
-  --purple-dim:       rgba(139, 92, 246, 0.12);
+  --red-dim:          #3a1622;
+  --purple:           #a855f7;
+  --purple-dim:       #2e1948;
   --grey:             #64748b;
-  --grey-dim:         rgba(100, 116, 139, 0.12);
+  --grey-dim:         #1e293b;
 
-  // ── Elevation & Specular Shadows
-  --shadow-xs:        0 1px 2px rgba(0, 0, 0, 0.5);
-  --shadow-sm:        0 2px 6px rgba(0, 0, 0, 0.5);
-  --shadow-md:        0 6px 18px rgba(0, 0, 0, 0.55);
-  --shadow-lg:        0 12px 36px rgba(0, 0, 0, 0.65);
-  --shadow-glow:      0 0 30px rgba(59, 130, 246, 0.18);
-  --card-shadow:      0 2px 10px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  --card-hover-shadow:0 12px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(59, 130, 246, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  // ── Playful Coral Accent
+  --coral:            #fb7185;
+  --coral-dim:        #381a24;
 
-  // ── Geometry & Sizing
+  // ── Elevation (Flat Design: No Blurry Drop Shadows)
+  --shadow-xs:        none;
+  --shadow-sm:        none;
+  --shadow-md:        none;
+  --shadow-lg:        none;
+  --shadow-glow:      none;
+  --card-shadow:      none;
+  --card-hover-shadow:none;
+
+  // ── Generous Geometry & Roundings (Playful & Friendly)
   --nav-height:       68px;
   --container-max:    1180px;
-  --radius-xs:        4px;
-  --radius-sm:        8px;
-  --radius:           12px;
-  --radius-lg:        18px;
-  --radius-xl:        24px;
+  --radius-xs:        8px;
+  --radius-sm:        12px;
+  --radius:           18px;
+  --radius-lg:        24px;
+  --radius-xl:        32px;
   --radius-full:      9999px;
 
   // ── Motion
   --t-fast:           0.15s cubic-bezier(0.16, 1, 0.3, 1);
-  --t:                0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  --t-smooth:         0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --t:                0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  --t-smooth:         0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --t-bounce:         0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 
   // ── Typography
   --font-sans:        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --font-mono:        'JetBrains Mono', 'SF Mono', Consolas, Menlo, Monaco, monospace;
 }
 
-// Light Theme (Technical, Crisp, High-Contrast)
+// Light Theme (Clean, Flat, High-Contrast)
 [data-theme="light"] {
   --bg:               #f8fafc;
   --bg-subtle:        #f1f5f9;
-  --bg-alt:           #eef2f6;
+  --bg-alt:           #e9eef5;
   --bg-surface:       #ffffff;
-  --bg-surface-hover: #f8fafc;
+  --bg-surface-hover: #f1f5f9;
   --bg-elevated:      #ffffff;
-  --bg-glass:         rgba(248, 250, 252, 0.88);
-  --bg-glass-card:    rgba(255, 255, 255, 0.85);
+  --bg-glass:         rgba(248, 250, 252, 0.94); // Nav header only
+  --bg-glass-card:    #ffffff;
 
-  --border:           rgba(15, 23, 42, 0.09);
-  --border-subtle:    rgba(15, 23, 42, 0.05);
-  --border-hover:     rgba(15, 23, 42, 0.18);
+  --border:           #e2e8f0;
+  --border-subtle:    #edf2f7;
+  --border-hover:     #2563eb;
   --border-active:    #2563eb;
-  --border-highlight: rgba(255, 255, 255, 0.8);
+  --border-highlight: #cbd5e1;
 
   --text:             #0f172a;
   --text-secondary:   #334155;
@@ -119,40 +124,43 @@
   --accent:           #2563eb;
   --accent-hover:     #1d4ed8;
   --accent-active:    #1e40af;
-  --accent-dim:       rgba(37, 99, 235, 0.08);
-  --accent-glow:      rgba(37, 99, 235, 0.18);
+  --accent-dim:       #eff6ff;
+  --accent-glow:      transparent;
   --accent-strong:    #1d4ed8;
   --accent-text:      #ffffff;
 
   --cyan:             #0891b2;
   --cyan-hover:       #0e7490;
-  --cyan-dim:         rgba(8, 145, 178, 0.08);
-  --cyan-glow:        rgba(8, 145, 178, 0.16);
+  --cyan-dim:         #ecfeff;
+  --cyan-glow:        transparent;
 
   --partner:          #d97706;
   --partner-hover:    #b45309;
-  --partner-dim:      rgba(217, 119, 6, 0.08);
-  --partner-glow:     rgba(217, 119, 6, 0.16);
+  --partner-dim:      #fffbeb;
+  --partner-glow:     transparent;
   --partner-strong:   #b45309;
 
   --green:            #059669;
   --green-hover:      #047857;
-  --green-dim:        rgba(5, 150, 105, 0.08);
-  --green-glow:       rgba(5, 150, 105, 0.2);
+  --green-dim:        #ecfdf5;
+  --green-glow:       transparent;
   --yellow:           #d97706;
-  --yellow-dim:       rgba(217, 119, 6, 0.08);
+  --yellow-dim:       #fffbeb;
   --red:              #e11d48;
-  --red-dim:          rgba(225, 29, 72, 0.08);
+  --red-dim:          #fff1f2;
   --purple:           #7c3aed;
-  --purple-dim:       rgba(124, 58, 237, 0.08);
+  --purple-dim:       #faf5ff;
   --grey:             #64748b;
-  --grey-dim:         rgba(100, 116, 139, 0.08);
+  --grey-dim:         #f1f5f9;
 
-  --shadow-xs:        0 1px 2px rgba(15, 23, 42, 0.05);
-  --shadow-sm:        0 2px 6px rgba(15, 23, 42, 0.07);
-  --shadow-md:        0 6px 16px rgba(15, 23, 42, 0.09);
-  --shadow-lg:        0 12px 32px rgba(15, 23, 42, 0.12);
-  --shadow-glow:      0 0 25px rgba(37, 99, 235, 0.12);
-  --card-shadow:      0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  --card-hover-shadow:0 12px 28px rgba(15, 23, 42, 0.1), 0 0 16px rgba(37, 99, 235, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+  --coral:            #e11d48;
+  --coral-dim:        #fff1f2;
+
+  --shadow-xs:        none;
+  --shadow-sm:        none;
+  --shadow-md:        none;
+  --shadow-lg:        none;
+  --shadow-glow:      none;
+  --card-shadow:      none;
+  --card-hover-shadow:none;
 }

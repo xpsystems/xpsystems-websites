@@ -33,7 +33,7 @@
   <div class="hero-backdrop-glow" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-eyebrow reveal">
-      <span class="status-ping" style="display:inline-block;width:8px;height:8px;border-radius:50%;background-color:var(--green);box-shadow:0 0 8px var(--green);"></span>
+      <span class="status-ping" style="display:inline-block;width:8px;height:8px;border-radius:50%;background-color:var(--green);"></span>
       <span>Real-Time Network Telemetry</span>
     </div>
     

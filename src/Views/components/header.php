@@ -1,14 +1,7 @@
 <header class="nav-header" id="nav-header">
   <div class="nav-inner">
     <a href="<?= htmlspecialchars(url('main')) ?>" class="nav-logo" aria-label="xpsystems home">
-      <div class="nav-logo-icon-wrap">
-        <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="32" height="32" rx="7" fill="currentColor"/>
-          <path d="M8.5 9.5L15 22.5M15 9.5L8.5 22.5" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M18.5 9.5V22.5M18.5 9.5H22C23.6569 9.5 25 10.8431 25 12.5C25 14.1569 23.6569 15.5 22 15.5H18.5" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <span class="nav-logo-text">xp<span class="nav-logo-light"><?= htmlspecialchars(substr($brand['name'] ?? 'xpsystems', 2)) ?></span></span>
+      <span class="nav-logo-text">xpsystems</span>
       <span class="nav-badge-pill">DE &bull; EU</span>
     </a>
 
