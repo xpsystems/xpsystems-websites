@@ -813,6 +813,14 @@
     });
   }
 
+  /* ── 17b. Footer Back to Top Button ──────────────────────────────── */
+  const scrollTopBtn = document.getElementById("footer-scroll-top");
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
   /* ── 18. Dynamic Specular Spotlight Tracking ───────────────────── */
   let activeSpotlightCards = [];
   function updateSpotlightCards() {
