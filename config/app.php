@@ -13,10 +13,24 @@ return [
     ],
 
     'brand' => [
-        'name'        => 'xpsystems',
-        'tagline'     => 'German Web-Provider',
-        'description' => 'European infrastructure, digital sovereignty, and developer-first tooling — built and operated from Germany.',
-        'domains'     => ['xpsystems.eu', 'xpsystems.de', 'xpsys.de'],
+        'name'          => 'xpsystems',
+        'tagline'       => 'German Web-Provider',
+        'sub_entity_of' => 'ternis.dev (ternis-edv)',
+        'parent_url'    => 'https://ternis-edv.de',
+        'parent_domain' => 'ternis.dev',
+        'description'   => 'European infrastructure, digital sovereignty, and developer-first tooling — operated as a sub-entity of ternis-edv (ternis.dev) from Germany.',
+        'domains'       => ['xpsystems.eu', 'xpsystems.de', 'xpsys.de'],
+    ],
+
+    'parent_entity' => [
+        'name'        => 'ternis-edv',
+        'brand'       => 'ternis.dev',
+        'legal_name'  => 'ternis-edv',
+        'url'         => 'https://ternis-edv.de',
+        'domain'      => 'ternis-edv.de',
+        'alt_url'     => 'https://ternis.dev',
+        'alt_domain'  => 'ternis.dev',
+        'description' => 'Parent IT organisation & enterprise systems',
     ],
 
     'subdomains' => [
@@ -39,13 +53,15 @@ return [
     ],
 
     'footer_links' => [
-        ['label' => 'GitHub',      'href' => 'https://github.com/xpsystems'],
-        ['label' => 'Status',      'href' => 'https://status.xpsystems.eu'],
-        ['label' => 'EuropeHost',  'href' => 'https://europehost.eu'],
-        ['label' => 'eu-data.org', 'href' => 'https://eu-data.org'],
-        ['label' => 'MTEX.dev',    'href' => 'https://mtex.dev'],
-        ['label' => 'Impressum',   'href' => '/impressum'],
-        ['label' => 'Privacy',     'href' => '/privacy'],
+        ['label' => 'GitHub',        'href' => 'https://github.com/xpsystems'],
+        ['label' => 'Status',        'href' => 'https://status.xpsystems.eu'],
+        ['label' => 'ternis.dev',    'href' => 'https://ternis.dev'],
+        ['label' => 'ternis-edv.de', 'href' => 'https://ternis-edv.de'],
+        ['label' => 'EuropeHost',    'href' => 'https://europehost.eu'],
+        ['label' => 'eu-data.org',   'href' => 'https://eu-data.org'],
+        ['label' => 'MTEX.dev',      'href' => 'https://mtex.dev'],
+        ['label' => 'Impressum',     'href' => '/impressum'],
+        ['label' => 'Privacy',       'href' => '/privacy'],
     ],
 
     'hero_ctas' => [
@@ -62,6 +78,16 @@ return [
     ],
 
     'services' => [
+        [
+            'name'    => 'ternis.dev (ternis-edv)',
+            'type'    => 'parent',
+            'url'     => 'https://ternis-edv.de',
+            'tagline' => 'Parent entity & enterprise IT systems — managing xpsystems infrastructure',
+            'links'   => [
+                ['label' => 'ternis.dev',     'href' => 'https://ternis.dev'],
+                ['label' => 'ternis-edv.de', 'href' => 'https://ternis-edv.de'],
+            ],
+        ],
         [
             'name'    => 'EuropeHost.eu',
             'type'    => 'service',
@@ -113,8 +139,8 @@ return [
     'team' => [
         [
             'name'        => 'Fabian Ternis',
-            'role'        => 'Founder / Web Dev',
-            'url'         => 'https://fabianternis.dev',
+            'role'        => 'Founder & Lead / ternis-edv',
+            'url'         => 'https://ternis.dev',
             'github'      => 'michaelninder',
             'email'       => 'f.ternis@xpsystems.eu',
             'img_url'     => 'https://github.com/michaelninder.png',
@@ -174,14 +200,17 @@ return [
 
     'domain_groups' => [
         [
-            'title'   => 'Personal & Identity',
-            'accent'  => 'accent',
-            'domains' => [
-                ['domain' => 'fternis.de'],
+            'title'     => 'Parent Entity & Identity',
+            'accent'    => 'accent',
+            'highlight' => true,
+            'domains'   => [
+                ['domain' => 'ternis-edv.de',    'badge' => 'Parent'],
+                ['domain' => 'ternis.dev',       'badge' => 'Parent'],
+                ['domain' => 'ternis.eu'],
                 ['domain' => 'fabianternis.dev'],
                 ['domain' => 'fabianternis.de'],
                 ['domain' => 'fabian-ternis.de'],
-                ['domain' => 'ternis.eu'],
+                ['domain' => 'fternis.de'],
                 ['domain' => 'ivoternis.de'],
                 ['domain' => 'mysocials.me'],
                 ['domain' => 'getsocials.link'],

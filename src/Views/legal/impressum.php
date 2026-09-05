@@ -110,13 +110,16 @@
             <p>Diensteanbieter und Betreiber dieser Website sowie der zugehörigen Web-Dienste:</p>
             <div class="legal-kv-grid">
               <div class="kv-label">Organisation</div>
-              <div class="kv-value"><strong>xpsystems</strong></div>
+              <div class="kv-value"><strong>xpsystems</strong> &mdash; Sub-Entity / Geschäftsbereich der <strong>ternis-edv</strong></div>
+
+              <div class="kv-label">Übergeordnete Einheit</div>
+              <div class="kv-value"><strong>ternis-edv</strong> (<a href="https://ternis.dev" target="_blank" rel="noopener">ternis.dev</a> &middot; <a href="https://ternis-edv.de" target="_blank" rel="noopener">ternis-edv.de</a>)</div>
 
               <div class="kv-label">Inhaber / Leitung</div>
               <div class="kv-value">Fabian Ternis</div>
 
               <div class="kv-label">Tätigkeitsbereich</div>
-              <div class="kv-value">Web-Infrastructure &amp; Hosting Services, Software Engineering</div>
+              <div class="kv-value">IT-Dienstleistungen, Web-Infrastructure &amp; Hosting Services, Software Engineering</div>
 
               <div class="kv-label">Standort</div>
               <div class="kv-value">Deutschland (Germany)</div>
@@ -143,7 +146,7 @@
               <div class="kv-value"><a href="mailto:f.ternis@xpsystems.eu">f.ternis@xpsystems.eu</a></div>
 
               <div class="kv-label">Webseiten</div>
-              <div class="kv-value"><a href="https://xpsystems.eu" target="_blank" rel="noopener">https://xpsystems.eu</a> &middot; <a href="https://xpsystems.de" target="_blank" rel="noopener">https://xpsystems.de</a></div>
+              <div class="kv-value"><a href="https://xpsystems.eu" target="_blank" rel="noopener">https://xpsystems.eu</a> &middot; <a href="https://xpsystems.de" target="_blank" rel="noopener">https://xpsystems.de</a> &middot; <a href="https://ternis.dev" target="_blank" rel="noopener">https://ternis.dev</a></div>
             </div>
 
             <div class="legal-callout">

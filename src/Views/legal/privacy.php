@@ -178,8 +178,8 @@
               <div class="kv-label">Verantwortlicher</div>
               <div class="kv-value"><strong>Fabian Ternis</strong></div>
 
-              <div class="kv-label">Organisation</div>
-              <div class="kv-value">xpsystems Web-Services</div>
+              <div class="kv-label">Organisation &amp; Träger</div>
+              <div class="kv-value"><strong>ternis-edv</strong> (<a href="https://ternis.dev" target="_blank" rel="noopener">ternis.dev</a> &middot; <a href="https://ternis-edv.de" target="_blank" rel="noopener">ternis-edv.de</a>) &mdash; Geschäftsbereich <strong>xpsystems</strong></div>
 
               <div class="kv-label">E-Mail (Datenschutz)</div>
               <div class="kv-value"><a href="mailto:contact@xpsystems.eu">contact@xpsystems.eu</a></div>

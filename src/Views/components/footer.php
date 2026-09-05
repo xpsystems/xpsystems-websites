@@ -19,11 +19,11 @@
     <div class="footer-brand-col">
       <a href="<?= htmlspecialchars(url('main')) ?>" class="footer-logo" aria-label="xpsystems home">
         <span class="footer-logo-text">xpsystems</span>
-        <span class="footer-badge-pill">DE &bull; EU</span>
+        <span class="footer-badge-pill">ternis.dev</span>
       </a>
 
       <p class="footer-desc">
-        <?= htmlspecialchars($brand['tagline'] ?? 'German Web-Provider') ?> — European sovereign bare-metal infrastructure, Anycast edge routing, and privacy-first web services operated from Germany.
+        A sub-entity of <a href="https://ternis.dev" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">ternis.dev</a> (<a href="https://ternis-edv.de" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">ternis-edv</a>) &mdash; <?= htmlspecialchars($brand['tagline'] ?? 'German Web-Provider') ?> delivering sovereign bare-metal infrastructure, Anycast edge routing, and privacy-first web services operated from Germany.
       </p>
 
       <div class="footer-trust-chips">
@@ -106,6 +106,8 @@
         <li><a href="<?= htmlspecialchars(url('contact')) ?>" class="footer-nav-link">Contact Desk</a></li>
         <li><a href="/impressum" class="footer-nav-link">Impressum (§ 5 DDG)</a></li>
         <li><a href="/privacy" class="footer-nav-link">Datenschutz (GDPR)</a></li>
+        <li><a href="https://ternis.dev" target="_blank" rel="noopener noreferrer" class="footer-nav-link">ternis.dev (Parent)</a></li>
+        <li><a href="https://ternis-edv.de" target="_blank" rel="noopener noreferrer" class="footer-nav-link">ternis-edv.de</a></li>
         <li><a href="mailto:f.ternis@xpsystems.eu" class="footer-nav-link">Founder Desk</a></li>
       </ul>
     </div>
@@ -114,7 +116,7 @@
   <!-- Bottom Strip -->
   <div class="container footer-bottom-strip">
     <div class="footer-bottom-left">
-      <span>&copy; <?= $currentYear ?? date('Y') ?> <strong>xpsystems</strong>. Built with precision, flat geometry &amp; ☕ in Germany.</span>
+      <span>&copy; <?= $currentYear ?? date('Y') ?> <strong>xpsystems</strong> &bull; Sub-entity of <a href="https://ternis.dev" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;">ternis.dev</a> (<a href="https://ternis-edv.de" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;">ternis-edv</a>). Built with precision, flat geometry &amp; ☕ in Germany.</span>
     </div>
 
     <div class="footer-bottom-right">

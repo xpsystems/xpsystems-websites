@@ -977,6 +977,11 @@ kbd {
   color: var(--accent);
   border-color: var(--accent);
 }
+.card-badge.card-badge-parent {
+  background-color: var(--surface-2);
+  color: var(--accent);
+  border-color: var(--accent);
+}
 
 .card-top {
   margin-bottom: 16px;

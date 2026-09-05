@@ -41,7 +41,7 @@
       </svg>
       <span><?= $e($brand['domains'][0] ?? 'xpsystems.eu') ?> &bull; <?= $e($brand['domains'][1] ?? 'xpsystems.de') ?></span>
       <span class="eyebrow-separator">&bull;</span>
-      <span>German Web-Provider</span>
+      <span>Sub-Entity of <a href="https://ternis.dev" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;">ternis.dev</a></span>
     </div>
 
     <h1 class="hero-title reveal" style="--delay:50ms">
@@ -201,9 +201,9 @@
           class="card <?= $service['type'] === 'partner' ? 'card-partner' : '' ?> reveal"
           style="--delay:<?= $i * 50 ?>ms"
         >
-          <span class="card-badge <?= $service['type'] === 'service' ? 'card-badge-service' : '' ?>">
-            <span class="status-dot green" style="width:5px;height:5px;"></span>
-            <?= $service['type'] === 'partner' ? 'Partner Ecosystem' : 'Core Infrastructure' ?>
+          <span class="card-badge <?= $service['type'] === 'parent' ? 'card-badge-parent' : ($service['type'] === 'service' ? 'card-badge-service' : '') ?>">
+            <span class="status-dot <?= $service['type'] === 'parent' ? 'blue' : 'green' ?>" style="width:5px;height:5px;"></span>
+            <?= $service['type'] === 'parent' ? 'Parent Entity (ternis.dev)' : ($service['type'] === 'partner' ? 'Partner Ecosystem' : 'Core Infrastructure') ?>
           </span>
 
           <div class="card-top">
