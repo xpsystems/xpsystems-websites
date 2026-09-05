@@ -104,7 +104,7 @@ final class Router
             return (new StatusController())->apiDocs($request);
         }
         if ($path === '/impressum') {
-            return (new LegalController())->impressum($request);
+            return Response::redirect($request->url('/impressum', 'main'), 301);
         }
         if ($path === '/privacy') {
             return (new LegalController())->privacy($request);
@@ -118,7 +118,7 @@ final class Router
             return (new ContactController())->index($request);
         }
         if ($path === '/impressum') {
-            return (new LegalController())->impressum($request);
+            return Response::redirect($request->url('/impressum', 'main'), 301);
         }
         if ($path === '/privacy') {
             return (new LegalController())->privacy($request);
@@ -132,7 +132,7 @@ final class Router
             return (new DomainsController())->index($request);
         }
         if ($path === '/impressum') {
-            return (new LegalController())->impressum($request);
+            return Response::redirect($request->url('/impressum', 'main'), 301);
         }
         if ($path === '/privacy') {
             return (new LegalController())->privacy($request);
@@ -146,7 +146,7 @@ final class Router
             return (new OpenSourceController())->index($request);
         }
         if ($path === '/impressum') {
-            return (new LegalController())->impressum($request);
+            return Response::redirect($request->url('/impressum', 'main'), 301);
         }
         if ($path === '/privacy') {
             return (new LegalController())->privacy($request);

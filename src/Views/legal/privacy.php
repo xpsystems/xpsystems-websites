@@ -28,6 +28,7 @@
 <?php $component('loader'); ?>
 
 <?php $component('header'); ?>
+<?php $component('transition-banner'); ?>
 
 <header class="hero hero--subpage">
   <div class="hero-backdrop-glow" aria-hidden="true"></div>
@@ -181,8 +182,8 @@
               <div class="kv-label">Organisation &amp; Träger</div>
               <div class="kv-value"><strong>ternis-edv</strong> (<a href="https://ternis.dev" target="_blank" rel="noopener">ternis.dev</a> &middot; <a href="https://ternis-edv.de" target="_blank" rel="noopener">ternis-edv.de</a>) &mdash; Geschäftsbereich <strong>xpsystems</strong></div>
 
-              <div class="kv-label">E-Mail (Datenschutz)</div>
-              <div class="kv-value"><a href="mailto:contact@xpsystems.eu">contact@xpsystems.eu</a></div>
+              <div class="kv-label">E-Mail (Datenschutz &amp; Anfragen)</div>
+              <div class="kv-value"><a href="mailto:xpsystems@ternismail.de">xpsystems@ternismail.de</a> &middot; <a href="mailto:contact@xpsystems.eu">contact@xpsystems.eu</a></div>
 
               <div class="kv-label">Standort</div>
               <div class="kv-value">Deutschland (Germany)</div>

@@ -95,6 +95,7 @@
           </a>
         </li>
         <li><a href="<?= htmlspecialchars(url('opensource')) ?>" class="footer-nav-link">Repository Hub</a></li>
+        <li><a href="https://ternis.org" target="_blank" rel="noopener noreferrer" class="footer-nav-link">ternis.org (OSS Hub)</a></li>
         <li><a href="https://github.com/xpsystems-ai" target="_blank" rel="noopener noreferrer" class="footer-nav-link">AI Automation</a></li>
         <li><a href="<?= htmlspecialchars(url('domains')) ?>" class="footer-nav-link">Domain Portfolio</a></li>
       </ul>
@@ -104,10 +105,10 @@
       <h4 class="footer-col-title">Direct &amp; Legal</h4>
       <ul class="footer-col-list">
         <li><a href="<?= htmlspecialchars(url('contact')) ?>" class="footer-nav-link">Contact Desk</a></li>
-        <li><a href="/impressum" class="footer-nav-link">Impressum (§ 5 DDG)</a></li>
+        <li><a href="<?= htmlspecialchars(url('/impressum', 'main')) ?>" class="footer-nav-link">Impressum (§ 5 DDG)</a></li>
         <li><a href="/privacy" class="footer-nav-link">Datenschutz (GDPR)</a></li>
         <li><a href="https://ternis.dev" target="_blank" rel="noopener noreferrer" class="footer-nav-link">ternis.dev (Parent)</a></li>
-        <li><a href="https://ternis-edv.de" target="_blank" rel="noopener noreferrer" class="footer-nav-link">ternis-edv.de</a></li>
+        <li><a href="mailto:xpsystems@ternismail.de" class="footer-nav-link">xpsystems@ternismail.de</a></li>
         <li><a href="mailto:f.ternis@xpsystems.eu" class="footer-nav-link">Founder Desk</a></li>
       </ul>
     </div>

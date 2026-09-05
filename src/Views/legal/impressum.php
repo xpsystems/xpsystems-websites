@@ -28,6 +28,7 @@
 <?php $component('loader'); ?>
 
 <?php $component('header'); ?>
+<?php $component('transition-banner'); ?>
 
 <header class="hero hero--subpage">
   <div class="hero-backdrop-glow" aria-hidden="true"></div>
@@ -136,6 +137,9 @@
           <div class="legal-body">
             <p>Für allgemeine, technische sowie vertragliche Anfragen stehen folgende Kommunikationswege zur Verfügung:</p>
             <div class="legal-kv-grid">
+              <div class="kv-label">E-Mail (Hauptadresse)</div>
+              <div class="kv-value"><a href="mailto:xpsystems@ternismail.de">xpsystems@ternismail.de</a></div>
+
               <div class="kv-label">E-Mail (International)</div>
               <div class="kv-value"><a href="mailto:contact@xpsystems.eu">contact@xpsystems.eu</a></div>
 
@@ -145,8 +149,11 @@
               <div class="kv-label">Direktkontakt Inhaber</div>
               <div class="kv-value"><a href="mailto:f.ternis@xpsystems.eu">f.ternis@xpsystems.eu</a></div>
 
-              <div class="kv-label">Webseiten</div>
-              <div class="kv-value"><a href="https://xpsystems.eu" target="_blank" rel="noopener">https://xpsystems.eu</a> &middot; <a href="https://xpsystems.de" target="_blank" rel="noopener">https://xpsystems.de</a> &middot; <a href="https://ternis.dev" target="_blank" rel="noopener">https://ternis.dev</a></div>
+              <div class="kv-label">Nameserver (DNS)</div>
+              <div class="kv-value"><code>one.ns.ternis.net</code> &middot; <code>two.ns.ternis.net</code></div>
+
+              <div class="kv-label">Webseiten &amp; Hubs</div>
+              <div class="kv-value"><a href="https://xpsystems.eu" target="_blank" rel="noopener">https://xpsystems.eu</a> &middot; <a href="https://xpsystems.de" target="_blank" rel="noopener">https://xpsystems.de</a> &middot; <a href="https://ternis.dev" target="_blank" rel="noopener">https://ternis.dev</a> &middot; <a href="https://ternis.org" target="_blank" rel="noopener">https://ternis.org</a></div>
             </div>
 
             <div class="legal-callout">

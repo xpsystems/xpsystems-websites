@@ -28,6 +28,7 @@
 <?php $component('loader'); ?>
 
 <?php $component('header'); ?>
+<?php $component('transition-banner'); ?>
 
 <header class="hero hero--subpage">
   <div class="hero-backdrop-glow" aria-hidden="true"></div>

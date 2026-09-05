@@ -178,3 +178,127 @@
   }
 }
 
+// ── Transition Banner (Migration to ternis.dev)
+.transition-banner {
+  padding-top: calc(var(--nav-height) + 16px);
+  padding-bottom: 16px;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
+
+  .transition-banner-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background-color: var(--surface);
+    border: 1px solid var(--border-hover);
+    border-radius: var(--radius-lg);
+    padding: 12px 20px;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 14px 16px;
+    }
+  }
+
+  .transition-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .transition-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    background-color: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-full);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+
+  .transition-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--accent);
+  }
+
+  .transition-text {
+    color: var(--text-secondary);
+
+    strong {
+      color: var(--text);
+    }
+  }
+
+  .transition-link {
+    color: var(--accent);
+    text-decoration: underline;
+    font-weight: 600;
+
+    &:hover {
+      color: var(--accent-hover);
+    }
+  }
+
+  .transition-sub {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+  }
+
+  .transition-extra {
+    display: inline;
+    margin-left: 4px;
+    color: var(--text-muted);
+  }
+
+  .transition-code {
+    display: inline-block;
+    padding: 1px 6px;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    background-color: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    cursor: pointer;
+    transition: all var(--t-fast);
+
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+  }
+
+  .transition-right {
+    flex-shrink: 0;
+
+    .transition-btn {
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+  }
+}
+
+.transition-banner + .hero,
+.transition-banner + main.section,
+.transition-banner + .legal-page {
+  padding-top: 48px;
+}
+
+

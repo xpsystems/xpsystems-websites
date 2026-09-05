@@ -28,6 +28,7 @@
 <?php $component('loader'); ?>
 
 <?php $component('header'); ?>
+<?php $component('transition-banner'); ?>
 
 <!-- Hero Section -->
 <header class="hero">
@@ -52,7 +53,36 @@
 
 <!-- Active Domains Explorer -->
 <main class="section section-alt">
-  <div class="container">
+    <!-- Official Anycast Nameservers -->
+    <div class="domain-ns-card reveal" style="--delay: 20ms">
+      <div class="ns-card-left">
+        <div class="ns-card-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+          </svg>
+        </div>
+        <div>
+          <div class="ns-card-title">Official Anycast Nameservers (ternis.net)</div>
+          <div class="ns-card-desc">Redundant high-availability DNS clusters for xpsystems &amp; ternis ecosystem:</div>
+        </div>
+      </div>
+      <div class="ns-card-pills">
+        <div class="ns-pill">
+          <span class="ns-role">NS1:</span>
+          <code class="ns-host">one.ns.ternis.net</code>
+          <button class="ns-copy-btn" data-copy="one.ns.ternis.net" data-copy-label="NS1 Host" title="Copy nameserver" type="button">Copy</button>
+        </div>
+        <div class="ns-pill">
+          <span class="ns-role">NS2:</span>
+          <code class="ns-host">two.ns.ternis.net</code>
+          <button class="ns-copy-btn" data-copy="two.ns.ternis.net" data-copy-label="NS2 Host" title="Copy nameserver" type="button">Copy</button>
+        </div>
+      </div>
+    </div>
+
     <div class="domain-toolbar reveal">
       <div class="domain-search-wrap">
         <svg class="domain-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

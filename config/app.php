@@ -13,13 +13,22 @@ return [
     ],
 
     'brand' => [
-        'name'          => 'xpsystems',
-        'tagline'       => 'German Web-Provider',
-        'sub_entity_of' => 'ternis.dev (ternis-edv)',
-        'parent_url'    => 'https://ternis-edv.de',
-        'parent_domain' => 'ternis.dev',
-        'description'   => 'European infrastructure, digital sovereignty, and developer-first tooling — operated as a sub-entity of ternis-edv (ternis.dev) from Germany.',
-        'domains'       => ['xpsystems.eu', 'xpsystems.de', 'xpsys.de'],
+        'name'              => 'xpsystems',
+        'tagline'           => 'German Web-Provider',
+        'sub_entity_of'     => 'ternis.dev (ternis-edv)',
+        'parent_url'        => 'https://ternis-edv.de',
+        'parent_domain'     => 'ternis.dev',
+        'open_source_hub'   => 'https://ternis.org',
+        'nameservers'       => ['one.ns.ternis.net', 'two.ns.ternis.net'],
+        'transition_notice' => 'xpsystems (xpsystems.eu & xpsystems.de) has transitioned into ternis.dev (ternis-edv). Infrastructure, Anycast DNS and open-source operations continue under the ternis ecosystem.',
+        'description'       => 'European infrastructure, digital sovereignty, and developer-first tooling — operated as a sub-entity of ternis-edv (ternis.dev) from Germany.',
+        'domains'           => ['xpsystems.eu', 'xpsystems.de', 'xpsys.de'],
+    ],
+
+    'nameservers' => [
+        'primary'   => 'one.ns.ternis.net',
+        'secondary' => 'two.ns.ternis.net',
+        'domain'    => 'ternis.net',
     ],
 
     'parent_entity' => [
@@ -30,6 +39,7 @@ return [
         'domain'      => 'ternis-edv.de',
         'alt_url'     => 'https://ternis.dev',
         'alt_domain'  => 'ternis.dev',
+        'oss_url'     => 'https://ternis.org',
         'description' => 'Parent IT organisation & enterprise systems',
     ],
 
@@ -56,6 +66,7 @@ return [
         ['label' => 'GitHub',        'href' => 'https://github.com/xpsystems'],
         ['label' => 'Status',        'href' => 'https://status.xpsystems.eu'],
         ['label' => 'ternis.dev',    'href' => 'https://ternis.dev'],
+        ['label' => 'ternis.org',    'href' => 'https://ternis.org'],
         ['label' => 'ternis-edv.de', 'href' => 'https://ternis-edv.de'],
         ['label' => 'EuropeHost',    'href' => 'https://europehost.eu'],
         ['label' => 'eu-data.org',   'href' => 'https://eu-data.org'],
@@ -157,14 +168,16 @@ return [
 
     'contact' => [
         'title' => 'Get in Touch',
-        'description' => "We'd love to hear from you. Reach out through any of the channels below.",
+        'description' => "Official communication channels for xpsystems & the ternis ecosystem.",
+        'primary_email' => 'xpsystems@ternismail.de',
         'emails' => [
+            ['label' => 'Direct Inbox',      'email' => 'xpsystems@ternismail.de'],
             ['label' => 'General Inquiries', 'email' => 'contact@xpsystems.eu'],
-            ['label' => 'Germany',           'email' => 'contact@xpsystems.de'],
+            ['label' => 'Germany Support',   'email' => 'contact@xpsystems.de'],
         ],
         'founder' => [
             'name'  => 'Fabian Ternis',
-            'role'  => 'Founder',
+            'role'  => 'Founder / ternis-edv',
             'email' => 'f.ternis@xpsystems.eu',
         ],
         'socials' => [
@@ -192,7 +205,7 @@ return [
         [
             'value'      => 'Open',
             'label'      => 'Source Projects',
-            'url'        => 'https://opensource.xpsystems.eu',
+            'url'        => 'https://ternis.org',
             'route'      => '/opensource',
             'link_label' => 'Browse Open Source',
         ],
@@ -200,12 +213,15 @@ return [
 
     'domain_groups' => [
         [
-            'title'     => 'Parent Entity & Identity',
+            'title'     => 'Parent Entity & Identity (ternis.dev)',
             'accent'    => 'accent',
             'highlight' => true,
             'domains'   => [
                 ['domain' => 'ternis-edv.de',    'badge' => 'Parent'],
                 ['domain' => 'ternis.dev',       'badge' => 'Parent'],
+                ['domain' => 'ternis.org',       'badge' => 'Open Source'],
+                ['domain' => 'ternis.net',       'badge' => 'Nameserver'],
+                ['domain' => 'ternismail.de',    'badge' => 'Mail'],
                 ['domain' => 'ternis.eu'],
                 ['domain' => 'fabianternis.dev'],
                 ['domain' => 'fabianternis.de'],
@@ -355,6 +371,13 @@ return [
 
     'github' => [
         'sources' => [
+            [
+                'handle'      => 'ternis',
+                'type'        => 'org',
+                'label'       => 'ternis.org',
+                'description' => 'Official open-source ecosystem, core repositories & infrastructure automation (ternis.org).',
+                'url'         => 'https://ternis.org',
+            ],
             [
                 'handle'      => 'xpsystems',
                 'type'        => 'org',

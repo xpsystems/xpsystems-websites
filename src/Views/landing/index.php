@@ -28,6 +28,7 @@
 <?php $component('loader'); ?>
 
 <?php $component('header'); ?>
+<?php $component('transition-banner'); ?>
 
 <!-- ═══════════════════════════════════════════════════════════ HERO -->
 <section class="hero">

@@ -882,6 +882,115 @@ kbd {
   flex-shrink: 0;
 }
 
+.transition-banner {
+  padding-top: calc(var(--nav-height) + 16px);
+  padding-bottom: 16px;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.transition-banner .transition-banner-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background-color: var(--surface);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-lg);
+  padding: 12px 20px;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+@media (max-width: 900px) {
+  .transition-banner .transition-banner-box {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px 16px;
+  }
+}
+.transition-banner .transition-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.transition-banner .transition-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  background-color: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-full);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.transition-banner .transition-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+.transition-banner .transition-text {
+  color: var(--text-secondary);
+}
+.transition-banner .transition-text strong {
+  color: var(--text);
+}
+.transition-banner .transition-link {
+  color: var(--accent);
+  text-decoration: underline;
+  font-weight: 600;
+}
+.transition-banner .transition-link:hover {
+  color: var(--accent-hover);
+}
+.transition-banner .transition-sub {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+.transition-banner .transition-extra {
+  display: inline;
+  margin-left: 4px;
+  color: var(--text-muted);
+}
+.transition-banner .transition-code {
+  display: inline-block;
+  padding: 1px 6px;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+.transition-banner .transition-code:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.transition-banner .transition-right {
+  flex-shrink: 0;
+}
+.transition-banner .transition-right .transition-btn {
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.transition-banner + .hero,
+.transition-banner + main.section,
+.transition-banner + .legal-page {
+  padding-top: 48px;
+}
+
 .section {
   position: relative;
   padding: 88px 0;
@@ -1651,6 +1760,90 @@ kbd {
   background-color: var(--accent);
   color: #ffffff;
   border-color: var(--accent);
+}
+
+.domain-ns-card {
+  max-width: 720px;
+  margin: 0 auto 28px;
+  background-color: var(--surface);
+  border: 1.5px solid var(--border-hover);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+@media (max-width: 768px) {
+  .domain-ns-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.domain-ns-card .ns-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.domain-ns-card .ns-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: var(--accent-dim);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.domain-ns-card .ns-card-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.domain-ns-card .ns-card-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.domain-ns-card .ns-card-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.domain-ns-card .ns-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+.domain-ns-card .ns-pill .ns-role {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.domain-ns-card .ns-pill .ns-host {
+  color: var(--text);
+  font-weight: 700;
+}
+.domain-ns-card .ns-pill .ns-copy-btn {
+  padding: 2px 8px;
+  font-size: 0.6875rem;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-3);
+  border: 1px solid var(--border-hover);
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all var(--t-fast);
+}
+.domain-ns-card .ns-pill .ns-copy-btn:hover {
+  background-color: var(--accent);
+  color: #ffffff;
 }
 
 .domain-toolbar {
