@@ -2397,6 +2397,10 @@ button {
   height: 14px;
   color: var(--accent);
 }
+.legal-toc-title.active,
+.legal-toc-title span.active {
+  color: var(--text);
+}
 
 .legal-toc-list {
   display: flex;
@@ -2419,6 +2423,7 @@ button {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   color: var(--text-dim);
+  transition: color var(--t-fast);
 }
 .legal-toc-link:hover {
   color: var(--text);
@@ -2428,6 +2433,11 @@ button {
   color: var(--text);
   background-color: var(--bg-elevated);
   border-left: 2px solid var(--accent);
+  font-weight: 600;
+}
+.legal-toc-link.active .toc-num {
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .legal-content {
@@ -2441,6 +2451,7 @@ button {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 32px;
+  scroll-margin-top: 100px;
 }
 @media (max-width: 600px) {
   .legal-card {

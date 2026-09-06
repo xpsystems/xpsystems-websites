@@ -56,6 +56,11 @@
     height: 14px;
     color: var(--accent);
   }
+
+  &.active,
+  span.active {
+    color: var(--text);
+  }
 }
 
 .legal-toc-list {
@@ -79,6 +84,7 @@
     font-family: var(--font-mono);
     font-size: 0.7rem;
     color: var(--text-dim);
+    transition: color var(--t-fast);
   }
 
   &:hover {
@@ -90,6 +96,12 @@
     color: var(--text);
     background-color: var(--bg-elevated);
     border-left: 2px solid var(--accent);
+    font-weight: 600;
+
+    .toc-num {
+      color: var(--accent);
+      font-weight: 700;
+    }
   }
 }
 
@@ -105,6 +117,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 32px;
+  scroll-margin-top: 100px;
 
   @media (max-width: 600px) {
     padding: 20px;

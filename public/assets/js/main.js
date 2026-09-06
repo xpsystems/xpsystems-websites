@@ -359,6 +359,141 @@
   }
 
 
+  /* ── 12. Table of Contents (TOC) Active State on "Abschnitte" & "API Specification" ── */
+  function initTocActiveState() {
+    // 1. Add .active on elements with "Abschnitte" and "API Specification"
+    const tocTitles = document.querySelectorAll('.legal-toc-title');
+    tocTitles.forEach(title => {
+      const text = (title.textContent || '').trim();
+      if (/Abschnitte|API Specification/i.test(text)) {
+        title.classList.add('active');
+        const span = title.querySelector('span');
+        if (span) span.classList.add('active');
+        const card = title.closest('.legal-toc-card');
+        if (card) card.classList.add('active');
+      }
+    });
+
+    // Also directly match any standalone span or heading labeled Abschnitte or API Specification
+    document.querySelectorAll('span, div, h1, h2, h3, h4, nav').forEach(el => {
+      if (el.children.length === 0) {
+        const txt = el.textContent.trim();
+        if (txt === 'Abschnitte' || txt === 'API Specification') {
+          el.classList.add('active');
+          const parent = el.closest('.legal-toc-title');
+          if (parent) parent.classList.add('active');
+        }
+      }
+    });
+
+    // 2. Interactive ScrollSpy for TOC links inside "Abschnitte" and "API Specification"
+    const tocNavs = document.querySelectorAll('.legal-toc-card');
+    if (!tocNavs.length) return;
+
+    tocNavs.forEach(nav => {
+      const links = Array.from(nav.querySelectorAll('.legal-toc-link'));
+      if (!links.length) return;
+
+      const sections = [];
+      links.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          const targetId = href.slice(1);
+          const targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            sections.push({ link, id: targetId, el: targetEl });
+          }
+        }
+      });
+
+      if (!sections.length) return;
+
+      function setActive(activeLink) {
+        links.forEach(l => l.classList.remove('active'));
+        if (activeLink) {
+          activeLink.classList.add('active');
+        }
+      }
+
+      // Initial active link from URL hash or first section
+      let initialLink = null;
+      if (window.location.hash) {
+        const hashId = window.location.hash.slice(1);
+        const match = sections.find(s => s.id === hashId);
+        if (match) initialLink = match.link;
+      }
+      if (!initialLink && sections.length > 0) {
+        initialLink = sections[0].link;
+      }
+      if (initialLink) {
+        setActive(initialLink);
+      }
+
+      let isClickScrolling = false;
+      let clickTimeout = null;
+
+      links.forEach(link => {
+        link.addEventListener('click', function () {
+          setActive(this);
+          isClickScrolling = true;
+          if (clickTimeout) clearTimeout(clickTimeout);
+          clickTimeout = setTimeout(() => {
+            isClickScrolling = false;
+          }, 850);
+        });
+      });
+
+      let scrollRaf = null;
+      function onScroll() {
+        if (isClickScrolling) return;
+        if (scrollRaf) cancelAnimationFrame(scrollRaf);
+
+        scrollRaf = requestAnimationFrame(() => {
+          const scrollBottom = window.innerHeight + window.scrollY;
+          const pageHeight = document.documentElement.scrollHeight;
+          if (pageHeight - scrollBottom < 60) {
+            setActive(sections[sections.length - 1].link);
+            return;
+          }
+
+          const scrollY = window.scrollY;
+          const offset = 140;
+
+          let current = sections[0];
+          for (let i = 0; i < sections.length; i++) {
+            const sec = sections[i];
+            const top = sec.el.getBoundingClientRect().top + window.scrollY;
+            if (scrollY + offset >= top) {
+              current = sec;
+            } else {
+              break;
+            }
+          }
+
+          if (current) {
+            setActive(current.link);
+          }
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('hashchange', () => {
+        if (window.location.hash) {
+          const hashId = window.location.hash.slice(1);
+          const match = sections.find(s => s.id === hashId);
+          if (match) setActive(match.link);
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTocActiveState);
+  } else {
+    initTocActiveState();
+  }
+
+
   /* ── Helper: Escape HTML ─────────────────────────────────────────────── */
   function escapeHtml(str) {
     const div = document.createElement('div');
@@ -370,3 +505,4 @@
   updateSoundUI();
 
 })();
+
