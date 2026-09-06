@@ -25,8 +25,8 @@
 <body>
 
 <?php $component('loader'); ?>
-<?php $component('header'); ?>
 <?php $component('transition-banner'); ?>
+<?php $component('header'); ?>
 
 <!-- ═══════════════════════════════════════════════════════════ HERO -->
 <section class="hero">
@@ -100,7 +100,7 @@
       <!-- Mode 1: In-Browser Interactive Terminal -->
       <div class="shell-content-terminal" id="terminal-cli-container">
         <div class="terminal-history" id="terminal-cli-history">
-          <div class="terminal-line accent-line">xpsystems sovereign telemetry v3.4.0 [x86_64-linux-gnu]</div>
+          <div class="terminal-line accent-line">xpsystems sovereign telemetry v5.4.0 [x86_64-linux-gnu]</div>
           <div class="terminal-line output-line">Connected to Frankfurt Core (DE-CIX Anycast Mesh). Type "help" for commands.</div>
           <div class="terminal-line success-line">&#10003; 4/4 edge nodes reporting 100% operational status.</div>
         </div>

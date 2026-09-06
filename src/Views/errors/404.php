@@ -25,6 +25,7 @@
 <body>
 
 <?php $component('loader'); ?>
+<?php $component('transition-banner'); ?>
 <?php $component('header'); ?>
 
 <main class="hero" style="min-height: 80vh; display: flex; align-items: center;">

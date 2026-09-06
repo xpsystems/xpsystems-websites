@@ -25,8 +25,8 @@
 <body>
 
 <?php $component('loader'); ?>
-<?php $component('header'); ?>
 <?php $component('transition-banner'); ?>
+<?php $component('header'); ?>
 
 <header class="hero hero--subpage">
   <div class="grid-backdrop" aria-hidden="true"></div>
@@ -127,7 +127,7 @@
       <div class="status-stat-card">
         <span class="stat-label">Status API</span>
         <span class="stat-value">REST / JSON</span>
-        <span class="stat-sub"><a href="<?= $e(url('/api-docs')) ?>" style="color:var(--accent);text-decoration:underline;">View API Docs ↗</a></span>
+        <span class="stat-sub"><a href="<?= $e(url('/api-docs')) ?>" style="color:var(--accent);text-decoration:underline;display:inline-flex;align-items:center;gap:4px;"><span>View API Docs</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a></span>
       </div>
     </div>
   </div>

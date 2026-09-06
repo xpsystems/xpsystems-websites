@@ -25,8 +25,8 @@
 <body>
 
 <?php $component('loader'); ?>
-<?php $component('header'); ?>
 <?php $component('transition-banner'); ?>
+<?php $component('header'); ?>
 
 <!-- Hero -->
 <header class="hero hero--subpage">

@@ -99,7 +99,9 @@
       </div>
 
       <div style="display:flex;gap:16px;align-items:center;">
-        <span class="mono">v<?= htmlspecialchars($brand['version'] ?? '3.4.0') ?></span>
+        <button type="button" onclick="window.openTransitionModal &amp;&amp; window.openTransitionModal()" style="background:none;border:none;color:var(--text-muted);font-family:var(--font-mono);font-size:0.75rem;cursor:pointer;text-decoration:underline;padding:0;" title="View Transition Briefing">Transition Briefing</button>
+        <span>&bull;</span>
+        <span class="mono">v<?= htmlspecialchars($brand['version'] ?? $app['version'] ?? '5.4.0') ?></span>
         <span>&bull;</span>
         <span class="mono">Engineered in Germany</span>
       </div>

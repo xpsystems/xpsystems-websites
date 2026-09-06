@@ -3,7 +3,7 @@
 return [
     'app' => [
         'name' => 'xpsystems',
-        'version' => '3.4.0',
+        'version' => '5.4.0',
         'copyright_year' => (int) date('Y'),
         'primary_domains' => ['xpsystems.eu', 'xpsystems.de', 'xpsys.de', 'xpsys.eu'],
         'status_url' => 'https://status.xpsystems.eu',
@@ -14,6 +14,7 @@ return [
 
     'brand' => [
         'name'              => 'xpsystems',
+        'version'           => '5.4.0',
         'tagline'           => 'German Web-Provider',
         'sub_entity_of'     => 'ternis.dev (ternis-edv)',
         'parent_url'        => 'https://ternis-edv.de',

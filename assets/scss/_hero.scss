@@ -6,14 +6,14 @@
 
 .hero {
   position: relative;
-  padding: calc(var(--nav-height) + 64px) 0 80px;
+  padding: 64px 0 80px;
   background-color: var(--bg);
   border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
 
 .hero--subpage {
-  padding-top: calc(var(--nav-height) + 48px);
+  padding-top: 48px;
   padding-bottom: 56px;
 
   .hero-title {

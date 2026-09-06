@@ -9,31 +9,46 @@
   border-bottom: 1px solid var(--border);
 }
 
-// ── Transition Banner
+// ── Announcement Topbar (Above Nav) & Transition Banner
+.announcement-topbar,
 .transition-banner {
   background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border);
-  padding: 12px 0;
+  padding: 8px 0;
   font-size: 0.8125rem;
   position: relative;
-  z-index: 10;
+  z-index: 1010;
+  max-height: 120px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.3s ease;
+
+  &.is-dismissed {
+    max-height: 0 !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+    border-bottom: none !important;
+    pointer-events: none !important;
+  }
 }
 
+.announcement-topbar-box,
 .transition-banner-box {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.transition-left {
-  display: flex;
-  align-items: center;
   gap: 12px;
   flex-wrap: wrap;
 }
 
+.announcement-left,
+.transition-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.announcement-pill,
 .transition-pill {
   display: inline-flex;
   align-items: center;
@@ -47,17 +62,26 @@
   border: 1px solid var(--accent);
   border-radius: var(--radius-xs);
   padding: 2px 8px;
+  white-space: nowrap;
 }
 
+.announcement-dot,
 .transition-dot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
   background-color: var(--accent);
+  animation: statusPulse 2s ease-in-out infinite;
 }
 
+.announcement-text,
 .transition-text {
   color: var(--text-secondary);
+  font-size: 0.8125rem;
+
+  strong {
+    color: var(--text);
+  }
 
   a {
     color: var(--text);
@@ -84,6 +108,156 @@
       color: var(--accent);
     }
   }
+}
+
+.announcement-actions,
+.transition-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.announcement-btn {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.announcement-close-btn {
+  background-color: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: var(--radius-xs);
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: color var(--t-fast), border-color var(--t-fast), background-color var(--t-fast);
+
+  &:hover {
+    color: var(--text);
+    border-color: var(--accent);
+    background-color: var(--bg-subtle);
+  }
+}
+
+// ── Transition Briefing Modal (First-Load & On-Demand)
+.transition-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.72);
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.transition-modal-box {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius);
+  max-width: 620px;
+  width: 100%;
+  padding: 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
+  transform: scale(0.98);
+  transition: transform 0.2s ease;
+
+  .is-active & {
+    transform: scale(1);
+  }
+}
+
+.transition-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+}
+
+.transition-modal-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-top: 6px;
+}
+
+.transition-modal-body {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.transition-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.transition-modal-card {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.transition-modal-card-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.transition-modal-card-val {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+  word-break: break-all;
+}
+
+.transition-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .section-alt {

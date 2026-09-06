@@ -242,18 +242,33 @@
 
   const COMMANDS = {
     help: () => [
-      { text: 'XP-SYSTEMS SOVEREIGN SHELL (v3.4.0)', class: 'accent-line' },
+      { text: 'XP-SYSTEMS SOVEREIGN SHELL (v5.4.0)', class: 'accent-line' },
       { text: 'Available commands:', class: 'prompt-line' },
       { text: '  status       — Query live European infrastructure telemetry', class: 'output-line' },
       { text: '  domains      — Inspect active domain portfolio overview', class: 'output-line' },
       { text: '  ping <pop>   — Test edge node latency (fra, fsn, ams, hel)', class: 'output-line' },
       { text: '  dns          — Display authoritative Anycast nameservers', class: 'output-line' },
+      { text: '  notice       — Open system transition briefing modal', class: 'output-line' },
       { text: '  team         — Display core leadership & developers', class: 'output-line' },
       { text: '  manifesto    — Print principles of European digital sovereignty', class: 'output-line' },
       { text: '  theme <mode> — Switch color theme (dark, light, matrix)', class: 'output-line' },
       { text: '  sound        — Toggle tactile sound feedback', class: 'output-line' },
       { text: '  clear        — Clear console history', class: 'dim-line' },
     ],
+    notice: () => {
+      if (window.openTransitionModal) window.openTransitionModal();
+      return [
+        { text: '[BRIEFING] Opening System Migration Briefing modal...', class: 'success-line' },
+        { text: 'xpsystems has transitioned to ternis.dev (ternis-edv).', class: 'output-line' }
+      ];
+    },
+    briefing: () => {
+      if (window.openTransitionModal) window.openTransitionModal();
+      return [
+        { text: '[BRIEFING] Opening System Migration Briefing modal...', class: 'success-line' },
+        { text: 'xpsystems has transitioned to ternis.dev (ternis-edv).', class: 'output-line' }
+      ];
+    },
     status: () => [
       { text: '[LIVE TELEMETRY] All European Nodes Operational', class: 'success-line' },
       { text: '  DE-FRA (Frankfurt)  : 100Gbps DE-CIX — UP (3.8ms)', class: 'output-line' },
@@ -538,21 +553,23 @@
   });
 
 
-  /* ── 11. Snappy Preloader Dismissal ───────────────────────────────────── */
-  const loader = document.getElementById('xps-loader');
-  if (loader) {
-    window.addEventListener('load', function () {
+  /* ── 11. Top Hairline Preload Bar Completion ───────────────────────────── */
+  const preloadBar = document.getElementById('preload-bar');
+  if (preloadBar) {
+    const finishBar = () => {
+      preloadBar.style.width = '100%';
       setTimeout(() => {
-        loader.classList.add('is-loaded');
-      }, 150);
-    });
-
-    // Safeguard timeout
-    setTimeout(() => {
-      if (loader && !loader.classList.contains('is-loaded')) {
-        loader.classList.add('is-loaded');
-      }
-    }, 500);
+        preloadBar.classList.add('is-loaded');
+        setTimeout(() => {
+          if (preloadBar && preloadBar.parentNode) preloadBar.parentNode.removeChild(preloadBar);
+        }, 250);
+      }, 120);
+    };
+    if (document.readyState === 'complete') {
+      finishBar();
+    } else {
+      window.addEventListener('load', finishBar, { once: true });
+    }
   }
 
 
