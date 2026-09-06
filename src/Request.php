@@ -103,6 +103,14 @@ final class Request
         self::$current = $request;
     }
 
+    public function query(?string $key = null, mixed $default = null): mixed
+    {
+        if ($key === null) {
+            return $this->query;
+        }
+        return $this->query[$key] ?? $default;
+    }
+
     /**
      * Generate context- and environment-aware URL.
      * In local environments (localhost), generates relative URLs with ?domain= parameter.

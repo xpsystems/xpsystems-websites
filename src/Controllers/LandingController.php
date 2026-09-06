@@ -25,9 +25,15 @@ final class LandingController extends BaseController
         }, Config::get('stats', []));
         $heroCtas = Config::get('hero_ctas', []);
 
+        $isRework = Config::get('app.under_rework', true) && ($request->query('view') !== 'full');
+        $template = $isRework ? 'landing/under-rework' : 'landing/index';
+        $pageTitle = $isRework
+            ? $common['brand']['name'] . ' — Under Rework // Transition Notice'
+            : $common['brand']['name'] . ' — ' . $common['brand']['tagline'];
+
         $pageData = array_merge($common, [
-            'pageTitle'       => $common['brand']['name'] . ' — ' . $common['brand']['tagline'],
-            'pageDescription' => $common['brand']['description'],
+            'pageTitle'       => $pageTitle,
+            'pageDescription' => $common['brand']['transition_notice'],
             'services'        => $services,
             'team'            => $team,
             'stats'           => $stats,
@@ -35,7 +41,7 @@ final class LandingController extends BaseController
             'statusCheckUrl'  => Config::get('app.status_api_url', 'https://status.xpsystems.eu/api/status'),
         ]);
 
-        $html = View::render('landing/index', $pageData);
+        $html = View::render($template, $pageData);
         return Response::html($html);
     }
 }

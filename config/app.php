@@ -4,6 +4,7 @@ return [
     'app' => [
         'name' => 'xpsystems',
         'version' => '5.4.0',
+        'under_rework' => true,
         'copyright_year' => (int) date('Y'),
         'primary_domains' => ['xpsystems.eu', 'xpsystems.de', 'xpsys.de', 'xpsys.eu'],
         'status_url' => 'https://status.xpsystems.eu',

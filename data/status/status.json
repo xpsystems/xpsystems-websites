@@ -1,66 +1,66 @@
 {
-    "checked_at": 1788672484,
+    "checked_at": 1788674807,
     "overall": "major_outage",
     "services": {
         "xpsystems-eu": {
             "status": "up",
             "code": 200,
-            "latency_ms": 896
+            "latency_ms": 221
         },
         "xpsystems-de": {
             "status": "up",
             "code": 200,
-            "latency_ms": 952
+            "latency_ms": 366
         },
         "xpsys-de": {
             "status": "up",
             "code": 200,
-            "latency_ms": 925
+            "latency_ms": 193
         },
         "contact-xpsystems-eu": {
             "status": "up",
             "code": 200,
-            "latency_ms": 277
+            "latency_ms": 355
         },
         "domains-xpsystems-eu": {
             "status": "up",
             "code": 200,
-            "latency_ms": 253
+            "latency_ms": 258
         },
         "opensource-xpsystems-eu": {
             "status": "up",
             "code": 200,
-            "latency_ms": 212
+            "latency_ms": 227
         },
         "europehost-eu": {
             "status": "up",
             "code": 200,
-            "latency_ms": 888
+            "latency_ms": 280
         },
         "eu-data-org": {
             "status": "up",
             "code": 200,
-            "latency_ms": 1405
+            "latency_ms": 540
         },
         "eu-search-org": {
             "status": "up",
             "code": 200,
-            "latency_ms": 958
+            "latency_ms": 253
         },
         "api-sandbox-de": {
             "status": "up",
             "code": 200,
-            "latency_ms": 971
+            "latency_ms": 315
         },
         "status-node-1": {
             "status": "up",
             "code": 200,
-            "latency_ms": 1274
+            "latency_ms": 182
         },
         "status-node-2": {
             "status": "down",
             "code": null,
-            "latency_ms": 454
+            "latency_ms": 98
         }
     }
 }
