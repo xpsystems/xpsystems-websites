@@ -10,6 +10,10 @@
   /* ── 1. Web Audio API Tactile Mechanical Sound Synthesizer ─────────────── */
   let audioCtx = null;
   let soundEnabled = localStorage.getItem('xps-sound') === 'on';
+  let soundVolume = parseFloat(localStorage.getItem('xps-sound-volume') ?? '70');
+  if (isNaN(soundVolume) || soundVolume < 0 || soundVolume > 100) {
+    soundVolume = 70;
+  }
 
   function initAudio() {
     if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
@@ -22,7 +26,7 @@
   }
 
   function playTickSound(freq = 1200, type = 'sine', duration = 0.02) {
-    if (!soundEnabled) return;
+    if (!soundEnabled || soundVolume <= 0) return;
     try {
       initAudio();
       if (!audioCtx) return;
@@ -33,7 +37,8 @@
       osc.type = type;
       osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
-      gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+      const peakGain = 0.05 * (soundVolume / 100);
+      gain.gain.setValueAtTime(peakGain, audioCtx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
 
       osc.connect(gain);
@@ -49,15 +54,56 @@
   window.playTickSound = playTickSound;
 
   function updateSoundUI() {
+    const slider = document.getElementById('sound-volume-slider');
+    const valueDisplay = document.getElementById('sound-volume-value');
+    if (slider) {
+      slider.value = soundEnabled ? soundVolume : 0;
+    }
+    if (valueDisplay) {
+      valueDisplay.textContent = soundEnabled ? `${Math.round(soundVolume)}%` : '0% (Muted)';
+    }
+
     document.querySelectorAll('.sound-toggle-btn').forEach(btn => {
-      if (soundEnabled) {
+      if (soundEnabled && soundVolume > 0) {
         btn.classList.add('is-active');
-        btn.setAttribute('title', 'Sound: ON (click to mute)');
-        btn.setAttribute('aria-label', 'Sound: ON');
+        btn.setAttribute('title', `Sound: ON (${Math.round(soundVolume)}%) — hover to adjust volume`);
+        btn.setAttribute('aria-label', `Sound: ON (${Math.round(soundVolume)}%)`);
       } else {
         btn.classList.remove('is-active');
-        btn.setAttribute('title', 'Sound: OFF (click to enable)');
+        btn.setAttribute('title', 'Sound: OFF — hover to adjust volume');
         btn.setAttribute('aria-label', 'Sound: OFF');
+      }
+    });
+  }
+
+  function initVolumeSlider() {
+    const slider = document.getElementById('sound-volume-slider');
+    const valueDisplay = document.getElementById('sound-volume-value');
+    if (!slider) return;
+
+    slider.value = soundEnabled ? soundVolume : 0;
+    if (valueDisplay) {
+      valueDisplay.textContent = soundEnabled ? `${Math.round(soundVolume)}%` : '0% (Muted)';
+    }
+
+    slider.addEventListener('input', function () {
+      soundVolume = parseFloat(this.value);
+      localStorage.setItem('xps-sound-volume', soundVolume);
+
+      if (soundVolume === 0) {
+        soundEnabled = false;
+        localStorage.setItem('xps-sound', 'off');
+      } else {
+        soundEnabled = true;
+        localStorage.setItem('xps-sound', 'on');
+      }
+      updateSoundUI();
+    });
+
+    slider.addEventListener('change', function () {
+      if (soundEnabled && soundVolume > 0) {
+        initAudio();
+        playTickSound(1300, 'sine', 0.03);
       }
     });
   }
@@ -67,6 +113,10 @@
     if (soundBtn) {
       soundEnabled = !soundEnabled;
       localStorage.setItem('xps-sound', soundEnabled ? 'on' : 'off');
+      if (soundEnabled && soundVolume === 0) {
+        soundVolume = 70;
+        localStorage.setItem('xps-sound-volume', soundVolume);
+      }
       updateSoundUI();
       if (soundEnabled) {
         initAudio();
@@ -276,11 +326,50 @@
   });
 
 
-  /* ── 9. Live Status Health Checker & Refresh ──────────────────────────── */
+  /* ── 9. Live Status Health Checker & --status-color Reactive Controller ── */
   const statusBadge = document.getElementById('status-badge');
   const statusDot = document.getElementById('status-dot');
   const statusText = document.getElementById('status-text');
   const refreshBtn = document.getElementById('status-refresh-btn');
+
+  function applyStatusBadgeState(rawStatus) {
+    if (!statusBadge) return;
+    const s = (rawStatus || 'operational').toLowerCase();
+
+    let colorVar = 'var(--status-up)';
+    let label = 'Operational';
+
+    if (s === 'operational' || s === 'up') {
+      colorVar = 'var(--status-up)';
+      label = 'Operational';
+    } else if (s === 'degraded' || s === 'warn' || s === 'partial_outage') {
+      colorVar = 'var(--status-warn)';
+      label = 'Degraded';
+    } else if (s === 'major_outage' || s === 'outage' || s === 'down' || s === 'incident') {
+      colorVar = 'var(--status-down)';
+      label = 'Incident';
+    } else if (s === 'maintenance') {
+      colorVar = 'var(--cyan)';
+      label = 'Maintenance';
+    }
+
+    // Apply --status-color CSS custom property directly on #status-badge
+    statusBadge.style.setProperty('--status-color', colorVar);
+    statusBadge.setAttribute('data-status', s);
+
+    if (statusText) {
+      statusText.textContent = label;
+    }
+
+    if (statusDot) {
+      statusDot.style.backgroundColor = colorVar;
+    }
+
+    const statusPing = statusBadge.querySelector('.status-ping');
+    if (statusPing) {
+      statusPing.style.backgroundColor = colorVar;
+    }
+  }
 
   function checkStatus() {
     if (refreshBtn) refreshBtn.classList.add('spinning');
@@ -290,24 +379,21 @@
       .then(data => {
         if (refreshBtn) refreshBtn.classList.remove('spinning');
         if (data && data.overall) {
-          const isUp = data.overall === 'operational';
-          if (statusDot) {
-            statusDot.className = `status-dot ${isUp ? 'green' : 'warn'}`;
-          }
-          if (statusText) {
-            statusText.textContent = isUp ? 'Operational' : 'Incident';
-          }
+          applyStatusBadgeState(data.overall);
         }
       })
       .catch(() => {
         if (refreshBtn) refreshBtn.classList.remove('spinning');
-        // Fallback keep existing
       });
   }
 
   if (refreshBtn) {
     refreshBtn.addEventListener('click', checkStatus);
   }
+
+  // Initial status check & periodic refresh
+  checkStatus();
+  setInterval(checkStatus, 60000);
 
 
   /* ── 10. Uptime Bar Tooltips ─────────────────────────────────────────── */
@@ -501,7 +587,8 @@
     return div.innerHTML;
   }
 
-  // Initialize Sound State
+  // Initialize Sound State & Volume Control
+  initVolumeSlider();
   updateSoundUI();
 
 })();

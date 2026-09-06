@@ -498,30 +498,80 @@ button {
 }
 
 .status-badge {
+  --status-color: var(--status-up);
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 6px 12px;
   background-color: var(--bg-surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--status-color);
   border-radius: var(--radius-xs);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--text);
   text-decoration: none;
-  transition: border-color var(--t-fast), background-color var(--t-fast);
+  transition: border-color var(--t-fast), background-color var(--t-fast), box-shadow var(--t-fast);
 }
 .status-badge:hover {
-  border-color: var(--status-up);
+  border-color: var(--status-color);
   background-color: var(--bg-surface-hover);
+  box-shadow: 0 0 0 1px var(--status-color);
+}
+.status-badge .status-dot-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+}
+.status-badge .status-ping {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background-color: var(--status-color);
+  opacity: 0.6;
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.status-badge .status-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--status-color);
+  transition: background-color var(--t-fast);
 }
 .status-badge .status-text {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   font-weight: 700;
 }
+.status-badge[data-status=operational] {
+  --status-color: var(--status-up);
+}
+.status-badge[data-status=incident], .status-badge[data-status=degraded], .status-badge[data-status=warn], .status-badge[data-status=partial_outage] {
+  --status-color: var(--status-warn);
+}
+.status-badge[data-status=major_outage], .status-badge[data-status=outage], .status-badge[data-status=down] {
+  --status-color: var(--status-down);
+}
+.status-badge[data-status=maintenance] {
+  --status-color: var(--cyan);
+}
 @media (max-width: 600px) {
   .status-badge .status-text {
+    display: none;
+  }
+}
+
+.sound-control-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .sound-control-wrap {
     display: none;
   }
 }
@@ -562,10 +612,107 @@ button {
   border-color: var(--border-hover);
   background-color: var(--bg-surface-hover);
 }
-@media (max-width: 768px) {
-  .sound-toggle-btn {
-    display: none;
-  }
+
+.sound-volume-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 170px;
+  padding: 10px 14px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-highlight);
+  border-radius: var(--radius-xs);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity var(--t-fast), transform var(--t-fast), visibility var(--t-fast);
+  pointer-events: none;
+}
+.sound-volume-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+
+.sound-control-wrap:hover .sound-volume-dropdown,
+.sound-control-wrap:focus-within .sound-volume-dropdown,
+.sound-volume-dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.sound-volume-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.6875rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.sound-volume-header .sound-volume-value {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.sound-slider-wrap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.sound-volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-full);
+  outline: none;
+  cursor: pointer;
+  margin: 4px 0;
+}
+.sound-volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  cursor: pointer;
+  border: 2px solid var(--bg-surface);
+  transition: transform var(--t-fast), background-color var(--t-fast);
+}
+.sound-volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+  background: var(--accent-hover);
+}
+.sound-volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  cursor: pointer;
+  border: 2px solid var(--bg-surface);
+  transition: transform var(--t-fast), background-color var(--t-fast);
+}
+.sound-volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.25);
+  background: var(--accent-hover);
+}
+.sound-volume-slider::-moz-range-track {
+  background: var(--bg-elevated);
+  height: 4px;
+  border-radius: var(--radius-full);
 }
 
 .theme-toggle-group {

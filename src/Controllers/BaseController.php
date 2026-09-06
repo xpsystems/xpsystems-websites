@@ -54,6 +54,36 @@ abstract class BaseController
             ];
         }
 
+        // Read current infrastructure status for global navigation badge
+        $statusFile = dirname(__DIR__, 2) . '/data/status/status.json';
+        $overallStatus = 'operational';
+        $statusLabel = 'Operational';
+        $statusColor = 'var(--status-up)';
+
+        if (file_exists($statusFile)) {
+            $rawStatus = @file_get_contents($statusFile);
+            if ($rawStatus !== false) {
+                $statusData = json_decode($rawStatus, true);
+                if (!empty($statusData['overall'])) {
+                    $overallStatus = (string) $statusData['overall'];
+                    $lowerStatus = strtolower($overallStatus);
+                    if (in_array($lowerStatus, ['operational', 'up'], true)) {
+                        $statusLabel = 'Operational';
+                        $statusColor = 'var(--status-up)';
+                    } elseif (in_array($lowerStatus, ['degraded', 'warn', 'partial_outage'], true)) {
+                        $statusLabel = 'Degraded';
+                        $statusColor = 'var(--status-warn)';
+                    } elseif (in_array($lowerStatus, ['major_outage', 'outage', 'down', 'incident'], true)) {
+                        $statusLabel = 'Incident';
+                        $statusColor = 'var(--status-down)';
+                    } elseif ($lowerStatus === 'maintenance') {
+                        $statusLabel = 'Maintenance';
+                        $statusColor = 'var(--cyan)';
+                    }
+                }
+            }
+        }
+
         return [
             'request'        => $request,
             'brand'          => Config::get('brand', []),
@@ -63,6 +93,9 @@ abstract class BaseController
             'currentContext' => $currentContext,
             'currentTld'     => $request->tld,
             'currentYear'    => (int) date('Y'),
+            'overallStatus'  => $overallStatus,
+            'statusLabel'    => $statusLabel,
+            'statusColor'    => $statusColor,
         ];
     }
 }
