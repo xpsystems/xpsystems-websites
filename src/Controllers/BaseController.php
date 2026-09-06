@@ -16,33 +16,43 @@ abstract class BaseController
 
         // Compute context-aware navigation links
         $nav = [];
-        $rawNav = Config::get('nav', []);
-        
-        // Add Home link if on a subdomain or non-root
-        if ($isSubdomain) {
-            $nav[] = ['label' => 'Home', 'href' => $request->url('main'), 'external' => false];
-        }
 
-        foreach ($rawNav as $item) {
-            // Check context filter if specified
-            if (isset($item['contexts']) && !in_array($currentContext, $item['contexts'], true)) {
-                continue;
-            }
-
-            $resolvedHref = $request->url($item['href']);
-            $isExternal = $item['external'] ?? false;
-            // On local dev server, internal routes stay within same tab
-            if ($request->isLocal && (str_starts_with($resolvedHref, '/') || str_starts_with($resolvedHref, '#'))) {
-                $isExternal = false;
-            }
-
-            $nav[] = [
-                'label'    => $item['label'],
-                'href'     => $resolvedHref,
-                'external' => $isExternal,
-                'active'   => (isset($item['route']) && $item['route'] === $request->path)
-                              || (isset($item['label']) && strtolower($item['label']) === $currentContext),
+        if (Config::get('app.under_rework', true)) {
+            $nav = [
+                ['label' => 'ternis.dev', 'href' => 'https://ternis.dev', 'external' => true],
+                ['label' => 'OpenSource', 'href' => 'https://oss.ternis.org', 'external' => true],
+                ['label' => 'GitHub',     'href' => 'https://github.com/xpsystems', 'external' => true],
+                ['label' => 'Imprint',    'href' => 'https://ternis.dev/en/legal/imprint', 'external' => true],
             ];
+        } else {
+            $rawNav = Config::get('nav', []);
+            
+            // Add Home link if on a subdomain or non-root
+            if ($isSubdomain) {
+                $nav[] = ['label' => 'Home', 'href' => $request->url('main'), 'external' => false];
+            }
+
+            foreach ($rawNav as $item) {
+                // Check context filter if specified
+                if (isset($item['contexts']) && !in_array($currentContext, $item['contexts'], true)) {
+                    continue;
+                }
+
+                $resolvedHref = $request->url($item['href']);
+                $isExternal = $item['external'] ?? false;
+                // On local dev server, internal routes stay within same tab
+                if ($request->isLocal && (str_starts_with($resolvedHref, '/') || str_starts_with($resolvedHref, '#'))) {
+                    $isExternal = false;
+                }
+
+                $nav[] = [
+                    'label'    => $item['label'],
+                    'href'     => $resolvedHref,
+                    'external' => $isExternal,
+                    'active'   => (isset($item['route']) && $item['route'] === $request->path)
+                                  || (isset($item['label']) && strtolower($item['label']) === $currentContext),
+                ];
+            }
         }
 
         // Adapt footer links using url helper

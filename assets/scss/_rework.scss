@@ -184,12 +184,11 @@
   transition: border-color var(--t-fast), background-color var(--t-fast);
 
   &:hover {
-    border-color: var(--border-hover);
+    border-color: var(--accent);
     background-color: var(--bg-surface-hover);
 
     .rework-card-arrow {
-      transform: translateX(4px);
-      color: var(--accent);
+      color: var(--accent-hover);
     }
   }
 }

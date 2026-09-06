@@ -267,12 +267,10 @@
   background-color: var(--bg-surface);
   border: 1px solid var(--border-highlight);
   border-radius: var(--radius-xs);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-4px);
-  transition: opacity var(--t-fast), transform var(--t-fast), visibility var(--t-fast);
+  transition: opacity var(--t-fast), visibility var(--t-fast);
   pointer-events: none;
 
   // Invisible hover bridge so moving mouse between button and dropdown doesn't flicker/close
@@ -291,7 +289,6 @@
 .sound-volume-dropdown.is-open {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
   pointer-events: auto;
 }
 
