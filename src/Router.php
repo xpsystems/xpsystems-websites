@@ -79,7 +79,18 @@ final class Router
             return (new ApiController())->handle($request);
         }
 
-        // 5. Subdomain-specific dispatching
+        // 5. Global Imprint / Impressum redirect
+        if ($path === '/impressum' || $path === '/imprint') {
+            return Response::redirect('https://ternis.dev/en/legal/imprint', 301);
+        }
+
+        // 6. Global Under Rework Mode: Every domain, subdomain, and page shows this
+        // (Developers can pass ?preview=1 or ?view=full to inspect underlying pages)
+        if (Config::get('app.under_rework', true) && !$request->query('preview') && $request->query('view') !== 'full') {
+            return (new LandingController())->index($request);
+        }
+
+        // 7. Subdomain-specific dispatching
         switch ($subdomain) {
             case 'contact':
                 return self::dispatchContact($request, $path);

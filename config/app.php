@@ -24,6 +24,7 @@ return [
         'nameservers'       => ['one.ns.ternis.net', 'two.ns.ternis.net'],
         'transition_notice' => 'xpsystems (xpsystems.eu & xpsystems.de) has transitioned into ternis.dev (ternis-edv). Infrastructure, DNS services, and open-source operations continue under the ternis ecosystem.',
         'description'       => 'European infrastructure, digital sovereignty, and developer-first tooling — operated as a sub-entity of ternis-edv (ternis.dev) from Germany.',
+        'imprint_url'       => 'https://ternis.dev/en/legal/imprint',
         'domains'           => ['xpsystems.eu', 'xpsystems.de', 'xpsys.de'],
     ],
 
@@ -73,7 +74,7 @@ return [
         ['label' => 'EuropeHost',    'href' => 'https://europehost.eu'],
         ['label' => 'eu-data.org',   'href' => 'https://eu-data.org'],
         ['label' => 'MTEX.dev',      'href' => 'https://mtex.dev'],
-        ['label' => 'Impressum',     'href' => '/impressum'],
+        ['label' => 'Impressum',     'href' => 'https://ternis.dev/en/legal/imprint'],
         ['label' => 'Privacy',       'href' => '/privacy'],
     ],
 

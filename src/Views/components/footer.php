@@ -89,7 +89,7 @@
           <li><a href="https://github.com/xpsystems" target="_blank" rel="noopener noreferrer">GitHub @xpsystems</a></li>
           <li><a href="https://oss.ternis.org" target="_blank" rel="noopener noreferrer">oss.ternis.org</a></li>
           <li><a href="<?= htmlspecialchars(url('/contact')) ?>">Contact Desk</a></li>
-          <li><a href="<?= htmlspecialchars(url('/impressum')) ?>">Impressum (§ 5 DDG)</a></li>
+          <li><a href="https://ternis.dev/en/legal/imprint" target="_blank" rel="noopener noreferrer">Impressum / Imprint (§ 5 DDG) ↗</a></li>
           <li><a href="<?= htmlspecialchars(url('/privacy')) ?>">Privacy Policy (DSGVO)</a></li>
         </ul>
       </div>

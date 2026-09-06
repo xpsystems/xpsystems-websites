@@ -28,13 +28,19 @@
 <?php $component('transition-banner'); ?>
 <?php $component('header'); ?>
 
+<?php
+$sub = $request->getSubdomainNormalized();
+$reqTarget = ($sub !== 'main')
+    ? $sub . '.' . ($brand['domains'][0] ?? 'xpsystems.eu')
+    : ($request->path !== '/' ? $request->path : 'xpsystems ecosystem');
+?>
 <main class="rework-page">
   <div class="rework-container">
 
     <!-- Eyebrow Status Badge -->
     <div class="rework-hero-badge">
       <span class="rework-badge-dot"></span>
-      <span>SYSTEM NOTICE // ARCHITECTURAL REWORK</span>
+      <span>SYSTEM NOTICE // <?= strtoupper($e($reqTarget)) ?> UNDER REWORK</span>
     </div>
 
     <!-- Monumental Headline -->
@@ -67,6 +73,9 @@
         </p>
         <p>
           Authoritative nameservers <code><?= $e($brand['nameservers'][0] ?? 'one.ns.ternis.net') ?></code> and <code><?= $e($brand['nameservers'][1] ?? 'two.ns.ternis.net') ?></code> continue to serve all managed DNS delegations without interruption.
+        </p>
+        <p style="font-size:0.8125rem;color:var(--text-muted);margin-top:10px;">
+          Provider Identification &amp; Imprint: <a href="https://ternis.dev/en/legal/imprint" target="_blank" rel="noopener noreferrer"><strong>ternis.dev/en/legal/imprint ↗</strong></a>
         </p>
       </div>
 
@@ -206,6 +215,10 @@
         <div class="rework-spec-item">
           <span class="rework-spec-label">Platform Engine</span>
           <span class="rework-spec-value">xpsystems v<?= $e($brand['version'] ?? '5.4.0') ?></span>
+        </div>
+        <div class="rework-spec-item">
+          <span class="rework-spec-label">Legal / Imprint</span>
+          <span class="rework-spec-value"><a href="https://ternis.dev/en/legal/imprint" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">ternis.dev/en/legal/imprint ↗</a></span>
         </div>
         <div class="rework-spec-item">
           <span class="rework-spec-label">Status</span>
