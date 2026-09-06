@@ -418,23 +418,9 @@ button {
 .nav-logo {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 2px;
   user-select: none;
   text-decoration: none;
-}
-.nav-logo .nav-logo-mark {
-  width: 28px;
-  height: 28px;
-  background-color: var(--accent);
-  color: var(--accent-text);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 800;
-  border-radius: var(--radius-xs);
-  transition: background-color var(--t-fast);
 }
 .nav-logo .nav-logo-text {
   font-size: 1.125rem;
@@ -447,15 +433,12 @@ button {
   width: 5px;
   height: 5px;
   border-radius: var(--radius-full);
-  background-color: var(--accent);
-  margin-left: -5px;
+  background-color: var(--signal);
+  margin-left: 1px;
   margin-bottom: 2px;
 }
-.nav-logo:hover .nav-logo-mark {
-  background-color: var(--accent-hover);
-}
 .nav-logo:hover .nav-logo-text {
-  color: var(--text);
+  color: var(--accent);
 }
 
 .nav-links {
@@ -3059,12 +3042,15 @@ button {
 .footer-brand-logo {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   font-size: 1.125rem;
   font-weight: 800;
   color: var(--text);
   letter-spacing: -0.04em;
   text-decoration: none;
+  transition: color var(--t-fast);
+}
+.footer-brand-logo:hover {
+  color: var(--accent);
 }
 
 .footer-rework-desc {

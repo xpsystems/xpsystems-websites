@@ -5,7 +5,6 @@
     <div class="footer-rework-box">
       <div class="footer-rework-info">
         <a href="<?= htmlspecialchars(url('main')) ?>" class="footer-brand-logo" aria-label="xpsystems home">
-          <span class="nav-logo-mark">XP</span>
           <span>xpsystems<span style="color:var(--signal);">.</span></span>
         </a>
         <p class="footer-rework-desc">

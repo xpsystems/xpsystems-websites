@@ -42,12 +42,16 @@
 .footer-brand-logo {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   font-size: 1.125rem;
   font-weight: 800;
   color: var(--text);
   letter-spacing: -0.04em;
   text-decoration: none;
+  transition: color var(--t-fast);
+
+  &:hover {
+    color: var(--accent);
+  }
 }
 
 .footer-rework-desc {

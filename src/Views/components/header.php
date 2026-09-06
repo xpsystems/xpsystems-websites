@@ -1,7 +1,6 @@
 <header class="nav-header" id="nav-header">
   <div class="nav-inner">
     <a href="<?= htmlspecialchars(url('main')) ?>" class="nav-logo" aria-label="xpsystems home">
-      <span class="nav-logo-mark">XP</span>
       <span class="nav-logo-text">xpsystems</span>
       <span class="nav-logo-dot"></span>
     </a>

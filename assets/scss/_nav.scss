@@ -30,28 +30,13 @@
   gap: 16px;
 }
 
-// ── Pure Geometric Logo Mark
+// ── Pure Typographic Brand Logo
 .nav-logo {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 2px;
   user-select: none;
   text-decoration: none;
-
-  .nav-logo-mark {
-    width: 28px;
-    height: 28px;
-    background-color: var(--accent);
-    color: var(--accent-text);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    font-weight: 800;
-    border-radius: var(--radius-xs);
-    transition: background-color var(--t-fast);
-  }
 
   .nav-logo-text {
     font-size: 1.125rem;
@@ -65,17 +50,14 @@
     width: 5px;
     height: 5px;
     border-radius: var(--radius-full);
-    background-color: var(--accent);
-    margin-left: -5px;
+    background-color: var(--signal);
+    margin-left: 1px;
     margin-bottom: 2px;
   }
 
   &:hover {
-    .nav-logo-mark {
-      background-color: var(--accent-hover);
-    }
     .nav-logo-text {
-      color: var(--text);
+      color: var(--accent);
     }
   }
 }
