@@ -7,16 +7,13 @@
   <meta name="description" content="<?= $e($pageDescription) ?>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script>
   (function(){
     try {
-      var s = localStorage.getItem('xps-theme') || 'system';
-      var r = s === 'system'
-        ? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
-        : s;
-      document.documentElement.setAttribute('data-theme', r);
+      var s = localStorage.getItem('xps-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', s);
     } catch(e) {}
   })();
   </script>
@@ -28,36 +25,31 @@
 <body>
 
 <?php $component('loader'); ?>
-
 <?php $component('header'); ?>
 <?php $component('transition-banner'); ?>
 
 <!-- ═══════════════════════════════════════════════════════════ HERO -->
 <section class="hero">
   <div class="grid-backdrop" aria-hidden="true"></div>
-  <div class="hero-inner">
+  <div class="container hero-inner">
 
-    <div class="hero-eyebrow reveal">
-      <svg class="eyebrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"/>
-        <line x1="2" y1="12" x2="22" y2="12"/>
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-      </svg>
+    <div class="hero-eyebrow">
+      <span class="status-dot green"></span>
       <span><?= $e($brand['domains'][0] ?? 'xpsystems.eu') ?> &bull; <?= $e($brand['domains'][1] ?? 'xpsystems.de') ?></span>
       <span class="eyebrow-separator">&bull;</span>
-      <span>Sub-Entity of <a href="https://ternis.dev" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;">ternis.dev</a></span>
+      <span>Sub-Entity of <a href="https://ternis.dev" target="_blank" rel="noopener noreferrer">ternis.dev</a></span>
     </div>
 
-    <h1 class="hero-title reveal" style="--delay:50ms">
+    <h1 class="hero-title">
       European infrastructure<br>
       <span class="hero-title-accent">engineered for sovereignty.</span>
     </h1>
 
-    <p class="hero-tagline reveal" style="--delay:100ms">
-      High-performance hosting, sovereign domain routing, and developer-first open source tooling — operated from Germany under strict GDPR standards.
+    <p class="hero-tagline">
+      High-performance hosting, sovereign Anycast domain routing, and developer-first open source tooling — operated from Germany under strict GDPR standards.
     </p>
 
-    <div class="hero-ctas reveal" style="--delay:150ms">
+    <div class="hero-ctas">
       <a href="#services" class="btn btn-primary btn-lg">
         <span>Explore Infrastructure</span>
         <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -73,7 +65,7 @@
       </a>
 
       <a href="<?= $e(url('/domains')) ?>" class="btn btn-secondary btn-lg">
-        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/>
           <line x1="2" y1="12" x2="22" y2="12"/>
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
@@ -82,36 +74,131 @@
       </a>
     </div>
 
-    <!-- Quick Developer Terminal Snippet -->
-    <div class="hero-terminal spotlight-card reveal" style="--delay:180ms" data-copy="curl -sI https://xpsystems.eu" data-copy-label="curl command">
-      <span class="terminal-prompt">$</span>
-      <span class="terminal-cmd">curl -sI https://xpsystems.eu | grep -i "server\|region"</span>
-      <button class="terminal-copy-btn" title="Click to copy command" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-        </svg>
-      </button>
+    <!-- ── Interactive Dual-Mode Shell (XP-CLI Terminal & Edge PoP Radar) -->
+    <div class="hero-interactive-shell">
+      <div class="shell-header">
+        <div class="shell-window-controls" aria-hidden="true">
+          <span class="shell-dot red"></span>
+          <span class="shell-dot yellow"></span>
+          <span class="shell-dot green"></span>
+        </div>
+
+        <div class="shell-tabs" role="tablist">
+          <button type="button" class="shell-tab-btn active" data-tab="terminal" role="tab" aria-selected="true">
+            &gt;_ XP-CLI Terminal
+          </button>
+          <button type="button" class="shell-tab-btn" data-tab="radar" role="tab" aria-selected="false">
+            [ European Edge Nodes ]
+          </button>
+        </div>
+
+        <div class="shell-title-tag mono">
+          <span>SEC:TLS_1.3 &bull; ANYCAST_DNS</span>
+        </div>
+      </div>
+
+      <!-- Mode 1: In-Browser Interactive Terminal -->
+      <div class="shell-content-terminal" id="terminal-cli-container">
+        <div class="terminal-history" id="terminal-cli-history">
+          <div class="terminal-line accent-line">xpsystems sovereign telemetry v3.4.0 [x86_64-linux-gnu]</div>
+          <div class="terminal-line output-line">Connected to Frankfurt Core (DE-CIX Anycast Mesh). Type "help" for commands.</div>
+          <div class="terminal-line success-line">&#10003; 4/4 edge nodes reporting 100% operational status.</div>
+        </div>
+
+        <div class="terminal-input-row">
+          <span class="terminal-prompt">$</span>
+          <input
+            type="text"
+            class="terminal-input"
+            id="terminal-cli-input"
+            placeholder="Type 'help', 'status', 'ping fra', 'domains', or 'team'..."
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="XP-CLI command input"
+          >
+        </div>
+      </div>
+
+      <!-- Mode 2: European Edge PoP Radar -->
+      <div class="shell-content-radar">
+        <div class="radar-grid">
+          <div class="radar-node-card is-selected" data-node="fra">
+            <div class="node-code">[DE-FRA]</div>
+            <div class="node-city">Frankfurt am Main</div>
+            <div class="node-role">Primary Core &bull; DE-CIX</div>
+            <div class="node-latency-pill">
+              <span class="status-dot green"></span>
+              <span>~3.8ms Anycast</span>
+            </div>
+          </div>
+
+          <div class="radar-node-card" data-node="fsn">
+            <div class="node-code">[DE-FSN]</div>
+            <div class="node-city">Falkenstein</div>
+            <div class="node-role">Bare-Metal &bull; Dedicated</div>
+            <div class="node-latency-pill">
+              <span class="status-dot green"></span>
+              <span>~6.2ms Dedicated</span>
+            </div>
+          </div>
+
+          <div class="radar-node-card" data-node="ams">
+            <div class="node-code">[NL-AMS]</div>
+            <div class="node-city">Amsterdam</div>
+            <div class="node-role">AMS-IX Edge &bull; Transit</div>
+            <div class="node-latency-pill">
+              <span class="status-dot green"></span>
+              <span>~8.9ms Edge</span>
+            </div>
+          </div>
+
+          <div class="radar-node-card" data-node="hel">
+            <div class="node-code">[FI-HEL]</div>
+            <div class="node-city">Helsinki</div>
+            <div class="node-role">Cold Vault &bull; Backup</div>
+            <div class="node-latency-pill">
+              <span class="status-dot green"></span>
+              <span>~14.1ms Vault</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Trust strip -->
-    <div class="hero-trust reveal" style="--delay:220ms">
-      <span class="trust-item">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        100% GDPR / DSGVO Compliant
-      </span>
-      <span class="trust-item">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        Bare-Metal in Germany &amp; EU
-      </span>
-      <span class="trust-item">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-        Open Source Core
-      </span>
-      <span class="trust-item">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-        Zero Tracking Cookies
-      </span>
+    <!-- Trust Strip -->
+    <div class="hero-trust">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>100% GDPR / DSGVO Compliant</span>
+      </div>
+
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+          <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+          <line x1="6" y1="6" x2="6.01" y2="6"/>
+          <line x1="6" y1="18" x2="6.01" y2="18"/>
+        </svg>
+        <span>Bare-Metal in Germany &amp; EU</span>
+      </div>
+
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/>
+          <polyline points="8 6 2 12 8 18"/>
+        </svg>
+        <span>Open Source Core</span>
+      </div>
+
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+        </svg>
+        <span>Zero Tracking Cookies</span>
+      </div>
     </div>
 
   </div>
@@ -120,118 +207,28 @@
 
 <!-- ═══════════════════════════════════════════════════════ SERVICES & BLUEPRINT -->
 <section class="section section-alt" id="services">
-  <div class="grid-backdrop" aria-hidden="true"></div>
-  <div class="container" style="position:relative;z-index:2;">
+  <div class="container">
     <div class="section-header">
-      <span class="section-eyebrow reveal">Network Architecture</span>
-      <h2 class="section-title reveal" style="--delay:40ms">Services &amp; Sovereign Infrastructure</h2>
-      <p class="section-sub reveal" style="--delay:80ms">
+      <span class="section-eyebrow">Network Architecture</span>
+      <h2 class="section-title">Services &amp; Sovereign Infrastructure</h2>
+      <p class="section-sub">
         Bare-metal compute, low-latency European network edges, and privacy-first web platforms.
       </p>
     </div>
 
-    <!-- Interactive Node Topology Preview -->
-    <div class="infra-blueprint reveal">
-      <div class="blueprint-header">
-        <div class="blueprint-title-wrap">
-          <div class="blueprint-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-              <line x1="6" y1="6" x2="6.01" y2="6"></line>
-              <line x1="6" y1="18" x2="6.01" y2="18"></line>
-            </svg>
-          </div>
-          <div>
-            <h3>Active European Point-of-Presence (PoP) Nodes</h3>
-            <p>Monitored edge routing, Anycast DNS, and dedicated compute clusters.</p>
-          </div>
-        </div>
-        <a href="https://status.xpsystems.eu" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
-          <span>Live Telemetry</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-        </a>
-      </div>
-
-      <div class="blueprint-regions">
-        <div class="region-node spotlight-card" data-region="de-fra">
-          <div class="region-top">
-            <span class="region-city">Frankfurt am Main</span>
-            <span class="region-flag">DE-FRA</span>
-          </div>
-          <div class="region-specs">
-            <span>Primary Core &bull; DE-CIX</span>
-            <span class="region-status">Live</span>
-          </div>
-          <div class="region-telemetry">
-            <span class="region-ping"><span class="status-dot green" style="width:6px;height:6px;display:inline-block;margin-right:6px;"></span>~3.8ms Anycast</span>
-            <span class="region-meta">100Gbps Edge</span>
-          </div>
-        </div>
-
-        <div class="region-node spotlight-card" data-region="de-fsn">
-          <div class="region-top">
-            <span class="region-city">Falkenstein</span>
-            <span class="region-flag">DE-FSN</span>
-          </div>
-          <div class="region-specs">
-            <span>Bare-Metal &bull; Dedicated</span>
-            <span class="region-status">Live</span>
-          </div>
-          <div class="region-telemetry">
-            <span class="region-ping"><span class="status-dot green" style="width:6px;height:6px;display:inline-block;margin-right:6px;"></span>~6.2ms Dedicated</span>
-            <span class="region-meta">Tier IV Cluster</span>
-          </div>
-        </div>
-
-        <div class="region-node spotlight-card" data-region="nl-ams">
-          <div class="region-top">
-            <span class="region-city">Amsterdam</span>
-            <span class="region-flag">NL-AMS</span>
-          </div>
-          <div class="region-specs">
-            <span>AMS-IX &bull; Edge Proxy</span>
-            <span class="region-status">Live</span>
-          </div>
-          <div class="region-telemetry">
-            <span class="region-ping"><span class="status-dot green" style="width:6px;height:6px;display:inline-block;margin-right:6px;"></span>~8.9ms AMS-IX</span>
-            <span class="region-meta">Global Transit</span>
-          </div>
-        </div>
-
-        <div class="region-node spotlight-card" data-region="fi-hel">
-          <div class="region-top">
-            <span class="region-city">Helsinki</span>
-            <span class="region-flag">FI-HEL</span>
-          </div>
-          <div class="region-specs">
-            <span>Encrypted Vault &bull; Backup</span>
-            <span class="region-status">Live</span>
-          </div>
-          <div class="region-telemetry">
-            <span class="region-ping"><span class="status-dot green" style="width:6px;height:6px;display:inline-block;margin-right:6px;"></span>~14.1ms Vault</span>
-            <span class="region-meta">Cold Vault</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="services-grid">
       <?php foreach ($services as $i => $service): ?>
-        <article
-          class="card spotlight-card <?= $service['type'] === 'partner' ? 'card-partner' : '' ?> reveal"
-          style="--delay:<?= $i * 50 ?>ms"
-        >
-          <span class="card-badge <?= $service['type'] === 'parent' ? 'card-badge-parent' : ($service['type'] === 'service' ? 'card-badge-service' : '') ?>">
-            <span class="status-dot <?= $service['type'] === 'parent' ? 'blue' : 'green' ?>" style="width:5px;height:5px;"></span>
+        <article class="card <?= $service['type'] === 'partner' ? 'card-partner' : ($service['type'] === 'parent' ? 'card-parent' : '') ?>">
+          <span class="card-badge <?= $service['type'] === 'parent' ? 'card-badge-parent' : ($service['type'] === 'partner' ? 'card-badge-partner' : 'card-badge-service') ?>">
+            <span class="status-dot <?= $service['type'] === 'parent' ? 'blue' : ($service['type'] === 'partner' ? 'orange' : 'green') ?>"></span>
             <?= $service['type'] === 'parent' ? 'Parent Entity (ternis.dev)' : ($service['type'] === 'partner' ? 'Partner Ecosystem' : 'Core Infrastructure') ?>
           </span>
 
           <div class="card-top">
             <h3 class="card-name">
               <a class="card-name-link" href="<?= $e($service['url']) ?>" target="_blank" rel="noopener noreferrer">
-                <?= $e($service['name']) ?>
-                <svg class="icon-ext" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <span><?= $e($service['name']) ?></span>
+                <svg class="icon-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </a>
@@ -245,7 +242,7 @@
                 <li>
                   <a class="card-sublink" href="<?= $e($link['href']) ?>" target="_blank" rel="noopener noreferrer">
                     <span><?= $e($link['label']) ?></span>
-                    <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                     </svg>
                   </a>
@@ -260,82 +257,94 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════════════════ MISSION / VALUES -->
+<!-- ═══════════════════════════════════════════════════════ ENGINEERING PRINCIPLES -->
 <section class="section section-base" id="mission">
   <div class="container">
     <div class="section-header">
-      <span class="section-eyebrow reveal">Engineering Principles</span>
-      <h2 class="section-title reveal" style="--delay:40ms">Why We Build Differently</h2>
-      <p class="section-sub reveal" style="--delay:80ms">
-        We believe the web should be fast, private, transparent, and sovereign in European hands.
+      <span class="section-eyebrow">Engineering Principles</span>
+      <h2 class="section-title">Why We Build Differently</h2>
+      <p class="section-sub">
+        We believe European digital infrastructure should be fast, private, transparent, and autonomous.
       </p>
     </div>
 
     <div class="mission-grid">
-
-      <div class="mission-card spotlight-card reveal" style="--delay:0ms">
-        <span class="mission-num">01</span>
+      <div class="mission-card">
+        <span class="mission-num">[01]</span>
         <div class="mission-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
         </div>
         <h3 class="mission-title">Privacy by Default</h3>
-        <p class="mission-desc">Zero tracking cookies, zero user surveillance, and zero third-party telemetry. Your data stays in Europe under full GDPR compliance.</p>
+        <p class="mission-desc">
+          Zero tracking cookies, zero user surveillance, and zero third-party telemetry. All telemetry stays in Europe under full GDPR compliance.
+        </p>
       </div>
 
-      <div class="mission-card spotlight-card reveal" style="--delay:60ms">
-        <span class="mission-num">02</span>
+      <div class="mission-card">
+        <span class="mission-num">[02]</span>
         <div class="mission-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
           </svg>
         </div>
-        <h3 class="mission-title">Open Source First</h3>
-        <p class="mission-desc">We publish our tools, libraries, and core platforms publicly on GitHub. Transparent code fosters trust, security, and true developer autonomy.</p>
+        <h3 class="mission-title">Open Source Core</h3>
+        <p class="mission-desc">
+          We publish our platforms, tools, and libraries publicly on GitHub. Transparent code fosters trust, security, and developer independence.
+        </p>
       </div>
 
-      <div class="mission-card spotlight-card reveal" style="--delay:120ms">
-        <span class="mission-num">03</span>
+      <div class="mission-card">
+        <span class="mission-num">[03]</span>
         <div class="mission-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+            <line x1="6" y1="6" x2="6.01" y2="6"/>
+            <line x1="6" y1="18" x2="6.01" y2="18"/>
           </svg>
         </div>
         <h3 class="mission-title">Resilient Infrastructure</h3>
-        <p class="mission-desc">Bare-metal servers, automated DNS orchestration, and redundant power across Germany and Europe, architected for long-term uptime.</p>
+        <p class="mission-desc">
+          Bare-metal compute, automated Anycast DNS orchestration, and redundant peering across Germany and the Netherlands engineered for uptime.
+        </p>
       </div>
 
-      <div class="mission-card spotlight-card reveal" style="--delay:180ms">
-        <span class="mission-num">04</span>
+      <div class="mission-card">
+        <span class="mission-num">[04]</span>
         <div class="mission-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
           </svg>
         </div>
         <h3 class="mission-title">Digital Sovereignty</h3>
-        <p class="mission-desc">Independent European alternatives to mega-cloud vendor lock-in — giving builders and businesses real ownership of their digital presence.</p>
+        <p class="mission-desc">
+          Independent European alternatives to mega-cloud vendor lock-in — giving developers and businesses authentic ownership of their tech stack.
+        </p>
       </div>
-
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════════════════════════ TEAM -->
+<!-- ═══════════════════════════════════════════════════════════ THE TEAM -->
 <section class="section section-alt" id="team">
   <div class="container">
     <div class="section-header">
-      <span class="section-eyebrow reveal">Leadership &amp; Development</span>
-      <h2 class="section-title reveal" style="--delay:40ms">The Team</h2>
-      <p class="section-sub reveal" style="--delay:80ms">
-        Dedicated developers building, maintaining, and innovating European infrastructure.
+      <span class="section-eyebrow">Leadership &amp; Development</span>
+      <h2 class="section-title">The Engineering Team</h2>
+      <p class="section-sub">
+        Dedicated developers building, maintaining, and innovating European web infrastructure.
       </p>
     </div>
 
     <div class="team-grid">
       <?php foreach ($team as $i => $member): ?>
-        <article class="team-card spotlight-card reveal" style="--delay:<?= $i * 70 ?>ms">
+        <article class="team-card">
           <div class="team-avatar-wrap">
             <img
               class="team-avatar-img"
@@ -347,7 +356,7 @@
               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
             >
             <div class="team-avatar-fallback" aria-hidden="true">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                 <circle cx="12" cy="7" r="4"/>
               </svg>
@@ -360,7 +369,7 @@
           <div class="team-links">
             <a class="team-link" href="<?= $e($member['url']) ?>" target="_blank" rel="noopener noreferrer">
               <span>Portfolio</span>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
               </svg>
             </a>
@@ -385,12 +394,12 @@
   <div class="container">
     <div class="stats-grid">
       <?php foreach ($stats as $i => $stat): ?>
-        <a class="stat-item spotlight-card reveal" href="<?= $e($stat['url']) ?>" <?= str_starts_with($stat['url'], 'http') ? 'target="_blank" rel="noopener noreferrer"' : '' ?> style="--delay:<?= $i * 60 ?>ms">
+        <a class="stat-item" href="<?= $e($stat['url']) ?>" <?= str_starts_with($stat['url'], 'http') ? 'target="_blank" rel="noopener noreferrer"' : '' ?>>
           <span class="stat-value"><?= $e($stat['value']) ?></span>
           <span class="stat-label"><?= $e($stat['label']) ?></span>
           <span class="stat-cta">
             <span><?= $e($stat['link_label']) ?></span>
-            <svg class="icon-arrow-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg class="icon-arrow-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
             </svg>
           </span>
@@ -403,7 +412,6 @@
 
 <?php $component('footer'); ?>
 
-<script src="/assets/js/main.js" data-status-url="<?= $e($statusCheckUrl) ?>" defer></script>
+<script src="/assets/js/main.js" data-status-url="<?= $e($statusCheckUrl ?? '/api/status') ?>" defer></script>
 </body>
 </html>
-

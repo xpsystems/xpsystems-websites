@@ -7,16 +7,13 @@
   <meta name="description" content="<?= $e($pageDescription) ?>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script>
   (function(){
     try {
-      var s = localStorage.getItem('xps-theme') || 'system';
-      var r = s === 'system'
-        ? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
-        : s;
-      document.documentElement.setAttribute('data-theme', r);
+      var s = localStorage.getItem('xps-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', s);
     } catch(e) {}
   })();
   </script>
@@ -28,38 +25,37 @@
 <body>
 
 <?php $component('loader'); ?>
-
 <?php $component('header'); ?>
 <?php $component('transition-banner'); ?>
 
 <header class="hero hero--subpage">
   <div class="grid-backdrop" aria-hidden="true"></div>
-  <div class="hero-backdrop-glow" aria-hidden="true"></div>
   <div class="container hero-inner">
-    <div class="hero-eyebrow reveal">
-      <svg class="eyebrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="16 18 22 12 16 6"/>
-        <polyline points="8 6 2 12 8 18"/>
-      </svg>
-      <span>Telemetry Integration &middot; REST JSON</span>
+    <div class="hero-eyebrow">
+      <span class="status-dot green"></span>
+      <span>Telemetry Integration &bull; REST / JSON</span>
     </div>
-    
-    <h1 class="hero-title reveal" style="--delay: 50ms"><span class="text-gradient">Status API Reference</span></h1>
-    
-    <p class="hero-tagline reveal" style="--delay: 100ms">
+
+    <h1 class="hero-title">
+      Status API Reference<br>
+      <span class="hero-title-accent">&amp; Telemetry Endpoints</span>
+    </h1>
+
+    <p class="hero-tagline">
       Public, unauthenticated REST endpoints for live uptime metrics, 90-day historical check records, and incident timelines across xpsystems.
     </p>
 
-    <div class="hero-ctas reveal" style="--delay: 150ms">
-      <a href="/status" class="btn btn-secondary">
-        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <div class="hero-ctas">
+      <a href="<?= $e(url('/status')) ?>" class="btn btn-secondary btn-lg">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"/>
           <polyline points="12 19 5 12 12 5"/>
         </svg>
         <span>Back to Live Status</span>
       </a>
-      <a href="https://api-sandbox.de/playground.html?url=https://<?= $e($activeHost) ?>/api/status" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+      <a href="https://api-sandbox.de" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="5 3 19 12 5 21 5 3"/>
         </svg>
         <span>Test in Sandbox</span>
@@ -71,9 +67,9 @@
 <main class="legal-page">
   <div class="container">
     <div class="legal-layout">
-      
+
       <!-- Sticky Sidebar -->
-      <aside class="legal-sidebar reveal">
+      <aside class="legal-sidebar">
         <nav class="legal-toc-card" aria-label="API Navigation">
           <div class="legal-toc-title">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -86,6 +82,7 @@
             </svg>
             <span>API Specification</span>
           </div>
+
           <ul class="legal-toc-list">
             <li><a href="#overview" class="legal-toc-link"><span class="toc-num">01</span><span>Overview &amp; Base URL</span></a></li>
             <li><a href="#sse" class="legal-toc-link"><span class="toc-num">02</span><span>Server-Sent Events</span></a></li>
@@ -99,85 +96,59 @@
           </ul>
         </nav>
 
-        <div class="legal-meta-card">
-          <div class="legal-meta-row">
-            <span>Format:</span>
-            <span class="meta-val">JSON (application/json)</span>
-          </div>
-          <div class="legal-meta-row">
-            <span>Auth:</span>
-            <span class="meta-val">None (Public)</span>
-          </div>
-          <div class="legal-meta-row">
-            <span>CORS:</span>
-            <span class="meta-val">Access-Control-Allow-Origin: *</span>
-          </div>
-          <div class="legal-meta-row">
-            <span>Rate Limit:</span>
-            <span class="meta-val">Uncapped</span>
-          </div>
+        <div class="legal-toc-card mono" style="font-size:0.75rem;color:var(--text-muted);display:flex;flex-direction:column;gap:8px;">
+          <div><strong>Format:</strong> JSON</div>
+          <div><strong>Auth:</strong> None (Public)</div>
+          <div><strong>CORS:</strong> * (Unrestricted)</div>
+          <div><strong>Rate Limit:</strong> None</div>
         </div>
       </aside>
 
       <!-- Main API Documentation Content -->
-      <div class="legal-main">
-        
+      <div class="legal-content">
+
         <!-- Overview -->
-        <section id="overview" class="legal-section reveal">
-          <div class="legal-sec-header">
-            <span class="legal-sec-num">01</span>
-            <h2 class="legal-sec-title">Overview &amp; Base URL</h2>
-          </div>
-          <div class="legal-body">
+        <article id="overview" class="legal-card">
+          <h2 class="legal-card-title">
+            <span class="mono" style="color:var(--accent);">[01]</span>
+            <span>Overview &amp; Base URL</span>
+          </h2>
+          <div class="legal-prose">
             <p>
               The xpsystems status monitoring architecture exposes an open, lightweight JSON API for direct consumption by uptime monitoring aggregators, continuous integration pipelines, and private infrastructure dashboards.
             </p>
-            <div class="legal-kv-grid">
-              <div class="kv-label">Primary Endpoint</div>
-              <div class="kv-value"><code>https://<?= $e($activeHost) ?>/api</code></div>
-
-              <div class="kv-label">Alternative Nodes</div>
-              <div class="kv-value"><code>https://status.xpsystems.eu/api</code> &middot; <code>https://status.xpsys.de/api</code></div>
-
-              <div class="kv-label">Headers Returned</div>
-              <div class="kv-value"><code>Content-Type: application/json; charset=utf-8</code><br><code>Access-Control-Allow-Origin: *</code></div>
-            </div>
+            <p>
+              <strong>Base Endpoint:</strong> <code>https://<?= $e($activeHost) ?>/api</code><br>
+              <strong>Content-Type:</strong> <code>application/json; charset=utf-8</code>
+            </p>
           </div>
-        </section>
+        </article>
 
         <!-- SSE Section -->
-        <section id="sse" class="legal-section reveal">
-          <div class="legal-sec-header">
-            <span class="legal-sec-num">02</span>
-            <h2 class="legal-sec-title">Server-Sent Events (SSE)</h2>
-          </div>
-          <div class="legal-body">
+        <article id="sse" class="legal-card">
+          <h2 class="legal-card-title">
+            <span class="mono" style="color:var(--accent);">[02]</span>
+            <span>Server-Sent Events (SSE)</span>
+          </h2>
+          <div class="legal-prose">
             <p>
               Connect to our real-time streaming endpoint to receive immediate status changes as they are benchmarked by our monitoring runner:
             </p>
-            <div class="hero-terminal" style="margin: 16px 0;">
-              <div class="terminal-bar">
-                <span class="terminal-title">curl -N -H "Accept: text/event-stream" https://<?= $e($activeHost) ?>/events</span>
-              </div>
-              <div class="terminal-body" style="padding: 12px 18px;">
-                <code>event: status<br>data: {"overall":"operational","checked_at":<?= time() ?>,"services":[...]}</code>
-              </div>
-            </div>
+            <p>
+              <code>curl -N -H "Accept: text/event-stream" https://<?= $e($activeHost) ?>/events</code>
+            </p>
           </div>
-        </section>
+        </article>
 
         <!-- Endpoint: GET /api/status -->
-        <section id="ep-status" class="legal-section reveal">
-          <div class="legal-sec-header">
-            <span class="legal-sec-num">03</span>
-            <h2 class="legal-sec-title">GET /api/status</h2>
-          </div>
-          <div class="legal-body">
+        <article id="ep-status" class="legal-card">
+          <h2 class="legal-card-title">
+            <span class="mono" style="color:var(--accent);">[03]</span>
+            <span>GET /api/status</span>
+          </h2>
+          <div class="legal-prose">
             <p>Returns the aggregated network health state across all monitored nodes, along with a numerical summary.</p>
-            <div class="hero-terminal" style="margin: 16px 0;">
-              <div class="terminal-bar"><span class="terminal-title">Example Response</span></div>
-              <div class="terminal-body" style="padding: 14px 18px;">
-                <pre style="margin:0;font-family:var(--font-mono);font-size:0.8125rem;color:var(--text);">{
+            <pre style="background:var(--bg-subtle);border:1px solid var(--border);padding:16px;border-radius:var(--radius-xs);font-family:var(--font-mono);font-size:0.8125rem;color:var(--text);">{
   "overall": "operational",
   "checked_at": <?= time() ?>,
   "server": "<?= $e($activeHost) ?>",
@@ -190,104 +161,89 @@
     "not_deployed": 5
   }
 }</pre>
-              </div>
-            </div>
           </div>
-        </section>
+        </article>
 
         <!-- Endpoint: GET /api/services -->
-        <section id="ep-services" class="legal-section reveal">
-          <div class="legal-sec-header">
-            <span class="legal-sec-num">04</span>
-            <h2 class="legal-sec-title">GET /api/services</h2>
-          </div>
-          <div class="legal-body">
+        <article id="ep-services" class="legal-card">
+          <h2 class="legal-card-title">
+            <span class="mono" style="color:var(--accent);">[04]</span>
+            <span>GET /api/services</span>
+          </h2>
+          <div class="legal-prose">
             <p>Returns the complete inventory of tracked services, their latest HTTP response status code, and latency in milliseconds.</p>
-            <div class="hero-terminal" style="margin: 16px 0;">
-              <div class="terminal-bar"><span class="terminal-title">cURL</span></div>
-              <div class="terminal-body" style="padding: 12px 18px;">
-                <code>curl -s https://<?= $e($activeHost) ?>/api/services | jq</code>
-              </div>
-            </div>
+            <p>
+              <code>curl -s https://<?= $e($activeHost) ?>/api/services | jq</code>
+            </p>
           </div>
-        </section>
+        </article>
 
         <!-- Endpoint: GET /api/service/{slug} -->
-        <section id="ep-service" class="legal-section reveal">
-          <div class="legal-sec-header">
-            <span class="legal-sec-num">05</span>
-            <h2 class="legal-sec-title">GET /api/service/{slug}</h2>
-          </div>
-          <div class="legal-body">
+        <article id="ep-service" class="legal-card">
+          <h2 class="legal-card-title">
+            <span class="mono" style="color:var(--accent);">[05]</span>
+            <span>GET /api/service/{slug}</span>
+          </h2>
+          <div class="legal-prose">
             <p>Fetches real-time telemetry for an individual service identified by its unique slug identifier.</p>
-            <div class="legal-kv-grid">
-              <div class="kv-label">URL Parameter</div>
-              <div class="kv-value"><code>slug</code> &mdash; e.g. <code>xpsystems-eu</code>, <code>europehost-eu</code>, <code>status-node-1</code></div>
-            </div>
+            <p>
+              <strong>Parameters:</strong> <code>slug</code> &mdash; e.g. <code>xpsystems-eu</code>, <code>europehost-eu</code>, <code>dnbx-de</code>
+            </p>
           </div>
-        </section>
+        </article>
 
         <!-- Endpoint: GET /api/history -->
-        <section id="ep-history" class="legal-section reveal">
-          <div class="legal-sec-header">
-            <span class="legal-sec-num">06</span>
-            <h2 class="legal-sec-title">GET /api/history[?limit=N]</h2>
-          </div>
-          <div class="legal-body">
+        <article id="ep-history" class="legal-card">
+          <h2 class="legal-card-title">
+            <span class="mono" style="color:var(--accent);">[06]</span>
+            <span>GET /api/history[?limit=N]</span>
+          </h2>
+          <div class="legal-prose">
             <p>Returns chronological check records across all monitored endpoints.</p>
-            <div class="legal-kv-grid">
-              <div class="kv-label">Query Parameter</div>
-              <div class="kv-value"><code>limit</code> (optional) &mdash; number of check runs to retrieve (default: 90, max: 1440).</div>
-            </div>
+            <p>
+              <strong>Query Parameters:</strong> <code>limit</code> (optional, default: 90, max: 1440).
+            </p>
           </div>
-        </section>
+        </article>
 
         <!-- Endpoint: GET /api/history/{slug} -->
-        <section id="ep-history-slug" class="legal-section reveal">
-          <div class="legal-sec-header">
-            <span class="legal-sec-num">07</span>
-            <h2 class="legal-sec-title">GET /api/history/{slug}[?days=N]</h2>
-          </div>
-          <div class="legal-body">
+        <article id="ep-history-slug" class="legal-card">
+          <h2 class="legal-card-title">
+            <span class="mono" style="color:var(--accent);">[07]</span>
+            <span>GET /api/history/{slug}[?days=N]</span>
+          </h2>
+          <div class="legal-prose">
             <p>Fetches aggregated per-day historical uptime records and rolling availability percentages for a specific service.</p>
-            <div class="legal-kv-grid">
-              <div class="kv-label">Query Parameter</div>
-              <div class="kv-value"><code>days</code> (optional) &mdash; days of history to cover (default: 90, max: 3650).</div>
-            </div>
+            <p>
+              <strong>Query Parameters:</strong> <code>days</code> (optional, default: 90, max: 3650).
+            </p>
           </div>
-        </section>
+        </article>
 
         <!-- Endpoint: GET /api/day/{slug}/{date} -->
-        <section id="ep-day" class="legal-section reveal">
-          <div class="legal-sec-header">
-            <span class="legal-sec-num">08</span>
-            <h2 class="legal-sec-title">GET /api/day/{slug}/{YYYY-MM-DD}</h2>
-          </div>
-          <div class="legal-body">
+        <article id="ep-day" class="legal-card">
+          <h2 class="legal-card-title">
+            <span class="mono" style="color:var(--accent);">[08]</span>
+            <span>GET /api/day/{slug}/{YYYY-MM-DD}</span>
+          </h2>
+          <div class="legal-prose">
             <p>Detailed incident diagnostics and exact timeline for a service on a given UTC date.</p>
-            <div class="legal-kv-grid">
-              <div class="kv-label">Parameters</div>
-              <div class="kv-value"><code>slug</code> &middot; <code>YYYY-MM-DD</code> (e.g. <code>2026-09-05</code>)</div>
-            </div>
           </div>
-        </section>
+        </article>
 
         <!-- Endpoint: GET /api/ping -->
-        <section id="ep-ping" class="legal-section reveal">
-          <div class="legal-sec-header">
-            <span class="legal-sec-num">09</span>
-            <h2 class="legal-sec-title">GET /api/ping</h2>
+        <article id="ep-ping" class="legal-card">
+          <h2 class="legal-card-title">
+            <span class="mono" style="color:var(--accent);">[09]</span>
+            <span>GET /api/ping</span>
+          </h2>
+          <div class="legal-prose">
+            <p>Lightweight liveness probe for verifying status ingress health.</p>
+            <p>
+              <code>curl -s https://<?= $e($activeHost) ?>/api/ping</code>
+            </p>
           </div>
-          <div class="legal-body">
-            <p>Lightweight liveness probe for checking whether the status ingress endpoint itself is reachable.</p>
-            <div class="hero-terminal" style="margin: 16px 0;">
-              <div class="terminal-bar"><span class="terminal-title">Response</span></div>
-              <div class="terminal-body" style="padding: 12px 18px;">
-                <code>{"pong": true, "timestamp": <?= time() ?>, "server": "<?= $e($activeHost) ?>"}</code>
-              </div>
-            </div>
-          </div>
-        </section>
+        </article>
 
       </div>
     </div>

@@ -1,66 +1,66 @@
 {
-    "checked_at": 1788637505,
+    "checked_at": 1788670853,
     "overall": "major_outage",
     "services": {
         "xpsystems-eu": {
             "status": "up",
             "code": 200,
-            "latency_ms": 230
+            "latency_ms": 374
         },
         "xpsystems-de": {
             "status": "up",
             "code": 200,
-            "latency_ms": 371
+            "latency_ms": 551
         },
         "xpsys-de": {
-            "status": "up",
-            "code": 200,
-            "latency_ms": 194
+            "status": "down",
+            "code": null,
+            "latency_ms": 267
         },
         "contact-xpsystems-eu": {
             "status": "up",
             "code": 200,
-            "latency_ms": 262
+            "latency_ms": 448
         },
         "domains-xpsystems-eu": {
             "status": "up",
             "code": 200,
-            "latency_ms": 312
+            "latency_ms": 362
         },
         "opensource-xpsystems-eu": {
             "status": "up",
             "code": 200,
-            "latency_ms": 302
+            "latency_ms": 430
         },
         "europehost-eu": {
             "status": "up",
             "code": 200,
-            "latency_ms": 377
+            "latency_ms": 391
         },
         "eu-data-org": {
             "status": "up",
             "code": 200,
-            "latency_ms": 385
+            "latency_ms": 601
         },
         "eu-search-org": {
             "status": "up",
             "code": 200,
-            "latency_ms": 478
+            "latency_ms": 503
         },
         "api-sandbox-de": {
             "status": "up",
             "code": 200,
-            "latency_ms": 613
+            "latency_ms": 393
         },
         "status-node-1": {
             "status": "up",
             "code": 200,
-            "latency_ms": 402
+            "latency_ms": 384
         },
         "status-node-2": {
             "status": "down",
             "code": null,
-            "latency_ms": 193
+            "latency_ms": 633
         }
     }
 }

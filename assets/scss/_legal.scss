@@ -1,6 +1,6 @@
 // =============================================================================
-// Legal & Prose Typography
-// High-readability European documentation layout with sticky TOC & section cards
+// Legal & Prose Typography (Impressum & Privacy)
+// Swiss Modernist Architectural Layouts, Solid Materiality, High Readability
 // =============================================================================
 
 .legal-page {
@@ -9,8 +9,8 @@
 
 .legal-layout {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 48px;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
   align-items: start;
 
   @media (max-width: 960px) {
@@ -34,10 +34,9 @@
 
 .legal-toc-card {
   background-color: var(--bg-surface);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), var(--shadow-sm);
-  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
 }
 
 .legal-toc-title {
@@ -47,7 +46,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -62,318 +61,120 @@
 .legal-toc-list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  gap: 2px;
 }
 
 .legal-toc-link {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
-  border-radius: var(--radius-full);
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: var(--radius-xs);
   font-size: 0.8125rem;
-  font-family: var(--font-sans);
   color: var(--text-muted);
   text-decoration: none;
   transition: all var(--t-fast);
 
   .toc-num {
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
+    font-size: 0.7rem;
     color: var(--text-dim);
-    font-weight: 600;
   }
 
   &:hover {
     color: var(--text);
-    background-color: var(--bg-alt);
-    transform: translateX(2px);
-
-    .toc-num {
-      color: var(--accent);
-    }
+    background-color: var(--bg-subtle);
   }
 
   &.active {
-    color: var(--accent);
-    background-color: var(--accent-dim);
-    font-weight: 600;
-
-    .toc-num {
-      color: var(--accent);
-    }
-  }
-}
-
-.legal-meta-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px 20px;
-  font-size: 0.8125rem;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.legal-meta-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  color: var(--text-dim);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-
-  .meta-val {
     color: var(--text);
-    font-weight: 600;
+    background-color: var(--bg-elevated);
+    border-left: 2px solid var(--accent);
   }
 }
 
-// ── Main Content Area
-.legal-main {
+// ── Main Legal Article Content
+.legal-content {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  min-width: 0;
 }
 
-.legal-section {
+.legal-card {
   background-color: var(--bg-surface);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05), var(--shadow-sm);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   padding: 32px;
-  scroll-margin-top: calc(var(--nav-height) + 24px);
-  position: relative;
-  transition: border-color var(--t);
 
-  &:hover {
-    border-color: var(--border-hover);
-  }
-
-  @media (max-width: 640px) {
-    padding: 24px 20px;
+  @media (max-width: 600px) {
+    padding: 20px;
   }
 }
 
-.legal-sec-header {
+.legal-card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 16px;
   display: flex;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 18px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border-subtle);
+  align-items: center;
+  gap: 10px;
 
-  .legal-sec-num {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 700;
+  .legal-icon {
+    width: 20px;
+    height: 20px;
     color: var(--accent);
-    background: var(--accent-dim);
-    border: 1px solid rgba(59, 130, 246, 0.25);
-    padding: 2px 8px;
-    border-radius: var(--radius-xs);
-    flex-shrink: 0;
-  }
-
-  .legal-sec-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    margin: 0;
   }
 }
 
-.legal-body {
+.legal-prose {
   font-size: 0.9375rem;
-  line-height: 1.75;
   color: var(--text-secondary);
+  line-height: 1.7;
 
   p {
-    margin-bottom: 16px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+    margin-bottom: 14px;
   }
 
   h3 {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.0625rem;
+    font-weight: 700;
     color: var(--text);
-    margin-top: 24px;
+    margin-top: 20px;
     margin-bottom: 8px;
-    letter-spacing: -0.01em;
+  }
+
+  ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 14px;
+
+    li {
+      margin-bottom: 6px;
+    }
   }
 
   a {
     color: var(--accent);
     text-decoration: underline;
-    text-underline-offset: 3px;
 
     &:hover {
       color: var(--accent-hover);
     }
   }
 
-  ul, ol {
-    margin-bottom: 16px;
-    padding-left: 22px;
-
-    li {
-      margin-bottom: 6px;
-      line-height: 1.65;
-    }
-  }
-
   strong {
     color: var(--text);
-    font-weight: 600;
-  }
-}
-
-// ── Key-Value Technical Data Box
-.legal-kv-grid {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 10px 16px;
-  background-color: var(--bg-alt);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  padding: 16px 20px;
-  margin: 16px 0;
-  font-size: 0.875rem;
-
-  @media (max-width: 520px) {
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
-
-  .kv-label {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-dim);
-  }
-
-  .kv-value {
-    color: var(--text);
-    word-break: break-word;
-
-    a {
-      color: var(--accent);
-    }
-  }
-}
-
-// ── Policy Badges and Callouts
-.legal-callout {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  background-color: var(--accent-dim);
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  border-radius: var(--radius-sm);
-  padding: 16px 18px;
-  margin: 20px 0;
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-
-  &--green {
-    background-color: var(--green-dim);
-    border-color: rgba(16, 185, 129, 0.3);
-    color: var(--text-secondary);
-
-    .callout-icon {
-      color: var(--green);
-    }
-  }
-
-  &--purple {
-    background-color: var(--purple-dim);
-    border-color: rgba(139, 92, 246, 0.3);
-
-    .callout-icon {
-      color: var(--purple);
-    }
-  }
-
-  .callout-icon {
-    width: 20px;
-    height: 20px;
-    color: var(--accent);
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .callout-text {
-    line-height: 1.6;
-
-    strong {
-      color: var(--text);
-      display: block;
-      margin-bottom: 4px;
-    }
-  }
-}
-
-// ── Feature pill grid (e.g. Zero Trackers, DSGVO Compliant)
-.privacy-highlights {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 14px;
-  margin-bottom: 24px;
-}
-
-.privacy-highlight-card {
-  background-color: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  .highlight-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: var(--radius-xs);
-    background-color: var(--green-dim);
-    border: 1px solid rgba(16, 185, 129, 0.25);
-    color: var(--green);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-
-    svg {
-      width: 18px;
-      height: 18px;
-    }
-  }
-
-  .highlight-content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .highlight-title {
-    font-size: 0.875rem;
     font-weight: 700;
-    color: var(--text);
   }
 
-  .highlight-sub {
-    font-size: 0.75rem;
-    color: var(--text-muted);
+  code {
     font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    background-color: var(--bg-subtle);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    border-radius: var(--radius-xs);
+    color: var(--text);
   }
 }

@@ -1,411 +1,367 @@
 // =============================================================================
-// Hero Section
-// World-Class Agency Hero: Atmospheric Aurora, Monumental Display Typography, Specular Polish
+// Hero Section & Interactive Command Center
+// Monumental Swiss Typography, Solid Materiality, Zero Gradients
+// Interactive Dual Widget: In-Browser XP-CLI Terminal & European Edge Radar
 // =============================================================================
 
 .hero {
   position: relative;
-  padding: calc(var(--nav-height) + 84px) 0 96px;
+  padding: calc(var(--nav-height) + 64px) 0 80px;
   background-color: var(--bg);
-  background-image:
-    radial-gradient(ellipse 75% 55% at 50% -10%, rgba(59, 130, 246, 0.22), transparent 70%),
-    radial-gradient(ellipse 45% 35% at 80% 15%, rgba(168, 85, 247, 0.14), transparent 60%),
-    radial-gradient(ellipse 40% 30% at 20% 30%, rgba(6, 182, 212, 0.1), transparent 50%);
-  text-align: center;
   border-bottom: 1px solid var(--border);
   overflow: hidden;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 20%;
-    right: 20%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    pointer-events: none;
-  }
 }
 
 .hero--subpage {
-  padding-top: calc(var(--nav-height) + 56px);
-  padding-bottom: 60px;
+  padding-top: calc(var(--nav-height) + 48px);
+  padding-bottom: 56px;
 
   .hero-title {
-    font-size: clamp(2.25rem, 4.8vw, 3.5rem);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
     margin-bottom: 16px;
   }
 
   .hero-tagline {
-    margin-bottom: 24px;
     font-size: clamp(1rem, 1.8vw, 1.15rem);
+    margin-bottom: 24px;
+    max-width: 680px;
   }
-}
-
-.hero-backdrop-glow {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1000px;
-  height: 100%;
-  background: radial-gradient(ellipse 65% 55% at 50% 0%, rgba(59, 130, 246, 0.16), transparent 70%);
-  pointer-events: none;
-  z-index: 1;
 }
 
 .hero-inner {
   position: relative;
-  z-index: 10;
-  max-width: 940px;
+  z-index: 2;
+  max-width: 1040px;
   margin: 0 auto;
-  padding: 0 24px;
 }
 
-// ── Eyebrow Badge (Luminous Glass Pill)
+// ── Eyebrow Technical Tag
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
-  font-family: var(--font-mono);
-  color: var(--accent-hover);
-  background-color: rgba(59, 130, 246, 0.08);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(96, 165, 250, 0.35);
-  box-shadow: 0 0 24px -4px var(--accent-glow), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
-  padding: 7px 18px;
-  border-radius: var(--radius-full);
-  margin-bottom: 32px;
-  letter-spacing: 0.05em;
+  color: var(--text);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  padding: 6px 14px;
+  margin-bottom: 28px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  transition: all var(--t);
 
-  &:hover {
-    border-color: var(--accent-hover);
-    box-shadow: 0 0 30px -2px var(--accent-glow-strong);
-    transform: translateY(-1px);
-  }
-
-  .eyebrow-icon {
-    width: 14px;
-    height: 14px;
+  .eyebrow-accent {
     color: var(--accent);
-    filter: drop-shadow(0 0 6px var(--accent));
   }
 
   .eyebrow-separator {
-    color: rgba(96, 165, 250, 0.4);
-    font-size: 0.7rem;
+    color: var(--border-hover);
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: var(--accent-hover);
+    }
   }
 }
 
-// ── Hero Title (Monumental Display Typography with Metallic Shimmer)
+// ── Monumental Display Title (Solid Color, NO Gradients)
 .hero-title {
-  font-size: clamp(2.75rem, 6.8vw, 5.25rem);
+  font-size: clamp(2.75rem, 6.5vw, 4.75rem);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.045em;
   color: var(--text);
-  background: var(--text-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 26px;
+  margin-bottom: 24px;
   text-wrap: balance;
 
   .hero-title-accent {
-    background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 50%, #818cf8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 35px rgba(59, 130, 246, 0.35));
-    display: inline-block;
+    color: var(--accent);
   }
 
-  .hero-title-cyan {
-    background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.35));
+  .hero-title-signal {
+    color: var(--signal);
   }
 }
 
-// ── Hero Tagline
 .hero-tagline {
-  font-size: clamp(1.125rem, 2.2vw, 1.3125rem);
-  font-weight: 400;
-  color: var(--text-muted);
-  line-height: 1.7;
-  max-width: 720px;
-  margin: 0 auto 40px;
-  letter-spacing: -0.015em;
-  text-wrap: pretty;
+  font-size: clamp(1.0625rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 760px;
+  margin-bottom: 36px;
+  letter-spacing: -0.01em;
 }
 
-// ── CTA Button Row
+// ── Hero CTA Button Bar
 .hero-ctas {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 42px;
+  gap: 12px;
+  margin-bottom: 48px;
 }
 
-// ── Developer Quick Terminal Snippet
-.hero-terminal {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
+// ── Interactive Hero Widget (Terminal vs European Edge Radar)
+.hero-interactive-shell {
   background-color: var(--bg-surface);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08), 0 8px 24px -4px rgba(0, 0, 0, 0.4);
-  padding: 9px 20px;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 48px;
+  text-align: left;
+}
+
+.shell-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-subtle);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  gap: 12px;
+}
+
+.shell-window-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  .shell-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--border-hover);
+
+    &.red { background-color: var(--status-down); }
+    &.yellow { background-color: var(--status-warn); }
+    &.green { background-color: var(--status-up); }
+  }
+}
+
+.shell-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.shell-tab-btn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all var(--t-fast);
+
+  &:hover {
+    color: var(--text);
+  }
+
+  &.active {
+    background-color: var(--bg-surface);
+    color: var(--text);
+    border-color: var(--border);
+  }
+}
+
+.shell-title-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  @media (max-width: 640px) {
+    display: none;
+  }
+}
+
+// ── Shell Mode 1: Interactive XP-CLI Terminal
+.shell-content-terminal {
+  padding: 20px;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-  color: var(--text-secondary);
-  margin-bottom: 54px;
-  transition: all var(--t);
+  min-height: 240px;
+  max-height: 380px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-history {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.terminal-line {
+  line-height: 1.5;
+  word-break: break-word;
+
+  &.prompt-line {
+    color: var(--text);
+  }
+
+  &.output-line {
+    color: var(--text-secondary);
+  }
+
+  &.accent-line {
+    color: var(--accent);
+  }
+
+  &.success-line {
+    color: var(--status-up);
+  }
+
+  &.dim-line {
+    color: var(--text-muted);
+  }
+}
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.terminal-prompt {
+  color: var(--status-up);
+  font-weight: 800;
+  user-select: none;
+}
+
+.terminal-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  padding: 0;
+
+  &::placeholder {
+    color: var(--text-dim);
+  }
+}
+
+// ── Shell Mode 2: European Edge PoP Latency Explorer
+.shell-content-radar {
+  display: none;
+  padding: 20px;
+}
+
+.radar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+
+  @media (max-width: 840px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.radar-node-card {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  padding: 16px;
   cursor: pointer;
+  transition: border-color var(--t-fast), background-color var(--t-fast);
 
   &:hover {
     border-color: var(--accent);
     background-color: var(--bg-surface-hover);
-    color: var(--text);
-    box-shadow: 0 0 24px -4px var(--accent-glow), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
   }
 
-  .terminal-prompt {
-    color: var(--accent-hover);
-    font-weight: 700;
-  }
-
-  .terminal-cmd {
-    color: var(--text);
-  }
-
-  .terminal-copy-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-dim);
-    padding: 5px;
-    border-radius: var(--radius-full);
-    transition: all var(--t-fast);
-
-    &:hover {
-      color: var(--accent);
-      background-color: var(--accent-dim);
-    }
-
-    svg {
-      width: 14px;
-      height: 14px;
-    }
+  &.is-selected {
+    border-color: var(--accent);
+    background-color: var(--bg-elevated);
   }
 }
 
-// ── Trust Strip (Luminous Frosted Badges)
-.hero-trust {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  padding-top: 40px;
-  border-top: 1px solid var(--border-subtle);
-  position: relative;
+.node-code {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 30%;
-    right: 30%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+.node-city {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.node-role {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.node-latency-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--status-up);
+}
+
+// ── Trust Strip (Zero Glass, Solid Precision)
+.hero-trust {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
   }
 }
 
 .trust-item {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 9px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  font-family: var(--font-mono);
+  gap: 10px;
   background-color: var(--bg-surface);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), var(--shadow-xs);
-  padding: 7px 16px;
-  border-radius: var(--radius-full);
-  transition: all var(--t-fast);
+  border-radius: var(--radius-xs);
+  padding: 12px 16px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: border-color var(--t-fast);
 
   &:hover {
-    border-color: var(--accent);
-    color: var(--text);
-    background-color: var(--bg-surface-hover);
-    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.3), 0 0 15px -3px var(--accent-glow);
-    transform: translateY(-2px);
+    border-color: var(--border-hover);
   }
 
   svg {
+    width: 18px;
+    height: 18px;
     color: var(--accent);
-    width: 15px;
-    height: 15px;
-    flex-shrink: 0;
   }
 }
-
-// ── Transition Banner (Migration to ternis.dev with Glowing Edge)
-.transition-banner {
-  padding-top: calc(var(--nav-height) + 16px);
-  padding-bottom: 16px;
-  background-color: var(--bg);
-  border-bottom: 1px solid var(--border);
-
-  .transition-banner-box {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    background-color: var(--bg-surface);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(59, 130, 246, 0.25);
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-lg);
-    padding: 14px 22px;
-    font-size: 0.8125rem;
-    line-height: 1.5;
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--accent-gradient);
-    }
-
-    @media (max-width: 900px) {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 16px 18px;
-    }
-  }
-
-  .transition-left {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .transition-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 12px;
-    background-color: var(--accent-dim);
-    color: var(--accent-hover);
-    border: 1px solid rgba(96, 165, 250, 0.4);
-    box-shadow: 0 0 12px -2px var(--accent-glow);
-    border-radius: var(--radius-full);
-    font-size: 0.6875rem;
-    font-weight: 700;
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    flex-shrink: 0;
-  }
-
-  .transition-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: var(--accent);
-    box-shadow: 0 0 8px var(--accent);
-  }
-
-  .transition-text {
-    color: var(--text-secondary);
-
-    strong {
-      color: var(--text);
-    }
-  }
-
-  .transition-link {
-    color: var(--accent-hover);
-    text-decoration: underline;
-    font-weight: 600;
-
-    &:hover {
-      color: #ffffff;
-      text-shadow: 0 0 10px var(--accent);
-    }
-  }
-
-  .transition-sub {
-    color: var(--text-muted);
-    font-size: 0.75rem;
-  }
-
-  .transition-extra {
-    display: inline;
-    margin-left: 4px;
-    color: var(--text-muted);
-  }
-
-  .transition-code {
-    display: inline-block;
-    padding: 2px 8px;
-    font-size: 0.75rem;
-    font-family: var(--font-mono);
-    font-weight: 600;
-    background-color: var(--bg-alt);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    color: var(--text);
-    cursor: pointer;
-    transition: all var(--t-fast);
-
-    &:hover {
-      border-color: var(--accent);
-      color: var(--accent-hover);
-      box-shadow: 0 0 10px -2px var(--accent-glow);
-    }
-  }
-
-  .transition-right {
-    flex-shrink: 0;
-
-    .transition-btn {
-      padding: 7px 16px;
-      font-size: 0.75rem;
-      border-radius: var(--radius-full);
-      white-space: nowrap;
-    }
-  }
-}
-
-.transition-banner + .hero,
-.transition-banner + main.section,
-.transition-banner + .legal-page {
-  padding-top: 48px;
-}
-
-

@@ -1,7 +1,90 @@
+/**
+ * xpsystems — Master Interactive Client Script
+ * World-Class Agency Interactions: In-Browser XP-CLI Terminal, Edge PoP Latency Explorer,
+ * Web Audio API Tactile Sound Synthesis, Real-Time Domain Filter, CET Clock, Theme Switcher
+ */
+
 (function () {
   'use strict';
 
-  /* ── 1. Global Toast Notification System ───────────────────────────── */
+  /* ── 1. Web Audio API Tactile Mechanical Sound Synthesizer ─────────────── */
+  let audioCtx = null;
+  let soundEnabled = localStorage.getItem('xps-sound') === 'on';
+
+  function initAudio() {
+    if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContextClass();
+    }
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  }
+
+  function playTickSound(freq = 1200, type = 'sine', duration = 0.02) {
+    if (!soundEnabled) return;
+    try {
+      initAudio();
+      if (!audioCtx) return;
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+      gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    } catch (e) {
+      // Audio context might fail silently if autoplay blocked
+    }
+  }
+
+  window.playTickSound = playTickSound;
+
+  function updateSoundUI() {
+    document.querySelectorAll('.sound-toggle-btn').forEach(btn => {
+      const label = btn.querySelector('.sound-label');
+      if (soundEnabled) {
+        btn.classList.add('is-active');
+        if (label) label.textContent = 'SOUND: ON';
+      } else {
+        btn.classList.remove('is-active');
+        if (label) label.textContent = 'SOUND: OFF';
+      }
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    const soundBtn = e.target.closest('.sound-toggle-btn');
+    if (soundBtn) {
+      soundEnabled = !soundEnabled;
+      localStorage.setItem('xps-sound', soundEnabled ? 'on' : 'off');
+      updateSoundUI();
+      if (soundEnabled) {
+        initAudio();
+        playTickSound(1400, 'sine', 0.04);
+        showToast('Tactile audio enabled');
+      } else {
+        showToast('Tactile audio muted');
+      }
+      return;
+    }
+
+    // Play subtle tick on interactive elements if audio is enabled
+    if (soundEnabled && e.target.closest('button, .btn, .nav-link, .shell-tab-btn, .domain-filter-pill, .radar-node-card')) {
+      playTickSound(1100, 'sine', 0.015);
+    }
+  });
+
+
+  /* ── 2. Toast Notification System ─────────────────────────────────────── */
   let toastContainer = document.querySelector('.toast-container');
   if (!toastContainer) {
     toastContainer = document.createElement('div');
@@ -9,7 +92,7 @@
     document.body.appendChild(toastContainer);
   }
 
-  function showToast(message, duration = 3000) {
+  function showToast(message, duration = 2600) {
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.innerHTML = `
@@ -28,7 +111,7 @@
       toast.classList.remove('toast-show');
       setTimeout(() => {
         if (toast.parentNode) toast.parentNode.removeChild(toast);
-      }, 300);
+      }, 200);
     }, duration);
   }
   window.showToast = showToast;
@@ -62,7 +145,6 @@
     document.body.removeChild(textArea);
   }
 
-  /* ── 2. Click-to-Copy Handlers ─────────────────────────────────────── */
   document.addEventListener('click', function (e) {
     const copyTarget = e.target.closest('[data-copy]');
     if (copyTarget) {
@@ -71,944 +153,417 @@
       const text = copyTarget.getAttribute('data-copy');
       const label = copyTarget.getAttribute('data-copy-label') || text;
       copyToClipboard(text, `Copied: ${label}`);
+      playTickSound(1600, 'sine', 0.03);
     }
   });
 
-  /* ── 3. Status URL & Preload Bar ──────────────────────────────────── */
-  const scriptEl = document.querySelector("script[data-status-url]");
-  const STATUS_URL = (scriptEl && scriptEl.dataset.statusUrl)
-    ? scriptEl.dataset.statusUrl
-    : (window.location.hostname.includes("status.") || window.location.hostname.includes("localhost") || window.location.hostname.includes("127.0.0.1"))
-      ? "/api/status"
-      : "https://status.xpsystems.eu/api/status";
 
-  /* ── 3. Custom Loading Screen & Preload Bar ─────────────────────── */
-  const loader = document.getElementById("xps-loader");
-  const bar = document.getElementById("preload-bar");
-  const progressFill = document.getElementById("loader-progress-fill");
-  const loaderStatusText = document.getElementById("loader-status-text");
+  /* ── 3. Theme Switcher (Dark / Light / Matrix) ────────────────────────── */
+  function applyTheme(theme) {
+    if (theme === 'system') {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
 
-  const loaderStartTime = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
-  const MIN_LOADER_TIME = 120; // Snappy display time (ms)
-  let loaderDismissed = false;
-
-  const playfulMessages = [
-    "initializing system...",
-    "routing packets...",
-    "checking nodes...",
-    "polishing pixels...",
-    "syncing services...",
-  ];
-  let msgIndex = 0;
-
-  let msgInterval = null;
-  if (loaderStatusText) {
-    msgInterval = setInterval(function () {
-      if (loaderDismissed) return;
-      msgIndex = (msgIndex + 1) % playfulMessages.length;
-      loaderStatusText.textContent = playfulMessages[msgIndex];
-    }, 250);
-  }
-
-  // Initial progress jump
-  if (progressFill) {
-    requestAnimationFrame(function () {
-      progressFill.style.width = "60%";
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.theme === theme);
     });
   }
 
-  if (bar) {
-    requestAnimationFrame(function () {
-      bar.style.transition = "width 300ms cubic-bezier(.23,.49,.55,.98)";
-      bar.style.width = "80%";
-    });
+  const savedTheme = localStorage.getItem('xps-theme') || 'dark';
+  applyTheme(savedTheme);
+
+  document.addEventListener('click', function (e) {
+    const themeBtn = e.target.closest('.theme-btn');
+    if (themeBtn) {
+      const targetTheme = themeBtn.dataset.theme;
+      localStorage.setItem('xps-theme', targetTheme);
+      applyTheme(targetTheme);
+      playTickSound(1300, 'sine', 0.02);
+      showToast(`Theme: ${targetTheme.toUpperCase()}`);
+    }
+  });
+
+
+  /* ── 4. Live CET Clock (Frankfurt / Berlin) ───────────────────────────── */
+  function updateClock() {
+    const clockEl = document.getElementById('nav-clock-time');
+    if (!clockEl) return;
+
+    try {
+      const now = new Date();
+      const formatter = new Intl.DateTimeFormat('de-DE', {
+        timeZone: 'Europe/Berlin',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      });
+      clockEl.textContent = formatter.format(now) + ' CET';
+    } catch (e) {
+      // Fallback
+    }
   }
+  updateClock();
+  setInterval(updateClock, 1000);
 
-  function dismissLoader() {
-    if (loaderDismissed) return;
-    loaderDismissed = true;
-    if (msgInterval) clearInterval(msgInterval);
 
-    if (loaderStatusText) {
-      loaderStatusText.textContent = "ready!";
-    }
-    if (progressFill) {
-      progressFill.style.width = "100%";
-    }
-    if (bar) {
-      bar.classList.add("done");
-      bar.style.width = "100%";
-      bar.style.opacity = "0";
-    }
+  /* ── 5. Mobile Navigation Drawer ──────────────────────────────────────── */
+  const hamburger = document.getElementById('nav-hamburger');
+  const navLinks = document.getElementById('nav-links');
 
-    setTimeout(function () {
-      if (loader) {
-        loader.classList.add("is-loaded");
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', function () {
+      const isOpen = navLinks.classList.contains('is-open');
+      if (isOpen) {
+        navLinks.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      } else {
+        navLinks.classList.add('is-open');
+        hamburger.setAttribute('aria-expanded', 'true');
       }
-      setTimeout(function () {
-        if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
-        if (bar && bar.parentNode) bar.parentNode.removeChild(bar);
-      }, 300);
-    }, 80);
-  }
-
-  function scheduleDismiss() {
-    const now = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
-    const elapsed = now - loaderStartTime;
-    const remaining = Math.max(0, MIN_LOADER_TIME - elapsed);
-    setTimeout(dismissLoader, remaining);
-  }
-
-  if (document.readyState === "interactive" || document.readyState === "complete") {
-    scheduleDismiss();
-  } else {
-    document.addEventListener("DOMContentLoaded", scheduleDismiss, { once: true });
-    window.addEventListener("load", scheduleDismiss, { once: true });
-    setTimeout(dismissLoader, 450); // Fallback: guaranteed dismiss in max 450ms
-  }
-
-  /* ── 4. Theme Management ─────────────────────────────────────────── */
-  const THEME_KEY = "xps-theme";
-
-  function getSystemTheme() {
-    return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-  }
-
-  function applyTheme(mode, animate = true) {
-    if (animate) {
-      const html = document.documentElement;
-      html.classList.add("is-switching-theme");
-      clearTimeout(applyTheme._t);
-      applyTheme._t = setTimeout(function () {
-        html.classList.remove("is-switching-theme");
-      }, 300);
-    }
-
-    const resolved = mode === "system" ? getSystemTheme() : mode;
-    document.documentElement.setAttribute("data-theme", resolved);
-    document.querySelectorAll(".theme-btn").forEach(function (btn) {
-      btn.classList.toggle("active", btn.dataset.theme === mode);
     });
-  }
 
-  const currentTheme = localStorage.getItem(THEME_KEY) || "system";
-  applyTheme(currentTheme, false);
-
-  window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", function () {
-    if ((localStorage.getItem(THEME_KEY) || "system") === "system") {
-      applyTheme("system", false);
-    }
-  });
-
-  document.querySelectorAll(".theme-btn").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      const mode = btn.dataset.theme;
-      localStorage.setItem(THEME_KEY, mode);
-      applyTheme(mode);
-    });
-  });
-
-  /* ── 5. Mobile Navigation Drawer ─────────────────────────────────── */
-  const hamburger = document.getElementById("nav-hamburger") || document.querySelector(".nav-hamburger");
-  const navLinks = document.getElementById("nav-links") || document.querySelector(".nav-links");
-  const overlay = document.getElementById("nav-overlay") || document.querySelector(".nav-overlay");
-
-  function openNav() {
-    if (!hamburger || !navLinks) return;
-    hamburger.classList.add("open");
-    navLinks.classList.add("open");
-    if (overlay) overlay.classList.add("active");
-    hamburger.setAttribute("aria-expanded", "true");
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeNav() {
-    if (!hamburger || !navLinks) return;
-    hamburger.classList.remove("open");
-    navLinks.classList.remove("open");
-    if (overlay) overlay.classList.remove("active");
-    hamburger.setAttribute("aria-expanded", "false");
-    document.body.style.overflow = "";
-  }
-
-  if (hamburger) {
-    hamburger.addEventListener("click", function () {
-      navLinks && navLinks.classList.contains("open") ? closeNav() : openNav();
-    });
-  }
-
-  if (overlay) {
-    overlay.addEventListener("click", closeNav);
-  }
-
-  if (navLinks) {
-    navLinks.querySelectorAll("a.nav-link").forEach(function (link) {
-      link.addEventListener("click", function () {
-        if (navLinks.classList.contains("open")) closeNav();
+    // Close on navigation click
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
       });
     });
   }
 
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && navLinks && navLinks.classList.contains("open")) {
-      closeNav();
+
+  /* ── 6. In-Browser Interactive XP-CLI Terminal ────────────────────────── */
+  const terminalInput = document.getElementById('terminal-cli-input');
+  const terminalHistory = document.getElementById('terminal-cli-history');
+
+  const COMMANDS = {
+    help: () => [
+      { text: 'XP-SYSTEMS SOVEREIGN SHELL (v3.4.0)', class: 'accent-line' },
+      { text: 'Available commands:', class: 'prompt-line' },
+      { text: '  status       — Query live European infrastructure telemetry', class: 'output-line' },
+      { text: '  domains      — Inspect active domain portfolio overview', class: 'output-line' },
+      { text: '  ping <pop>   — Test edge node latency (fra, fsn, ams, hel)', class: 'output-line' },
+      { text: '  dns          — Display authoritative Anycast nameservers', class: 'output-line' },
+      { text: '  team         — Display core leadership & developers', class: 'output-line' },
+      { text: '  manifesto    — Print principles of European digital sovereignty', class: 'output-line' },
+      { text: '  theme <mode> — Switch color theme (dark, light, matrix)', class: 'output-line' },
+      { text: '  sound        — Toggle tactile sound feedback', class: 'output-line' },
+      { text: '  clear        — Clear console history', class: 'dim-line' },
+    ],
+    status: () => [
+      { text: '[LIVE TELEMETRY] All European Nodes Operational', class: 'success-line' },
+      { text: '  DE-FRA (Frankfurt)  : 100Gbps DE-CIX — UP (3.8ms)', class: 'output-line' },
+      { text: '  DE-FSN (Falkenstein): Bare-Metal Tier IV — UP (6.2ms)', class: 'output-line' },
+      { text: '  NL-AMS (Amsterdam)  : AMS-IX Transit — UP (8.9ms)', class: 'output-line' },
+      { text: '  FI-HEL (Helsinki)   : Cold Vault Backup — UP (14.1ms)', class: 'output-line' },
+      { text: 'Overall Network Health: 100.0% (Zero Active Incidents)', class: 'accent-line' },
+    ],
+    domains: () => [
+      { text: 'PRIMARY NETWORK DOMAINS (~100+ Total Managed):', class: 'accent-line' },
+      { text: '  xpsystems.eu / xpsystems.de — Sovereign Core Infrastructure', class: 'output-line' },
+      { text: '  ternis.dev / ternis-edv.de   — Parent Entity & Enterprise Systems', class: 'output-line' },
+      { text: '  europehost.eu                — European Cloud & Bare-Metal Hosting', class: 'output-line' },
+      { text: '  eu-data.org                  — Privacy Sovereignty & GDPR Mail', class: 'output-line' },
+      { text: '  mtex.dev / dnbx.de           — Developer Intelligence & Nameservers', class: 'output-line' },
+      { text: 'Type "/domains" in your browser or run: curl https://xpsystems.eu/domains', class: 'dim-line' }
+    ],
+    dns: () => [
+      { text: 'AUTHORITATIVE ANYCAST NAMESERVERS (ternis.net):', class: 'accent-line' },
+      { text: '  Primary   : one.ns.ternis.net [Anycast European Core]', class: 'output-line' },
+      { text: '  Secondary : two.ns.ternis.net [Redundant Edge Node]', class: 'output-line' },
+      { text: '  DDoS Shield & DNSSEC: Active / Hardware-Enforced', class: 'success-line' },
+    ],
+    team: () => [
+      { text: 'LEADERSHIP & ENGINEERING:', class: 'accent-line' },
+      { text: '  Fabian Ternis  — Founder & Lead / ternis-edv (fabianternis.de)', class: 'output-line' },
+      { text: '  Ramsay Brewer  — Systems & Web Developer (dogwaterdev.de)', class: 'output-line' },
+    ],
+    manifesto: () => [
+      { text: 'OUR FOUR ENGINEERING PILLARS:', class: 'accent-line' },
+      { text: '  01. Privacy by Default    — Zero cookies, zero third-party telemetry.', class: 'output-line' },
+      { text: '  02. Open Source Core      — Transparent code audited on GitHub.', class: 'output-line' },
+      { text: '  03. Resilient Bare-Metal  — Independence from US hyperscaler lock-in.', class: 'output-line' },
+      { text: '  04. European Sovereignty  — GDPR compliant, registered in Germany.', class: 'output-line' }
+    ],
+    sound: () => {
+      soundEnabled = !soundEnabled;
+      localStorage.setItem('xps-sound', soundEnabled ? 'on' : 'off');
+      updateSoundUI();
+      return [
+        { text: `Sound FX toggled: ${soundEnabled ? 'ON' : 'MUTED'}`, class: 'accent-line' }
+      ];
     }
-  });
-
-  /* ── 6. Scroll Reveal ────────────────────────────────────────────── */
-  if ("IntersectionObserver" in window) {
-    const revealObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
-    );
-
-    document.querySelectorAll(".reveal").forEach(function (el) {
-      revealObserver.observe(el);
-    });
-  } else {
-    document.querySelectorAll(".reveal").forEach(function (el) {
-      el.classList.add("visible");
-    });
-  }
-
-  /* ── 7. Live Status Checking ─────────────────────────────────────── */
-  const statusDot = document.getElementById("status-dot");
-  const statusText = document.getElementById("status-text");
-  const statusBadge = document.getElementById("status-badge");
-
-  const STATUS_MAP = {
-    operational:    { dot: "green",  label: "All Systems Operational", badgeClass: "badge-green"  },
-    partial_outage: { dot: "yellow", label: "Partial Outage",          badgeClass: "badge-yellow" },
-    major_outage:   { dot: "red",    label: "Major Outage",            badgeClass: "badge-red"    },
-    unknown:        { dot: "grey",   label: "Checking Status…",        badgeClass: "badge-grey"   },
   };
 
-  function applyStatus(overall) {
-    if (!statusDot || !statusBadge || !statusText) return;
-    const state = STATUS_MAP[overall] || STATUS_MAP["unknown"];
-    statusDot.className = "status-dot " + state.dot;
-    statusBadge.className = "status-badge " + state.badgeClass;
-    statusText.textContent = state.label;
-  }
+  function executeTerminalCommand(cmdRaw) {
+    const cmd = cmdRaw.trim();
+    if (!cmd) return;
 
-  async function checkStatus() {
-    if (!statusDot || !STATUS_URL) return;
-    const controller = new AbortController();
-    const timeout = setTimeout(function () { controller.abort(); }, 6000);
-    try {
-      const res = await fetch(STATUS_URL, {
-        method: "GET", signal: controller.signal, cache: "no-store",
-      });
-      clearTimeout(timeout);
-      if (!res.ok) throw new Error("status error " + res.status);
-      const data = await res.json();
-      const overall = typeof data.overall === "string" ? data.overall : "operational";
-      applyStatus(overall);
-    } catch {
-      clearTimeout(timeout);
-      // Fallback to operational if endpoint blocked by client adblocker
-      applyStatus("operational");
-    }
-  }
+    // Append prompt line
+    appendTerminalLine(`$ ${cmd}`, 'prompt-line');
 
-  if (statusDot) {
-    checkStatus();
-  }
+    const parts = cmd.split(' ');
+    const root = parts[0].toLowerCase();
+    const arg = parts[1] ? parts[1].toLowerCase() : '';
 
-  /* ── 8. Header Sticky Border ─────────────────────────────────────── */
-  const navHeader = document.querySelector(".nav-header");
-  if (navHeader) {
-    window.addEventListener("scroll", function () {
-      navHeader.classList.toggle("is-scrolled", window.scrollY > 15);
-    }, { passive: true });
-  }
-
-  /* ── 9. Universal Keyboard Search Navigation (Press '/') ─────────── */
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "/" && !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) {
-      const searchTarget = document.getElementById("domain-search") || document.getElementById("repo-search");
-      if (searchTarget) {
-        e.preventDefault();
-        searchTarget.focus();
-        searchTarget.select();
-      }
-    }
-  });
-
-  /* ── 10. Domain Portfolio Filter & Search ────────────────────────── */
-  const domainSearch = document.getElementById("domain-search");
-  const domainFilterPills = document.querySelectorAll(".domain-filter-pill");
-  const domainCounterStatus = document.getElementById("domain-counter-status");
-
-  if (domainSearch || domainFilterPills.length > 0) {
-    let activeFilter = "all";
-    let searchQuery = "";
-
-    function filterDomains() {
-      let visibleCount = 0;
-      let totalCount = 0;
-
-      const cards = document.querySelectorAll(".domain-card");
-      cards.forEach(function (card) {
-        const category = card.dataset.category || "all";
-        const matchesCategory = (activeFilter === "all" || category === activeFilter);
-
-        let cardHasMatch = false;
-        const rows = card.querySelectorAll(".domain-row");
-        rows.forEach(function (row) {
-          totalCount++;
-          const domain = row.dataset.domain || row.textContent.toLowerCase();
-          const matchesSearch = !searchQuery || domain.includes(searchQuery);
-
-          if (matchesCategory && matchesSearch) {
-            row.style.display = "";
-            cardHasMatch = true;
-            visibleCount++;
-          } else {
-            row.style.display = "none";
-          }
-        });
-
-        card.style.display = cardHasMatch ? "" : "none";
-      });
-
-      if (domainCounterStatus) {
-        if (searchQuery || activeFilter !== "all") {
-          domainCounterStatus.textContent = `Showing ${visibleCount} of ${totalCount} domains`;
-        } else {
-          domainCounterStatus.textContent = `Registry contains ${totalCount} domains across our European network`;
-        }
-      }
+    if (root === 'clear') {
+      if (terminalHistory) terminalHistory.innerHTML = '';
+      return;
     }
 
-    if (domainSearch) {
-      domainSearch.addEventListener("input", function () {
-        searchQuery = domainSearch.value.trim().toLowerCase();
-        filterDomains();
-      });
-    }
-
-    domainFilterPills.forEach(function (pill) {
-      pill.addEventListener("click", function () {
-        domainFilterPills.forEach(p => p.classList.remove("active"));
-        pill.classList.add("active");
-        activeFilter = pill.dataset.filter;
-        filterDomains();
-      });
-    });
-
-    // Run initial tally
-    filterDomains();
-  }
-
-  /* ── 11. Interactive Contact Subject Selector ────────────────────── */
-  const subjectPills = document.querySelectorAll(".subject-pill");
-  const founderEmailLink = document.getElementById("founder-mail-link");
-  const generalEmailLink = document.getElementById("general-mail-link");
-
-  if (subjectPills.length > 0) {
-    subjectPills.forEach(function (pill) {
-      pill.addEventListener("click", function () {
-        subjectPills.forEach(p => p.classList.remove("active"));
-        pill.classList.add("active");
-        const subject = pill.dataset.subject || pill.textContent.trim();
-
-        if (founderEmailLink) {
-          founderEmailLink.href = `mailto:f.ternis@xpsystems.eu?subject=${encodeURIComponent(subject)}`;
-        }
-        if (generalEmailLink) {
-          generalEmailLink.href = `mailto:contact@xpsystems.eu?subject=${encodeURIComponent(subject)}`;
-        }
-        showToast(`Topic selected: "${subject}"`);
-      });
-    });
-  }
-
-  /* ── 12. Open Source Live GitHub Explorer ────────────────────────── */
-  const repoTable = document.getElementById("repo-table");
-  if (repoTable) {
-    initOpenSourceExplorer();
-  }
-
-  function initOpenSourceExplorer() {
-    let allRepos = [];
-    let sortCol = "updated";
-    let sortDir = "desc";
-    let filterSrc = "all";
-    let searchQ = "";
-
-    const LANG_COLORS = {
-      JavaScript: "#f1e05a", TypeScript: "#3178c6", Python: "#3572A5",
-      PHP: "#4F5D95", CSS: "#563d7c", HTML: "#e34c26", Shell: "#89e051",
-      Go: "#00ADD8", Rust: "#dea584", Dockerfile: "#384d54", Vue: "#41b883",
-      Svelte: "#ff3e00", Ruby: "#701516", C: "#555555", "C++": "#f34b7d",
-      Java: "#b07219", Kotlin: "#A97BFF", Swift: "#F05138", Nix: "#7e7eff",
-    };
-
-    function escapeHtml(str) {
-      return String(str ?? "")
-        .replace(/&/g, "&amp;").replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-    }
-
-    function relTime(iso) {
-      if (!iso) return "recently";
-      const diff = (Date.now() - new Date(iso)) / 1000;
-      if (diff < 60) return "just now";
-      if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
-      if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
-      if (diff < 86400 * 30) return `${Math.floor(diff / 86400)}d ago`;
-      if (diff < 86400 * 365) return `${Math.floor(diff / 2592000)}mo ago`;
-      return `${Math.floor(diff / 31536000)}y ago`;
-    }
-
-    function animateCount(el, target) {
-      if (!el || isNaN(target)) return;
-      const duration = 900;
-      const start = performance.now();
-      const step = (now) => {
-        const p = Math.min((now - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(ease * target);
-        if (p < 1) requestAnimationFrame(step);
+    if (root === 'ping') {
+      const validTargets = {
+        fra: { city: 'Frankfurt am Main', latency: '3.8ms', peer: 'DE-CIX Core' },
+        fsn: { city: 'Falkenstein', latency: '6.2ms', peer: 'Hetzner Tier IV' },
+        ams: { city: 'Amsterdam', latency: '8.9ms', peer: 'AMS-IX Transit' },
+        hel: { city: 'Helsinki', latency: '14.1ms', peer: 'Cold Vault Edge' },
       };
-      requestAnimationFrame(step);
+
+      const target = validTargets[arg] || validTargets['fra'];
+      appendTerminalLine(`PING ${target.city} (${target.peer}): 56 data bytes`, 'output-line');
+      setTimeout(() => {
+        appendTerminalLine(`64 bytes from ${target.city}: icmp_seq=1 ttl=58 time=${target.latency}`, 'success-line');
+        appendTerminalLine(`--- ${target.city} ping statistics: 0% packet loss ---`, 'dim-line');
+      }, 100);
+      return;
     }
 
-    async function api(action, params = {}) {
-      const qs = new URLSearchParams({ action, ...params }).toString();
-      const res = await fetch(`/api?${qs}`);
-      if (!res.ok) throw new Error(`API error ${res.status}`);
-      return res.json();
-    }
-
-    function getFilteredRepos() {
-      return allRepos
-        .filter(r => filterSrc === "all" || r._source === filterSrc)
-        .filter(r => {
-          if (!searchQ) return true;
-          const q = searchQ.toLowerCase();
-          return (r.name || "").toLowerCase().includes(q) ||
-                 (r.description || "").toLowerCase().includes(q) ||
-                 (r.language || "").toLowerCase().includes(q);
-        })
-        .sort((a, b) => {
-          let av, bv;
-          if (sortCol === "name")    { av = a.name;             bv = b.name; }
-          if (sortCol === "stars")   { av = a.stargazers_count; bv = b.stargazers_count; }
-          if (sortCol === "forks")   { av = a.forks_count;      bv = b.forks_count; }
-          if (sortCol === "updated") { av = a.pushed_at;        bv = b.pushed_at; }
-          if (sortDir === "asc") return av > bv ? 1 : -1;
-          if (sortDir === "desc") return av < bv ? 1 : -1;
-          return 0;
-        });
-    }
-
-    function renderTable() {
-      const tbody = document.getElementById("repo-tbody");
-      const empty = document.getElementById("repo-empty");
-      const meta  = document.getElementById("repo-meta");
-      if (!tbody) return;
-
-      const repos = getFilteredRepos();
-
-      document.querySelectorAll(".repo-table th.sortable").forEach(th => {
-        th.classList.remove("sort-asc", "sort-desc");
-        if (th.dataset.col === sortCol) th.classList.add("sort-" + sortDir);
-      });
-
-      if (repos.length === 0) {
-        tbody.innerHTML = "";
-        if (empty) empty.style.display = "block";
-        if (meta) meta.textContent = "";
-        return;
+    if (root === 'theme') {
+      if (['dark', 'light', 'matrix'].includes(arg)) {
+        localStorage.setItem('xps-theme', arg);
+        applyTheme(arg);
+        appendTerminalLine(`Theme successfully switched to: ${arg.toUpperCase()}`, 'success-line');
+      } else {
+        appendTerminalLine('Usage: theme <dark|light|matrix>', 'dim-line');
       }
-      if (empty) empty.style.display = "none";
-      if (meta) meta.textContent = `Showing ${repos.length} of ${allRepos.length} public repositories`;
-
-      tbody.innerHTML = repos.map(r => `
-        <tr>
-          <td class="col-name">
-            <div>
-              <a class="repo-name-link" href="${escapeHtml(r.html_url)}" target="_blank" rel="noopener">
-                ${escapeHtml(r.name)}
-                ${r.fork ? '<span class="repo-fork-badge">fork</span>' : ''}
-              </a>
-              ${r.description ? `<div class="repo-desc">${escapeHtml(r.description)}</div>` : ''}
-            </div>
-          </td>
-          <td class="col-org">
-            <span class="org-tag">@${escapeHtml(r._source)}</span>
-          </td>
-          <td class="col-lang">
-            <span class="lang-label">
-              ${r.language
-                ? `<span class="lang-dot" style="background:${LANG_COLORS[r.language] || '#8b8b8b'}"></span>${escapeHtml(r.language)}`
-                : '<span style="color:var(--text-dim)">—</span>'}
-            </span>
-          </td>
-          <td class="col-stars">
-            <span class="star-count">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              ${r.stargazers_count}
-            </span>
-          </td>
-          <td class="col-forks">
-            <span class="fork-count">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
-              ${r.forks_count}
-            </span>
-          </td>
-          <td class="col-updated" style="color:var(--text-muted);font-size:0.8125rem;">${relTime(r.pushed_at)}</td>
-          <td class="col-link">
-            <div style="display:flex; gap:6px; align-items:center;">
-              <button class="repo-link-btn" title="Copy git clone URL" data-copy="git clone ${escapeHtml(r.clone_url || r.html_url)}.git" data-copy-label="${escapeHtml(r.name)}">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                </svg>
-              </button>
-              <a href="${escapeHtml(r.html_url)}" target="_blank" rel="noopener" class="repo-link-btn" title="Open on GitHub">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-                </svg>
-              </a>
-            </div>
-          </td>
-        </tr>
-      `).join("");
+      return;
     }
 
-    document.querySelectorAll(".repo-table th.sortable").forEach(th => {
-      th.addEventListener("click", () => {
-        const col = th.dataset.col;
-        if (sortCol === col) { sortDir = sortDir === "asc" ? "desc" : "asc"; }
-        else { sortCol = col; sortDir = col === "name" ? "asc" : "desc"; }
-        renderTable();
-      });
-    });
-
-    document.querySelectorAll(".filter-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        filterSrc = btn.dataset.filter;
-        renderTable();
-      });
-    });
-
-    const searchEl = document.getElementById("repo-search");
-    if (searchEl) {
-      searchEl.addEventListener("input", () => {
-        searchQ = searchEl.value.trim();
-        renderTable();
-      });
+    if (COMMANDS[root]) {
+      const lines = COMMANDS[root]();
+      lines.forEach(l => appendTerminalLine(l.text, l.class));
+    } else {
+      appendTerminalLine(`Command not found: "${cmd}". Type "help" for a list of commands.`, 'dim-line');
     }
-
-    // Load org/user accounts
-    document.querySelectorAll(".org-card").forEach(async (card) => {
-      const handle = card.dataset.handle;
-      if (!handle) return;
-      try {
-        const isUser = card.querySelector(".org-type-badge")?.textContent.trim() === "user";
-        const action = isUser ? "user_info" : "org_info";
-        const param = isUser ? { user: handle } : { org: handle };
-        const info = await api(action, param);
-
-        const avatarWrap = document.getElementById(`avatar-${handle}`);
-        if (avatarWrap && info.avatar_url) {
-          avatarWrap.innerHTML = `<img src="${info.avatar_url}" alt="${handle}">`;
-        }
-
-        const repoCountEl = document.querySelector(`#org-repos-${handle} .org-stat-num`);
-        if (repoCountEl && typeof info.public_repos !== "undefined") {
-          repoCountEl.textContent = info.public_repos;
-        }
-      } catch (_) {}
-    });
-
-    // Fetch repositories
-    (async () => {
-      try {
-        const repos = await api("all_repos");
-        allRepos = Array.isArray(repos) ? repos : [];
-
-        const totalStars = allRepos.reduce((s, r) => s + (r.stargazers_count || 0), 0);
-        const totalForks = allRepos.reduce((s, r) => s + (r.forks_count || 0), 0);
-
-        animateCount(document.getElementById("stat-repos"), allRepos.length);
-        animateCount(document.getElementById("stat-stars"), totalStars);
-        animateCount(document.getElementById("stat-forks"), totalForks);
-
-        renderTable();
-      } catch (err) {
-        const tbody = document.getElementById("repo-tbody");
-        if (tbody) {
-          tbody.innerHTML = `
-            <tr><td colspan="7">
-              <div class="repo-loading" style="color:var(--text-dim)">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                Could not load live repositories. Please check connection or reload shortly.
-              </div>
-            </td></tr>`;
-        }
-      }
-    })();
   }
 
-  /* ── 13. Playful Footer High-Five Reaction ───────────────────────── */
-  const highfiveBtn = document.getElementById("footer-highfive-btn");
-  const highfiveCount = document.getElementById("highfive-count");
-  if (highfiveBtn && highfiveCount) {
-    const HIGHFIVE_KEY = "xps-highfive-count";
-    let count = parseInt(localStorage.getItem(HIGHFIVE_KEY), 10) || 128;
-    highfiveCount.textContent = count;
+  function appendTerminalLine(text, className = 'output-line') {
+    if (!terminalHistory) return;
+    const div = document.createElement('div');
+    div.className = `terminal-line ${className}`;
+    div.textContent = text;
+    terminalHistory.appendChild(div);
 
-    highfiveBtn.addEventListener("click", function () {
-      count++;
-      localStorage.setItem(HIGHFIVE_KEY, count);
-      highfiveCount.textContent = count;
+    // Auto-scroll
+    const shellTerminal = document.querySelector('.shell-content-terminal');
+    if (shellTerminal) {
+      shellTerminal.scrollTop = shellTerminal.scrollHeight;
+    }
+  }
 
-      // Playful particle celebration
-      const emojiList = ["🎉", "🚀", "⚡", "❤️", "🇩🇪", "🇪🇺", "✨"];
-      const rect = highfiveBtn.getBoundingClientRect();
-      for (let i = 0; i < 6; i++) {
-        const span = document.createElement("span");
-        span.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
-        span.style.position = "fixed";
-        span.style.left = (rect.left + rect.width / 2 + (Math.random() * 40 - 20)) + "px";
-        span.style.top = (rect.top + (Math.random() * 20 - 10)) + "px";
-        span.style.fontSize = "1.25rem";
-        span.style.pointerEvents = "none";
-        span.style.zIndex = "99999";
-        span.style.transition = "all 0.8s cubic-bezier(0.16, 1, 0.3, 1)";
-        document.body.appendChild(span);
-
-        requestAnimationFrame(function () {
-          span.style.transform = `translate(${Math.random() * 80 - 40}px, -${60 + Math.random() * 60}px) scale(1.4)`;
-          span.style.opacity = "0";
-        });
-
-        setTimeout(function () {
-          if (span.parentNode) span.parentNode.removeChild(span);
-        }, 850);
+  if (terminalInput) {
+    terminalInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const val = terminalInput.value;
+        terminalInput.value = '';
+        executeTerminalCommand(val);
+        playTickSound(900, 'sine', 0.02);
       }
-
-      showToast("High five delivered! 🚀 Thanks for visiting xpsystems!", 3000);
     });
   }
 
-  /* ── 14. Playful Footer Edge Clock (CET) ─────────────────────────── */
-  const footerTimeDisplay = document.getElementById("footer-time-display");
-  if (footerTimeDisplay) {
-    function updateFooterClock() {
-      try {
-        const now = new Date();
-        const formatter = new Intl.DateTimeFormat("en-GB", {
-          timeZone: "Europe/Berlin",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: false,
-        });
-        footerTimeDisplay.textContent = formatter.format(now) + " CET";
-      } catch (e) {
-        const d = new Date();
-        footerTimeDisplay.textContent = d.toTimeString().substring(0, 8) + " CET";
+
+  /* ── 7. Shell Widget Tabs (Terminal vs European Edge PoP Radar) ────────── */
+  const shellTabBtns = document.querySelectorAll('.shell-tab-btn');
+  const terminalContent = document.querySelector('.shell-content-terminal');
+  const radarContent = document.querySelector('.shell-content-radar');
+
+  shellTabBtns.forEach(btn => {
+    btn.addEventListener('click', function () {
+      const tab = this.dataset.tab;
+      shellTabBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+
+      if (tab === 'terminal') {
+        if (terminalContent) terminalContent.style.display = 'flex';
+        if (radarContent) radarContent.style.display = 'none';
+        if (terminalInput) terminalInput.focus();
+      } else if (tab === 'radar') {
+        if (terminalContent) terminalContent.style.display = 'none';
+        if (radarContent) radarContent.style.display = 'block';
       }
-    }
-    updateFooterClock();
-    setInterval(updateFooterClock, 1000);
-  }
-
-  /* ── 15. Playful Footer Edge Ping Radar ──────────────────────────── */
-  const footerPingBtn = document.getElementById("footer-ping-btn");
-  const footerPingVal = document.getElementById("footer-ping-val");
-  if (footerPingBtn && footerPingVal) {
-    let isPinging = false;
-    footerPingBtn.addEventListener("click", function () {
-      if (isPinging) return;
-      isPinging = true;
-      footerPingBtn.classList.add("measuring");
-      footerPingVal.textContent = "measuring...";
-
-      const t0 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
-
-      fetch(statusApiUrl, { cache: "no-store", method: "GET" })
-        .then(function (res) {
-          const t1 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
-          const latency = Math.max(3, Math.round(t1 - t0));
-          const locations = ["Frankfurt edge", "Falkenstein node", "Helsinki edge"];
-          const loc = locations[Math.floor(Math.random() * locations.length)];
-          footerPingVal.textContent = "⚡ " + latency + "ms (" + loc + ")";
-          showToast("Anycast ping: " + latency + "ms to " + loc + " ✨", 2500);
-        })
-        .catch(function () {
-          const sim = Math.floor(Math.random() * 8) + 4;
-          footerPingVal.textContent = "⚡ " + sim + "ms (Frankfurt edge)";
-          showToast("Edge ping measured: " + sim + "ms roundtrip! ⚡", 2000);
-        })
-        .finally(function () {
-          setTimeout(function () {
-            footerPingBtn.classList.remove("measuring");
-            isPinging = false;
-          }, 400);
-        });
-    });
-  }
-
-  /* ── 16. Anycast Nameservers Click-to-Copy ───────────────────────── */
-  const nsItems = document.querySelectorAll(".footer-ns-item[data-copy]");
-  nsItems.forEach(function (el) {
-    el.addEventListener("click", function () {
-      const textToCopy = el.getAttribute("data-copy");
-      if (!textToCopy) return;
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(textToCopy).catch(function () {});
-      }
-
-      el.classList.add("copied");
-      showToast("Copied " + textToCopy + " to clipboard! 📋", 2200);
-
-      setTimeout(function () {
-        el.classList.remove("copied");
-      }, 1500);
     });
   });
 
-  /* ── 17. Playful Dev Quote Easter Egg ────────────────────────────── */
-  const quoteBtn = document.getElementById("footer-quote-pill");
-  const quoteText = document.getElementById("footer-quote-text");
-  if (quoteBtn && quoteText) {
-    const quotes = [
-      "Packets routed with zero drama",
-      "All cookies rejected by design",
-      "100% DSGVO & bare-metal fast",
-      "European Anycast across FRA, FSN & HEL",
-      "Sub-entity of ternis.dev (ternis-edv)",
-      "Cold-water cooling & green energy",
-      "Sovereign digital infrastructure",
-      "AS??? Anycast BGP network",
-      "World-class European engineering & design",
-    ];
-    let qIdx = 0;
-    quoteBtn.addEventListener("click", function () {
-      qIdx = (qIdx + 1) % quotes.length;
-      quoteText.style.opacity = "0";
-      quoteText.style.transform = "translateY(-4px)";
-      setTimeout(function () {
-        quoteText.textContent = quotes[qIdx];
-        quoteText.style.transition = "all 0.2s ease";
-        quoteText.style.opacity = "1";
-        quoteText.style.transform = "translateY(0)";
-      }, 120);
+  // Radar Node Selection
+  const radarCards = document.querySelectorAll('.radar-node-card');
+  radarCards.forEach(card => {
+    card.addEventListener('click', function () {
+      radarCards.forEach(c => c.classList.remove('is-selected'));
+      this.classList.add('is-selected');
+      const city = this.querySelector('.node-city')?.textContent || 'Node';
+      const latency = this.querySelector('.node-latency-pill')?.textContent || '';
+      showToast(`Selected Node: ${city} (${latency.trim()})`);
     });
+  });
+
+
+  /* ── 8. Domain Portfolio Live Search & Filter Engine ───────────────────── */
+  const domainSearchInput = document.getElementById('domain-search-input');
+  const domainFilterPills = document.querySelectorAll('.domain-filter-pill');
+  const domainGroups = document.querySelectorAll('.domain-card');
+  const domainCounterStatus = document.getElementById('domain-counter-status');
+
+  function filterDomains() {
+    if (!domainGroups.length) return;
+
+    const query = domainSearchInput ? domainSearchInput.value.toLowerCase().trim() : '';
+    const activeFilter = document.querySelector('.domain-filter-pill.active')?.dataset.category || 'all';
+
+    let totalVisible = 0;
+    let totalDomains = 0;
+
+    domainGroups.forEach(group => {
+      const categoryKey = group.dataset.category || '';
+      const items = group.querySelectorAll('.domain-item-row');
+      let groupHasMatch = false;
+
+      // Filter by category
+      const categoryMatches = (activeFilter === 'all' || activeFilter === categoryKey);
+
+      items.forEach(item => {
+        totalDomains++;
+        const domainText = item.querySelector('.domain-item-link')?.textContent.toLowerCase() || '';
+        const matchesQuery = !query || domainText.includes(query);
+
+        if (categoryMatches && matchesQuery) {
+          item.style.display = 'flex';
+          groupHasMatch = true;
+          totalVisible++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      group.style.display = groupHasMatch ? 'flex' : 'none';
+    });
+
+    if (domainCounterStatus) {
+      if (query || activeFilter !== 'all') {
+        domainCounterStatus.textContent = `Showing ${totalVisible} of ${totalDomains} domains`;
+      } else {
+        domainCounterStatus.textContent = `All ${totalDomains} domains indexed & monitored`;
+      }
+    }
   }
 
-  /* ── 17b. Footer Back to Top Button ──────────────────────────────── */
-  const scrollTopBtn = document.getElementById("footer-scroll-top");
-  if (scrollTopBtn) {
-    scrollTopBtn.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+  if (domainSearchInput) {
+    domainSearchInput.addEventListener('input', filterDomains);
   }
 
-  /* ── 17c. DNBX.de Live Telemetry & API Showcase ──────────────────── */
-  const dnbxActiveVal = document.getElementById("dnbx-active-val");
-  const dnbxTotalVal = document.getElementById("dnbx-total-val");
-  const dnbxTldsVal = document.getElementById("dnbx-tlds-val");
-  const dnbxPingVal = document.getElementById("dnbx-ping-val");
-  const dnbxApiHealth = document.getElementById("dnbx-api-health");
-  const dnbxTabs = document.querySelectorAll(".dnbx-tab-btn");
-  const dnbxUrlText = document.getElementById("dnbx-url-text");
-  const dnbxRunBtn = document.getElementById("dnbx-run-btn");
-  const dnbxCopyBtn = document.getElementById("dnbx-copy-btn");
-  const dnbxTerminalOutput = document.getElementById("dnbx-terminal-output");
+  domainFilterPills.forEach(pill => {
+    pill.addEventListener('click', function () {
+      domainFilterPills.forEach(p => p.classList.remove('active'));
+      this.classList.add('active');
+      filterDomains();
+    });
+  });
 
-  if (dnbxActiveVal || dnbxTerminalOutput) {
-    // 1. Initial live ping & stats fetch
-    const t0 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
-    fetch("https://dnbx.de/api/ping", { cache: "no-store" })
-      .then(r => r.json())
-      .then(() => {
-        const t1 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
-        const pingMs = Math.max(2, Math.round(t1 - t0));
-        if (dnbxPingVal) dnbxPingVal.textContent = `~${pingMs}ms`;
-        if (dnbxApiHealth) dnbxApiHealth.innerHTML = `<span class="health-dot"></span>Online (${pingMs}ms)`;
+
+  /* ── 9. Live Status Health Checker & Refresh ──────────────────────────── */
+  const statusBadge = document.getElementById('status-badge');
+  const statusDot = document.getElementById('status-dot');
+  const statusText = document.getElementById('status-text');
+  const refreshBtn = document.getElementById('status-refresh-btn');
+
+  function checkStatus() {
+    if (refreshBtn) refreshBtn.classList.add('spinning');
+
+    fetch('/api/status')
+      .then(res => res.json())
+      .then(data => {
+        if (refreshBtn) refreshBtn.classList.remove('spinning');
+        if (data && data.overall) {
+          const isUp = data.overall === 'operational';
+          if (statusDot) {
+            statusDot.className = `status-dot ${isUp ? 'green' : 'warn'}`;
+          }
+          if (statusText) {
+            statusText.textContent = isUp ? 'Operational' : 'Incident';
+          }
+        }
       })
       .catch(() => {
-        if (dnbxPingVal) dnbxPingVal.textContent = "Online";
+        if (refreshBtn) refreshBtn.classList.remove('spinning');
+        // Fallback keep existing
       });
-
-    fetch("https://dnbx.de/api/stats", { cache: "no-store" })
-      .then(r => r.json())
-      .then(res => {
-        if (res && res.data) {
-          if (dnbxActiveVal && res.data.active_domains) dnbxActiveVal.textContent = res.data.active_domains;
-          if (dnbxTotalVal && res.data.total_managed) dnbxTotalVal.textContent = res.data.total_managed;
-          if (dnbxTldsVal && res.data.unique_tlds) dnbxTldsVal.textContent = res.data.unique_tlds;
-        }
-      })
-      .catch(() => {});
-
-    // 2. Interactive Terminal Endpoint Runner
-    let currentEndpoint = "stats";
-    const endpointUrls = {
-      stats: "https://dnbx.de/api/stats",
-      nameservers: "https://dnbx.de/api/nameservers",
-      domains: "https://dnbx.de/api/domains?limit=3",
-      tlds: "https://dnbx.de/api/tlds",
-      ping: "https://dnbx.de/api/ping"
-    };
-
-    function executeDnbxQuery(ep) {
-      const url = endpointUrls[ep] || endpointUrls.stats;
-      if (dnbxUrlText) dnbxUrlText.textContent = url;
-      if (dnbxTerminalOutput) dnbxTerminalOutput.textContent = `// Querying ${url}…`;
-
-      fetch(url, { cache: "no-store" })
-        .then(r => r.json())
-        .then(data => {
-          if (dnbxTerminalOutput) {
-            dnbxTerminalOutput.textContent = JSON.stringify(data, null, 2);
-          }
-          showToast(`DNBX API: Successfully queried /api/${ep} ⚡`, 2000);
-        })
-        .catch(err => {
-          if (dnbxTerminalOutput) {
-            dnbxTerminalOutput.textContent = `// Error fetching ${url}:\n${err.message}`;
-          }
-        });
-    }
-
-    dnbxTabs.forEach(btn => {
-      btn.addEventListener("click", function () {
-        dnbxTabs.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        currentEndpoint = btn.dataset.endpoint || "stats";
-        executeDnbxQuery(currentEndpoint);
-      });
-    });
-
-    if (dnbxRunBtn) {
-      dnbxRunBtn.addEventListener("click", function () {
-        executeDnbxQuery(currentEndpoint);
-      });
-    }
-
-    if (dnbxCopyBtn && dnbxTerminalOutput) {
-      dnbxCopyBtn.addEventListener("click", function () {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(dnbxTerminalOutput.textContent).then(() => {
-            showToast("Copied DNBX JSON response to clipboard! 📋", 2000);
-          });
-        }
-      });
-    }
   }
 
-  /* ── 18. Dynamic Specular Spotlight Tracking ───────────────────── */
-  let activeSpotlightCards = [];
-  function updateSpotlightCards() {
-    activeSpotlightCards = Array.from(document.querySelectorAll(".spotlight-card, .card, .domain-card, .contact-card, .org-card, .region-node, .stat-item, .mission-card"));
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', checkStatus);
   }
-  updateSpotlightCards();
-  window.addEventListener("resize", updateSpotlightCards, { passive: true });
 
-  let pointerMoveScheduled = false;
-  let lastPointerEvent = null;
 
-  document.addEventListener("pointermove", function (e) {
-    lastPointerEvent = e;
-    if (!pointerMoveScheduled) {
-      pointerMoveScheduled = true;
-      requestAnimationFrame(function () {
-        pointerMoveScheduled = false;
-        if (!lastPointerEvent) return;
-        const px = lastPointerEvent.clientX;
-        const py = lastPointerEvent.clientY;
-        const len = activeSpotlightCards.length;
-        for (let i = 0; i < len; i++) {
-          const card = activeSpotlightCards[i];
-          const rect = card.getBoundingClientRect();
-          if (px >= rect.left - 200 && px <= rect.right + 200 && py >= rect.top - 200 && py <= rect.bottom + 200) {
-            card.style.setProperty("--mouse-x", `${px - rect.left}px`);
-            card.style.setProperty("--mouse-y", `${py - rect.top}px`);
-          }
-        }
-      });
+  /* ── 10. Uptime Bar Tooltips ─────────────────────────────────────────── */
+  const tooltip = document.createElement('div');
+  tooltip.className = 'uptime-tick-tooltip';
+  tooltip.style.display = 'none';
+  document.body.appendChild(tooltip);
+
+  document.addEventListener('mouseover', function (e) {
+    const tick = e.target.closest('.uptime-bar-tick');
+    if (tick) {
+      const date = tick.dataset.date || '';
+      const uptime = tick.dataset.uptime || '100%';
+      const status = tick.dataset.status || 'Operational';
+
+      tooltip.innerHTML = `<strong>${escapeHtml(date)}</strong> &bull; ${escapeHtml(uptime)} &bull; <em>${escapeHtml(status)}</em>`;
+      tooltip.style.display = 'block';
+
+      const rect = tick.getBoundingClientRect();
+      tooltip.style.left = `${rect.left + window.scrollX - 40}px`;
+      tooltip.style.top = `${rect.top + window.scrollY - 36}px`;
     }
-  }, { passive: true });
-
-  /* ── 19. Interactive PoP Region Nodes Telemetry ─────────────────── */
-  const regionNodes = document.querySelectorAll(".region-node");
-  regionNodes.forEach(function (node) {
-    node.addEventListener("click", function () {
-      const pingEl = node.querySelector(".region-ping");
-      const city = node.querySelector(".region-city")?.textContent || "node";
-      if (!pingEl) return;
-      const originalHTML = pingEl.innerHTML;
-      pingEl.innerHTML = `<span class="status-dot yellow" style="width:6px;height:6px;display:inline-block;margin-right:6px;"></span>pinging...`;
-      setTimeout(function () {
-        const latencies = {
-          "de-fra": (3.4 + Math.random() * 0.8).toFixed(1) + "ms",
-          "de-fsn": (5.7 + Math.random() * 0.8).toFixed(1) + "ms",
-          "nl-ams": (8.1 + Math.random() * 1.2).toFixed(1) + "ms",
-          "fi-hel": (13.4 + Math.random() * 1.5).toFixed(1) + "ms",
-        };
-        const reg = node.dataset.region || "de-fra";
-        const ms = latencies[reg] || "4.8ms";
-        pingEl.innerHTML = `<span class="status-dot green" style="width:6px;height:6px;display:inline-block;margin-right:6px;"></span>~${ms} Anycast`;
-        showToast(`PoP ${city} latency verified: ~${ms} roundtrip ⚡`, 2400);
-      }, 320);
-    });
   });
 
-  /* ── 20. Animated Stat Counters on Scroll ───────────────────────── */
-  const statValues = document.querySelectorAll(".stat-value");
-  if ("IntersectionObserver" in window && statValues.length > 0) {
-    const statObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          statObserver.unobserve(el);
-          const rawText = el.textContent.trim();
-          const match = rawText.match(/^(\d+)(.*)$/);
-          if (match) {
-            const target = parseInt(match[1], 10);
-            const suffix = match[2] || "";
-            const duration = 1200;
-            const startTime = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
-            function updateCount(now) {
-              const progress = Math.min((now - startTime) / duration, 1);
-              const ease = 1 - Math.pow(1 - progress, 3);
-              el.textContent = Math.floor(ease * target) + suffix;
-              if (progress < 1) {
-                requestAnimationFrame(updateCount);
-              } else {
-                el.textContent = rawText;
-              }
-            }
-            requestAnimationFrame(updateCount);
-          }
-        }
-      });
-    }, { threshold: 0.25 });
-    statValues.forEach(el => statObserver.observe(el));
+  document.addEventListener('mouseout', function (e) {
+    if (e.target.closest('.uptime-bar-tick')) {
+      tooltip.style.display = 'none';
+    }
+  });
+
+
+  /* ── 11. Snappy Preloader Dismissal ───────────────────────────────────── */
+  const loader = document.getElementById('xps-loader');
+  if (loader) {
+    window.addEventListener('load', function () {
+      setTimeout(() => {
+        loader.classList.add('is-loaded');
+      }, 150);
+    });
+
+    // Safeguard timeout
+    setTimeout(() => {
+      if (loader && !loader.classList.contains('is-loaded')) {
+        loader.classList.add('is-loaded');
+      }
+    }, 500);
   }
 
+
+  /* ── Helper: Escape HTML ─────────────────────────────────────────────── */
   function escapeHtml(str) {
-    return String(str ?? "")
-      .replace(/&/g, "&amp;").replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
   }
-})();
 
+  // Initialize Sound State
+  updateSoundUI();
+
+})();

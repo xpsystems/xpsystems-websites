@@ -1,175 +1,188 @@
 // =============================================================================
 // xpsystems — Master Design Tokens
-// World-Class Web Agency Architecture: Specular Lighting, Luminous Depth, Editorial Precision
+// World-Class Agency Architecture: Precision Grids, Solid Surfaces, Zero Gradients
+// Themes: Obsidian Onyx (Dark), Architectural Vellum (Light), System Matrix (Mono)
 // =============================================================================
 
 :root {
-  // ── Surface Backgrounds (Deep Obsidian Cosmic Space & Subtle Ambient Glass)
-  --bg:               #06080f;
-  --bg-subtle:        #0b0f19;
-  --bg-alt:           #0f1422;
-  --bg-surface:       #111726;
-  --bg-surface-hover: #162035;
-  --bg-elevated:      #19243d;
-  --bg-glass:         rgba(6, 8, 15, 0.82);
-  --bg-glass-card:    rgba(17, 23, 38, 0.72);
+  // ── Primary Solid Surfaces (Dark / Obsidian Onyx Default)
+  --bg:                 #08090c;
+  --bg-subtle:          #0e1015;
+  --bg-surface:         #13161d;
+  --bg-surface-hover:   #1a1d26;
+  --bg-elevated:        #202430;
+  --bg-nav:             #08090ce6; // Minimal subtle solid tint for sticky nav only
 
-  // ── Specular Hairline Borders & Edge Highlights
-  --border:           rgba(255, 255, 255, 0.09);
-  --border-subtle:    rgba(255, 255, 255, 0.05);
-  --border-hover:     rgba(96, 165, 250, 0.55);
-  --border-active:    #3b82f6;
-  --border-highlight: rgba(255, 255, 255, 0.16);
+  // ── Architectural Hairline Borders (Solid, High-Precision Rules)
+  --border:             #222733;
+  --border-subtle:      #171a22;
+  --border-hover:       #3e4659;
+  --border-active:      #185aff;
+  --border-highlight:   #343b4b;
 
-  // ── Text & Typography
-  --text:             #f8fafc;
-  --text-secondary:   #cbd5e1;
-  --text-muted:       #94a3b8;
-  --text-dim:         #64748b;
-  --text-inverse:     #06080f;
+  // ── Typography & Text Contrast
+  --text:               #f5f7fa;
+  --text-secondary:     #a4adbb;
+  --text-muted:         #656f80;
+  --text-dim:           #434a57;
+  --text-inverse:       #08090c;
 
-  // ── Primary Brand Accent (Electric Sapphire & Radiant Aura)
-  --accent:           #3b82f6;
-  --accent-hover:     #60a5fa;
-  --accent-active:    #2563eb;
-  --accent-dim:       rgba(59, 130, 246, 0.12);
-  --accent-glow:      rgba(59, 130, 246, 0.3);
-  --accent-glow-strong: rgba(59, 130, 246, 0.55);
-  --accent-strong:    #2563eb;
-  --accent-text:      #ffffff;
-  --accent-gradient:  linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #38bdf8 100%);
-  --text-gradient:    linear-gradient(180deg, #ffffff 0%, #e2e8f0 65%, #94a3b8 100%);
+  // ── Solid Brand Accents (Strictly NO Gradients)
+  --accent:             #185aff; // Electric International Cobalt
+  --accent-hover:       #3873ff;
+  --accent-active:      #0b47db;
+  --accent-dim:         #0f224d;
+  --accent-text:        #ffffff;
 
-  // ── Secondary Accent (Cyan Infrastructure Edge)
-  --cyan:             #06b6d4;
-  --cyan-hover:       #22d3ee;
-  --cyan-dim:         rgba(6, 182, 212, 0.12);
-  --cyan-glow:        rgba(6, 182, 212, 0.35);
+  --signal:             #ff4f00; // International Safety Orange
+  --signal-hover:       #ff6824;
+  --signal-dim:         #3b180a;
 
-  // ── Partner Accent (Warm Amber / Gold)
-  --partner:          #f59e0b;
-  --partner-hover:    #fbbf24;
-  --partner-dim:      rgba(245, 158, 11, 0.12);
-  --partner-glow:     rgba(245, 158, 11, 0.35);
-  --partner-strong:   #d97706;
+  --cyan:               #00b4d8;
+  --cyan-dim:           #082a33;
 
-  // ── Functional / Status Semantics
-  --green:            #10b981;
-  --green-hover:      #34d399;
-  --green-dim:        rgba(16, 185, 129, 0.12);
-  --green-glow:       rgba(16, 185, 129, 0.4);
-  --yellow:           #f59e0b;
-  --yellow-dim:       rgba(245, 158, 11, 0.12);
-  --yellow-glow:      rgba(245, 158, 11, 0.35);
-  --red:              #f43f5e;
-  --red-dim:          rgba(244, 63, 94, 0.12);
-  --red-glow:         rgba(244, 63, 94, 0.35);
-  --purple:           #a855f7;
-  --purple-dim:       rgba(168, 85, 247, 0.12);
-  --purple-glow:      rgba(168, 85, 247, 0.35);
-  --grey:             #64748b;
-  --grey-dim:         rgba(100, 116, 139, 0.15);
+  --partner:            #eab308;
+  --partner-dim:        #332706;
 
-  // ── Playful Coral Accent
-  --coral:            #fb7185;
-  --coral-dim:        rgba(251, 113, 133, 0.14);
+  // ── Functional Telemetry & Status
+  --status-up:          #00d66f; // Pure Phosphor Green
+  --status-up-dim:      #08301b;
+  --status-warn:        #f59e0b;
+  --status-warn-dim:    #362306;
+  --status-down:        #ff334b;
+  --status-down-dim:    #3b0c12;
+  --status-grey:        #656f80;
+  --status-grey-dim:    #1f242d;
 
-  // ── Elevation & Specular Shadows (High Agency Polish)
-  --shadow-xs:        0 1px 2px 0 rgba(0, 0, 0, 0.25);
-  --shadow-sm:        0 2px 8px -2px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md:        0 10px 25px -4px rgba(0, 0, 0, 0.5), 0 3px 8px -1px rgba(0, 0, 0, 0.35);
-  --shadow-lg:        0 20px 45px -8px rgba(0, 0, 0, 0.65), 0 5px 15px -2px rgba(0, 0, 0, 0.4);
-  --shadow-glow:      0 0 35px -5px rgba(59, 130, 246, 0.35);
-  --card-shadow:      0 4px 20px -2px rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
-  --card-hover-shadow:0 20px 45px -10px rgba(0, 0, 0, 0.65), 0 0 30px -5px rgba(59, 130, 246, 0.22), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+  // ── Crisp Solid Shadows & Insets (NO Blurry Colored Glows)
+  --shadow-none:        none;
+  --shadow-xs:          0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-sm:          0 2px 4px rgba(0, 0, 0, 0.6);
+  --shadow-hard:        2px 2px 0px #000000;
+  --shadow-hard-accent: 2px 2px 0px var(--accent);
 
-  // ── Generous Geometry & Roundings
-  --nav-height:       72px;
-  --container-max:    1200px;
-  --radius-xs:        8px;
-  --radius-sm:        12px;
-  --radius:           18px;
-  --radius-lg:        24px;
-  --radius-xl:        32px;
-  --radius-full:      9999px;
+  // ── Precision Geometric Roundings
+  --nav-height:         68px;
+  --container-max:      1240px;
+  --radius-xs:          4px;
+  --radius-sm:          8px;
+  --radius:             12px;
+  --radius-lg:          16px;
+  --radius-xl:          20px;
+  --radius-full:        9999px;
 
-  // ── Motion Curves (Fluid Spring Acceleration)
-  --t-fast:           0.15s cubic-bezier(0.16, 1, 0.3, 1);
-  --t:                0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  --t-smooth:         0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  --t-bounce:         0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  // ── Typography Stacks
+  --font-sans:          'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:          'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  // ── Typography
-  --font-sans:        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-mono:        'JetBrains Mono', 'SF Mono', Consolas, Menlo, Monaco, monospace;
+  // ── Tactile Motion & Snappy Transitions
+  --t-fast:             0.12s cubic-bezier(0.16, 1, 0.3, 1);
+  --t:                  0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --t-smooth:           0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-// Light Theme (Clean Swiss Editorial Agency with Micro-Gradients & Specular Depth)
+// ── Theme 2: Architectural Vellum (Paper Light)
 [data-theme="light"] {
-  --bg:               #fbfcfe;
-  --bg-subtle:        #f4f6fb;
-  --bg-alt:           #edf2f9;
-  --bg-surface:       #ffffff;
-  --bg-surface-hover: #f8fafc;
-  --bg-elevated:      #ffffff;
-  --bg-glass:         rgba(251, 252, 254, 0.86);
-  --bg-glass-card:    rgba(255, 255, 255, 0.92);
+  --bg:                 #f5f4ef;
+  --bg-subtle:          #ebe9e1;
+  --bg-surface:         #ffffff;
+  --bg-surface-hover:   #f0eee6;
+  --bg-elevated:        #e6e3d8;
+  --bg-nav:             #f5f4efe6;
 
-  --border:           rgba(0, 0, 0, 0.08);
-  --border-subtle:    rgba(0, 0, 0, 0.04);
-  --border-hover:     rgba(37, 99, 235, 0.45);
-  --border-active:    #2563eb;
-  --border-highlight: rgba(0, 0, 0, 0.12);
+  --border:             #d4cfc1;
+  --border-subtle:      #e5e1d5;
+  --border-hover:       #a8a291;
+  --border-active:      #0038ff;
+  --border-highlight:   #111215;
 
-  --text:             #090d16;
-  --text-secondary:   #334155;
-  --text-muted:       #64748b;
-  --text-dim:         #94a3b8;
-  --text-inverse:     #ffffff;
+  --text:               #111215;
+  --text-secondary:     #4d525e;
+  --text-muted:         #7a8291;
+  --text-dim:           #a8b0bd;
+  --text-inverse:       #ffffff;
 
-  --accent:           #2563eb;
-  --accent-hover:     #1d4ed8;
-  --accent-active:    #1e40af;
-  --accent-dim:       rgba(37, 99, 235, 0.08);
-  --accent-glow:      rgba(37, 99, 235, 0.18);
-  --accent-glow-strong: rgba(37, 99, 235, 0.35);
-  --accent-strong:    #1d4ed8;
-  --accent-text:      #ffffff;
-  --accent-gradient:  linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #06b6d4 100%);
-  --text-gradient:    linear-gradient(180deg, #090d16 0%, #1e293b 70%, #475569 100%);
+  --accent:             #0038ff; // Deep Royal Cobalt
+  --accent-hover:       #1a4eff;
+  --accent-active:      #002bcc;
+  --accent-dim:         #e6ecff;
+  --accent-text:        #ffffff;
 
-  --cyan:             #0891b2;
-  --cyan-hover:       #0e7490;
-  --cyan-dim:         rgba(8, 145, 178, 0.08);
-  --cyan-glow:        rgba(8, 145, 178, 0.2);
+  --signal:             #e63900; // Deep Safety Vermilion
+  --signal-hover:       #ff4d14;
+  --signal-dim:         #ffede6;
 
-  --partner:          #d97706;
-  --partner-hover:    #b45309;
-  --partner-dim:      rgba(217, 119, 6, 0.08);
-  --partner-glow:     rgba(217, 119, 6, 0.2);
-  --partner-strong:   #b45309;
+  --cyan:               #008da8;
+  --cyan-dim:           #e6f7fa;
 
-  --green:            #059669;
-  --green-hover:      #047857;
-  --green-dim:        rgba(5, 150, 105, 0.08);
-  --green-glow:       rgba(5, 150, 105, 0.25);
-  --yellow:           #d97706;
-  --yellow-dim:       rgba(217, 119, 6, 0.08);
-  --red:              #e11d48;
-  --red-dim:          rgba(225, 29, 72, 0.08);
-  --purple:           #7c3aed;
-  --purple-dim:       rgba(124, 58, 237, 0.08);
-  --grey:             #64748b;
-  --grey-dim:         rgba(100, 116, 139, 0.08);
+  --partner:            #b45309;
+  --partner-dim:        #fef3c7;
 
-  --coral:            #e11d48;
-  --coral-dim:        rgba(225, 29, 72, 0.08);
+  --status-up:          #059669;
+  --status-up-dim:      #ecfdf5;
+  --status-warn:        #d97706;
+  --status-warn-dim:    #fffbeb;
+  --status-down:        #dc2626;
+  --status-down-dim:    #fef2f2;
+  --status-grey:        #64748b;
+  --status-grey-dim:    #f1f5f9;
 
-  --shadow-xs:        0 1px 2px 0 rgba(0, 0, 0, 0.04);
-  --shadow-sm:        0 2px 6px -1px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
-  --shadow-md:        0 8px 24px -4px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
-  --shadow-lg:        0 20px 40px -8px rgba(0, 0, 0, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.06);
-  --shadow-glow:      0 0 35px -5px rgba(37, 99, 235, 0.2);
-  --card-shadow:      0 2px 12px -2px rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
-  --card-hover-shadow:0 16px 36px -8px rgba(0, 0, 0, 0.12), 0 0 24px -4px rgba(37, 99, 235, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+  --shadow-xs:          0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-sm:          0 2px 4px rgba(0, 0, 0, 0.12);
+  --shadow-hard:        2px 2px 0px #111215;
+  --shadow-hard-accent: 2px 2px 0px #0038ff;
+}
+
+// ── Theme 3: System Matrix (Brutalist Cyber Monospace)
+[data-theme="matrix"] {
+  --bg:                 #000000;
+  --bg-subtle:          #060806;
+  --bg-surface:         #0a0d0a;
+  --bg-surface-hover:   #101610;
+  --bg-elevated:        #161e16;
+  --bg-nav:             #000000f0;
+
+  --border:             #1b2e1e;
+  --border-subtle:      #122014;
+  --border-hover:       #00ff66;
+  --border-active:      #00ff66;
+  --border-highlight:   #00ff66;
+
+  --text:               #00ff66; // Phosphor Matrix Green
+  --text-secondary:     #00cc52;
+  --text-muted:         #008f39;
+  --text-dim:           #005924;
+  --text-inverse:       #000000;
+
+  --accent:             #00ff66;
+  --accent-hover:       #33ff85;
+  --accent-active:      #00cc52;
+  --accent-dim:         #002910;
+  --accent-text:        #000000;
+
+  --signal:             #00f0ff; // Cyan Secondary
+  --signal-hover:       #33f3ff;
+  --signal-dim:         #002d30;
+
+  --cyan:               #00f0ff;
+  --cyan-dim:           #002d30;
+
+  --partner:            #ffff00;
+  --partner-dim:        #333300;
+
+  --status-up:          #00ff66;
+  --status-up-dim:      #002910;
+  --status-warn:        #ffff00;
+  --status-warn-dim:    #333300;
+  --status-down:        #ff2244;
+  --status-down-dim:    #330008;
+  --status-grey:        #008f39;
+  --status-grey-dim:    #002910;
+
+  --font-sans:          'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --shadow-xs:          none;
+  --shadow-sm:          none;
+  --shadow-hard:        2px 2px 0px #00ff66;
+  --shadow-hard-accent: 2px 2px 0px #00ff66;
 }

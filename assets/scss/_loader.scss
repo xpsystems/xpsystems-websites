@@ -1,7 +1,7 @@
 // =============================================================================
-// Custom Loading Screen
-// Professional-Grade Flat Loading Screen: Playful SVG Network, Zero Gradients,
-// Precision Flat Surface, Pill Roundings & Dynamic Status Feed
+// Loader Component
+// Clean Minimalist Agency Preloader: Solid Surfaces, Vector Packet Animation
+// Zero Gradients, Zero Blurry Shadows, Snappy Dismissal
 // =============================================================================
 
 .xps-loader {
@@ -15,16 +15,12 @@
   padding: 24px;
   opacity: 1;
   visibility: visible;
-  animation: loaderAutoDismiss 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.75s;
-  transition:
-    opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-    visibility 0.28s;
+  animation: loaderAutoDismiss 0.3s ease forwards 0.6s;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
 
   &.is-loaded {
     animation: none !important;
     opacity: 0 !important;
-    transform: scale(0.98) translateY(-6px) !important;
     pointer-events: none !important;
     visibility: hidden !important;
   }
@@ -36,32 +32,16 @@
   align-items: center;
   text-align: center;
   background-color: var(--bg-surface);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.7), 0 0 35px -5px var(--accent-glow);
-  border-radius: 28px;
-  padding: 36px 36px 28px;
-  max-width: 340px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  max-width: 320px;
   width: 100%;
   user-select: none;
   position: relative;
-  overflow: hidden;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  }
 }
 
-// ── Playful SVG Network Visual
 .loader-art {
-  position: relative;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -74,7 +54,7 @@
   .loader-active-track {
     stroke-dasharray: 88;
     stroke-dashoffset: 88;
-    animation: loaderTrackDash 1.8s ease-in-out infinite alternate;
+    animation: loaderTrackDash 1.5s ease-in-out infinite alternate;
   }
 
   .loader-pulse-dot {
@@ -82,161 +62,80 @@
     transform-origin: center;
 
     &.dot-1 {
-      animation: loaderDotPop 1.8s ease-in-out infinite;
+      animation: loaderDotPop 1.5s ease-in-out infinite;
     }
-
     &.dot-2 {
-      animation: loaderDotPop 1.8s ease-in-out infinite 0.45s;
+      animation: loaderDotPop 1.5s ease-in-out infinite 0.3s;
     }
-
     &.dot-3 {
-      animation: loaderDotPop 1.8s ease-in-out infinite 0.9s;
+      animation: loaderDotPop 1.5s ease-in-out infinite 0.6s;
     }
   }
 
   .loader-packet-runner {
-    animation: loaderPacketMove 1.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
-  }
-}
-
-// ── Wordmark
-.loader-brand {
-  margin-bottom: 20px;
-
-  .loader-title {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    color: var(--text);
-    background: var(--text-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
-  }
-}
-
-// ── Progress Bar Pill (Luminous Gradient)
-.loader-progress-track {
-  width: 100%;
-  height: 6px;
-  background-color: var(--bg-alt);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-  margin-bottom: 18px;
-  position: relative;
-}
-
-.loader-progress-fill {
-  height: 100%;
-  width: 12%;
-  background: var(--accent-gradient);
-  box-shadow: 0 0 10px var(--accent);
-  border-radius: var(--radius-full);
-  transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-// ── Status Pill Badge
-.loader-footer {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.loader-status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 14px;
-  background-color: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-full);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-muted);
-}
-
-.loader-status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--accent);
-  flex-shrink: 0;
-  animation: loaderStatusDotPulse 1.2s ease-in-out infinite;
-}
-
-.loader-status-text {
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-}
-
-// ── Keyframe Animations
-@keyframes loaderPacketMove {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(88px);
+    animation: loaderPacketMove 1.5s ease-in-out infinite alternate;
   }
 }
 
 @keyframes loaderTrackDash {
-  0% {
-    stroke-dashoffset: 88;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
+  0% { stroke-dashoffset: 88; }
+  100% { stroke-dashoffset: 0; }
 }
 
 @keyframes loaderDotPop {
-  0%, 100% {
-    transform: scale(0.9);
-    opacity: 0.75;
-  }
-  50% {
-    transform: scale(1.35);
-    opacity: 1;
-  }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
 }
 
-@keyframes loaderStatusDotPulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.3;
-    transform: scale(0.7);
-  }
+@keyframes loaderPacketMove {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(40px, -15px); }
+  100% { transform: translate(80px, 0); }
+}
+
+.loader-brand {
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.loader-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.loader-progress-track {
+  width: 100%;
+  height: 4px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.loader-progress-fill {
+  height: 100%;
+  width: 0%;
+  background-color: var(--accent);
+  transition: width 0.15s ease;
+}
+
+.loader-status-feed {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--status-up);
+  min-height: 1.4em;
 }
 
 @keyframes loaderAutoDismiss {
-  0% {
-    opacity: 1;
-    visibility: visible;
-  }
-  100% {
+  to {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-  }
-}
-
-// ── Reduced Motion
-@media (prefers-reduced-motion: reduce) {
-  .xps-loader {
-    transition: none;
-  }
-
-  .loader-active-track,
-  .loader-pulse-dot,
-  .loader-packet-runner,
-  .loader-status-dot {
-    animation: none !important;
-  }
-
-  .loader-progress-fill {
-    transition: none;
   }
 }

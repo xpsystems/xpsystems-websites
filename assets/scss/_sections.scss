@@ -1,29 +1,93 @@
 // =============================================================================
-// Section Layouts & Shared Components
-// World-Class Agency Architecture: Specular Cards, Command Blueprint, Glass Depth
+// Section Layouts & Components
+// Swiss Modernist Grids, Solid Materiality, Zero Gradients, Zero Floaty Lift
 // =============================================================================
 
-// ── Shared Section Foundations
 .section {
   position: relative;
-  padding: 100px 0;
+  padding: 88px 0;
   border-bottom: 1px solid var(--border);
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 20%;
-    right: 20%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-highlight), transparent);
-    pointer-events: none;
+// ── Transition Banner
+.transition-banner {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+  font-size: 0.8125rem;
+  position: relative;
+  z-index: 10;
+}
+
+.transition-banner-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.transition-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.transition-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent);
+  background-color: var(--accent-dim);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-xs);
+  padding: 2px 8px;
+}
+
+.transition-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+.transition-text {
+  color: var(--text-secondary);
+
+  a {
+    color: var(--text);
+    text-decoration: underline;
+    font-weight: 600;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    background-color: var(--bg-subtle);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: var(--radius-xs);
+    color: var(--text);
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
   }
 }
 
 .section-alt {
-  background-color: var(--bg-alt);
-  background-image: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(59, 130, 246, 0.08), transparent 70%);
+  background-color: var(--bg-subtle);
 }
 
 .section-base {
@@ -31,628 +95,382 @@
 }
 
 .section-header {
+  max-width: 760px;
+  margin: 0 auto 56px;
   text-align: center;
-  max-width: 720px;
-  margin: 0 auto 60px;
-  position: relative;
-  z-index: 2;
+
+  &.text-left {
+    text-align: left;
+    margin-left: 0;
+  }
 }
 
 .section-eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
-  font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent-hover);
-  background-color: var(--accent-dim);
-  border: 1px solid rgba(96, 165, 250, 0.35);
-  box-shadow: 0 0 16px -3px var(--accent-glow);
-  padding: 5px 16px;
-  border-radius: var(--radius-full);
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: var(--radius-xs);
   margin-bottom: 16px;
 }
 
 .section-title {
-  font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   color: var(--text);
-  background: var(--text-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1.12;
-  margin-bottom: 18px;
+  line-height: 1.15;
+  margin-bottom: 14px;
   text-wrap: balance;
 }
 
 .section-sub {
   font-size: 1.0625rem;
-  color: var(--text-muted);
-  line-height: 1.7;
-  letter-spacing: -0.01em;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
-// ── Base Card Component (Glassmorphic Specular Bento Card)
+// ── Base Card Component (Solid Swiss Surface, NO Glass, NO Lift)
 .card {
   position: relative;
   background-color: var(--bg-surface);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
+  border-radius: var(--radius);
+  padding: 28px;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--card-shadow);
-  transition: transform var(--t), border-color var(--t), background-color var(--t), box-shadow var(--t);
-  overflow: hidden;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
-    pointer-events: none;
-  }
+  transition: border-color var(--t-fast), background-color var(--t-fast);
 
   &:hover {
-    transform: translateY(-6px);
-    border-color: var(--accent);
+    border-color: var(--border-hover);
     background-color: var(--bg-surface-hover);
-    box-shadow: var(--card-hover-shadow);
 
-    &::after {
-      background: linear-gradient(90deg, transparent, var(--accent-hover), transparent);
+    .icon-arrow,
+    .icon-ext {
+      transform: translate(2px, -2px);
+      color: var(--accent);
     }
   }
 
   &.card-partner {
-    border-color: var(--border);
+    border-color: var(--border-highlight);
 
     &:hover {
       border-color: var(--partner);
-      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.65), 0 0 30px -5px var(--partner-glow);
+    }
+  }
 
-      &::after {
-        background: linear-gradient(90deg, transparent, var(--partner-hover), transparent);
-      }
+  &.card-parent {
+    border-color: var(--border-highlight);
+
+    &:hover {
+      border-color: var(--accent);
     }
   }
 }
 
-// ── Card Type Badge
+// ── Card Badges
 .card-badge {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   align-self: flex-start;
-  font-size: 0.6875rem;
-  font-weight: 700;
   font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 4px 14px;
-  border-radius: var(--radius-full);
-  background-color: var(--partner-dim);
-  color: var(--partner-hover);
-  border: 1px solid rgba(245, 158, 11, 0.4);
-  box-shadow: 0 0 14px -3px var(--partner-glow);
-  margin-bottom: 20px;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  margin-bottom: 16px;
 
   &.card-badge-service {
-    background-color: var(--accent-dim);
-    color: var(--accent-hover);
-    border-color: rgba(96, 165, 250, 0.4);
-    box-shadow: 0 0 14px -3px var(--accent-glow);
+    color: var(--status-up);
+    border-color: var(--status-up);
+    background-color: var(--status-up-dim);
   }
 
   &.card-badge-parent {
-    background-color: rgba(168, 85, 247, 0.12);
-    color: #c084fc;
-    border-color: rgba(168, 85, 247, 0.4);
-    box-shadow: 0 0 14px -3px var(--purple-glow);
+    color: var(--accent);
+    border-color: var(--accent);
+    background-color: var(--accent-dim);
+  }
+
+  &.card-badge-partner {
+    color: var(--partner);
+    border-color: var(--partner);
+    background-color: var(--partner-dim);
   }
 }
 
+// ── Card Typography
 .card-top {
   margin-bottom: 20px;
 }
 
 .card-name {
-  font-size: 1.3125rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
   color: var(--text);
-  margin-bottom: 10px;
-}
+  margin-bottom: 8px;
 
-.card-name-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text);
-
-  &:hover {
-    color: var(--accent-hover);
+  .card-name-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 
     .icon-ext {
-      opacity: 1;
-      color: var(--accent-hover);
-      transform: translate(3px, -3px);
+      width: 15px;
+      height: 15px;
+      color: var(--text-dim);
+      transition: transform var(--t-fast), color var(--t-fast);
     }
-  }
-
-  .icon-ext {
-    width: 15px;
-    height: 15px;
-    opacity: 0.6;
-    transition: opacity var(--t-fast), transform var(--t-fast), color var(--t-fast);
   }
 }
 
 .card-tagline {
   font-size: 0.875rem;
-  color: var(--text-muted);
-  line-height: 1.6;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
+// ── Card Sublinks List
 .card-links {
   margin-top: auto;
-  padding-top: 20px;
+  padding-top: 16px;
   border-top: 1px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  li {
+    margin: 0;
+  }
 }
 
 .card-sublink {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.8125rem;
   font-family: var(--font-mono);
-  font-weight: 500;
+  font-size: 0.8125rem;
+  font-weight: 600;
   color: var(--text-secondary);
-  padding: 8px 16px;
-  border-radius: var(--radius-full);
-  background-color: var(--bg-alt);
+  padding: 6px 10px;
+  background-color: var(--bg-subtle);
   border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
   transition: all var(--t-fast);
 
-  &:hover {
-    color: #ffffff;
-    background-color: var(--bg-elevated);
-    border-color: var(--border-hover);
-    box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.4), 0 0 10px -2px var(--accent-glow);
-    transform: translateX(4px);
-  }
-
   .icon-arrow {
-    width: 13px;
-    height: 13px;
-    opacity: 0.6;
-    flex-shrink: 0;
-    transition: transform var(--t-fast);
+    width: 14px;
+    height: 14px;
+    color: var(--text-dim);
+    transition: transform var(--t-fast), color var(--t-fast);
   }
 
-  &:hover .icon-arrow {
-    opacity: 1;
-    color: var(--accent-hover);
-    transform: translateX(3px);
+  &:hover {
+    color: var(--text);
+    background-color: var(--bg-elevated);
+    border-color: var(--border);
+
+    .icon-arrow {
+      color: var(--accent);
+      transform: translateX(3px);
+    }
   }
 }
 
-// ── Services Grid
+// ── Services 3-Column Grid
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 26px;
-}
-
-// ── Infrastructure Blueprint Section (World-Class Command Radar Console)
-.infra-blueprint {
-  background-color: var(--bg-surface);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(6, 182, 212, 0.35);
-  box-shadow: 0 24px 55px -12px rgba(0, 0, 0, 0.65), 0 0 35px -5px var(--cyan-glow), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius-xl);
-  padding: 40px 36px;
-  margin-bottom: 72px;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 10%;
-    right: 10%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-    pointer-events: none;
-  }
-}
-
-.blueprint-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  padding-bottom: 26px;
-  border-bottom: 1px solid var(--border-subtle);
-  margin-bottom: 32px;
-}
 
-.blueprint-title-wrap {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  .blueprint-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: var(--radius);
-    background: var(--cyan-dim);
-    border: 1px solid rgba(6, 182, 212, 0.4);
-    box-shadow: 0 0 20px -3px var(--cyan-glow);
-    color: var(--cyan);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      width: 24px;
-      height: 24px;
-    }
+  @media (max-width: 980px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  h3 {
-    font-size: 1.3125rem;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.03em;
-    margin-bottom: 4px;
-  }
-
-  p {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
   }
 }
 
-.blueprint-regions {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
-}
-
-.region-node {
-  background-color: var(--bg-alt);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--border);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), var(--shadow-xs);
-  border-radius: var(--radius);
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: all var(--t);
-  position: relative;
-  overflow: hidden;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
-  }
-
-  &:hover {
-    border-color: var(--cyan);
-    background-color: var(--bg-elevated);
-    box-shadow: 0 12px 30px -6px rgba(0, 0, 0, 0.5), 0 0 24px -4px var(--cyan-glow);
-    transform: translateY(-4px);
-
-    .region-ping {
-      color: var(--cyan);
-      box-shadow: 0 0 12px var(--cyan-glow);
-      border-color: rgba(6, 182, 212, 0.4);
-    }
-  }
-
-  .region-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .region-city {
-    font-weight: 800;
-    font-size: 1rem;
-    color: var(--text);
-    letter-spacing: -0.02em;
-  }
-
-  .region-flag {
-    font-size: 0.75rem;
-    font-family: var(--font-mono);
-    font-weight: 700;
-    color: var(--cyan);
-    padding: 3px 10px;
-    background: var(--cyan-dim);
-    border: 1px solid rgba(6, 182, 212, 0.35);
-    box-shadow: 0 0 10px -2px var(--cyan-glow);
-    border-radius: var(--radius-full);
-  }
-
-  .region-specs {
-    font-size: 0.75rem;
-    font-family: var(--font-mono);
-    color: var(--text-muted);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .region-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--green);
-    font-weight: 700;
-
-    &::before {
-      content: '';
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 8px var(--green);
-    }
-  }
-
-  .region-telemetry {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 10px;
-    border-top: 1px solid var(--border-subtle);
-    font-size: 0.75rem;
-    font-family: var(--font-mono);
-  }
-
-  .region-ping {
-    font-size: 0.75rem;
-    font-family: var(--font-mono);
-    font-weight: 600;
-    color: var(--text-secondary);
-    padding: 2px 8px;
-    border-radius: var(--radius-full);
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    display: inline-flex;
-    align-items: center;
-    transition: all var(--t-fast);
-  }
-
-  .region-meta {
-    color: var(--text-dim);
-    font-size: 0.7rem;
-  }
-}
-
-// ── Mission / Values Section (Editorial Engineering Principles)
+// ── Engineering Principles / Mission (Numbered Swiss Grid)
 .mission-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 26px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+
+  @media (max-width: 1040px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .mission-card {
   background-color: var(--bg-surface);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border);
-  box-shadow: var(--card-shadow);
-  border-radius: var(--radius-lg);
-  padding: 36px 30px;
-  transition: all var(--t);
-  position: relative;
-  overflow: hidden;
-
-  .mission-num {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    font-weight: 700;
-    color: var(--text-dim);
-    opacity: 0.5;
-    letter-spacing: 0.05em;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-    pointer-events: none;
-  }
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--t-fast), background-color var(--t-fast);
 
   &:hover {
-    transform: translateY(-6px);
     border-color: var(--accent);
     background-color: var(--bg-surface-hover);
-    box-shadow: var(--card-hover-shadow);
-
-    .mission-icon {
-      transform: scale(1.08);
-      border-color: var(--accent);
-      box-shadow: 0 0 20px -2px var(--accent-glow);
-    }
-  }
-
-  .mission-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: var(--radius);
-    background-color: var(--accent-dim);
-    border: 1px solid rgba(96, 165, 250, 0.35);
-    box-shadow: 0 0 14px -3px var(--accent-glow);
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 22px;
-    transition: transform var(--t), border-color var(--t), box-shadow var(--t);
-
-    svg {
-      width: 26px;
-      height: 26px;
-    }
-  }
-
-  .mission-title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--text);
-    margin-bottom: 12px;
-    letter-spacing: -0.025em;
-  }
-
-  .mission-desc {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    line-height: 1.7;
   }
 }
 
-// ── Team Section (Executive Engineering Profile Cards)
+.mission-num {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.mission-icon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--text);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.mission-title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.mission-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+// ── Leadership & Team Grid
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 28px;
-  max-width: 760px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 860px;
   margin: 0 auto;
+
+  @media (max-width: 680px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .team-card {
-  text-align: center;
-  align-items: center;
   background-color: var(--bg-surface);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border);
-  box-shadow: var(--card-shadow);
-  border-radius: var(--radius-lg);
-  padding: 40px 32px;
-  transition: transform var(--t), border-color var(--t), box-shadow var(--t), background-color var(--t);
-  position: relative;
-  overflow: hidden;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
-    pointer-events: none;
-  }
+  border-radius: var(--radius);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: border-color var(--t-fast), background-color var(--t-fast);
 
   &:hover {
-    transform: translateY(-6px);
     border-color: var(--border-hover);
     background-color: var(--bg-surface-hover);
-    box-shadow: var(--card-hover-shadow);
-
-    .team-avatar-wrap {
-      border-color: var(--accent);
-      box-shadow: 0 0 25px -3px var(--accent-glow);
-    }
   }
 }
 
 .team-avatar-wrap {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  border: 2px solid var(--border-highlight);
-  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.4);
-  background-color: var(--bg-elevated);
-  margin: 0 auto 20px;
-  overflow: hidden;
   position: relative;
-  transition: all var(--t);
+  width: 88px;
+  height: 88px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 18px;
+  background-color: var(--bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.team-avatar-img,
-.team-avatar-fallback {
+.team-avatar-img {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
   object-fit: cover;
 }
 
 .team-avatar-fallback {
   display: none;
+  width: 100%;
+  height: 100%;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg-elevated);
   color: var(--text-muted);
 }
 
 .team-name {
-  font-size: 1.3125rem;
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--text);
   margin-bottom: 4px;
-  letter-spacing: -0.025em;
 }
 
 .team-role {
-  font-size: 0.8125rem;
   font-family: var(--font-mono);
-  color: var(--accent-hover);
-  font-weight: 600;
-  margin-bottom: 22px;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
 }
 
 .team-links {
   display: flex;
   align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
 }
 
 .team-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
   color: var(--text-secondary);
-  padding: 8px 18px;
-  border-radius: var(--radius-full);
-  background-color: var(--bg-alt);
+  padding: 6px 12px;
+  background-color: var(--bg-subtle);
   border: 1px solid var(--border);
-  box-shadow: var(--shadow-xs);
+  border-radius: var(--radius-xs);
   transition: all var(--t-fast);
 
   svg {
@@ -661,124 +479,75 @@
   }
 
   &:hover {
-    background-color: var(--bg-elevated);
+    color: var(--text);
     border-color: var(--accent);
-    color: #ffffff;
-    box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.4), 0 0 12px -2px var(--accent-glow);
-    transform: translateY(-2px);
+    background-color: var(--bg-elevated);
   }
 }
 
-// ── Stats Section (High-Impact Telemetry Counters)
+// ── Live Stats Strip
 .stats-section {
-  position: relative;
-  background-color: var(--bg);
-  padding: 84px 0;
+  padding: 64px 0;
+  background-color: var(--bg-subtle);
   border-bottom: 1px solid var(--border);
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 20%;
-    right: 20%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-highlight), transparent);
-    pointer-events: none;
-  }
 }
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 26px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .stat-item {
-  position: relative;
   background-color: var(--bg-surface);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border);
-  box-shadow: var(--card-shadow);
-  border-radius: var(--radius-lg);
-  padding: 36px 28px;
-  text-align: center;
+  border-radius: var(--radius);
+  padding: 28px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  transition: all var(--t);
   text-decoration: none;
-  overflow: hidden;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
-    pointer-events: none;
-  }
+  transition: border-color var(--t-fast), background-color var(--t-fast);
 
   &:hover {
-    transform: translateY(-6px);
     border-color: var(--accent);
     background-color: var(--bg-surface-hover);
-    box-shadow: var(--card-hover-shadow);
 
-    .stat-value {
-      filter: drop-shadow(0 0 20px var(--accent-glow));
-    }
-
-    .stat-cta {
-      border-color: var(--accent);
-      background-color: var(--accent);
-      color: #ffffff;
-      box-shadow: 0 0 16px -2px var(--accent-glow);
-
-      .icon-arrow-sm {
-        transform: translateX(4px);
-      }
+    .stat-cta .icon-arrow-sm {
+      transform: translateX(4px);
+      color: var(--accent);
     }
   }
 }
 
 .stat-value {
-  font-size: 3.25rem;
-  font-weight: 800;
-  font-family: var(--font-mono);
-  letter-spacing: -0.04em;
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
   line-height: 1;
-  background: var(--text-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 10px;
-  transition: all var(--t-fast);
+  color: var(--text);
+  margin-bottom: 8px;
 }
 
 .stat-label {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
   color: var(--text-muted);
-  font-weight: 500;
   margin-bottom: 20px;
 }
 
 .stat-cta {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
-  font-family: var(--font-mono);
-  color: var(--accent-hover);
-  background-color: var(--accent-dim);
-  padding: 5px 14px;
-  border-radius: var(--radius-full);
+  color: var(--accent);
   margin-top: auto;
-  border: 1px solid rgba(96, 165, 250, 0.3);
-  transition: all var(--t-fast);
 
   .icon-arrow-sm {
     width: 14px;
@@ -786,29 +555,3 @@
     transition: transform var(--t-fast);
   }
 }
-
-// ── Shared Badges
-.badge {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  font-family: var(--font-mono);
-  padding: 3px 10px;
-  border-radius: var(--radius-full);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.badge-github {
-  background-color: var(--purple-dim);
-  color: #c084fc;
-  border: 1px solid rgba(168, 85, 247, 0.4);
-  box-shadow: 0 0 10px -2px var(--purple-glow);
-}
-
-.badge-client {
-  background-color: var(--green-dim);
-  color: var(--green);
-  border: 1px solid rgba(16, 185, 129, 0.4);
-  box-shadow: 0 0 10px -2px var(--green-glow);
-}
-
