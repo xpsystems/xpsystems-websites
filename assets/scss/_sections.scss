@@ -9,16 +9,17 @@
   border-bottom: 1px solid var(--border);
 }
 
-// ── Announcement Topbar (Above Nav) & Transition Banner
+// ── Announcement Topbar (Above Nav, Single-Line Ultra-Compact)
 .announcement-topbar,
 .transition-banner {
   background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border);
-  padding: 8px 0;
+  padding: 4px 0;
   font-size: 0.8125rem;
+  line-height: 1.3;
   position: relative;
   z-index: 1010;
-  max-height: 120px;
+  max-height: 52px;
   overflow: hidden;
   transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.3s ease;
 
@@ -36,33 +37,35 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 26px;
 }
 
 .announcement-left,
 .transition-left {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
 }
 
 .announcement-pill,
 .transition-pill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--accent);
   background-color: var(--accent-dim);
   border: 1px solid var(--accent);
   border-radius: var(--radius-xs);
-  padding: 2px 8px;
+  padding: 1px 6px;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .announcement-dot,
@@ -78,6 +81,9 @@
 .transition-text {
   color: var(--text-secondary);
   font-size: 0.8125rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   strong {
     color: var(--text);
@@ -92,39 +98,47 @@
       color: var(--accent);
     }
   }
-
-  code {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    background-color: var(--bg-subtle);
-    border: 1px solid var(--border);
-    padding: 1px 6px;
-    border-radius: var(--radius-xs);
-    color: var(--text);
-    cursor: pointer;
-
-    &:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-  }
 }
 
 .announcement-actions,
 .transition-right {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   margin-left: auto;
+  flex-shrink: 0;
 }
 
 .announcement-btn {
-  font-size: 0.75rem;
-  padding: 4px 10px;
-  height: 28px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  padding: 2px 8px;
+  height: 24px;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--t-fast);
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  &.primary {
+    background-color: var(--accent);
+    color: var(--accent-text);
+    border-color: var(--accent);
+
+    &:hover {
+      background-color: var(--accent-hover);
+    }
+  }
 }
 
 .announcement-close-btn {
@@ -132,8 +146,8 @@
   border: 1px solid var(--border);
   color: var(--text-muted);
   border-radius: var(--radius-xs);
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;

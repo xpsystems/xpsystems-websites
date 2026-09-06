@@ -21,7 +21,7 @@ return [
         'parent_domain'     => 'ternis.dev',
         'open_source_hub'   => 'https://oss.ternis.org',
         'nameservers'       => ['one.ns.ternis.net', 'two.ns.ternis.net'],
-        'transition_notice' => 'xpsystems (xpsystems.eu & xpsystems.de) has transitioned into ternis.dev (ternis-edv). Infrastructure, Anycast DNS and open-source operations continue under the ternis ecosystem.',
+        'transition_notice' => 'xpsystems (xpsystems.eu & xpsystems.de) has transitioned into ternis.dev (ternis-edv). Infrastructure, DNS services, and open-source operations continue under the ternis ecosystem.',
         'description'       => 'European infrastructure, digital sovereignty, and developer-first tooling — operated as a sub-entity of ternis-edv (ternis.dev) from Germany.',
         'domains'           => ['xpsystems.eu', 'xpsystems.de', 'xpsys.de'],
     ],

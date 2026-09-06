@@ -5,13 +5,16 @@
       <div class="footer-dock-left">
         <span class="footer-meta-tag">
           <span class="status-dot green"></span>
-          <span>European Edge Mesh: DE-FRA &bull; DE-FSN &bull; NL-AMS &bull; FI-HEL</span>
+          <span>German Operations: xpsystems.eu &bull; xpsystems.de &bull; xpsys.de</span>
         </span>
         <span class="footer-meta-tag mono">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+            <line x1="6" y1="6" x2="6.01" y2="6"/>
+            <line x1="6" y1="18" x2="6.01" y2="18"/>
           </svg>
-          <span>~3.8ms Anycast Edge</span>
+          <span>Authoritative NS: one.ns.ternis.net</span>
         </span>
       </div>
 
@@ -19,9 +22,9 @@
         <span class="footer-meta-tag mono">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
           </svg>
-          <span>Datacenter Zone: Europe/Berlin</span>
+          <span>Sub-Entity of ternis.dev (ternis-edv)</span>
         </span>
 
         <button type="button" class="btn btn-secondary btn-sm" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Return to top of page">

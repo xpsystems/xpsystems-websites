@@ -5,28 +5,25 @@
       <div class="announcement-left">
         <span class="announcement-pill">
           <span class="announcement-dot"></span>
-          <span>Transition Notice</span>
+          <span>Notice</span>
         </span>
-        <div class="announcement-text">
-          <strong>xpsystems (xpsystems.eu &bull; xpsystems.de)</strong> has transitioned to
-          <a href="https://ternis.dev" target="_blank" rel="noopener noreferrer">ternis.dev</a> (ternis-edv).
-          <span class="hide-mobile">&bull; Authoritative NS: <code data-copy="one.ns.ternis.net" title="Click to copy">one.ns.ternis.net</code> &amp; <code data-copy="two.ns.ternis.net" title="Click to copy">two.ns.ternis.net</code></span>
-        </div>
+        <span class="announcement-text">
+          xpsystems has transitioned to <a href="https://ternis.dev" target="_blank" rel="noopener noreferrer"><strong>ternis.dev</strong></a> (ternis-edv).
+        </span>
       </div>
 
       <div class="announcement-actions">
-        <button type="button" class="btn btn-outline btn-sm announcement-btn" id="btn-open-briefing" onclick="window.openTransitionModal && window.openTransitionModal()" title="View full transition briefing">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        <button type="button" class="announcement-btn" id="btn-open-briefing" onclick="window.openTransitionModal && window.openTransitionModal()" title="View transition briefing">
           <span>Briefing</span>
         </button>
 
-        <a href="https://ternis.dev" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm announcement-btn">
+        <a href="https://ternis.dev" target="_blank" rel="noopener noreferrer" class="announcement-btn primary">
           <span>ternis.dev</span>
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
         </a>
 
-        <button type="button" class="announcement-close-btn" id="btn-dismiss-topbar" aria-label="Dismiss announcement banner" title="Dismiss top banner">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        <button type="button" class="announcement-close-btn" id="btn-dismiss-topbar" aria-label="Dismiss banner" title="Dismiss notice">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
     </div>
@@ -58,7 +55,7 @@
         <strong>xpsystems</strong> (encompassing <code style="font-family:var(--font-mono);font-size:0.8125rem;">xpsystems.eu</code>, <code style="font-family:var(--font-mono);font-size:0.8125rem;">xpsystems.de</code>, and <code style="font-family:var(--font-mono);font-size:0.8125rem;">xpsys.de</code>) has transitioned operations under parent organisation <strong>ternis-edv (ternis.dev)</strong>.
       </p>
       <p style="color:var(--text-muted);font-size:0.8125rem;">
-        European edge nodes, Anycast DNS meshes, and digital sovereignty initiatives continue uninterrupted with enhanced telemetry and unified infrastructure.
+        German infrastructure, authoritative DNS services, and digital sovereignty initiatives continue uninterrupted under unified operations.
       </p>
 
       <div class="transition-modal-grid">

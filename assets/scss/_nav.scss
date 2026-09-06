@@ -122,24 +122,6 @@
   gap: 8px;
 }
 
-// ── Live Monospace Clock in Header
-.nav-clock {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  padding: 6px 10px;
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xs);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-
-  @media (max-width: 1080px) {
-    display: none;
-  }
-}
-
 // ── Live Infrastructure Telemetry Badge
 .status-badge {
   display: inline-flex;
@@ -173,36 +155,45 @@
   }
 }
 
-// ── Playful Sound FX Toggle Pill
+// ── Tactile Sound FX Toggle Button (Two SVGs: On / Off)
 .sound-toggle-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-xs);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 700;
   color: var(--text-muted);
   cursor: pointer;
   transition: border-color var(--t-fast), color var(--t-fast), background-color var(--t-fast);
 
-  svg {
-    width: 13px;
-    height: 13px;
+  .sound-icon-on {
+    display: none;
+  }
+  .sound-icon-off {
+    display: block;
+  }
+
+  &.is-active {
+    color: var(--accent);
+    border-color: var(--accent);
+    background-color: var(--accent-dim);
+
+    .sound-icon-on {
+      display: block;
+    }
+    .sound-icon-off {
+      display: none;
+    }
   }
 
   &:hover {
     color: var(--text);
     border-color: var(--border-hover);
     background-color: var(--bg-surface-hover);
-  }
-
-  &.is-active {
-    color: var(--accent);
-    border-color: var(--accent);
   }
 
   @media (max-width: 768px) {

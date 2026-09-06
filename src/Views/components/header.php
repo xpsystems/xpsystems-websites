@@ -17,14 +17,8 @@
     </nav>
 
     <div class="nav-right">
-      <!-- Live CET Clock (Frankfurt / Berlin) -->
-      <div class="nav-clock" id="nav-clock" title="Operational Datacenter Time (Frankfurt am Main / Berlin)">
-        <span class="status-dot green" style="width:5px;height:5px;"></span>
-        <span id="nav-clock-time">--:--:-- CET</span>
-      </div>
-
       <!-- Live Infrastructure Status Badge -->
-      <a href="<?= htmlspecialchars(url('/status')) ?>" class="status-badge" id="status-badge" title="Live infrastructure status telemetry">
+      <a href="<?= htmlspecialchars(url('status')) ?>" class="status-badge" id="status-badge" title="Live infrastructure status">
         <div class="status-dot-wrap">
           <span class="status-ping"></span>
           <span class="status-dot green" id="status-dot"></span>
@@ -32,13 +26,18 @@
         <span class="status-text" id="status-text">Operational</span>
       </a>
 
-      <!-- Tactile Sound FX Toggle -->
-      <button class="sound-toggle-btn" id="sound-toggle-btn" type="button" title="Toggle tactile mechanical audio feedback">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <!-- Tactile Sound FX Toggle (Two Pure SVGs: On / Off) -->
+      <button class="sound-toggle-btn" id="sound-toggle-btn" type="button" aria-label="Toggle sound feedback" title="Toggle audio feedback">
+        <svg class="sound-icon sound-icon-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
         </svg>
-        <span class="sound-label">SOUND: OFF</span>
+        <svg class="sound-icon sound-icon-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
       </button>
 
       <!-- Theme Switcher (Dark / Light / Matrix) -->

@@ -46,7 +46,7 @@
     </h1>
 
     <p class="hero-tagline">
-      High-performance hosting, sovereign Anycast domain routing, and developer-first open source tooling — operated from Germany under strict GDPR standards.
+      German Web-Provider: high-performance hosting, sovereign DNS routing, and developer-first open source tooling — operated from Germany under strict GDPR standards.
     </p>
 
     <div class="hero-ctas">
@@ -74,131 +74,39 @@
       </a>
     </div>
 
-    <!-- ── Interactive Dual-Mode Shell (XP-CLI Terminal & Edge PoP Radar) -->
-    <div class="hero-interactive-shell">
-      <div class="shell-header">
-        <div class="shell-window-controls" aria-hidden="true">
-          <span class="shell-dot red"></span>
-          <span class="shell-dot yellow"></span>
-          <span class="shell-dot green"></span>
-        </div>
-
-        <div class="shell-tabs" role="tablist">
-          <button type="button" class="shell-tab-btn active" data-tab="terminal" role="tab" aria-selected="true">
-            &gt;_ XP-CLI Terminal
-          </button>
-          <button type="button" class="shell-tab-btn" data-tab="radar" role="tab" aria-selected="false">
-            [ European Edge Nodes ]
-          </button>
-        </div>
-
-        <div class="shell-title-tag mono">
-          <span>SEC:TLS_1.3 &bull; ANYCAST_DNS</span>
-        </div>
-      </div>
-
-      <!-- Mode 1: In-Browser Interactive Terminal -->
-      <div class="shell-content-terminal" id="terminal-cli-container">
-        <div class="terminal-history" id="terminal-cli-history">
-          <div class="terminal-line accent-line">xpsystems sovereign telemetry v5.4.0 [x86_64-linux-gnu]</div>
-          <div class="terminal-line output-line">Connected to Frankfurt Core (DE-CIX Anycast Mesh). Type "help" for commands.</div>
-          <div class="terminal-line success-line">&#10003; 4/4 edge nodes reporting 100% operational status.</div>
-        </div>
-
-        <div class="terminal-input-row">
-          <span class="terminal-prompt">$</span>
-          <input
-            type="text"
-            class="terminal-input"
-            id="terminal-cli-input"
-            placeholder="Type 'help', 'status', 'ping fra', 'domains', or 'team'..."
-            autocomplete="off"
-            spellcheck="false"
-            aria-label="XP-CLI command input"
-          >
-        </div>
-      </div>
-
-      <!-- Mode 2: European Edge PoP Radar -->
-      <div class="shell-content-radar">
-        <div class="radar-grid">
-          <div class="radar-node-card is-selected" data-node="fra">
-            <div class="node-code">[DE-FRA]</div>
-            <div class="node-city">Frankfurt am Main</div>
-            <div class="node-role">Primary Core &bull; DE-CIX</div>
-            <div class="node-latency-pill">
-              <span class="status-dot green"></span>
-              <span>~3.8ms Anycast</span>
-            </div>
-          </div>
-
-          <div class="radar-node-card" data-node="fsn">
-            <div class="node-code">[DE-FSN]</div>
-            <div class="node-city">Falkenstein</div>
-            <div class="node-role">Bare-Metal &bull; Dedicated</div>
-            <div class="node-latency-pill">
-              <span class="status-dot green"></span>
-              <span>~6.2ms Dedicated</span>
-            </div>
-          </div>
-
-          <div class="radar-node-card" data-node="ams">
-            <div class="node-code">[NL-AMS]</div>
-            <div class="node-city">Amsterdam</div>
-            <div class="node-role">AMS-IX Edge &bull; Transit</div>
-            <div class="node-latency-pill">
-              <span class="status-dot green"></span>
-              <span>~8.9ms Edge</span>
-            </div>
-          </div>
-
-          <div class="radar-node-card" data-node="hel">
-            <div class="node-code">[FI-HEL]</div>
-            <div class="node-city">Helsinki</div>
-            <div class="node-role">Cold Vault &bull; Backup</div>
-            <div class="node-latency-pill">
-              <span class="status-dot green"></span>
-              <span>~14.1ms Vault</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Trust Strip -->
     <div class="hero-trust">
       <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
         </svg>
-        <span>100% GDPR / DSGVO Compliant</span>
+        <span>100% GDPR / DSGVO (§ 5 DDG)</span>
       </div>
 
       <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
           <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
           <line x1="6" y1="6" x2="6.01" y2="6"/>
           <line x1="6" y1="18" x2="6.01" y2="18"/>
         </svg>
-        <span>Bare-Metal in Germany &amp; EU</span>
+        <span>German Infrastructure &amp; DNS</span>
       </div>
 
       <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="16 18 22 12 16 6"/>
           <polyline points="8 6 2 12 8 18"/>
         </svg>
-        <span>Open Source Core</span>
+        <span>Open Source (GitHub @xpsystems)</span>
       </div>
 
       <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="10"/>
           <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
         </svg>
         <span>Zero Tracking Cookies</span>
-      </div>
     </div>
 
   </div>
@@ -308,7 +216,7 @@
         </div>
         <h3 class="mission-title">Resilient Infrastructure</h3>
         <p class="mission-desc">
-          Bare-metal compute, automated Anycast DNS orchestration, and redundant peering across Germany and the Netherlands engineered for uptime.
+          High-reliability compute, automated DNS orchestration, and redundant peering across Germany and the Netherlands engineered for uptime.
         </p>
       </div>
 

@@ -19,7 +19,7 @@ Rather than relying on generic AI-template tropes (milky glassmorphic cards, flo
 3. **NO Excessive `transform: translateY()` on Hover:** No generic cards floating up 4px. Instead, hover states employ tactile border color shifts, solid contrast inversions, kinetic typography, and glyph transitions.
 4. **NO Excessive Shadows on Hover:** No glowing drop-shadows or fuzzy halos. We use crisp hairline borders (1px) or hard-edge architectural offset frames.
 5. **NO Emojis (100% Bespoke SVGs):** Every icon, badge, protocol indicator, and status marker is rendered using custom mathematical SVG vector geometry.
-6. **Playful, Stunning & Unique:** Interactive live European edge node explorer, in-browser retro-modern terminal (`xp-cli`), real-time domain filter matrix, live telemetry feeds, and optional Web Audio API mechanical tactile clicks.
+6. **Playful, Stunning & Unique:** Real-time domain filter matrix, live telemetry feeds, tactile theme switcher, and optional Web Audio API mechanical tactile clicks.
 
 ---
 
@@ -96,8 +96,7 @@ Instead of generic `translateY` lifts and fuzzy drop shadows, interactions will 
 - **XP-Terminal / Interactive Node Console:** Dual-mode interactive widget (Terminal vs. European PoP Edge Map).
 - **Network Ecosystem & Services:** EuropeHost, eu-data.org, MTEX.dev, DNBX.de, xpsys.eu, ternis-edv presented as tactile architectural service blocks with technical metadata.
 - **The Engineering Principles (Manifesto):** 4 numbered foundational principles with bespoke vector diagrams.
-- **The Team:** Fabian Ternis & Ramsay Brewer with verified links, GitHub handles, and SVG badges.
-- **Live Metric Counter:** Domains, Anycast nodes, uptime statistics.
+- **Live Metric Counter:** Domains, active services, uptime statistics.
 - **Tactile Footer:** Comprehensive navigation, legal links, copyright, and system state.
 
 ### 2. Live System Status (`/status` & `status.xpsystems.eu`)

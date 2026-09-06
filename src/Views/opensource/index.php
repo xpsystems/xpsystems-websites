@@ -197,7 +197,7 @@
           <span class="repo-visibility">Public</span>
         </div>
         <p class="repo-desc">
-          Lightweight, resilient server monitoring and SSE live telemetry daemon designed for European Anycast node clusters.
+          Lightweight, resilient server monitoring and SSE live telemetry daemon designed for distributed infrastructure services.
         </p>
         <div class="repo-meta">
           <span class="repo-lang"><span class="lang-dot shell"></span>Shell / PHP</span>

@@ -119,9 +119,9 @@
       </div>
 
       <div class="status-stat-card">
-        <span class="stat-label">Anycast Latency</span>
+        <span class="stat-label">Response Latency</span>
         <span class="stat-value stat-value--green">~3.8ms</span>
-        <span class="stat-sub">DE-CIX Frankfurt ingress</span>
+        <span class="stat-sub">Central Frankfurt ingress</span>
       </div>
 
       <div class="status-stat-card">

@@ -231,9 +231,9 @@ final class Request
                 'oss'        => 'opensource',
             ];
 
-            $lookupKey = strtolower($trimmed);
-            if (isset($knownSubdomains[$lookupKey])) {
-                $targetSubdomain = $knownSubdomains[$lookupKey];
+            $cleanKey = trim(strtolower($trimmed), '/');
+            if (isset($knownSubdomains[$cleanKey])) {
+                $targetSubdomain = $knownSubdomains[$cleanKey];
                 $targetPath = '/';
             } else {
                 $targetPath = $trimmed !== '' ? $trimmed : '/';

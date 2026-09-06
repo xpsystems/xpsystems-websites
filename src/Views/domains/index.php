@@ -57,8 +57,8 @@
           </svg>
         </div>
         <div>
-          <h2 class="ns-card-title">Authoritative Anycast Nameservers</h2>
-          <p class="ns-card-sub">Redundant edge DNS clusters hosted in Frankfurt am Main &amp; Amsterdam</p>
+          <h2 class="ns-card-title">Authoritative Nameservers</h2>
+          <p class="ns-card-sub">Redundant DNS infrastructure hosted under the ternis ecosystem</p>
         </div>
       </div>
 

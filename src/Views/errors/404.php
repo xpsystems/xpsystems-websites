@@ -39,31 +39,20 @@
 
     <h1 class="hero-title">
       Route Resolution<br>
-      <span class="hero-title-signal">Failed at Edge Node.</span>
+      <span class="hero-title-signal">Route Not Found.</span>
     </h1>
 
     <p class="hero-tagline">
-      The requested resource, namespace, or subdomain could not be mapped to an active route on this European ingress node.
+      The requested resource, namespace, or path could not be resolved on this system.
     </p>
 
-    <!-- Diagnostic Terminal Box -->
-    <div class="hero-interactive-shell" style="max-width: 680px; margin: 0 auto 36px;">
-      <div class="shell-header">
-        <div class="shell-window-controls" aria-hidden="true">
-          <span class="shell-dot red"></span>
-          <span class="shell-dot yellow"></span>
-          <span class="shell-dot green"></span>
-        </div>
-        <div class="shell-title-tag mono">ingress-edge-diagnostics</div>
-      </div>
-      <div class="shell-content-terminal" style="max-height: 200px;">
-        <div class="terminal-history">
-          <div class="terminal-line dim-line">TIMESTAMP   : <?= gmdate('Y-m-d\TH:i:s\Z') ?></div>
-          <div class="terminal-line output-line">HOST        : <?= htmlspecialchars($_SERVER['HTTP_HOST'] ?? 'xpsystems.eu', ENT_QUOTES, 'UTF-8') ?></div>
-          <div class="terminal-line output-line">REQUEST_URI : <?= htmlspecialchars($_SERVER['REQUEST_URI'] ?? '/unknown', ENT_QUOTES, 'UTF-8') ?></div>
-          <div class="terminal-line accent-line">INGRESS_POP : DE-FRA-EDGE-01 (Frankfurt Core)</div>
-          <div class="terminal-line" style="color:var(--status-down);">STATUS      : ERR_TARGET_ROUTE_UNRESOLVED</div>
-        </div>
+    <!-- Diagnostic Box -->
+    <div style="max-width: 620px; margin: 0 auto 36px; background-color: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-align: left; font-family: var(--font-mono); font-size: 0.8125rem;">
+      <div style="display: flex; gap: 8px; flex-direction: column;">
+        <div style="color: var(--text-muted);">TIMESTAMP   : <?= gmdate('Y-m-d\TH:i:s\Z') ?></div>
+        <div style="color: var(--text-secondary);">HOST        : <?= htmlspecialchars($_SERVER['HTTP_HOST'] ?? 'xpsystems.eu', ENT_QUOTES, 'UTF-8') ?></div>
+        <div style="color: var(--text-secondary);">REQUEST_URI : <?= htmlspecialchars($_SERVER['REQUEST_URI'] ?? '/unknown', ENT_QUOTES, 'UTF-8') ?></div>
+        <div style="color: var(--status-down); font-weight: 700;">STATUS      : 404_NOT_FOUND</div>
       </div>
     </div>
 

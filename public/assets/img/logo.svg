@@ -1,58 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 64" width="100%" height="100%" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 64" width="100%" height="100%" fill="none">
   <defs>
     <style>
-      .logo-bg { fill: #0b0f19; stroke: #1e293b; stroke-width: 1.5px; }
-      .logo-b1 { stroke: #3b82f6; }
-      .logo-b2 { stroke: #0ea5e9; }
-      .logo-p { stroke: #2563eb; fill: none; }
-      .logo-dot { fill: #10b981; }
-      .logo-ring { stroke: #10b981; stroke-width: 1.5px; stroke-opacity: 0.4; fill: none; }
+      .logo-icon-bg { fill: #0a0c14; stroke: #1e2436; stroke-width: 1.5px; }
+      .logo-icon-x1 { stroke: #3b82f6; stroke-width: 12px; stroke-linecap: round; stroke-linejoin: round; }
+      .logo-icon-p  { stroke: #2563eb; stroke-width: 12px; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .logo-icon-x2 { stroke: #38bdf8; stroke-width: 12px; stroke-linecap: round; stroke-linejoin: round; }
+      .logo-icon-node { fill: #10b981; }
       .logo-text {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", Helvetica, Arial, sans-serif;
-        font-size: 40px;
-        font-weight: 900;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", Arial, sans-serif;
+        font-size: 38px;
+        font-weight: 800;
         letter-spacing: -0.045em;
         fill: #0f172a;
       }
-      .logo-text-accent { fill: #2563eb; }
-      .logo-badge-rect { fill: rgba(37, 99, 235, 0.1); stroke: rgba(37, 99, 235, 0.3); stroke-width: 1; }
-      .logo-badge-text {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-        font-size: 10px;
-        font-weight: 700;
-        fill: #2563eb;
-        letter-spacing: 0.05em;
-      }
+      .logo-dot { fill: #2563eb; }
       @media (prefers-color-scheme: dark) {
-        .logo-bg { fill: #0f172a; stroke: #334155; }
+        .logo-icon-bg { fill: #0a0c14; stroke: #1e2436; }
         .logo-text { fill: #f8fafc; }
-        .logo-text-accent { fill: #38bdf8; }
-        .logo-badge-rect { fill: rgba(56, 189, 248, 0.12); stroke: rgba(56, 189, 248, 0.3); }
-        .logo-badge-text { fill: #38bdf8; }
+        .logo-dot { fill: #38bdf8; }
+      }
+      @media (prefers-color-scheme: light) {
+        .logo-icon-bg { fill: #ffffff; stroke: #cbd5e1; }
+        .logo-icon-x1 { stroke: #2563eb; }
+        .logo-icon-p  { stroke: #1d4ed8; }
+        .logo-icon-x2 { stroke: #0284c7; }
       }
     </style>
   </defs>
-
-  <!-- Left Icon Mark (48x48 at 8,8) -->
-  <g transform="translate(4, 4)">
-    <rect class="logo-bg" x="2" y="2" width="52" height="52" rx="14"/>
-    <g stroke-linecap="round" stroke-linejoin="round" transform="translate(4, 4) scale(0.406)">
-      <!-- Left X chevron (top arm) -->
-      <path class="logo-b1" d="M34 38L62 66" stroke-width="13"/>
-      <!-- Left X chevron (bottom arm) -->
-      <path class="logo-b2" d="M34 94L62 66" stroke-width="13"/>
-      <!-- Center vertical P spine -->
-      <path class="logo-p" d="M62 34V94" stroke-width="13"/>
-      <!-- Top-Right P loop -->
-      <path class="logo-p" d="M62 34H84C93.94 34 102 42.06 102 52C102 61.94 93.94 70 84 70H62" stroke-width="13"/>
-      <!-- Bottom-Right X diagonal kick -->
-      <path class="logo-b2" d="M68 72L94 94" stroke-width="13"/>
-      <!-- Node dot -->
-      <circle class="logo-ring" cx="83" cy="52" r="7"/>
-      <circle class="logo-dot" cx="83" cy="52" r="4"/>
+  <!-- Left Icon Emblem (48x48) -->
+  <g transform="translate(6, 8) scale(0.375)">
+    <rect class="logo-icon-bg" x="4" y="4" width="120" height="120" rx="28"/>
+    <g>
+      <path class="logo-icon-x1" d="M34 38L58 64L34 90"/>
+      <path class="logo-icon-p" d="M58 34V94"/>
+      <path class="logo-icon-p" d="M58 34H80C89.94 34 98 42.06 98 52C98 61.94 89.94 70 80 70H58"/>
+      <path class="logo-icon-x2" d="M66 72L92 92"/>
+      <circle class="logo-icon-node" cx="80" cy="52" r="4.5"/>
     </g>
   </g>
-
-  <!-- Wordmark Text -->
-  <text x="74" y="44" class="logo-text">xpsystems<tspan class="logo-text-accent">.</tspan></text>
+  <!-- Typography -->
+  <text x="66" y="44" class="logo-text">xpsystems<tspan class="logo-dot">.</tspan></text>
 </svg>
